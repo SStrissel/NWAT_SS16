@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace NWAT_SS_165
 {
+
+    // Kommentar
     abstract class BaseKriterium : Controller
     {
         public void anzeigen(Kriterium objekt, int ProjektID = 0, int ProduktID = 0);
