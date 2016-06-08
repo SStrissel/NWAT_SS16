@@ -7,20 +7,9 @@ using System.Threading.Tasks;
 namespace NWAT_SS_165
 {
 
-    // Kommentar
-    abstract class BaseKriterium : Controller
-    {
-        public void anzeigen(Kriterium objekt, int ProjektID = 0, int ProduktID = 0);
-        public void drucken(bool erfuellung = false, bool gewichtung = false, bool nutzwert = false, bool prozent = false, int ProjektID = 0, int[] ProduktID = new int[0]);
-        public void aendern(Kriterium objekt, int ProjektID = 0, int ProduktID = 0);
-        public void loeschen(Kriterium objekt);
-        public void anlegen();
-
-    }
-
 
     // Kommentar
-    class Kriterium : BaseKriterium
+    class Kriterium : Controller
     {
         public void aendern(Kriterium objekt, int ProjektID = 0, int ProduktID = 0)
         {

@@ -38,6 +38,14 @@ namespace NWAT_SS_165
             throw new NotImplementedException();
         }
 
+        public void import()
+        {
+        }
+
+        public void export()
+        {
+        }
+
      
     }
 }

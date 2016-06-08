@@ -11,8 +11,8 @@ namespace NWAT_SS_165
         abstract public void onCreateView(); // wird aufgerufen, wenn ein View geöffnet wird
         abstract public void onDestroyView(); // wird aufgerufen, wenn ein View geschlossen wird
         abstract public void anlegen(); 
-        abstract public void aendern(int ID);
-        abstract public void loeschen(int ID);
-        abstract public void anzeigen(int ID);
+        abstract public void aendern();
+        abstract public void loeschen();
+        abstract public void anzeigen();
     }
 }

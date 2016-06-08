@@ -8,11 +8,21 @@ namespace NWAT_SS_165
 {
     class ControllerNutzwert
     {
-        public void berechnen(float Gewichtung)
+        private void berechnen()
         {
-
         }
 
-        public void 
+        public void ranking(Model projekt)
+        {
+        }
+
+        private void ranking_anzeigen()
+        {
+        }
+        
+        private void ranking_drucken()
+        {
+        }
+
     }
 }
