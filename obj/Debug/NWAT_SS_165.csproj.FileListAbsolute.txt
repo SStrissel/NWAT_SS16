@@ -1,0 +1,11 @@
+C:\Users\Stephan\Source\Repos\NWAT_SS_16\NWAT_SS_165\NWAT_SS_165\bin\Debug\NWAT_SS_165.exe.config
+C:\Users\Stephan\Source\Repos\NWAT_SS_16\NWAT_SS_165\NWAT_SS_165\obj\Debug\NWAT_SS_165.csprojResolveAssemblyReference.cache
+C:\Users\Stephan\Source\Repos\NWAT_SS_16\NWAT_SS_165\NWAT_SS_165\obj\Debug\NWAT_SS_165.Properties.Resources.resources
+C:\Users\Stephan\Source\Repos\NWAT_SS_16\NWAT_SS_165\NWAT_SS_165\obj\Debug\NWAT_SS_165.csproj.GenerateResource.Cache
+C:\Users\Stephan\Source\Repos\NWAT_SS_16\NWAT_SS_165\NWAT_SS_165\bin\Debug\NWAT_SS_165.exe
+C:\Users\Stephan\Source\Repos\NWAT_SS_16\NWAT_SS_165\NWAT_SS_165\bin\Debug\NWAT_SS_165.pdb
+C:\Users\Stephan\Source\Repos\NWAT_SS_16\NWAT_SS_165\NWAT_SS_165\obj\Debug\NWAT_SS_165.exe
+C:\Users\Stephan\Source\Repos\NWAT_SS_16\NWAT_SS_165\NWAT_SS_165\obj\Debug\NWAT_SS_165.pdb
+C:\Users\Stephan\Source\Repos\NWAT\NWAT_SS_165\NWAT_SS_165\NWAT_SS_165\bin\Debug\NWAT_SS_165.exe.config
+C:\Users\Stephan\Source\Repos\NWAT\NWAT_SS_165\NWAT_SS_165\NWAT_SS_165\obj\Debug\NWAT_SS_165.exe
+C:\Users\Stephan\Source\Repos\NWAT\NWAT_SS_165\NWAT_SS_165\NWAT_SS_165\obj\Debug\NWAT_SS_165.pdb
