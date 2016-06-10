@@ -23,6 +23,7 @@ namespace NWAT_SS_165
 
         public bool funktionsabdeckungsgrad_aufsummieren_check(Kriterium objekt)
         {
+            return false;
         }
         
         private float funktionsabdeckungsgrad_beitrag(Nutzwert NWAobjekt, Kriterium objekt)
@@ -42,6 +43,7 @@ namespace NWAT_SS_165
 
         private float funktionsabdeckungsgrad_beitrag_absolut(Kriterium objekt, float erfüllung_einzel)
         {
+            return 0;
         }
 
         private void ranking_anzeigen()
