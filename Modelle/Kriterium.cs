@@ -4,12 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-<<<<<<< HEAD
-// Komment
-=======
-//Kommentar
->>>>>>> origin/master
 namespace NWAT_SS_165
 {
     class Kriterium : Model
