@@ -44,26 +44,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller.cs" />
-    <Compile Include="DatabaseAdapter.cs" />
-    <Compile Include="DruckDokument.cs">
+    <Compile Include="Controller\Controller.cs" />
+    <Compile Include="Datenbank\DatabaseAdapter.cs" />
+    <Compile Include="Hilfsklassen\DruckDokument.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ControllerKriterium.cs" />
+    <Compile Include="Controller\ControllerKriterium.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="DruckDialog.cs">
+    <Compile Include="Hilfsklassen\DruckDialog.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Model.cs" />
-    <Compile Include="ControllerNutzwert.cs" />
-    <Compile Include="ControllerProdukt.cs" />
+    <Compile Include="Modelle\Kriterium.cs" />
+    <Compile Include="Modelle\Model.cs" />
+    <Compile Include="Controller\ControllerNutzwert.cs" />
+    <Compile Include="Controller\ControllerProdukt.cs" />
+    <Compile Include="Modelle\Nutzwert.cs" />
+    <Compile Include="Modelle\Produkt.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="ControllerProjekt.cs" />
+    <Compile Include="Controller\ControllerProjekt.cs" />
+    <Compile Include="Modelle\Projekt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
