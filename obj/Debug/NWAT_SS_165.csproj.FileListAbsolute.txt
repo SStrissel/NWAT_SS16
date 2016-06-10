@@ -12,3 +12,6 @@ C:\Users\Stephan\Source\Repos\NWAT\NWAT_SS_165\NWAT_SS_165\NWAT_SS_165\obj\Debug
 C:\Users\Stephan\Source\Repos\NWAT_SS16\bin\Debug\NWAT_SS_165.exe.config
 C:\Users\Stephan\Source\Repos\NWAT_SS16\obj\Debug\NWAT_SS_165.exe
 C:\Users\Stephan\Source\Repos\NWAT_SS16\obj\Debug\NWAT_SS_165.pdb
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16\bin\Debug\NWAT_SS_165.exe.config
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16\obj\Debug\NWAT_SS_165.exe
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16\obj\Debug\NWAT_SS_165.pdb
