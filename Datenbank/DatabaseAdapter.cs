@@ -8,6 +8,7 @@ namespace NWAT_SS_165
 {
     abstract class DatabaseAdapter
     {
+        abstract public void connect();
         abstract public void insert(Model objekt); // schreibe einen neuen Eintrag in die Datenbank (Autoincrement), schreibe das Model hinein
         abstract public bool delete(Model objekt); // hole z.B. Namen/ID aus Model und suche danach in der Datenbank, lösche das Model, gib bei Erfolg true zurück
         abstract public bool update(Model objekt);  // hole z.B. Namen/ID aus Model und suche danach in der Datenbank, überschreibe das Model mit dem übergebenen Model. Gib true bei Erfolg zurück

@@ -7,7 +7,8 @@ using System.Windows.Forms;
 
 namespace NWAT_SS_165
 {
-    class DruckDialog : PrintDialog
+    class PrintDialog
     {
+
     }
 }
