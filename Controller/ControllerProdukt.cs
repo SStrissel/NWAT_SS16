@@ -8,7 +8,7 @@ namespace NWAT_SS_165
 {
     class ControllerProdukt : Controller
     {
-        public override void aendern(int ID)
+        public override void aendern(Model objekt, int ProduktID, int ProjektID)
         {
             throw new NotImplementedException();
         }
@@ -18,12 +18,12 @@ namespace NWAT_SS_165
             throw new NotImplementedException();
         }
 
-        public override void anzeigen(int ID)
+        public override void anzeigen(Model objekt, int ProduktID, int ProjektID)
         {
             throw new NotImplementedException();
         }
 
-        public override void loeschen(int ID)
+        public override void loeschen(Model objekt)
         {
             throw new NotImplementedException();
         }

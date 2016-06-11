@@ -8,10 +8,9 @@ namespace NWAT_SS_165
 {
 
 
-    // gdfgdfggdfgfd
     class KriteriumController : Controller
     {
-        public void aendern(Kriterium objekt, int ProjektID = 0, int ProduktID = 0)
+       public void aendern(Kriterium objekt, int ProjektID = 0, int ProduktID = 0)
         {
 
         }
@@ -25,20 +24,37 @@ namespace NWAT_SS_165
         {
         }
 
-        public void anlegen()
+        public override void anlegen()
         {
         }
 
 
-        public void onCreateView()
+        public override void onCreateView()
         {
 
         }
 
-        public void onDestoryView()
+       public override void onDestroyView()
         {
 
         }
+
+        public override void anzeigen(Model objekt, int ProduktID, int ProjektID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void loeschen(Model objekt)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void aendern(Model objekt, int ProduktID, int ProjektID)
+        {
+            throw new NotImplementedException();
+        }
+
+
     }
 
 }

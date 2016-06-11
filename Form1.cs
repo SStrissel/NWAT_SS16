@@ -24,6 +24,21 @@ namespace NWAT_SS_165
 
         private void button1_Click(object sender, EventArgs e)
         {
+            mySQLAdapter db = new mySQLAdapter(password.Text);
+            db.test_create();
+            MessageBox.Show("Befehl ausgeführt.", "fertig", MessageBoxButtons.OK);
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            mySQLAdapter db = new mySQLAdapter(password.Text);
+            db.test_delete();
+            MessageBox.Show("Befehl ausgeführt.", "fertig", MessageBoxButtons.OK);
         }
     }
 }
