@@ -63,9 +63,9 @@ namespace NWAT_SS_165.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap nutzwertanalyse_im_unternehmerlexikon_300x199 {
+        internal static System.Drawing.Bitmap washing_512 {
             get {
-                object obj = ResourceManager.GetObject("nutzwertanalyse-im-unternehmerlexikon-300x199", resourceCulture);
+                object obj = ResourceManager.GetObject("washing-512", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
