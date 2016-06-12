@@ -24,9 +24,15 @@ namespace NWAT_SS_165
 
         private void button1_Click(object sender, EventArgs e)
         {
-            mySQLAdapter db = new mySQLAdapter(password.Text);
-            db.test_create();
-            MessageBox.Show("Befehl ausgeführt.", "fertig", MessageBoxButtons.OK);
+            mySQLAdapter db = new mySQLAdapter(server.Text, datenbank.Text, benutzer.Text, passwort.Text);
+            if (db.checkConnection())
+            {
+                MessageBox.Show("Verbindung erfolgreich.", "fertig", MessageBoxButtons.OK);
+            }
+            else
+            {
+                MessageBox.Show("Verbindung fehlgeschlagen.", "fertig", MessageBoxButtons.OK);
+            }
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -36,9 +42,29 @@ namespace NWAT_SS_165
 
         private void button2_Click(object sender, EventArgs e)
         {
-            mySQLAdapter db = new mySQLAdapter(password.Text);
+            mySQLAdapter db = new mySQLAdapter(server.Text, datenbank.Text, benutzer.Text, passwort.Text);
             db.test_delete();
             MessageBox.Show("Befehl ausgeführt.", "fertig", MessageBoxButtons.OK);
+        }
+
+        private void label2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

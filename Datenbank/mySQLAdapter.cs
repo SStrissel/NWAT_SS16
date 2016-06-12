@@ -10,23 +10,18 @@ namespace NWAT_SS_165
 {
     class mySQLAdapter : DatabaseAdapter
     {
-
-        static string strProject = "db4free.net"; //Enter your SQL server instance name
-        static string strDatabase = "nwat"; //Enter your database name
-        static string strUserID = "nutzwertadmin"; // Enter your SQL Server User Name
-
         public MySqlConnection conn;
         public MySqlTransaction transaction;
 
 
-        public mySQLAdapter(string strPassword) // Konstruktor
+
+        public mySQLAdapter(string strServer, string strDatabase, string strUserID, string strPassword) // Konstruktor
         {
-            string strconn = "SERVER=" + strProject + ";" +
+            string strconn = "SERVER=" + strServer + ";" +
             "DATABASE=" + strDatabase + ";" +
             "UID=" + strUserID + ";" +
             "password=" + strPassword + ";";
             conn = new MySqlConnection(strconn);
-
         }
 
         public override void openConnection() // Open database Connection
@@ -34,7 +29,7 @@ namespace NWAT_SS_165
  
             try
             {
-                           conn.Close();
+                conn.Close();
                 conn.Open();
                 transaction = conn.BeginTransaction();
             }
@@ -113,6 +108,19 @@ namespace NWAT_SS_165
         public override long getAutoincrement(Model objekt)
         {
             return 0;
+        }
+
+        public override bool checkConnection()
+        {
+            try
+            {
+                    conn.Open();
+                    return true;
+            }
+            catch
+            {
+                return false; // any error is considered as db connection error for now
+            }
         }
     }
 }
