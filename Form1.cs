@@ -24,19 +24,59 @@ namespace NWAT_SS_165
 
         private void button1_Click(object sender, EventArgs e)
         {
-            mySQLAdapter db = new mySQLAdapter(server.Text, datenbank.Text, benutzer.Text, passwort.Text);
-            if (db.checkConnection())
-            {
-                MessageBox.Show("Verbindung erfolgreich.", "fertig", MessageBoxButtons.OK);
-            }
-            else
-            {
-                MessageBox.Show("Verbindung fehlgeschlagen.", "fertig", MessageBoxButtons.OK);
-            }
+            infoBox.Text = "Verbindung zur Datenbank wird hergestellt...";
+
+            Task task = new Task(asyncTryToConnect);
+            task.Start();
         }
 
         private void label2_Click(object sender, EventArgs e)
         {
+
+        }
+
+        bool changeInfoBox(string text)
+        {
+            infoBox.Text += text;
+            return true;
+        }
+
+        async void asyncTryToConnect()
+        {
+            mySQLAdapter db = new mySQLAdapter(server.Text, datenbank.Text, benutzer.Text, passwort.Text);
+            DateTime jetzt = DateTime.Now;
+            bool result = false;
+            try
+            {
+                result = await handleTryToConnect(db);
+            }
+            catch
+            {
+                this.Invoke((Func<string, bool>)changeInfoBox, "...Verbindungsfehler.");
+                return;
+            }
+            
+            if (result)
+            {
+                TimeSpan difference = DateTime.Now - jetzt;
+                this.Invoke((Func<string, bool>)changeInfoBox, "...erfolgreich (" + difference.TotalSeconds + " s)");
+            }
+            else
+            {
+                this.Invoke((Func<string, bool>)changeInfoBox, "...fehlgeschlagen.");
+            }
+        }
+
+        async Task<bool> handleTryToConnect(DatabaseAdapter db)
+        {
+            if (db.checkConnection())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
 
         }
 

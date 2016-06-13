@@ -32,7 +32,7 @@
             this.passwort = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.infoBox = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -75,13 +75,13 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // richTextBox1
+            // infoBox
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(351, 238);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(260, 96);
-            this.richTextBox1.TabIndex = 4;
-            this.richTextBox1.Text = "Versucht zur Online-Datenbank zu verbinden";
+            this.infoBox.Location = new System.Drawing.Point(351, 238);
+            this.infoBox.Name = "infoBox";
+            this.infoBox.Size = new System.Drawing.Size(260, 96);
+            this.infoBox.TabIndex = 4;
+            this.infoBox.Text = "Geben Sie das Passwort der Datenbank ein.";
             // 
             // label2
             // 
@@ -193,7 +193,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.infoBox);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.passwort);
@@ -212,7 +212,7 @@
         private System.Windows.Forms.TextBox passwort;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox infoBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
