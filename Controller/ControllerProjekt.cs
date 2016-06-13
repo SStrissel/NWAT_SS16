@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NWAT_SS_165
 {
-    class ControllerProjekt : Controller
+     public class ControllerProjekt : Controller
     {
         public override void aendern(Model objekt, int ProjektID, int ProduktID)
         {

@@ -8,7 +8,7 @@ namespace NWAT_SS_165
 {
 
 
-    class KriteriumController : Controller
+     public class KriteriumController : Controller
     {
        public void aendern(Kriterium objekt, int ProjektID = 0, int ProduktID = 0)
         {

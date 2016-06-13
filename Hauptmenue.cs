@@ -12,14 +12,18 @@ namespace NWAT_SS_165
 {
     public partial class Hauptwaschgang : Form
     {
-        public Hauptwaschgang()
+
+        private DatabaseAdapter db;
+
+        public Hauptwaschgang(DatabaseAdapter database)
         {
+            db = database;
             InitializeComponent();
         }
 
         private void Hauptwaschgang_Load(object sender, EventArgs e)
         {
-
+ 
         }
 
         private void button1_Click(object sender, EventArgs e)

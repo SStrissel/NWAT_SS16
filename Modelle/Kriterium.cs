@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NWAT_SS_165
 {
-    class Kriterium : Model
+    public class Kriterium : Model
     {
         int KriteriumID;
         string Bezeichnung;

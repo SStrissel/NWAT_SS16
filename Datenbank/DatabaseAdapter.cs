@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NWAT_SS_165
 {
-    abstract class DatabaseAdapter
+    abstract public class DatabaseAdapter
     {
         abstract public void openConnection();
         abstract public void closeConnection();

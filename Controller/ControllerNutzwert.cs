@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NWAT_SS_165
 {
-    class ControllerNutzwert : Controller
+     public class ControllerNutzwert : Controller
     {
 
         private void gleichgewichten(Kriterium objekt)

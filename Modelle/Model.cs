@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NWAT_SS_165
 {
-    abstract class Model
+    abstract public class Model
     {
         // Setter und Getter-Methoden für die Attribute
     }

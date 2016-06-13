@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NWAT_SS_165
 {
-    class Produkt : Model
+     public class Produkt : Model
     {
         int ProduktID;
         string Bezeichnung;

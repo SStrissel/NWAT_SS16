@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NWAT_SS_165
 {
-    abstract class Controller
+    abstract  public class Controller
     {
         abstract public void onCreateView(); // wird aufgerufen, wenn ein View geöffnet wird
         abstract public void onDestroyView(); // wird aufgerufen, wenn ein View geschlossen wird

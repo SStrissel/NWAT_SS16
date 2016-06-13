@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NWAT_SS_165
 {
-    class Projekt : Model
+     public class Projekt : Model
     {
         int ProjektID;
         string Bezeichnung;

@@ -61,7 +61,7 @@ namespace NWAT_SS_165
             {
                 TimeSpan difference = DateTime.Now - jetzt;
                 this.Invoke((Func<string, bool>)changeInfoBox, "...erfolgreich (" + difference.TotalSeconds + " s)");
-                Hauptwaschgang frm = new Hauptwaschgang();
+                Hauptwaschgang frm = new Hauptwaschgang(db);
                 frm.ShowDialog(); // ShowDialog bewirkt, dass nur das neue Form genutzt werden kann.
             }
             else

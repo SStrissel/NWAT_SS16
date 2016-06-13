@@ -8,12 +8,14 @@ using System.Windows.Forms;
 
 namespace NWAT_SS_165
 {
-    class mySQLAdapter : DatabaseAdapter
+    public class mySQLAdapter : DatabaseAdapter
     {
         public MySqlConnection conn;
         public MySqlTransaction transaction;
 
-
+        public mySQLAdapter()
+        {
+        }
 
         public mySQLAdapter(string strServer, string strDatabase, string strUserID, string strPassword) // Konstruktor
         {
