@@ -48,15 +48,21 @@
     <Compile Include="Controller\Controller.cs" />
     <Compile Include="Datenbank\DatabaseAdapter.cs" />
     <Compile Include="Datenbank\mySQLAdapter.cs" />
+    <Compile Include="Hauptmenue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hauptmenue.Designer.cs">
+      <DependentUpon>Hauptmenue.cs</DependentUpon>
+    </Compile>
     <Compile Include="Hilfsklassen\DruckDokument.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controller\ControllerKriterium.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Hilfsklassen\DruckDialog.cs" />
     <Compile Include="Modelle\Kriterium.cs" />
@@ -69,8 +75,11 @@
     <Compile Include="Controller\ControllerProjekt.cs" />
     <Compile Include="Modelle\Projekt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Hauptmenue.resx">
+      <DependentUpon>Hauptmenue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

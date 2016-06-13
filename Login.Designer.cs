@@ -1,6 +1,6 @@
 ﻿namespace NWAT_SS_165
 {
-    partial class Form1
+    partial class Login
     {
         /// <summary>
         /// Erforderliche Designervariable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.passwort = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -79,6 +79,7 @@
             // 
             this.infoBox.Location = new System.Drawing.Point(351, 238);
             this.infoBox.Name = "infoBox";
+            this.infoBox.ReadOnly = true;
             this.infoBox.Size = new System.Drawing.Size(260, 96);
             this.infoBox.TabIndex = 4;
             this.infoBox.Text = "Geben Sie das Passwort der Datenbank ein.";
@@ -178,7 +179,7 @@
             this.pictureBox1.TabIndex = 16;
             this.pictureBox1.TabStop = false;
             // 
-            // Form1
+            // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -199,7 +200,7 @@
             this.Controls.Add(this.passwort);
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.Name = "Login";
             this.Text = "Nutzwert-Analyse Tool SS 16";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

@@ -18,9 +18,10 @@ C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16\obj\Debug\NWAT
 C:\NWAT_SS16\bin\Debug\NWAT_SS_165.exe.config
 C:\NWAT_SS16\obj\Debug\NWAT_SS_165.exe
 C:\NWAT_SS16\obj\Debug\NWAT_SS_165.pdb
-C:\NWAT_SS16\obj\Debug\NWAT_SS_165.csprojResolveAssemblyReference.cache
-C:\NWAT_SS16\obj\Debug\NWAT_SS_165.Form1.resources
 C:\NWAT_SS16\obj\Debug\NWAT_SS_165.Properties.Resources.resources
 C:\NWAT_SS16\obj\Debug\NWAT_SS_165.csproj.GenerateResource.Cache
 C:\NWAT_SS16\bin\Debug\NWAT_SS_165.exe
 C:\NWAT_SS16\bin\Debug\NWAT_SS_165.pdb
+C:\NWAT_SS16\obj\Debug\NWAT_SS_165.Login.resources
+C:\NWAT_SS16\obj\Debug\NWAT_SS_165.Hauptwaschgang.resources
+C:\NWAT_SS16\obj\Debug\NWAT_SS_165.csprojResolveAssemblyReference.cache

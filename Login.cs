@@ -10,9 +10,10 @@ using System.Windows.Forms;
 
 namespace NWAT_SS_165
 {
-    public partial class Form1 : Form
+
+    public partial class Login : Form
     {
-        public Form1()
+        public Login()
         {
             InitializeComponent();
         }
@@ -60,6 +61,8 @@ namespace NWAT_SS_165
             {
                 TimeSpan difference = DateTime.Now - jetzt;
                 this.Invoke((Func<string, bool>)changeInfoBox, "...erfolgreich (" + difference.TotalSeconds + " s)");
+                Hauptwaschgang frm = new Hauptwaschgang();
+                frm.ShowDialog(); // ShowDialog bewirkt, dass nur das neue Form genutzt werden kann.
             }
             else
             {
