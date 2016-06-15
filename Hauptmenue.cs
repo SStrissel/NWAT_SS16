@@ -28,7 +28,9 @@ namespace NWAT_SS_165
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Ups...Dieser Bereich wurde noch nicht implementiert!", "Die Waschmaschine hat eine Socke gefressen...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            Projektverwaltung frm = new Projektverwaltung();
+            this.WindowState = FormWindowState.Minimized;
+            frm.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)

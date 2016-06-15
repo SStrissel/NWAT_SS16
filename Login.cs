@@ -36,6 +36,14 @@ namespace NWAT_SS_165
 
         }
 
+        bool view_hauptmenue(DatabaseAdapter db)
+        {
+            Hauptwaschgang frm = new Hauptwaschgang(db);
+            this.WindowState = FormWindowState.Minimized;
+            frm.ShowDialog(); // ShowDialog bewirkt, dass nur das neue Form genutzt werden kann.
+            return true;
+        }
+
         bool changeInfoBox(string text)
         {
             infoBox.Text += text;
@@ -53,7 +61,7 @@ namespace NWAT_SS_165
             }
             catch
             {
-                this.Invoke((Func<string, bool>)changeInfoBox, "...Verbindungsfehler.");
+                this.Invoke((Func<string, bool>)changeInfoBox, false, "...Verbindungsfehler.", new mySQLAdapter());
                 return;
             }
             
@@ -61,8 +69,8 @@ namespace NWAT_SS_165
             {
                 TimeSpan difference = DateTime.Now - jetzt;
                 this.Invoke((Func<string, bool>)changeInfoBox, "...erfolgreich (" + difference.TotalSeconds + " s)");
-                Hauptwaschgang frm = new Hauptwaschgang(db);
-                frm.ShowDialog(); // ShowDialog bewirkt, dass nur das neue Form genutzt werden kann.
+                this.Invoke((Func<DatabaseAdapter, bool>)view_hauptmenue, db);
+        
             }
             else
             {

@@ -41,7 +41,6 @@
             this.server = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -157,18 +156,6 @@
             this.label6.TabIndex = 14;
             this.label6.Text = "Kurt Wusterhausen, Julian Huber, Mehmet Tektas, Stephan Strissel";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.Brown;
-            this.label7.Location = new System.Drawing.Point(59, 296);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(225, 25);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Dreckswäsche-Edition";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::NWAT_SS_165.Properties.Resources.washing_512;
@@ -186,7 +173,6 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(756, 390);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.server);
             this.Controls.Add(this.datenbank);
@@ -222,7 +208,6 @@
         private System.Windows.Forms.TextBox server;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
