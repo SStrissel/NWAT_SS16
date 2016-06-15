@@ -36,12 +36,12 @@ namespace NWAT_SS_165
             return 0;
         }
 
-        private int funktionsabdeckungsgrad_beitrag_zähler(Nutzwert NWAobjekt, Kriterium objekt)
+        private int funktionsabdeckungsgrad_beitrag_zaehler(Nutzwert NWAobjekt, Kriterium objekt)
         {
             return 0;
         }
 
-        private float funktionsabdeckungsgrad_beitrag_absolut(Kriterium objekt, float erfüllung_einzel)
+        private float funktionsabdeckungsgrad_beitrag_absolut(Kriterium objekt, float erfuellung_einzel)
         {
             return 0;
         }
