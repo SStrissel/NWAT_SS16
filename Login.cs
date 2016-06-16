@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Controls;
+using System.Drawing.Printing;
 
 namespace NWAT_SS_165
 {
@@ -16,6 +18,7 @@ namespace NWAT_SS_165
         public Login()
         {
             InitializeComponent();
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -64,13 +67,13 @@ namespace NWAT_SS_165
                 this.Invoke((Func<string, bool>)changeInfoBox, false, "...Verbindungsfehler.", new mySQLAdapter());
                 return;
             }
-            
+
             if (result)
             {
                 TimeSpan difference = DateTime.Now - jetzt;
                 this.Invoke((Func<string, bool>)changeInfoBox, "...erfolgreich (" + difference.TotalSeconds + " s)");
                 this.Invoke((Func<DatabaseAdapter, bool>)view_hauptmenue, db);
-        
+
             }
             else
             {
@@ -93,9 +96,6 @@ namespace NWAT_SS_165
 
         private void button2_Click(object sender, EventArgs e)
         {
-            mySQLAdapter db = new mySQLAdapter(server.Text, datenbank.Text, benutzer.Text, passwort.Text);
-            db.test_delete();
-            MessageBox.Show("Befehl ausgeführt.", "fertig", MessageBoxButtons.OK);
         }
 
         private void label2_Click_1(object sender, EventArgs e)
@@ -126,6 +126,18 @@ namespace NWAT_SS_165
         private void label7_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            PrintDocument printDoc = new PrintDocument();
+            printDoc.DocumentName = "Print Document";
+            printDlg.Document = printDoc;
+            printDlg.AllowSelection = true;
+            printDlg.AllowSomePages = true;
+            //Call ShowDialog
+            if (printDlg.ShowDialog() == DialogResult.OK)
+                printDoc.Print();          
         }
     }
 }

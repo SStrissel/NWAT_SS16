@@ -79,14 +79,14 @@ namespace NWAT_SS_165
         {
         }
 
-        public void test_create()
+        public void init_tables()
         {
             openConnection();
             ExecuteSQL("CREATE TABLE Persons(PersonID int,LastName varchar(255),FirstName varchar(255),Address varchar(255),City varchar(255));");
             closeConnection();
         }
 
-        public void test_delete()
+        public void drop_tables()
         {
             openConnection();
             ExecuteSQL("DROP TABLE Persons;");
@@ -102,15 +102,11 @@ namespace NWAT_SS_165
             return true;
         }
 
-        public override Model get(Model objekt)
+        public override Model[] get(Model objekt)
         {
-            return new Kriterium();
+            return new Kriterium[5];
         }
 
-        public override long getAutoincrement(Model objekt)
-        {
-            return 0;
-        }
 
         public override bool checkConnection()
         {

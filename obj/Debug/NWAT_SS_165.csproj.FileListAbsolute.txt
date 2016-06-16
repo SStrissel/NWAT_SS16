@@ -16,7 +16,6 @@ C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16\bin\Debug\NWAT
 C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16\obj\Debug\NWAT_SS_165.exe
 C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16\obj\Debug\NWAT_SS_165.pdb
 C:\NWAT_SS16\obj\Debug\NWAT_SS_165.Hauptwaschgang.resources
-C:\NWAT_SS16\obj\Debug\NWAT_SS_165.Login.resources
 C:\NWAT_SS16\obj\Debug\NWAT_SS_165.Properties.Resources.resources
 C:\NWAT_SS16\obj\Debug\NWAT_SS_165.csproj.GenerateResource.Cache
 C:\NWAT_SS16\bin\Debug\NWAT_SS_165.exe.config
@@ -25,6 +24,7 @@ C:\NWAT_SS16\bin\Debug\NWAT_SS_165.exe
 C:\NWAT_SS16\bin\Debug\NWAT_SS_165.pdb
 C:\NWAT_SS16\obj\Debug\NWAT_SS_165.exe
 C:\NWAT_SS16\obj\Debug\NWAT_SS_165.pdb
-C:\NWAT_SS16\bin\Debug\MySql.Data.dll
 C:\NWAT_SS16\obj\Debug\NWAT_SS_165.InputDialog.resources
 C:\NWAT_SS16\obj\Debug\NWAT_SS_165.Projektverwaltung.resources
+C:\NWAT_SS16\bin\Debug\Resources\washing-512.png
+C:\NWAT_SS16\obj\Debug\NWAT_SS_165.Login.resources

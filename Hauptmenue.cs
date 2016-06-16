@@ -47,5 +47,20 @@ namespace NWAT_SS_165
         {
             MessageBox.Show("Ups...Dieser Bereich wurde noch nicht implementiert!", "Die Waschmaschine hat eine Socke Socke gefressen...", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
