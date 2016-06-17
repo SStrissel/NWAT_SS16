@@ -1,0 +1,21 @@
+﻿<Window x:Class="NWAT_SS16.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Nutzwertanalyse-Tool" Height="375" Width="550.5" Icon="Resources/Laundry_12-512.png">
+    <Grid Margin="0,0">
+        <TextBox x:Name="server" HorizontalAlignment="Left" Height="20" Margin="403,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="db4free.net"/>
+        <TextBox x:Name="datenbank" HorizontalAlignment="Left" Height="24" Margin="403,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="nwat"/>
+        <TextBox x:Name="benutzer" HorizontalAlignment="Left" Height="24" Margin="403,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="nutzwertadmin"/>
+        <TextBox x:Name="passwort" HorizontalAlignment="Left" Height="24" Margin="403,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Server&#xD;&#xA;" HorizontalAlignment="Left" Margin="332,66,0,0" VerticalAlignment="Top" Height="42" Width="44"/>
+        <Label Content="Datenbank&#xA;" HorizontalAlignment="Left" Margin="332,90,0,0" VerticalAlignment="Top" Height="42" Width="68"/>
+        <Label Content="Benutzer&#xA;" HorizontalAlignment="Left" Margin="332,118,0,0" VerticalAlignment="Top" Height="42" Width="58"/>
+        <Label Content="Passwort&#xA;" HorizontalAlignment="Left" Margin="332,146,0,0" VerticalAlignment="Top" Height="42" Width="58"/>
+        <Button Content="verbinden" HorizontalAlignment="Left" Margin="446,178,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click" Height="20"/>
+        <TextBox x:Name="infoBox" HorizontalAlignment="Left" Height="60" Margin="333,210,0,0" TextWrapping="Wrap" Text="Geben Sie das Passwort zur Datenbank ein" VerticalAlignment="Top" Width="190" IsEnabled="False"/>
+        <Image Margin="14,48,222,32" Source="Resources/washing-512.png" Stretch="Fill"/>
+        <Label Content="Julian Huber, Mehmet Tektas, Stephan Strissel, Kurt Wusterhausen&#xD;&#xA;" HorizontalAlignment="Left" Margin="-365,361" VerticalAlignment="Top" Height="3" Width="358"/>
+        <Label Content="Nutzwertanalyse-Tool" HorizontalAlignment="Left" Margin="5,4,0,0" VerticalAlignment="Top" Height="57" Width="370" FontSize="20" FontWeight="Bold"/>
+
+    </Grid>
+</Window>
