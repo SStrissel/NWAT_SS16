@@ -22,9 +22,14 @@ namespace NWAT_SS16
         private ControllerKriterium cntrl;
         public Kriteriumverwaltung(DatabaseAdapter db)
         {
+            InitializeComponent();
             cntrl = new ControllerKriterium(db, this);
             cntrl.onCreateView();
-            InitializeComponent();
+        }
+
+        private void KriteriumverwaltungClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            cntrl.onDestroyView();
         }
     }
 }

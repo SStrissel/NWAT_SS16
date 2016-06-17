@@ -12,6 +12,7 @@ namespace NWAT_SS16
      public class ControllerKriterium : Controller
     {
 
+
        public ControllerKriterium(DatabaseAdapter db, Window frm) : base(db, frm) { }
 
        public void aendern(Kriterium objekt, int ProjektID = 0, int ProduktID = 0)
@@ -37,7 +38,16 @@ namespace NWAT_SS16
 
         public override void onCreateView()
         {
-            throw new NotImplementedException();
+            if (frm.GetType().Name == "Kriteriumverwaltung")
+            {
+                Kriteriumverwaltung krit = (Kriteriumverwaltung)frm;
+                List<listItem> items = new List<listItem>();
+                items.Add(new listItem() { Title = "Kriterium", ID = 15 });
+                items.Add(new listItem() { Title = "Kriterium", ID = 252 });
+                items.Add(new listItem() { Title = "Kriterium", ID = 341 });
+                krit.listeKriterium.ItemsSource = items;
+                
+            }
         }
 
         public override void onUpdateView()
