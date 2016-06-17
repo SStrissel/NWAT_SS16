@@ -9,5 +9,6 @@ namespace NWAT_SS16
     abstract public class Model
     {
         // Setter und Getter-Methoden für die Attribute
+        abstract public override string ToString(); // wird so in ListView angezeigt
     }
 }

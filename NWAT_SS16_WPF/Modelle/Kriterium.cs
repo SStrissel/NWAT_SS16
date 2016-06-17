@@ -13,6 +13,11 @@ namespace NWAT_SS16
         int KriterienoberID;
         int KriterienunterID;
 
+        public override string ToString()
+        {
+            return "(" + KriteriumID + ")" + Bezeichnung;
+        }
+
         public int getKriteriumID()
         {
             return KriteriumID;
@@ -34,22 +39,22 @@ namespace NWAT_SS16
 
         public void setKriteriumID(int KriteriumID)
         {
-            KriteriumID = this.KriteriumID;
+            this.KriteriumID = KriteriumID;
         }
 
         public void setKriterienoberID(int KriterienoberID)
         {
-            KriterienoberID = this.KriterienoberID;
+            this.KriterienoberID = KriterienoberID;
         }
 
         public void setKriterienunterID(int KriterienunterID)
         {
-            KriterienunterID = this.KriterienunterID;
+            this.KriterienunterID = KriterienunterID;
         }
 
         public void setBezeichnung(string Bezeichnung)
         {
-            Bezeichnung = this.Bezeichnung;
+            this.Bezeichnung = Bezeichnung;
         }
 
     }

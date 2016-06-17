@@ -4,7 +4,7 @@
         Title="Kriteriumverwaltung" Height="397.5" Width="571.5" Icon="Resources/Laundry_12-512.png" Closing="KriteriumverwaltungClosing">
     <Grid>
         <ListBox x:Name="listeKriterium" HorizontalAlignment="Left" Height="170" Margin="34,74,0,0" VerticalAlignment="Top" Width="186"/>
-        <Button x:Name="kriterium_anlegen" Content="anlegen" HorizontalAlignment="Left" Margin="37,289,0,0" VerticalAlignment="Top" Width="74"/>
+        <Button x:Name="kriterium_anlegen" Content="anlegen" HorizontalAlignment="Left" Margin="37,289,0,0" VerticalAlignment="Top" Width="74" Click="anlegen_Click"/>
         <Button x:Name="kriterium_loeschen" Content="loeschen" HorizontalAlignment="Left" Margin="260,290,0,0" VerticalAlignment="Top" Width="74"/>
         <Button x:Name="kriteriumAendern" Content="aendern" HorizontalAlignment="Left" Margin="350,290,0,0" VerticalAlignment="Top" Width="74"/>
 

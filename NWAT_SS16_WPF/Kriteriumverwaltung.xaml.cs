@@ -31,5 +31,10 @@ namespace NWAT_SS16
         {
             cntrl.onDestroyView();
         }
+
+        private void anlegen_Click(object sender, RoutedEventArgs e)
+        {
+            cntrl.anlegen();
+        }
     }
 }

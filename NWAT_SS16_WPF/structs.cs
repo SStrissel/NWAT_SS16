@@ -9,11 +9,11 @@ namespace NWAT_SS16
  struct listItem
  {
      public int ID;
-     public string Title;
+     public string Bezeichnung;
 
      public override string ToString()
      {
-         return "(" + ID + ")" + Title ;
+         return "(" + ID + ")" + Bezeichnung;
      }
  }
 }

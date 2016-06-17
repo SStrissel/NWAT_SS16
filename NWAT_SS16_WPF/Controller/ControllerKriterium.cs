@@ -32,7 +32,12 @@ namespace NWAT_SS16
 
         public override void anlegen()
         {
-            throw new NotImplementedException();
+            Random Rnd = new Random(); // initialisiert die Zufallsklasse
+            Kriterium temp_objekt = new Kriterium();
+            temp_objekt.setKriteriumID(Rnd.Next(9999));
+            temp_objekt.setBezeichnung("Kriterium mit ZufallsID (1-9999)");
+            db.insert(temp_objekt);
+            onUpdateView();
         }
 
 
@@ -41,10 +46,7 @@ namespace NWAT_SS16
             if (frm.GetType().Name == "Kriteriumverwaltung")
             {
                 Kriteriumverwaltung krit = (Kriteriumverwaltung)frm;
-                List<listItem> items = new List<listItem>();
-                items.Add(new listItem() { Title = "Kriterium", ID = 15 });
-                items.Add(new listItem() { Title = "Kriterium", ID = 252 });
-                items.Add(new listItem() { Title = "Kriterium", ID = 341 });
+                List<Kriterium> items = db.get(new Kriterium());
                 krit.listeKriterium.ItemsSource = items;
                 
             }
@@ -52,12 +54,18 @@ namespace NWAT_SS16
 
         public override void onUpdateView()
         {
-            throw new NotImplementedException();
+            if (frm.GetType().Name == "Kriteriumverwaltung")
+            {
+                Kriteriumverwaltung krit = (Kriteriumverwaltung)frm;
+                List<Kriterium> items = db.get(new Kriterium());
+                krit.listeKriterium.ItemsSource = items;
+
+            }
         }
 
        public override void onDestroyView()
         {
-            throw new NotImplementedException();
+           // checken, ob Änderungen gemacht wurden
         }
 
         public override void anzeigen(Model objekt, int ProduktID, int ProjektID)

@@ -15,6 +15,11 @@ namespace NWAT_SS16
         int Gewichtung;
         string Kommentar;
 
+        public override string ToString()
+        {
+            return "(" + ProjektID + " / + " + ProduktID + " / + " + KriteriumID + " / + " + ")" + Kommentar;
+        }
+
 
         public int getKriteriumID()
         {
