@@ -15,3 +15,22 @@ C:\users\stephan strissel\documents\visual studio 2012\Projects\NWAT_SS16\obj\De
 C:\users\stephan strissel\documents\visual studio 2012\Projects\NWAT_SS16\obj\Debug\NWAT_SS16.csprojResolveAssemblyReference.cache
 C:\users\stephan strissel\documents\visual studio 2012\Projects\NWAT_SS16\obj\Debug\Kriteriumverwaltung.baml
 C:\users\stephan strissel\documents\visual studio 2012\Projects\NWAT_SS16\obj\Debug\Kriteriumverwaltung.g.cs
+C:\NWAT_SS16\NWAT_SS16_WPF\bin\Debug\NWAT_SS16.exe.config
+C:\NWAT_SS16\NWAT_SS16_WPF\bin\Debug\NWAT_SS16.exe
+C:\NWAT_SS16\NWAT_SS16_WPF\bin\Debug\NWAT_SS16.pdb
+C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\Hauptmenue.baml
+C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\Kriteriumverwaltung.baml
+C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\Login.baml
+C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\Einstellungen.baml
+C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\Hauptmenue.g.cs
+C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\Kriteriumverwaltung.g.cs
+C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\Login.g.cs
+C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\Einstellungen.g.cs
+C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\App.g.cs
+C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\NWAT_SS16_MarkupCompile.cache
+C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\NWAT_SS16.g.resources
+C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\NWAT_SS16.Properties.Resources.resources
+C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\NWAT_SS16.csproj.GenerateResource.Cache
+C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\NWAT_SS16.exe
+C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\NWAT_SS16.pdb
+C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\NWAT_SS16.csprojResolveAssemblyReference.cache

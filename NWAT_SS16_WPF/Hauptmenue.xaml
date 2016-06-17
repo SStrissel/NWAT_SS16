@@ -15,6 +15,7 @@
         <TextBox HorizontalAlignment="Left" Height="47" Margin="25,261,0,0" TextWrapping="Wrap" Text="Durch Klick auf den Produktbutton, wird die Produktverwaltung mit ihren dazugehörigen  Funktionen  und  mit  allen  Produkten  aufgerufen." VerticalAlignment="Top" Width="351" IsEnabled="False"/>
         <TextBox HorizontalAlignment="Left" Height="101" Margin="20,383,0,0" TextWrapping="Wrap" Text="Die  Kriterium-Verwaltung kann ohne Projekt/Produkt-ID aus dem Hauptmenü aus aufgerufen werden, um den Standard-Kriterienkatalog zu editieren. Es können sowohl die vorhandenen Kriterien eingesehen und gedruckt, als auch neue Kriterien hinzugefügt werden. Das Löschen von Kriterien ist nur im Standard-Kriterienkatalog  möglich." VerticalAlignment="Top" Width="351" RenderTransformOrigin="0.479,-0.936" IsEnabled="False"/>
         <TextBox HorizontalAlignment="Left" Height="63" Margin="16,550,0,0" TextWrapping="Wrap" Text="Klickt man auf den Button &quot;Nutzwertanalyse&quot;, so werden alle Projekte geladen und anschließend dem Nutzer auf dem Bildschirm präsentiert." VerticalAlignment="Top" Width="350" IsEnabled="False"/>
+        <Button x:Name="einstellungen" Content="Einstellungen" HorizontalAlignment="Left" Margin="20,612,0,0" VerticalAlignment="Top" Width="75" Click="einstellungen_Click"/>
 
     </Grid>
 </Window>

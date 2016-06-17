@@ -48,5 +48,11 @@ namespace NWAT_SS16
             frm.ShowDialog();
 
         }
+
+        private void einstellungen_Click(object sender, RoutedEventArgs e)
+        {
+            Einstellungen frm = new Einstellungen(db);
+            frm.ShowDialog();
+        }
     }
 }

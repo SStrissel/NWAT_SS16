@@ -80,17 +80,25 @@ namespace NWAT_SS16
         {
         }
 
-        public void init_tables()
+        public override void init_tables()
         {
             openConnection();
-            ExecuteSQL("CREATE TABLE Persons(PersonID int,LastName varchar(255),FirstName varchar(255),Address varchar(255),City varchar(255));");
+            ExecuteSQL("CREATE TABLE Projekt (ProjektID int, Bezeichnung varchar(255));");
+            ExecuteSQL("CREATE TABLE Produkt (ProduktID int, Bezeichnung varchar(255));");
+            ExecuteSQL("CREATE TABLE Kriterium (KriteriumID int, Bezeichnung varchar(255));");
+            ExecuteSQL("CREATE TABLE Kriterienstruktur (OberKriteriumID int, UnterKriteriumID int);");
+            ExecuteSQL("CREATE TABLE NWA (ProjektID int, KriteriumID int, ProduktID int, Erfuellung boolean, Gewichtung int, Kommentare varchar(255), beitrag_absolut double, beitrag_absolut_check boolean);");
             closeConnection();
         }
 
-        public void drop_tables()
+        public override void drop_tables()
         {
             openConnection();
-            ExecuteSQL("DROP TABLE Persons;");
+            ExecuteSQL("DROP TABLE Projekt;");
+            ExecuteSQL("DROP TABLE Produkt;");
+            ExecuteSQL("DROP TABLE Kriterium;");
+            ExecuteSQL("DROP TABLE Kriterienstruktur;");
+            ExecuteSQL("DROP TABLE NWA;");
             closeConnection();
         }
 
