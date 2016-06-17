@@ -27,11 +27,15 @@ namespace NWAT_SS16
 
         public override void anlegen()
         {
-            Random Rnd = new Random(); // initialisiert die Zufallsklasse
-            Kriterium temp_objekt = new Kriterium();
-            temp_objekt.setBezeichnung("Neues Kriterium");
-            db.insert(temp_objekt);
-            onUpdateView();
+            if (frm.GetType().Name == "Kriteriumverwaltung")
+            {
+                Kriteriumverwaltung krit = (Kriteriumverwaltung)frm;
+                Kriterium temp_objekt = new Kriterium();
+                temp_objekt.setBezeichnung("Neues Kriterium");
+                db.insert(temp_objekt);
+                onUpdateView();
+                krit.listeKriterium.SelectedIndex = krit.listeKriterium.Items.Count - 1;
+            }
         }
 
 

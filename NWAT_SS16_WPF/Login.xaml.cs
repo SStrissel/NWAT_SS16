@@ -32,7 +32,7 @@ namespace NWAT_SS16
         public void Button_Click(object sender, RoutedEventArgs e)
         {
             infoBox.Text = "Verbindung zur Datenbank wird hergestellt...";
-            mySQLAdapter db = new mySQLAdapter(server.Text, datenbank.Text, benutzer.Text, passwort.Text);
+            mySQLAdapter db = new mySQLAdapter(server.Text, datenbank.Text, benutzer.Text, passwort.Password);
             var task = new Task(() => asyncTryToConnect(db));
             task.Start();
        } 
@@ -96,5 +96,12 @@ namespace NWAT_SS16
 
         }
 
+        private void Passwort_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Button_Click(this, new RoutedEventArgs());
+            }
+        }
     }
 }
