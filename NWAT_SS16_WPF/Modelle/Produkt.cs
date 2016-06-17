@@ -14,7 +14,7 @@ namespace NWAT_SS16
 
         public override string ToString()
         {
-            return "(" + ProduktID + ")" + Bezeichnung;
+            return "(" + ProduktID + ") " + Bezeichnung;
         }
 
         public int getProduktID()

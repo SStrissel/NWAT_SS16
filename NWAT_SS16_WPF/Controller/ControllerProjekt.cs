@@ -12,7 +12,7 @@ namespace NWAT_SS16
 
           ControllerProjekt(DatabaseAdapter db, Window frm) : base(db, frm){}
 
-        public override void aendern(Model objekt, int ProjektID, int ProduktID)
+        public override void aendern()
         {
             throw new NotImplementedException();
         }

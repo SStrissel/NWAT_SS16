@@ -36,5 +36,22 @@ namespace NWAT_SS16
         {
             cntrl.anlegen();
         }
+
+        private void item_selected(object sender, SelectionChangedEventArgs e)
+        {
+            Kriterium objekt = ((sender as ListBox).SelectedItem as Kriterium);
+            cntrl.anzeigen(objekt);
+        }
+
+        private void kriterium_loeschen_Click(object sender, RoutedEventArgs e)
+        {          
+            Kriterium objekt = (listeKriterium.SelectedItem as Kriterium);
+            cntrl.loeschen(objekt);
+        }
+
+        private void kriteriumAendern_Click(object sender, RoutedEventArgs e)
+        {
+            cntrl.aendern();
+        }
     }
 }

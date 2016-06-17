@@ -15,7 +15,7 @@ namespace NWAT_SS16
 
         public override string ToString()
         {
-            return "(" + KriteriumID + ")" + Bezeichnung;
+            return "(" + KriteriumID + ") " + Bezeichnung;
         }
 
         public int getKriteriumID()

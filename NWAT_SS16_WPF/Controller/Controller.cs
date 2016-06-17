@@ -21,7 +21,7 @@ namespace NWAT_SS16
         abstract public void onDestroyView(); // wird aufgerufen, wenn ein View geschlossen wird
         abstract public void onUpdateView(); // wird aufgerufen, wenn ein View geupdated wird
         abstract public void anlegen(); 
-        abstract public void aendern(Model objekt, int ProjektID, int ProduktID);
+        abstract public void aendern();
         abstract public void loeschen(Model objekt);
         abstract public void anzeigen(Model objekt, int ProjektID, int ProduktID);
     }

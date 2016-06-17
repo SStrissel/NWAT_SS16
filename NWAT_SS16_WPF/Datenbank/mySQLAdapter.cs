@@ -20,6 +20,9 @@ namespace NWAT_SS16
         {
         }
 
+        /* Stephan Strissel 
+        initialisiert die Verbindung zur Datenbank
+         */
         public mySQLAdapter(string strServer, string strDatabase, string strUserID, string strPassword) // Konstruktor
         {
             string strconn = "SERVER=" + strServer + ";" +
@@ -29,7 +32,11 @@ namespace NWAT_SS16
             conn = new MySqlConnection(strconn);
         }
 
-        public override void openConnection() // Open database Connection
+        /* Stephan Strissel 
+         öffnet eine Verbindung
+        */
+
+        private void openConnection() // Open database Connection
         {
  
             try
@@ -45,7 +52,11 @@ namespace NWAT_SS16
 
         }
 
-        public override void closeConnection() // database connection close
+        /* Stephan Strissel 
+         schließt eine Verbindung
+        */
+
+        private void closeConnection() // database connection close
         {
             try
             {
@@ -76,6 +87,10 @@ namespace NWAT_SS16
             conn.Close();
         }
 
+        /* Stephan Strissel 
+         führt einen Befehl auf der Datenbank ohne Rückmeldung aus
+        */
+
         protected void ExecuteSQL(string sSQL)
         {
             MySqlCommand cmd = new MySqlCommand(sSQL, conn);
@@ -88,6 +103,54 @@ namespace NWAT_SS16
                 MessageBox.Show(e.ToString(), "FEHLER in ExecuteSQL",MessageBoxButton.OK);
             }
         }
+
+        /* Stephan Strissel 
+         vergibt eine neue ID (Autoincrement)
+        */
+
+        private int newID(Model objekt)
+        {
+            int value = 0;
+            if (objekt.GetType().Name == "Kriterium")
+            {
+                openConnection();
+                MySqlCommand command = new MySqlCommand("SELECT KriteriumID FROM Autoincrement;", conn);
+
+                MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        value = (int)reader[0];
+                    }
+                    value = value + 1;
+                reader.Close();
+                if (value != 0)
+                {
+                    ExecuteSQL("UPDATE Autoincrement SET KriteriumID = '" + value + "' WHERE KriteriumID = '" + (value - 1) + "';");
+                }
+                closeConnection();
+            }
+            else if (objekt.GetType().Name == "Nutzwert")
+            {
+                throw new NotImplementedException();
+            }
+            else if (objekt.GetType().Name == "Produkt")
+            {
+                throw new NotImplementedException();
+            }
+            else if (objekt.GetType().Name == "Projekt")
+            {
+                throw new NotImplementedException();
+            }
+            if (value == 0)
+            {
+                throw new Exception("Die neue ID kann nicht 0 sein");
+            }
+            return value;
+        }
+
+        /* Stephan Strissel 
+         führt einen SQL-Befehl aus und gibt die Antwort als DataTable zurück (langsam)
+        */
 
         protected DataTable QuerySQL(string sSQL)
         {
@@ -110,13 +173,18 @@ namespace NWAT_SS16
                  return dataTable;
         }
 
-        public override void insert(Model objekt)
+        /* Stephan Strissel 
+        fügt ein neues Model in die Datenbank ein
+        */
+
+        public override int insert(Model objekt)
         {
+            int myID = newID(objekt);
              if (objekt.GetType().Name == "Kriterium")
             {
                  Kriterium temp_objekt = (Kriterium)objekt;
                  openConnection();
-                 ExecuteSQL("INSERT INTO Kriterium (KriteriumID, Bezeichnung) VALUES ( " + temp_objekt.getKriteriumID() + ", '" + temp_objekt.getBezeichnung() + "');");
+                 ExecuteSQL("INSERT INTO Kriterium (KriteriumID, Bezeichnung) VALUES ( " + myID + ", '" + temp_objekt.getBezeichnung() + "');");
                  closeConnection();
             }
              else if (objekt.GetType().Name == "Nutzwert")
@@ -134,11 +202,18 @@ namespace NWAT_SS16
                  Projekt temp_obj = (Projekt)objekt;
                  throw new NotImplementedException();
              }
+             return myID;
         }
 
+
+        /* Stephan Strissel 
+         initialisiert alle Tabellen
+        */
         public override void init_tables()
         {
             openConnection();
+            ExecuteSQL("CREATE TABLE Autoincrement (ProjektID int, KriteriumID int, ProduktID int);");
+            ExecuteSQL("INSERT INTO Autoincrement (ProjektID, KriteriumID, ProduktID) VALUES (0,0,0);");
             ExecuteSQL("CREATE TABLE Projekt (ProjektID int, Bezeichnung varchar(255));");
             ExecuteSQL("CREATE TABLE Produkt (ProduktID int, Bezeichnung varchar(255));");
             ExecuteSQL("CREATE TABLE Kriterium (KriteriumID int, Bezeichnung varchar(255));");
@@ -147,6 +222,9 @@ namespace NWAT_SS16
             closeConnection();
         }
 
+        /* Stephan Strissel 
+         löscht alle Tabellen
+        */
         public override void drop_tables()
         {
             openConnection();
@@ -155,22 +233,131 @@ namespace NWAT_SS16
             ExecuteSQL("DROP TABLE Kriterium;");
             ExecuteSQL("DROP TABLE Kriterienstruktur;");
             ExecuteSQL("DROP TABLE NWA;");
+            ExecuteSQL("DROP TABLE Autoincrement;");
             closeConnection();
         }
 
-        public override bool delete(Model objekt)
+        /* Stephan Strissel 
+         löscht das Model in der Datenbank
+         * Key-Überprüfung fehlt!
+        */
+
+        public override void delete(Model objekt)
         {
-            return true;
+            if (objekt == null)
+            {
+                throw new Exception("Objekt darf nicht null sein");
+            }
+            if (objekt.GetType().Name == "Kriterium")
+            {
+                Kriterium temp_objekt = (Kriterium)objekt;
+                if (temp_objekt.getKriteriumID() != 0)
+                {
+                    openConnection();
+                    ExecuteSQL("DELETE FROM Kriterium WHERE KriteriumID = '" + temp_objekt.getKriteriumID() + "';");
+                    closeConnection();
+                }
+                else
+                {
+                    throw new Exception("ID darf bei delete nicht 0 sein");
+                }
+            }
+            else if (objekt.GetType().Name == "Nutzwert")
+            {
+                Nutzwert temp_obj = (Nutzwert)objekt;
+                throw new NotImplementedException();
+            }
+            else if (objekt.GetType().Name == "Produkt")
+            {
+               Produkt temp_objekt = (Produkt)objekt;
+                if (temp_objekt.getProduktID() != 0)
+                {
+                    openConnection();
+                    ExecuteSQL("DELETE FROM Produkt WHERE ProduktID = '" + temp_objekt.getProduktID() + "';");
+                    closeConnection();
+                }
+                else
+                {
+                    throw new Exception("ID darf bei delete nicht 0 sein");
+                }
+            }
+            else if (objekt.GetType().Name == "Projekt")
+            {
+                Projekt temp_objekt = (Projekt)objekt;
+                if (temp_objekt.getProjektID() != 0)
+                {
+                    openConnection();
+                    ExecuteSQL("DELETE FROM Projekt WHERE ProjektID = '" + temp_objekt.getProjektID() + "';");
+                    closeConnection();
+                }
+                else
+                {
+                    throw new Exception("ID darf bei Delete nicht 0 sein");
+                }
+            }
         }
-        public override bool update(Model objekt)
+
+        /* Stephan Strissel 
+         updated das Model in der Datenbank
+        */
+        public override void update(Model objekt)
         {
-            return true;
+            if (objekt == null)
+            {
+                throw new Exception("Objekt darf nicht null sein");
+            }
+            if (objekt.GetType().Name == "Kriterium")
+            {
+                Kriterium temp_objekt = (Kriterium)objekt;
+                if (temp_objekt.getKriteriumID() != 0)
+                {
+                    openConnection();
+                    ExecuteSQL("UPDATE Kriterium SET Bezeichnung='" + temp_objekt.getBezeichnung() + "' WHERE KriteriumID = '" + temp_objekt.getKriteriumID() + "';");
+                    closeConnection();
+                }
+                else
+                {
+                    throw new Exception("ID darf bei delete nicht 0 sein");
+                }
+            }
+            else if (objekt.GetType().Name == "Nutzwert")
+            {
+                Nutzwert temp_obj = (Nutzwert)objekt;
+                throw new NotImplementedException();
+            }
+            else if (objekt.GetType().Name == "Produkt")
+            {
+                Produkt temp_objekt = (Produkt)objekt;
+                if (temp_objekt.getProduktID() != 0)
+                {
+                    openConnection();
+                    ExecuteSQL("UPDATE Produkt SET (Bezeichnung) VALUES ( + " + temp_objekt.getBezeichnung() + " ) WHERE ProduktID = '" + temp_objekt.getProduktID() + "';");
+                    closeConnection();
+                }
+                else
+                {
+                    throw new Exception("ID darf bei delete nicht 0 sein");
+                }
+            }
+            else if (objekt.GetType().Name == "Projekt")
+            {
+                Projekt temp_objekt = (Projekt)objekt;
+                if (temp_objekt.getProjektID() != 0)
+                {
+                    openConnection();
+                    ExecuteSQL("UPDATE Projekt SET (Bezeichnung) VALUES ( + " + temp_objekt.getBezeichnung() + " ) WHERE ProjektmID = '" + temp_objekt.getProjektID() + "';");  
+                    closeConnection();
+                }
+                else
+                {
+                    throw new Exception("ID darf bei Update nicht 0 sein");
+                }
+            }
         }
 
         /* Stephan Strissel 
             greift auf die generische get-Methode zu und wandelt sie in eine objektspezifische um
          */
-
         public override List<Kriterium> get(Kriterium objekt)
         {
             List<Model> temp_list = get((Model)objekt);
@@ -219,7 +406,6 @@ namespace NWAT_SS16
          /* Stephan Strissel 
             generische get-Methode
          */
-
         public List<Model> get(Model objekt)
         {
             List<Model> return_list = new List<Model>();
@@ -264,7 +450,9 @@ namespace NWAT_SS16
              throw new NotImplementedException();
         }
 
-
+        /* Stephan Strissel 
+         testet, ob eine Verbindung zur Datenbank besteht
+        */
         public override bool checkConnection()
         {
             try

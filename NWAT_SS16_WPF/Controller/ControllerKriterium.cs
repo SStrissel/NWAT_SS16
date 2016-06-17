@@ -25,17 +25,11 @@ namespace NWAT_SS16
             throw new NotImplementedException();
         }
 
-        public void loeschen(Kriterium objekt)
-        {
-            throw new NotImplementedException();
-        }
-
         public override void anlegen()
         {
             Random Rnd = new Random(); // initialisiert die Zufallsklasse
             Kriterium temp_objekt = new Kriterium();
-            temp_objekt.setKriteriumID(Rnd.Next(9999));
-            temp_objekt.setBezeichnung("Kriterium mit ZufallsID (1-9999)");
+            temp_objekt.setBezeichnung("Neues Kriterium");
             db.insert(temp_objekt);
             onUpdateView();
         }
@@ -68,19 +62,52 @@ namespace NWAT_SS16
            // checken, ob Änderungen gemacht wurden
         }
 
-        public override void anzeigen(Model objekt, int ProduktID, int ProjektID)
+        public override void anzeigen(Model objekt, int ProduktID = 0, int ProjektID = 0)
         {
-            throw new NotImplementedException();
+            if (objekt == null)
+            {
+                return;
+            }
+            if (frm.GetType().Name == "Kriteriumverwaltung")
+            {
+                Kriterium temp_objekt = (Kriterium)objekt;
+                Kriteriumverwaltung krit = (Kriteriumverwaltung)frm;
+                krit.details_ID.Text = temp_objekt.getKriteriumID().ToString();
+                krit.details_Bezeichnung.Text = temp_objekt.getBezeichnung();
+            }
         }
 
         public override void loeschen(Model objekt)
         {
-            throw new NotImplementedException();
+            if (objekt == null)
+            {
+                return;
+            }
+            if (MessageBox.Show("Sind Sie sich sicher, dass sie das ausgewählte Kriterium löschen wollen?", "Löschen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                db.delete(objekt);
+                onUpdateView();
+            }
         }
 
-        public override void aendern(Model objekt, int ProduktID, int ProjektID)
+        public override void aendern()
         {
-            throw new NotImplementedException();
+            if (frm.GetType().Name == "Kriteriumverwaltung")
+            {
+                Kriteriumverwaltung krit = (Kriteriumverwaltung)frm;
+                if (krit.details_ID.Text != "")
+                {
+                    if (MessageBox.Show("Sind Sie sich sicher, dass sie das ausgewählte Kriterium ändern wollen?", "Ändern", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                    {
+
+                        Kriterium temp_objekt = new Kriterium();
+                        temp_objekt.setKriteriumID(Int32.Parse(krit.details_ID.Text));
+                        temp_objekt.setBezeichnung(krit.details_Bezeichnung.Text);
+                        db.update(temp_objekt);
+                        onUpdateView();
+                    }
+                }
+            }
         }
 
 
