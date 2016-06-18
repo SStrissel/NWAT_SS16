@@ -69,6 +69,8 @@ namespace NWAT_SS16
                 temp_objekt.setBezeichnung("Kein Oberkriterium");
                 oberkriterien.Add(temp_objekt);
                 krit.details_OberKriterium.ItemsSource = oberkriterien;
+
+
                 krit.details_OberKriterium.SelectedIndex = krit.details_OberKriterium.Items.Count - 1; // letztes OberKriterium auswählen
             }
         }

@@ -369,6 +369,17 @@ namespace NWAT_SS16
             return return_list;
         }
 
+        public override List<Kriteriumstruktur> get(Kriteriumstruktur objekt)
+        {
+            List<Model> temp_list = get((Model)objekt);
+            List<Kriteriumstruktur> return_list = new List<Kriteriumstruktur>();
+            foreach (Model temp_model in temp_list)
+            {
+                return_list.Add((Kriteriumstruktur)temp_model);
+            }
+            return return_list;
+        }
+
         public override List<Projekt> get(Projekt objekt)
         {
             List<Model> temp_list = get((Model)objekt);
@@ -427,7 +438,14 @@ namespace NWAT_SS16
                 }
                 else
                 {
-                    throw new NotImplementedException();
+                    DataTable temp_datatable = QuerySQL("SELECT * FROM Kriterium WHERE KriteriumID = '" + temp_obj.getKriteriumID() + "';");
+                    foreach (DataRow row in temp_datatable.Rows)
+                    {
+                       Kriterium temp_model = new Kriterium();
+                        temp_model.setKriteriumID((int)row[0]);
+                        temp_model.setBezeichnung((string)row[1]);
+                        return_list.Add(temp_model);
+                    }
                 }
                 closeConnection();
                 return return_list;
@@ -446,6 +464,45 @@ namespace NWAT_SS16
             {
                 Projekt temp_obj = (Projekt)objekt;
                 throw new NotImplementedException();
+            }
+            else if (objekt.GetType().Name == "Kriteriumstruktur")
+            {
+                Kriteriumstruktur temp_obj = (Kriteriumstruktur)objekt;
+                openConnection();
+                DataTable temp_datatable;
+                Kriterium temp_model = new Kriterium();
+                if (temp_obj.getOberKriteriumID() != 0 && temp_obj.getUnterKriteriumID() == 0)
+                {
+                    temp_datatable = QuerySQL("SELECT * FROM Kriteriumstruktur WHERE OberKriteriumID= '" + temp_obj.getOberKriteriumID() + "';");
+                    foreach (DataRow row in temp_datatable.Rows)
+                    {
+                        temp_model.setKriteriumID((int)row[0]);
+                        temp_model.setBezeichnung((string)row[1]);
+                        return_list.Add(temp_model);
+                    }
+                }
+                else if (temp_obj.getUnterKriteriumID() != 0 && temp_obj.getOberKriteriumID() == 0)
+                {
+                    temp_datatable = QuerySQL("SELECT * FROM Kriteriumstruktur WHERE UnterKriteriumID= '" + temp_obj.getUnterKriteriumID() + "';");
+                    foreach (DataRow row in temp_datatable.Rows)
+                    {
+                        temp_model.setKriteriumID((int)row[0]);
+                        temp_model.setBezeichnung((string)row[1]);
+                        return_list.Add(temp_model);
+                    }
+                }
+                else if (temp_obj.getUnterKriteriumID() != 0 && temp_obj.getOberKriteriumID() != 0)
+                {
+                    temp_datatable = QuerySQL("SELECT * FROM Kriteriumstruktur WHERE UnterKriteriumID= '" + temp_obj.getUnterKriteriumID() + "' AND OberKriteriumID= '" + temp_obj.getOberKriteriumID() + "';");
+                    foreach (DataRow row in temp_datatable.Rows)
+                    {
+                        temp_model.setKriteriumID((int)row[0]);
+                        temp_model.setBezeichnung((string)row[1]);
+                        return_list.Add(temp_model);
+                    }
+                }
+                closeConnection();
+                return return_list;
             }
              throw new NotImplementedException();
         }

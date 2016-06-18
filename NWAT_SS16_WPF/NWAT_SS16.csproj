@@ -62,6 +62,7 @@
     <Compile Include="Einstellungen.xaml.cs">
       <DependentUpon>Einstellungen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modelle\Kriteriumstruktur.cs" />
     <Compile Include="structs.cs" />
     <Page Include="Hauptmenue.xaml">
       <SubType>Designer</SubType>

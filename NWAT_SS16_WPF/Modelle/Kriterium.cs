@@ -10,8 +10,6 @@ namespace NWAT_SS16
     {
         int KriteriumID;
         string Bezeichnung;
-        int KriterienoberID;
-        int KriterienunterID;
 
         public override string ToString()
         {
@@ -21,15 +19,6 @@ namespace NWAT_SS16
         public int getKriteriumID()
         {
             return KriteriumID;
-        }
-        public int getKriterienoberID()
-        {
-            return KriterienoberID;
-        }
-
-        public int getKriterienunterID()
-        {
-            return KriterienunterID;
         }
 
         public string getBezeichnung()
@@ -42,20 +31,32 @@ namespace NWAT_SS16
             this.KriteriumID = KriteriumID;
         }
 
-        public void setKriterienoberID(int KriterienoberID)
-        {
-            this.KriterienoberID = KriterienoberID;
-        }
-
-        public void setKriterienunterID(int KriterienunterID)
-        {
-            this.KriterienunterID = KriterienunterID;
-        }
-
         public void setBezeichnung(string Bezeichnung)
         {
             this.Bezeichnung = Bezeichnung;
         }
 
+        public List<Kriterium> getOberKriterium(DatabaseAdapter db)
+        {
+            Kriteriumstruktur temp_objekt = new Kriteriumstruktur();
+            temp_objekt.setUnterKriteriumID(this.KriteriumID);
+
+            List<Kriterium> return_list = new List<Kriterium>();
+
+
+            /* Abfrage sollte im Normalfall nur ein Kriterium zurückgeben in return_list*/
+            foreach (Kriteriumstruktur temp_kritstruktur in db.get(temp_objekt))
+            {
+                Kriterium temp_krit = new Kriterium();
+                temp_krit.setKriteriumID(temp_kritstruktur.getOberKriteriumID());
+                foreach (Kriterium temp_krit2 in db.get(temp_krit))
+                {
+                    return_list.Add(temp_krit2);
+                }
+                
+            }
+            return return_list;
+
+        }
     }
 }

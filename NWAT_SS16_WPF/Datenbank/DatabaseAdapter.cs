@@ -13,6 +13,7 @@ namespace NWAT_SS16
         abstract public void delete(Model objekt); // hole z.B. Namen/ID aus Model und suche danach in der Datenbank, lösche das Model, gib bei Erfolg true zurück
         abstract public void update(Model objekt);  // hole z.B. Namen/ID aus Model und suche danach in der Datenbank, überschreibe das Model mit dem übergebenen Model. Gib true bei Erfolg zurück
         abstract public List<Kriterium> get(Kriterium objekt); /* hole z.B. Namen/ID aus Model und suche danach in der Datenbank, gebe das vollständige Model zurück */
+        abstract public List<Kriteriumstruktur> get(Kriteriumstruktur objekt); /* hole z.B. Namen/ID aus Model und suche danach in der Datenbank, gebe das vollständige Model zurück */
         abstract public List<Projekt> get(Projekt objekt);/* hole z.B. Namen/ID aus Model und suche danach in der Datenbank, gebe das vollständige Model zurück */
         abstract public List<Produkt> get(Produkt objekt);/* hole z.B. Namen/ID aus Model und suche danach in der Datenbank, gebe das vollständige Model zurück */
         abstract public List<Nutzwert> get(Nutzwert objekt);/* hole z.B. Namen/ID aus Model und suche danach in der Datenbank, gebe das vollständige Model zurück */
