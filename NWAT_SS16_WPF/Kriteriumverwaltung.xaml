@@ -5,12 +5,18 @@
     <Grid>
         <ListBox x:Name="listeKriterium" HorizontalAlignment="Left" Height="170" Margin="34,74,0,0" VerticalAlignment="Top" Width="349" SelectionChanged="item_selected"/>
         <Button x:Name="kriterium_anlegen" Content="neu anlegen" HorizontalAlignment="Left" Margin="37,289,0,0" VerticalAlignment="Top" Width="74" Click="anlegen_Click"/>
-        <Button x:Name="kriterium_loeschen" Content="loeschen" HorizontalAlignment="Left" Margin="648,287,0,0" VerticalAlignment="Top" Width="74" Click="kriterium_loeschen_Click"/>
-        <Button x:Name="kriteriumAendern" Content="aendern" HorizontalAlignment="Left" Margin="738,287,0,0" VerticalAlignment="Top" Width="74" Click="kriteriumAendern_Click"/>
+        <Button x:Name="kriterium_loeschen" Content="loeschen" HorizontalAlignment="Left" Margin="648,287,0,0" VerticalAlignment="Top" Width="74" Click="kriterium_loeschen_Click" IsEnabled="False"/>
+        <Button x:Name="kriterium_aendern" Content="aendern" HorizontalAlignment="Left" Margin="738,287,0,0" VerticalAlignment="Top" Width="74" Click="kriteriumAendern_Click" IsEnabled="False"/>
         <Label Content="ID" HorizontalAlignment="Left" Margin="404,82,0,0" VerticalAlignment="Top"/>
         <Label Content="Bezeichnung&#xD;&#xA;" HorizontalAlignment="Left" Margin="405,118,0,0" VerticalAlignment="Top" Height="28" RenderTransformOrigin="-0.397,0.571"/>
         <TextBox x:Name="details_ID" HorizontalAlignment="Left" Height="23" Margin="515,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" IsEnabled="False"/>
-        <TextBox x:Name="details_Bezeichnung" HorizontalAlignment="Left" Height="23" Margin="515,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" SpellCheck.IsEnabled="True"/>
+        <TextBox x:Name="details_Bezeichnung" HorizontalAlignment="Left" Height="23" Margin="515,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" SpellCheck.IsEnabled="True" IsEnabled="False"/>
+        <Label Content="ProduktID" HorizontalAlignment="Left" Margin="404,45,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="details_ProduktID" HorizontalAlignment="Left" Height="23" Margin="515,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" IsEnabled="False"/>
+        <Label Content="ProjektID" HorizontalAlignment="Left" Margin="404,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="details_ProjektID" HorizontalAlignment="Left" Height="23" Margin="515,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" IsEnabled="False"/>
+        <Label Content="OberKriterium&#xA;" HorizontalAlignment="Left" Margin="405,154,0,0" VerticalAlignment="Top" Height="28" RenderTransformOrigin="-0.397,0.571"/>
+        <ComboBox x:Name="details_OberKriterium" HorizontalAlignment="Left" Margin="516,158,0,0" VerticalAlignment="Top" Width="283" IsEnabled="False" SelectionChanged="oberKriterium_selected"/>
 
     </Grid>
 </Window>

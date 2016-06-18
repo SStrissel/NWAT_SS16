@@ -53,5 +53,21 @@ namespace NWAT_SS16
         {
             cntrl.aendern();
         }
+
+        private void oberKriterium_selected(object sender, SelectionChangedEventArgs e)
+        {
+            Kriterium kriterium = (listeKriterium.SelectedItem as Kriterium);
+            Kriterium oberkriterium = (details_OberKriterium.SelectedItem as Kriterium);
+
+            if (kriterium == null || oberkriterium == null)
+            {
+                return;
+            }
+            if (kriterium.getKriteriumID() == oberkriterium.getKriteriumID())
+            {
+                MessageBox.Show("Kriterium kann nicht auf sich selbst verweisen.", "OberKriterium", MessageBoxButton.OK, MessageBoxImage.Warning);
+                details_OberKriterium.SelectedIndex = details_OberKriterium.Items.Count - 1; // letztes OberKriterium auswählen
+            }
+        }
     }
 }
