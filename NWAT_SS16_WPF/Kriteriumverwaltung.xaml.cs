@@ -43,8 +43,14 @@ namespace NWAT_SS16
             cntrl.anzeigen(objekt);
         }
 
+        private void struktur_Click(object sender, RoutedEventArgs e)
+        {
+            Kriterium objekt = new Kriterium(details_ID.Text, details_Bezeichnung.Text);
+            cntrl.show_kriteriumstrukturverwaltung(objekt);
+        }
+
         private void kriterium_loeschen_Click(object sender, RoutedEventArgs e)
-        {          
+        {
             Kriterium objekt = (listeKriterium.SelectedItem as Kriterium);
             cntrl.loeschen(objekt);
         }
@@ -52,22 +58,6 @@ namespace NWAT_SS16
         private void kriteriumAendern_Click(object sender, RoutedEventArgs e)
         {
             cntrl.aendern();
-        }
-
-        private void oberKriterium_selected(object sender, SelectionChangedEventArgs e)
-        {
-            Kriterium kriterium = (listeKriterium.SelectedItem as Kriterium);
-            Kriterium oberkriterium = (details_OberKriterium.SelectedItem as Kriterium);
-
-            if (kriterium == null || oberkriterium == null)
-            {
-                return;
-            }
-            if (kriterium.getKriteriumID() == oberkriterium.getKriteriumID())
-            {
-                MessageBox.Show("Kriterium kann nicht auf sich selbst verweisen.", "OberKriterium", MessageBoxButton.OK, MessageBoxImage.Warning);
-                details_OberKriterium.SelectedIndex = details_OberKriterium.Items.Count - 1; // letztes OberKriterium auswählen
-            }
         }
     }
 }

@@ -11,6 +11,12 @@ namespace NWAT_SS16
         int OberKriteriumID;
         int UnterKriteriumID;
 
+        public Kriteriumstruktur(int OberKriteriumID = 0, int UnterKriteriumID = 0)
+        {
+            this.OberKriteriumID = OberKriteriumID;
+            this.UnterKriteriumID = UnterKriteriumID;
+        }
+
         public override string ToString()
         {
             return "(" + OberKriteriumID + "/" + UnterKriteriumID + ") ";

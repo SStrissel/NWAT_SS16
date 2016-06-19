@@ -42,6 +42,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Printing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -62,9 +63,16 @@
     <Compile Include="Einstellungen.xaml.cs">
       <DependentUpon>Einstellungen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Kriteriumstrukturverwaltung.xaml.cs">
+      <DependentUpon>Kriteriumstrukturverwaltung.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modelle\Kriteriumstruktur.cs" />
     <Compile Include="structs.cs" />
     <Page Include="Hauptmenue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Kriteriumstrukturverwaltung.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

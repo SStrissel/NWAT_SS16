@@ -9,8 +9,9 @@ namespace NWAT_SS16
 {
     abstract  public class Controller
     {
-        public DatabaseAdapter db;
-        public Window frm;
+        protected DatabaseAdapter db;
+        protected Window frm;
+
         public Controller(DatabaseAdapter db, Window frm)
         {
             this.db = db;
@@ -20,6 +21,7 @@ namespace NWAT_SS16
         abstract public void onCreateView(); // wird aufgerufen, wenn ein View geöffnet wird
         abstract public void onDestroyView(); // wird aufgerufen, wenn ein View geschlossen wird
         abstract public void onUpdateView(); // wird aufgerufen, wenn ein View geupdated wird
+        abstract public void onUpdateData(); // wird aufgerufen, wenn sich die Daten für die View geändert haben
         abstract public void anlegen(); 
         abstract public void aendern();
         abstract public void loeschen(Model objekt);

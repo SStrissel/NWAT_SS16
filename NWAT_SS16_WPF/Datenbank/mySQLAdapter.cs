@@ -93,6 +93,7 @@ namespace NWAT_SS16
 
         protected void ExecuteSQL(string sSQL)
         {
+            openConnection();
             MySqlCommand cmd = new MySqlCommand(sSQL, conn);
             try
             {
@@ -102,6 +103,7 @@ namespace NWAT_SS16
             {
                 MessageBox.Show(e.ToString(), "FEHLER in ExecuteSQL",MessageBoxButton.OK);
             }
+            closeConnection();
         }
 
         /* Stephan Strissel 
@@ -111,11 +113,10 @@ namespace NWAT_SS16
         private int newID(Model objekt)
         {
             int value = 0;
+            openConnection();
             if (objekt.GetType().Name == "Kriterium")
             {
-                openConnection();
                 MySqlCommand command = new MySqlCommand("SELECT KriteriumID FROM Autoincrement;", conn);
-
                 MySqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
@@ -127,7 +128,6 @@ namespace NWAT_SS16
                 {
                     ExecuteSQL("UPDATE Autoincrement SET KriteriumID = '" + value + "' WHERE KriteriumID = '" + (value - 1) + "';");
                 }
-                closeConnection();
             }
             else if (objekt.GetType().Name == "Nutzwert")
             {
@@ -141,10 +141,15 @@ namespace NWAT_SS16
             {
                 throw new NotImplementedException();
             }
+            else if (objekt.GetType().Name == "Kriteriumstruktur")
+            {
+                return 0; // braucht keine ID
+            }
             if (value == 0)
             {
                 throw new Exception("Die neue ID kann nicht 0 sein");
             }
+            closeConnection();
             return value;
         }
 
@@ -179,13 +184,12 @@ namespace NWAT_SS16
 
         public override int insert(Model objekt)
         {
-            int myID = newID(objekt);
+            int myID = 0;
              if (objekt.GetType().Name == "Kriterium")
             {
+                 myID = newID(objekt); // Autoincrement vergeben
                  Kriterium temp_objekt = (Kriterium)objekt;
-                 openConnection();
                  ExecuteSQL("INSERT INTO Kriterium (KriteriumID, Bezeichnung) VALUES ( " + myID + ", '" + temp_objekt.getBezeichnung() + "');");
-                 closeConnection();
             }
              else if (objekt.GetType().Name == "Nutzwert")
              {
@@ -202,6 +206,12 @@ namespace NWAT_SS16
                  Projekt temp_obj = (Projekt)objekt;
                  throw new NotImplementedException();
              }
+             else if (objekt.GetType().Name == "Kriteriumstruktur")
+             {
+                 Kriteriumstruktur temp_objekt = (Kriteriumstruktur)objekt;
+                 myID = temp_objekt.getOberKriteriumID(); // Hat kein Autoincrement
+                 ExecuteSQL("INSERT INTO Kriteriumstruktur (OberKriteriumID, UnterKriteriumID) VALUES ( " +  temp_objekt.getOberKriteriumID() + ", '" + temp_objekt.getUnterKriteriumID() + "');");
+             }
              return myID;
         }
 
@@ -211,15 +221,13 @@ namespace NWAT_SS16
         */
         public override void init_tables()
         {
-            openConnection();
             ExecuteSQL("CREATE TABLE Autoincrement (ProjektID int, KriteriumID int, ProduktID int);");
             ExecuteSQL("INSERT INTO Autoincrement (ProjektID, KriteriumID, ProduktID) VALUES (0,0,0);");
             ExecuteSQL("CREATE TABLE Projekt (ProjektID int, Bezeichnung varchar(255));");
             ExecuteSQL("CREATE TABLE Produkt (ProduktID int, Bezeichnung varchar(255));");
             ExecuteSQL("CREATE TABLE Kriterium (KriteriumID int, Bezeichnung varchar(255));");
-            ExecuteSQL("CREATE TABLE Kriterienstruktur (OberKriteriumID int, UnterKriteriumID int);");
+            ExecuteSQL("CREATE TABLE Kriteriumstruktur (OberKriteriumID int, UnterKriteriumID int);");
             ExecuteSQL("CREATE TABLE NWA (ProjektID int, KriteriumID int, ProduktID int, Erfuellung boolean, Gewichtung int, Kommentare varchar(255), beitrag_absolut double, beitrag_absolut_check boolean);");
-            closeConnection();
         }
 
         /* Stephan Strissel 
@@ -227,14 +235,12 @@ namespace NWAT_SS16
         */
         public override void drop_tables()
         {
-            openConnection();
             ExecuteSQL("DROP TABLE Projekt;");
             ExecuteSQL("DROP TABLE Produkt;");
             ExecuteSQL("DROP TABLE Kriterium;");
-            ExecuteSQL("DROP TABLE Kriterienstruktur;");
+            ExecuteSQL("DROP TABLE Kriteriumstruktur;");
             ExecuteSQL("DROP TABLE NWA;");
             ExecuteSQL("DROP TABLE Autoincrement;");
-            closeConnection();
         }
 
         /* Stephan Strissel 
@@ -253,9 +259,7 @@ namespace NWAT_SS16
                 Kriterium temp_objekt = (Kriterium)objekt;
                 if (temp_objekt.getKriteriumID() != 0)
                 {
-                    openConnection();
                     ExecuteSQL("DELETE FROM Kriterium WHERE KriteriumID = '" + temp_objekt.getKriteriumID() + "';");
-                    closeConnection();
                 }
                 else
                 {
@@ -269,12 +273,10 @@ namespace NWAT_SS16
             }
             else if (objekt.GetType().Name == "Produkt")
             {
-               Produkt temp_objekt = (Produkt)objekt;
+                Produkt temp_objekt = (Produkt)objekt;
                 if (temp_objekt.getProduktID() != 0)
                 {
-                    openConnection();
                     ExecuteSQL("DELETE FROM Produkt WHERE ProduktID = '" + temp_objekt.getProduktID() + "';");
-                    closeConnection();
                 }
                 else
                 {
@@ -286,13 +288,27 @@ namespace NWAT_SS16
                 Projekt temp_objekt = (Projekt)objekt;
                 if (temp_objekt.getProjektID() != 0)
                 {
-                    openConnection();
                     ExecuteSQL("DELETE FROM Projekt WHERE ProjektID = '" + temp_objekt.getProjektID() + "';");
-                    closeConnection();
                 }
                 else
                 {
                     throw new Exception("ID darf bei Delete nicht 0 sein");
+                }
+            }
+            else if (objekt.GetType().Name == "Kriteriumstruktur")
+            {
+                Kriteriumstruktur temp_obj = (Kriteriumstruktur)objekt;
+                if (temp_obj.getOberKriteriumID() != 0 && temp_obj.getUnterKriteriumID() == 0)
+                {
+                    ExecuteSQL("DELETE * FROM Kriteriumstruktur WHERE OberKriteriumID = '" + temp_obj.getOberKriteriumID() + "';");
+                }
+                else if (temp_obj.getUnterKriteriumID() != 0 && temp_obj.getOberKriteriumID() == 0)
+                {
+                    ExecuteSQL("DELETE * FROM Kriteriumstruktur WHERE UnterKriteriumID = '" + temp_obj.getUnterKriteriumID() + "';");
+                }
+                else if (temp_obj.getUnterKriteriumID() != 0 && temp_obj.getOberKriteriumID() != 0)
+                {
+                    ExecuteSQL("DELETE FROM Kriteriumstruktur WHERE UnterKriteriumID=" + temp_obj.getUnterKriteriumID() + " AND OberKriteriumID=" + temp_obj.getOberKriteriumID() + ";");
                 }
             }
         }
@@ -311,9 +327,7 @@ namespace NWAT_SS16
                 Kriterium temp_objekt = (Kriterium)objekt;
                 if (temp_objekt.getKriteriumID() != 0)
                 {
-                    openConnection();
                     ExecuteSQL("UPDATE Kriterium SET Bezeichnung='" + temp_objekt.getBezeichnung() + "' WHERE KriteriumID = '" + temp_objekt.getKriteriumID() + "';");
-                    closeConnection();
                 }
                 else
                 {
@@ -330,9 +344,7 @@ namespace NWAT_SS16
                 Produkt temp_objekt = (Produkt)objekt;
                 if (temp_objekt.getProduktID() != 0)
                 {
-                    openConnection();
                     ExecuteSQL("UPDATE Produkt SET (Bezeichnung) VALUES ( + " + temp_objekt.getBezeichnung() + " ) WHERE ProduktID = '" + temp_objekt.getProduktID() + "';");
-                    closeConnection();
                 }
                 else
                 {
@@ -344,9 +356,7 @@ namespace NWAT_SS16
                 Projekt temp_objekt = (Projekt)objekt;
                 if (temp_objekt.getProjektID() != 0)
                 {
-                    openConnection();
                     ExecuteSQL("UPDATE Projekt SET (Bezeichnung) VALUES ( + " + temp_objekt.getBezeichnung() + " ) WHERE ProjektmID = '" + temp_objekt.getProjektID() + "';");  
-                    closeConnection();
                 }
                 else
                 {
@@ -423,7 +433,6 @@ namespace NWAT_SS16
             if (objekt.GetType().Name == "Kriterium")
             {
                 Kriterium temp_obj = (Kriterium)objekt;
-                openConnection();
                 if (temp_obj.getKriteriumID() == 0)
                 {
                     DataTable temp_datatable = QuerySQL("SELECT * FROM Kriterium;");
@@ -438,7 +447,7 @@ namespace NWAT_SS16
                 }
                 else
                 {
-                    DataTable temp_datatable = QuerySQL("SELECT * FROM Kriterium WHERE KriteriumID = '" + temp_obj.getKriteriumID() + "';");
+                    DataTable temp_datatable = QuerySQL("SELECT * FROM Kriterium WHERE KriteriumID = " + temp_obj.getKriteriumID() + ";");
                     foreach (DataRow row in temp_datatable.Rows)
                     {
                        Kriterium temp_model = new Kriterium();
@@ -447,7 +456,6 @@ namespace NWAT_SS16
                         return_list.Add(temp_model);
                     }
                 }
-                closeConnection();
                 return return_list;
             }
             else if (objekt.GetType().Name == "Nutzwert")
@@ -468,40 +476,40 @@ namespace NWAT_SS16
             else if (objekt.GetType().Name == "Kriteriumstruktur")
             {
                 Kriteriumstruktur temp_obj = (Kriteriumstruktur)objekt;
-                openConnection();
                 DataTable temp_datatable;
-                Kriterium temp_model = new Kriterium();
                 if (temp_obj.getOberKriteriumID() != 0 && temp_obj.getUnterKriteriumID() == 0)
                 {
-                    temp_datatable = QuerySQL("SELECT * FROM Kriteriumstruktur WHERE OberKriteriumID= '" + temp_obj.getOberKriteriumID() + "';");
+                    temp_datatable = QuerySQL("SELECT * FROM Kriteriumstruktur WHERE OberKriteriumID = " + temp_obj.getOberKriteriumID() + ";");
                     foreach (DataRow row in temp_datatable.Rows)
                     {
-                        temp_model.setKriteriumID((int)row[0]);
-                        temp_model.setBezeichnung((string)row[1]);
+                        Kriteriumstruktur temp_model = new Kriteriumstruktur();
+                        temp_model.setOberKriteriumID((int)row[0]);
+                        temp_model.setUnterKriteriumID((int)row[1]);
                         return_list.Add(temp_model);
                     }
                 }
                 else if (temp_obj.getUnterKriteriumID() != 0 && temp_obj.getOberKriteriumID() == 0)
                 {
-                    temp_datatable = QuerySQL("SELECT * FROM Kriteriumstruktur WHERE UnterKriteriumID= '" + temp_obj.getUnterKriteriumID() + "';");
+                    temp_datatable = QuerySQL("SELECT * FROM Kriteriumstruktur WHERE UnterKriteriumID = " + temp_obj.getUnterKriteriumID() + ";");
                     foreach (DataRow row in temp_datatable.Rows)
                     {
-                        temp_model.setKriteriumID((int)row[0]);
-                        temp_model.setBezeichnung((string)row[1]);
+                        Kriteriumstruktur temp_model = new Kriteriumstruktur();
+                        temp_model.setOberKriteriumID((int)row[0]);
+                        temp_model.setUnterKriteriumID((int)row[1]);
                         return_list.Add(temp_model);
                     }
                 }
                 else if (temp_obj.getUnterKriteriumID() != 0 && temp_obj.getOberKriteriumID() != 0)
                 {
-                    temp_datatable = QuerySQL("SELECT * FROM Kriteriumstruktur WHERE UnterKriteriumID= '" + temp_obj.getUnterKriteriumID() + "' AND OberKriteriumID= '" + temp_obj.getOberKriteriumID() + "';");
+                    temp_datatable = QuerySQL("SELECT * FROM Kriteriumstruktur WHERE UnterKriteriumID = " + temp_obj.getUnterKriteriumID() + " AND OberKriteriumID = " + temp_obj.getOberKriteriumID() + ";");
                     foreach (DataRow row in temp_datatable.Rows)
                     {
-                        temp_model.setKriteriumID((int)row[0]);
-                        temp_model.setBezeichnung((string)row[1]);
+                        Kriteriumstruktur temp_model = new Kriteriumstruktur();
+                        temp_model.setOberKriteriumID((int)row[0]);
+                        temp_model.setUnterKriteriumID((int)row[1]);
                         return_list.Add(temp_model);
                     }
                 }
-                closeConnection();
                 return return_list;
             }
              throw new NotImplementedException();

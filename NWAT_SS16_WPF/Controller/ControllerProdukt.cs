@@ -41,6 +41,11 @@ namespace NWAT_SS16
             throw new NotImplementedException();
         }
 
+        public override void onUpdateData()
+        {
+            throw new NotImplementedException();
+        }
+
 
         public override void onDestroyView()
         {

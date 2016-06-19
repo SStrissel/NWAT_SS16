@@ -46,7 +46,6 @@ namespace NWAT_SS16
         {
             Kriteriumverwaltung frm = new Kriteriumverwaltung(db);
             frm.ShowDialog();
-
         }
 
         private void einstellungen_Click(object sender, RoutedEventArgs e)
