@@ -42,11 +42,31 @@ namespace NWAT_SS16
             throw new NotImplementedException();
         }
 
-        public override void anzeigen(Model objekt, int ProjektID, int ProduktID)
+        public override void anzeigen(Model objekt)
         {
-            throw new NotImplementedException();
-        }
+            if (objekt == null)
+            {
+                return;
+            }
+            if (frm.GetType().Name == "Projektverwaltung")
+            {
+                Projekt p = (Projekt)objekt;
+                Projektverwaltung pv = (Projektverwaltung)frm;
 
+                pv.detailsProjektID.Text = p.getProjektID().ToString();
+                pv.detailsBezeichnung.Text = p.getBezeichnung();
+                /*krit.kriterium_aendern.IsEnabled = true;
+                krit.kriterium_loeschen.IsEnabled = true;
+                krit.details_Bezeichnung.IsEnabled = true;*/
+                onUpdateData();
+                return;
+            }
+            else if (frm.GetType().Name == "Projekt_anlegen")
+            {
+
+                return;
+            }
+        }
         public override void loeschen(Model objekt)
         {
             throw new NotImplementedException();

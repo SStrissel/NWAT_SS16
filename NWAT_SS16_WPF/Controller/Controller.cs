@@ -25,6 +25,6 @@ namespace NWAT_SS16
         abstract public void anlegen(); 
         abstract public void aendern();
         abstract public void loeschen(Model objekt);
-        abstract public void anzeigen(Model objekt, int ProjektID, int ProduktID);
+        abstract public void anzeigen(Model objekt);
     }
 }

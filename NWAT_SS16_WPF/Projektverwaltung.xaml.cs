@@ -36,5 +36,11 @@ namespace NWAT_SS16
             cp.anlegen();
         }
 
+        private void ListBox_auswahl(object sender, SelectionChangedEventArgs e)
+        {
+            Projekt objekt = ((sender as ListBox).SelectedItem as Projekt);
+            cp.anzeigen(objekt);
+        }
+
     }
 }

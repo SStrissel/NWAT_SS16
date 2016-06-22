@@ -48,6 +48,12 @@ namespace NWAT_SS16
            // p.setBezeichnung(textBezeichnung.Text);
         
             cp.anlegen();
+            this.Close();
+        }
+
+        private void abbrechen_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
 
        
