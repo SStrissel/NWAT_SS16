@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using MySql.Data.MySqlClient;
 
 namespace NWAT_SS16
 {
      public class ControllerProjekt : Controller
     {
 
-          ControllerProjekt(DatabaseAdapter db, Window frm) : base(db, frm){}
-
+        public ControllerProjekt(DatabaseAdapter db, Window frm) : base(db, frm){}
+      
         public override void aendern()
         {
             throw new NotImplementedException();
@@ -19,6 +20,25 @@ namespace NWAT_SS16
 
         public override void anlegen()
         {
+
+
+            if (frm.GetType().Name == "Projekt_anlegen")
+                {
+                    Projekt_anlegen pa = (Projekt_anlegen)frm;
+                    Projekt p = new Projekt();
+                    p.setBezeichnung(pa.textBezeichnung.Text);
+               
+                db.insert(p);
+                    onUpdateView();
+                    return;
+                }
+            else if (frm.GetType().Name == "Projektverwaltung")
+            {
+                    Projekt_anlegen pa = new Projekt_anlegen(db);
+                    pa.ShowDialog();
+                    onUpdateData();
+                    return;
+            }
             throw new NotImplementedException();
         }
 
@@ -34,17 +54,36 @@ namespace NWAT_SS16
 
         public override void onCreateView()
         {
+
+            if (frm.GetType().Name == "Projektverwaltung")
+            {
+                Projektverwaltung pa = (Projektverwaltung)frm;
+                List<Projekt> projekte = db.get(new Projekt());
+                if (projekte.Count() > 0)
+                {
+                    pa.listProjekte.ItemsSource = projekte;
+                    onUpdateView();
+                }
+                return;
+            }
+            else if (frm.GetType().Name == "Projekt_anlegen")
+            {
+
+                return;
+            }
+
+
             throw new NotImplementedException();
         }
 
         public override void onUpdateView()
         {
-            throw new NotImplementedException();
+            return;
         }
 
         public override void onUpdateData()
         {
-            throw new NotImplementedException();
+            return;
         }
 
         public override void onDestroyView()

@@ -20,7 +20,7 @@ namespace NWAT_SS16
         {
         }
 
-        /* Stephan Strissel 
+        /* Team 
         initialisiert die Verbindung zur Datenbank
          */
         public mySQLAdapter(string strServer, string strDatabase, string strUserID, string strPassword) // Konstruktor
@@ -32,7 +32,7 @@ namespace NWAT_SS16
             conn = new MySqlConnection(strconn);
         }
 
-        /* Stephan Strissel 
+        /* Team 
          öffnet eine Verbindung
         */
 
@@ -52,7 +52,7 @@ namespace NWAT_SS16
 
         }
 
-        /* Stephan Strissel 
+        /* Team 
          schließt eine Verbindung
         */
 
@@ -87,7 +87,7 @@ namespace NWAT_SS16
             conn.Close();
         }
 
-        /* Stephan Strissel 
+        /* Team 
          führt einen Befehl auf der Datenbank ohne Rückmeldung aus
         */
 
@@ -106,7 +106,7 @@ namespace NWAT_SS16
             closeConnection();
         }
 
-        /* Stephan Strissel 
+        /* Team 
          vergibt eine neue ID (Autoincrement)
         */
 
@@ -139,7 +139,18 @@ namespace NWAT_SS16
             }
             else if (objekt.GetType().Name == "Projekt")
             {
-                throw new NotImplementedException();
+                MySqlCommand command = new MySqlCommand("SELECT ProjektID FROM Autoincrement;", conn);
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    value = (int)reader[0];
+                }
+                value = value + 1;
+                reader.Close();
+                if (value != 0)
+                {
+                    ExecuteSQL("UPDATE Autoincrement SET ProjektID = '" + value + "' WHERE ProjektID = '" + (value - 1) + "';");
+                }
             }
             else if (objekt.GetType().Name == "Kriteriumstruktur")
             {
@@ -153,7 +164,7 @@ namespace NWAT_SS16
             return value;
         }
 
-        /* Stephan Strissel 
+        /* Team 
          führt einen SQL-Befehl aus und gibt die Antwort als DataTable zurück (langsam)
         */
 
@@ -178,7 +189,7 @@ namespace NWAT_SS16
                  return dataTable;
         }
 
-        /* Stephan Strissel 
+        /* Team 
         fügt ein neues Model in die Datenbank ein
         */
 
@@ -198,13 +209,14 @@ namespace NWAT_SS16
              }
              else if (objekt.GetType().Name == "Produkt")
              {
-                 Produkt temp_obj = (Produkt)objekt;
-                 throw new NotImplementedException();
+                 Produkt p = (Produkt)objekt;
+                 
              }
              else if (objekt.GetType().Name == "Projekt")
              {
-                 Projekt temp_obj = (Projekt)objekt;
-                 throw new NotImplementedException();
+                 myID = newID(objekt); // Autoincrement vergeben
+                 Projekt proj = (Projekt)objekt;
+                 ExecuteSQL("INSERT INTO Projekt (ProjektID, Bezeichnung) VALUES ( " + myID + ", '" + proj.getBezeichnung() + "');");
              }
              else if (objekt.GetType().Name == "Kriteriumstruktur")
              {
@@ -216,7 +228,7 @@ namespace NWAT_SS16
         }
 
 
-        /* Stephan Strissel 
+        /* Team 
          initialisiert alle Tabellen
         */
         public override void init_tables()
@@ -230,7 +242,7 @@ namespace NWAT_SS16
             ExecuteSQL("CREATE TABLE NWA (ProjektID int, KriteriumID int, ProduktID int, Erfuellung boolean, Gewichtung int, Kommentare varchar(255), beitrag_absolut double, beitrag_absolut_check boolean);");
         }
 
-        /* Stephan Strissel 
+        /* Team 
          löscht alle Tabellen
         */
         public override void drop_tables()
@@ -243,7 +255,7 @@ namespace NWAT_SS16
             ExecuteSQL("DROP TABLE Autoincrement;");
         }
 
-        /* Stephan Strissel 
+        /* Team 
          löscht das Model in der Datenbank
          * Key-Überprüfung fehlt!
         */
@@ -313,7 +325,7 @@ namespace NWAT_SS16
             }
         }
 
-        /* Stephan Strissel 
+        /* Team 
          updated das Model in der Datenbank
         */
         public override void update(Model objekt)
@@ -365,7 +377,7 @@ namespace NWAT_SS16
             }
         }
 
-        /* Stephan Strissel 
+        /* Team 
             greift auf die generische get-Methode zu und wandelt sie in eine objektspezifische um
          */
         public override List<Kriterium> get(Kriterium objekt)
@@ -424,7 +436,7 @@ namespace NWAT_SS16
             return return_list;
         }
 
-         /* Stephan Strissel 
+         /* Team 
             generische get-Methode
          */
         public List<Model> get(Model objekt)
@@ -471,7 +483,15 @@ namespace NWAT_SS16
             else if (objekt.GetType().Name == "Projekt")
             {
                 Projekt temp_obj = (Projekt)objekt;
-                throw new NotImplementedException();
+                DataTable temp_datatable = QuerySQL("SELECT * FROM Projekt;");
+                foreach (DataRow row in temp_datatable.Rows)
+                {
+                    Projekt temp_model = new Projekt();
+                    temp_model.setProjektID((int)row[0]);
+                    temp_model.setBezeichnung((string)row[1]);
+                    return_list.Add(temp_model);
+                }
+                return return_list;
             }
             else if (objekt.GetType().Name == "Kriteriumstruktur")
             {
@@ -515,7 +535,7 @@ namespace NWAT_SS16
              throw new NotImplementedException();
         }
 
-        /* Stephan Strissel 
+        /* Team 
          testet, ob eine Verbindung zur Datenbank besteht
         */
         public override bool checkConnection()

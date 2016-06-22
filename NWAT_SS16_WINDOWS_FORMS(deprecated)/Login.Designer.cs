@@ -156,7 +156,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(325, 13);
             this.label6.TabIndex = 14;
-            this.label6.Text = "Kurt Wusterhausen, Julian Huber, Mehmet Tektas, Stephan Strissel";
+            this.label6.Text = "Kurt Wusterhausen, Julian Huber, Mehmet Tektas, Team";
             // 
             // pictureBox1
             // 

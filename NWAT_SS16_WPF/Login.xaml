@@ -13,10 +13,10 @@
         <Button Content="verbinden" HorizontalAlignment="Left" Margin="483,224,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click" Height="20"/>
         <TextBox x:Name="infoBox" HorizontalAlignment="Left" Height="60" Margin="321,252,0,0" TextWrapping="Wrap" Text="Geben Sie das Passwort zur Datenbank ein" VerticalAlignment="Top" Width="239" IsEnabled="False"/>
         <Image Margin="22,50,0,0" Source="Resources/washing-512.png" HorizontalAlignment="Left" Width="274" Height="259" VerticalAlignment="Top"/>
-        <Label Content="Julian Huber, Mehmet Tektas, Stephan Strissel, Kurt Wusterhausen&#xD;&#xA;" HorizontalAlignment="Left" Margin="-365,361" VerticalAlignment="Top" Height="3" Width="358"/>
+        <Label Content="Julian Huber, Mehmet Tektas, Team, Kurt Wusterhausen&#xD;&#xA;" HorizontalAlignment="Left" Margin="-365,361" VerticalAlignment="Top" Height="3" Width="358"/>
         <Label Content="Nutzwertanalyse-Tool" HorizontalAlignment="Left" Margin="35,12,0,0" VerticalAlignment="Top" Height="57" Width="370" FontSize="20" FontWeight="Bold"/>
         <PasswordBox x:Name="passwort" HorizontalAlignment="Left" Margin="402,198,0,0" VerticalAlignment="Top" Width="160" Height="18" KeyDown="Passwort_KeyDown"/>
-        <Label Content="Julian Hubert, Mehmet Tektas, Stephan Strissel, Kurz Wusterhausen" HorizontalAlignment="Left" Margin="251,355,0,0" VerticalAlignment="Top"/>
+        <Label Content="Julian Hubert, Mehmet Tektas, Team, Kurz Wusterhausen" HorizontalAlignment="Left" Margin="251,355,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

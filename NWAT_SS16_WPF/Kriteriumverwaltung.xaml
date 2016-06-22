@@ -10,7 +10,7 @@
         <Label Content="ID" HorizontalAlignment="Left" Margin="404,82,0,0" VerticalAlignment="Top"/>
         <Label Content="Bezeichnung&#xD;&#xA;" HorizontalAlignment="Left" Margin="405,118,0,0" VerticalAlignment="Top" Height="28" RenderTransformOrigin="-0.397,0.571"/>
         <TextBox x:Name="details_ID" HorizontalAlignment="Left" Height="23" Margin="515,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" IsEnabled="False"/>
-        <TextBox x:Name="details_Bezeichnung" HorizontalAlignment="Left" Height="23" Margin="515,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" SpellCheck.IsEnabled="True" IsEnabled="False"/>
+        <TextBox x:Name="details_Bezeichnung" HorizontalAlignment="Left" Height="23" Margin="515,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" SpellCheck.IsEnabled="True" IsEnabled="False" />
         <Label Content="ProduktID" HorizontalAlignment="Left" Margin="404,45,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="details_ProduktID" HorizontalAlignment="Left" Height="23" Margin="515,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" IsEnabled="False"/>
         <Label Content="ProjektID" HorizontalAlignment="Left" Margin="404,10,0,0" VerticalAlignment="Top"/>
