@@ -139,7 +139,18 @@ namespace NWAT_SS16
             }
             else if (objekt.GetType().Name == "Projekt")
             {
-                throw new NotImplementedException();
+                MySqlCommand command = new MySqlCommand("SELECT ProjektID FROM Autoincrement;", conn);
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    value = (int)reader[0];
+                }
+                value = value + 1;
+                reader.Close();
+                if (value != 0)
+                {
+                    ExecuteSQL("UPDATE Autoincrement SET ProjektID = '" + value + "' WHERE ProjektID = '" + (value - 1) + "';");
+                }
             }
             else if (objekt.GetType().Name == "Kriteriumstruktur")
             {
@@ -198,13 +209,14 @@ namespace NWAT_SS16
              }
              else if (objekt.GetType().Name == "Produkt")
              {
-                 Produkt temp_obj = (Produkt)objekt;
-                 throw new NotImplementedException();
+                 Produkt p = (Produkt)objekt;
+                 
              }
              else if (objekt.GetType().Name == "Projekt")
              {
-                 Projekt temp_obj = (Projekt)objekt;
-                 throw new NotImplementedException();
+                 myID = newID(objekt); // Autoincrement vergeben
+                 Projekt proj = (Projekt)objekt;
+                 ExecuteSQL("INSERT INTO Projekt (ProjektID, Bezeichnung) VALUES ( " + myID + ", '" + proj.getBezeichnung() + "');");
              }
              else if (objekt.GetType().Name == "Kriteriumstruktur")
              {
@@ -471,7 +483,15 @@ namespace NWAT_SS16
             else if (objekt.GetType().Name == "Projekt")
             {
                 Projekt temp_obj = (Projekt)objekt;
-                throw new NotImplementedException();
+                DataTable temp_datatable = QuerySQL("SELECT * FROM Projekt;");
+                foreach (DataRow row in temp_datatable.Rows)
+                {
+                    Projekt temp_model = new Projekt();
+                    temp_model.setProjektID((int)row[0]);
+                    temp_model.setBezeichnung((string)row[1]);
+                    return_list.Add(temp_model);
+                }
+                return return_list;
             }
             else if (objekt.GetType().Name == "Kriteriumstruktur")
             {

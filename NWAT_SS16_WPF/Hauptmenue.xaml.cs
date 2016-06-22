@@ -26,9 +26,10 @@ namespace NWAT_SS16
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Projekt_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Diese Funktion ist noch nicht integriert", "Die Waschmaschine hat eine Socke gefressen...", MessageBoxButton.OK);
+            Projektverwaltung projv = new Projektverwaltung(db);
+            projv.ShowDialog();
         }
 
 

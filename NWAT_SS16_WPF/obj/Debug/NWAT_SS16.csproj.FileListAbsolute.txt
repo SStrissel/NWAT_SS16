@@ -36,3 +36,30 @@ C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\NWAT_SS16.pdb
 C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\NWAT_SS16.csprojResolveAssemblyReference.cache
 C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\Kriteriumstrukturverwaltung.baml
 C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\Kriteriumstrukturverwaltung.g.cs
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16_WPF\bin\Debug\NWAT_SS16.exe.config
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16_WPF\obj\Debug\NWAT_SS16.exe
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16_WPF\obj\Debug\NWAT_SS16.pdb
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16_WPF\obj\Debug\NWAT_SS16.csprojResolveAssemblyReference.cache
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16_WPF\obj\Debug\Hauptmenue.baml
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16_WPF\obj\Debug\Kriteriumstrukturverwaltung.baml
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16_WPF\obj\Debug\Kriteriumverwaltung.baml
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16_WPF\obj\Debug\Login.baml
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16_WPF\obj\Debug\Einstellungen.baml
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16_WPF\obj\Debug\Hauptmenue.g.cs
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16_WPF\obj\Debug\Kriteriumstrukturverwaltung.g.cs
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16_WPF\obj\Debug\Kriteriumverwaltung.g.cs
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16_WPF\obj\Debug\Login.g.cs
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16_WPF\obj\Debug\Einstellungen.g.cs
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16_WPF\obj\Debug\App.g.cs
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16_WPF\obj\Debug\NWAT_SS16_MarkupCompile.cache
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16_WPF\obj\Debug\NWAT_SS16.g.resources
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16_WPF\obj\Debug\NWAT_SS16.Properties.Resources.resources
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16_WPF\obj\Debug\NWAT_SS16.csproj.GenerateResource.Cache
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16_WPF\obj\Debug\NWAT_SS16_Content.g.cs
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16_WPF\bin\Debug\NWAT_SS16.exe
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16_WPF\bin\Debug\NWAT_SS16.pdb
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16_WPF\bin\Debug\MySql.Data.dll
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16_WPF\obj\Debug\Projektverwaltung.baml
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16_WPF\obj\Debug\Projektverwaltung.g.cs
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16_WPF\obj\Debug\Projekt_anlegen.baml
+C:\Users\Mehmet.T\Documents\Visual Studio 2012\Projects\NWAT_SS16_WPF\obj\Debug\Projekt_anlegen.g.cs

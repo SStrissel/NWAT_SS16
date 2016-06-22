@@ -36,7 +36,7 @@
   <ItemGroup>
     <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\NWAT_SS16\MySql.Data.dll</HintPath>
+      <HintPath>.\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -67,6 +67,12 @@
       <DependentUpon>Kriteriumstrukturverwaltung.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modelle\Kriteriumstruktur.cs" />
+    <Compile Include="Projektverwaltung.xaml.cs">
+      <DependentUpon>Projektverwaltung.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Projekt_anlegen.xaml.cs">
+      <DependentUpon>Projekt_anlegen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="structs.cs" />
     <Page Include="Hauptmenue.xaml">
       <SubType>Designer</SubType>
@@ -110,6 +116,14 @@
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Page Include="Einstellungen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Projektverwaltung.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Projekt_anlegen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -160,6 +174,9 @@
     <Resource Include="Resources\28865-200.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MySql.Data.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
