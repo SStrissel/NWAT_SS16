@@ -36,7 +36,7 @@
   <ItemGroup>
     <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\NWAT_SS16\MySql.Data.dll</HintPath>
+      <HintPath>..\NWAT_SS16_WINDOWS_FORMS(deprecated)\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -67,6 +67,9 @@
       <DependentUpon>Kriteriumstrukturverwaltung.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modelle\Kriteriumstruktur.cs" />
+    <Compile Include="Produktverwaltung.xaml.cs">
+      <DependentUpon>Produktverwaltung.xaml</DependentUpon>
+    </Compile>
     <Compile Include="structs.cs" />
     <Page Include="Hauptmenue.xaml">
       <SubType>Designer</SubType>
@@ -110,6 +113,10 @@
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Page Include="Einstellungen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Produktverwaltung.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

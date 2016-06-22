@@ -9,7 +9,7 @@ namespace NWAT_SS16
 {
      public class ControllerProdukt : Controller
     {
-                ControllerProdukt(DatabaseAdapter db, Window frm) : base(db, frm){}
+        public ControllerProdukt(DatabaseAdapter db, Window frm) : base(db, frm){}
 
         public override void aendern()
         {

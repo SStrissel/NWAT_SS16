@@ -1,0 +1,17 @@
+﻿<Window x:Class="NWAT_SS16.Produktverwaltung"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Produktverwaltung" Height="352.5" Width="911.5" Icon="Resources/Laundry_12-512.png" Closing="KriteriumverwaltungClosing">
+    <Grid>
+        <ListBox x:Name="listeProdukt" HorizontalAlignment="Left" Height="170" Margin="34,74,0,0" VerticalAlignment="Top" Width="349" SelectionChanged="item_selected"/>
+        <Button x:Name="produktanlegen" Content="neu anlegen" HorizontalAlignment="Left" Margin="37,289,0,0" VerticalAlignment="Top" Width="74" Click="produktanlegen_Click"/>
+        <Button x:Name="produktloeschen_" Content="loeschen" HorizontalAlignment="Left" Margin="615,163,0,0" VerticalAlignment="Top" Width="74" Click="produktloeschen_Click" IsEnabled="False"/>
+        <Button x:Name="produkt_aendern" Content="speichern" HorizontalAlignment="Left" Margin="726,163,0,0" VerticalAlignment="Top" Width="74" Click="produktaendern_Click" IsEnabled="False"/>
+        <Label x:Name="Bezeichnung" Content="Bezeichnung&#xD;&#xA;" HorizontalAlignment="Left" Margin="400,90,0,0" VerticalAlignment="Top" Height="28" RenderTransformOrigin="-0.397,0.571"/>
+        <TextBox x:Name="details_Bezeichnung" HorizontalAlignment="Left" Height="23" Margin="517,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" SpellCheck.IsEnabled="True" IsEnabled="False"/>
+        <Label x:Name="ProduktID" Content="ProduktID" HorizontalAlignment="Left" Margin="406,57,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="details_ProduktID" HorizontalAlignment="Left" Height="23" Margin="518,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" IsEnabled="False"/>
+        <Button x:Name="produktanzeigen" Content="anzeigen" HorizontalAlignment="Left" Margin="499,163,0,0" VerticalAlignment="Top" Width="74" Click="produktanzeigen_Click" IsEnabled="False"/>
+
+    </Grid>
+</Window>
