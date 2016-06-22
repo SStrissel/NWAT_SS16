@@ -26,6 +26,15 @@ namespace NWAT_SS16
         public Login()
         {
             InitializeComponent();
+            passwort.Focus();
+            if (Keyboard.IsKeyToggled(Key.CapsLock))
+            {
+                warnung.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                warnung.Visibility = Visibility.Hidden;
+            }
         }
 
 
@@ -101,6 +110,18 @@ namespace NWAT_SS16
             if (e.Key == Key.Enter)
             {
                 Button_Click(this, new RoutedEventArgs());
+            }
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Keyboard.IsKeyToggled(Key.CapsLock))
+            {
+                warnung.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                warnung.Visibility = Visibility.Hidden;
             }
         }
     }
