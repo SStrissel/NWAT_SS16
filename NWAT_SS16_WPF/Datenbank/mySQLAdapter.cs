@@ -164,10 +164,31 @@ namespace NWAT_SS16
             return value;
         }
 
+        public override int getID(Model objekt)
+        {
+            openConnection();
+            int value = 0;
+            if (objekt.GetType().Name == "Projekt")
+            {
+               
+                MySqlCommand command = new MySqlCommand("SELECT ProjektID FROM Autoincrement;", conn);
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    value = (int)reader[0];
+                }
+                value = value + 1;
+                reader.Close();
+                return value;
+            }
+            closeConnection();
+            throw new Exception("Die neue ID kann nicht 0 sein");
+        }
+
         /* Team 
          führt einen SQL-Befehl aus und gibt die Antwort als DataTable zurück (langsam)
         */
-
+        
         protected DataTable QuerySQL(string sSQL)
         {
             openConnection();

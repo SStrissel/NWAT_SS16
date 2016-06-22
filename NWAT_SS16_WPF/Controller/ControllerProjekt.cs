@@ -28,7 +28,7 @@ namespace NWAT_SS16
                     Projekt p = new Projekt();
                     p.setBezeichnung(pa.textBezeichnung.Text);
                
-                db.insert(p);
+                    db.insert(p);
                     onUpdateView();
                     return;
                 }
@@ -52,9 +52,11 @@ namespace NWAT_SS16
             {
                 Projekt p = (Projekt)objekt;
                 Projektverwaltung pv = (Projektverwaltung)frm;
+                
                 //
                 pv.detailsProjektID.Text = p.getProjektID().ToString();
                 pv.detailsBezeichnung.Text = p.getBezeichnung();
+               
                 /*krit.kriterium_aendern.IsEnabled = true;
                 krit.kriterium_loeschen.IsEnabled = true;
                 krit.details_Bezeichnung.IsEnabled = true;*/
@@ -63,7 +65,9 @@ namespace NWAT_SS16
             }
             else if (frm.GetType().Name == "Projekt_anlegen")
             {
-
+                Projekt p = (Projekt)objekt;
+                Projekt_anlegen pa = (Projekt_anlegen)frm;
+                pa.textProjektID.Text = db.getID(p).ToString();
                 return;
             }
         }
@@ -103,6 +107,22 @@ namespace NWAT_SS16
 
         public override void onUpdateData()
         {
+            if (frm.GetType().Name == "Projektverwaltung")
+            {
+                Projektverwaltung pa = (Projektverwaltung)frm;
+                List<Projekt> projekte = db.get(new Projekt());
+                if (projekte.Count() > 0)
+                {
+                    pa.listProjekte.ItemsSource = projekte;
+                    onUpdateView();
+                }
+                return;
+            }
+            else if (frm.GetType().Name == "Projekt_anlegen")
+            {
+
+                return;
+            }
             return;
         }
 

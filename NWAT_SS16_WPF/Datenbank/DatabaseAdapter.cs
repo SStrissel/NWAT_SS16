@@ -19,5 +19,7 @@ namespace NWAT_SS16
         abstract public List<Nutzwert> get(Nutzwert objekt);/* hole z.B. Namen/ID aus Model und suche danach in der Datenbank, gebe das vollständige Model zurück */
         abstract public void init_tables();
         abstract public void drop_tables();
+        abstract public int getID(Model objekt);
+
     }
 }

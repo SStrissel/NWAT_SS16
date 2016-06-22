@@ -26,6 +26,8 @@ namespace NWAT_SS16
             InitializeComponent();
             this.db = db;
             cp = new ControllerProjekt(db, this);
+
+            cp.anzeigen(new Projekt());
       
  
         }
