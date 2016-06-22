@@ -52,7 +52,7 @@ namespace NWAT_SS16
             {
                 Projekt p = (Projekt)objekt;
                 Projektverwaltung pv = (Projektverwaltung)frm;
-
+                //
                 pv.detailsProjektID.Text = p.getProjektID().ToString();
                 pv.detailsBezeichnung.Text = p.getBezeichnung();
                 /*krit.kriterium_aendern.IsEnabled = true;

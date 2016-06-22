@@ -63,7 +63,7 @@ namespace NWAT_SS16
             throw new NotImplementedException();
         }
 
-        public override void anzeigen(Model objekt, int ProduktID, int ProjektID)
+        public override void anzeigen(Model objekt)
         {
             throw new NotImplementedException();
         }

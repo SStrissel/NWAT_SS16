@@ -160,7 +160,12 @@ namespace NWAT_SS16
            // checken, ob Änderungen gemacht wurden
         }
 
-        public override void anzeigen(Model objekt, int ProduktID = 0, int ProjektID = 0)
+       public override void anzeigen(Model objekt)
+       {
+           throw new NotImplementedException();
+       }
+
+        public void anzeigen(Model objekt, int ProduktID = 0, int ProjektID = 0)
         {
             if (objekt == null)
             {
