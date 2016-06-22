@@ -32,8 +32,8 @@ namespace NWAT_SS16
                 Kriteriumverwaltung krit = (Kriteriumverwaltung)frm;
                 Kriterium temp_objekt = new Kriterium();
                 temp_objekt.setBezeichnung("Neues Kriterium");
-                db.insert(temp_objekt);
-                onUpdateData();
+                temp_objekt = db.insert(temp_objekt) as Kriterium;
+                anzeigen(temp_objekt);
                 return;
             }
             throw new NotImplementedException();
@@ -42,6 +42,8 @@ namespace NWAT_SS16
 
         public override void onCreateView()
         {
+            onUpdateData();
+            return;
             if (frm.GetType().Name == "Kriteriumverwaltung")
             {
                 Kriteriumverwaltung krit = (Kriteriumverwaltung)frm;

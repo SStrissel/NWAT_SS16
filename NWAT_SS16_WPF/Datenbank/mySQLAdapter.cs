@@ -214,14 +214,16 @@ namespace NWAT_SS16
         fügt ein neues Model in die Datenbank ein
         */
 
-        public override int insert(Model objekt)
+        public override Model insert(Model objekt)
         {
             int myID = 0;
+            List<Model> return_model = null;
              if (objekt.GetType().Name == "Kriterium")
             {
-                 myID = newID(objekt); // Autoincrement vergeben
                  Kriterium temp_objekt = (Kriterium)objekt;
-                 ExecuteSQL("INSERT INTO Kriterium (KriteriumID, Bezeichnung) VALUES ( " + myID + ", '" + temp_objekt.getBezeichnung() + "');");
+                 temp_objekt.setKriteriumID(newID(objekt)); // Autoincrement vergeben
+                 ExecuteSQL("INSERT INTO Kriterium (KriteriumID, Bezeichnung) VALUES ( " + temp_objekt.getKriteriumID() + ", '" + temp_objekt.getBezeichnung() + "');");
+                 return_model = get(temp_objekt);
             }
              else if (objekt.GetType().Name == "Nutzwert")
              {
@@ -235,17 +237,23 @@ namespace NWAT_SS16
              }
              else if (objekt.GetType().Name == "Projekt")
              {
-                 myID = newID(objekt); // Autoincrement vergeben
                  Projekt proj = (Projekt)objekt;
-                 ExecuteSQL("INSERT INTO Projekt (ProjektID, Bezeichnung) VALUES ( " + myID + ", '" + proj.getBezeichnung() + "');");
+                 proj.setProjektID(newID(objekt)); // Autoincrement vergeben
+                 ExecuteSQL("INSERT INTO Projekt (ProjektID, Bezeichnung) VALUES ( " + proj.getProjektID() + ", '" + proj.getBezeichnung() + "');");
+                 return_model = get(proj);
              }
              else if (objekt.GetType().Name == "Kriteriumstruktur")
              {
                  Kriteriumstruktur temp_objekt = (Kriteriumstruktur)objekt;
                  myID = temp_objekt.getOberKriteriumID(); // Hat kein Autoincrement
                  ExecuteSQL("INSERT INTO Kriteriumstruktur (OberKriteriumID, UnterKriteriumID) VALUES ( " +  temp_objekt.getOberKriteriumID() + ", '" + temp_objekt.getUnterKriteriumID() + "');");
+                 return_model = get(temp_objekt);
              }
-             return myID;
+             if (return_model == null)
+             {
+                 throw new NotImplementedException();
+             }
+             return return_model[0];
         }
 
 
