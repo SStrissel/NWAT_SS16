@@ -67,6 +67,9 @@
       <DependentUpon>Kriteriumstrukturverwaltung.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modelle\Kriteriumstruktur.cs" />
+    <Compile Include="NutzwertVerwaltung.xaml.cs">
+      <DependentUpon>NutzwertVerwaltung.xaml</DependentUpon>
+    </Compile>
     <Compile Include="structs.cs" />
     <Page Include="Hauptmenue.xaml">
       <SubType>Designer</SubType>
@@ -110,6 +113,10 @@
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Page Include="Einstellungen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NutzwertVerwaltung.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

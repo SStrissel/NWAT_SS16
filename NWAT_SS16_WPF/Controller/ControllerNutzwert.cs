@@ -10,7 +10,7 @@ namespace NWAT_SS16
      public class ControllerNutzwert : Controller
     {
 
-                ControllerNutzwert(DatabaseAdapter db, Window frm) : base(db, frm){}
+         public ControllerNutzwert(DatabaseAdapter db, Window frm) : base(db, frm){}
 
         private void gleichgewichten(Kriterium objekt)
         {
@@ -75,7 +75,7 @@ namespace NWAT_SS16
 
         public override void onCreateView()
         {
-            throw new NotImplementedException();
+            
         }
 
         public override void onUpdateView()
