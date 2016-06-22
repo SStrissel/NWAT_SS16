@@ -15,3 +15,9 @@ NWAT_SS16_WPF/obj/Debug/NWAT_SS16_MarkupCompile.i.cache
 *.pdb
 *.cache
 *.baml
+*.exe
+*.pdb
+*.exe
+NWAT_SS16_WPF/obj/Debug/NWAT_SS16.g.resources
+*.cache
+*.suo
