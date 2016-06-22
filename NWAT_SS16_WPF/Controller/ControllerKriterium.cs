@@ -226,15 +226,26 @@ namespace NWAT_SS16
                 Kriteriumverwaltung krit = (Kriteriumverwaltung)frm;
                 if (MessageBox.Show("Sind Sie sich sicher, dass sie das ausgewählte Kriterium löschen wollen?", "Löschen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
-                    db.delete(objekt);
-                    krit.kriterium_aendern.IsEnabled = false;
-                    krit.kriterium_loeschen.IsEnabled = false;
-                    krit.details_Bezeichnung.IsEnabled = false;
-                    krit.details_Bezeichnung.Text = "";
-                    krit.details_ID.Text = "";
-                    krit.details_ProduktID.Text = "";
-                    krit.details_ProjektID.Text = "";
-                    onUpdateData();
+                    Kriterium temp_objekt = (Kriterium)objekt;
+                    if (temp_objekt.getUnterKriterium(db).Count > 0)
+                    {
+                        MessageBox.Show("Sie können das Kriterium nicht löschen, solange es ein UnterKriterium besitzt. Gehen Sie in die Strukturverwaltung und löschen Sie alle UnterKriterien.", "Löschen", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    else if (temp_objekt.getOberKriterium(db).Count > 0)
+                    {
+                        MessageBox.Show("Sie können das Kriterium nicht löschen, solange es ein OberKriterium besitzt. Gehen Sie in die Strukturverwaltung des OberKriteriums und löschen Sie das Kriterium aus der UnterKriterium-Liste.", "Löschen", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    } else
+                    {
+                        db.delete(objekt);
+                        krit.kriterium_aendern.IsEnabled = false;
+                        krit.kriterium_loeschen.IsEnabled = false;
+                        krit.details_Bezeichnung.IsEnabled = false;
+                        krit.details_Bezeichnung.Text = "";
+                        krit.details_ID.Text = "";
+                        krit.details_ProduktID.Text = "";
+                        krit.details_ProjektID.Text = "";
+                        onUpdateData();
+                    }
                 }
                 return;
             }
