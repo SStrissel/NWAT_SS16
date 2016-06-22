@@ -20,7 +20,7 @@ namespace NWAT_SS16
         {
         }
 
-        /* Stephan Strissel 
+        /* Team 
         initialisiert die Verbindung zur Datenbank
          */
         public mySQLAdapter(string strServer, string strDatabase, string strUserID, string strPassword) // Konstruktor
@@ -32,7 +32,7 @@ namespace NWAT_SS16
             conn = new MySqlConnection(strconn);
         }
 
-        /* Stephan Strissel 
+        /* Team 
          öffnet eine Verbindung
         */
 
@@ -52,7 +52,7 @@ namespace NWAT_SS16
 
         }
 
-        /* Stephan Strissel 
+        /* Team 
          schließt eine Verbindung
         */
 
@@ -87,7 +87,7 @@ namespace NWAT_SS16
             conn.Close();
         }
 
-        /* Stephan Strissel 
+        /* Team 
          führt einen Befehl auf der Datenbank ohne Rückmeldung aus
         */
 
@@ -106,7 +106,7 @@ namespace NWAT_SS16
             closeConnection();
         }
 
-        /* Stephan Strissel 
+        /* Team 
          vergibt eine neue ID (Autoincrement)
         */
 
@@ -153,7 +153,7 @@ namespace NWAT_SS16
             return value;
         }
 
-        /* Stephan Strissel 
+        /* Team 
          führt einen SQL-Befehl aus und gibt die Antwort als DataTable zurück (langsam)
         */
 
@@ -178,7 +178,7 @@ namespace NWAT_SS16
                  return dataTable;
         }
 
-        /* Stephan Strissel 
+        /* Team 
         fügt ein neues Model in die Datenbank ein
         */
 
@@ -216,7 +216,7 @@ namespace NWAT_SS16
         }
 
 
-        /* Stephan Strissel 
+        /* Team 
          initialisiert alle Tabellen
         */
         public override void init_tables()
@@ -230,7 +230,7 @@ namespace NWAT_SS16
             ExecuteSQL("CREATE TABLE NWA (ProjektID int, KriteriumID int, ProduktID int, Erfuellung boolean, Gewichtung int, Kommentare varchar(255), beitrag_absolut double, beitrag_absolut_check boolean);");
         }
 
-        /* Stephan Strissel 
+        /* Team 
          löscht alle Tabellen
         */
         public override void drop_tables()
@@ -243,7 +243,7 @@ namespace NWAT_SS16
             ExecuteSQL("DROP TABLE Autoincrement;");
         }
 
-        /* Stephan Strissel 
+        /* Team 
          löscht das Model in der Datenbank
          * Key-Überprüfung fehlt!
         */
@@ -313,7 +313,7 @@ namespace NWAT_SS16
             }
         }
 
-        /* Stephan Strissel 
+        /* Team 
          updated das Model in der Datenbank
         */
         public override void update(Model objekt)
@@ -365,7 +365,7 @@ namespace NWAT_SS16
             }
         }
 
-        /* Stephan Strissel 
+        /* Team 
             greift auf die generische get-Methode zu und wandelt sie in eine objektspezifische um
          */
         public override List<Kriterium> get(Kriterium objekt)
@@ -424,7 +424,7 @@ namespace NWAT_SS16
             return return_list;
         }
 
-         /* Stephan Strissel 
+         /* Team 
             generische get-Methode
          */
         public List<Model> get(Model objekt)
@@ -515,7 +515,7 @@ namespace NWAT_SS16
              throw new NotImplementedException();
         }
 
-        /* Stephan Strissel 
+        /* Team 
          testet, ob eine Verbindung zur Datenbank besteht
         */
         public override bool checkConnection()
