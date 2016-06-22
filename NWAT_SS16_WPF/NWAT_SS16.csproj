@@ -67,8 +67,17 @@
       <DependentUpon>Kriteriumstrukturverwaltung.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modelle\Kriteriumstruktur.cs" />
+    <Compile Include="NutzwertVerwaltung.xaml.cs">
+      <DependentUpon>NutzwertVerwaltung.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Produktverwaltung.xaml.cs">
       <DependentUpon>Produktverwaltung.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Projektverwaltung.xaml.cs">
+      <DependentUpon>Projektverwaltung.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Projekt_anlegen.xaml.cs">
+      <DependentUpon>Projekt_anlegen.xaml</DependentUpon>
     </Compile>
     <Compile Include="structs.cs" />
     <Page Include="Hauptmenue.xaml">
@@ -116,9 +125,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NutzwertVerwaltung.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Produktverwaltung.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Projektverwaltung.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Projekt_anlegen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

@@ -42,7 +42,7 @@ namespace NWAT_SS16
 
             private void produktanzeigen_Click(object sender, RoutedEventArgs e)
                {
-                   cntrl.anzeigen();
+                   //cntrl.anzeigen();
                }
 
             private void produktaendern_Click(object sender, RoutedEventArgs e)

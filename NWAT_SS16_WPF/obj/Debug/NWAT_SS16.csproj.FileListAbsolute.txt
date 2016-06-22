@@ -37,3 +37,11 @@ C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\NWAT_SS16.csprojResolveAssemblyReference.ca
 C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\Kriteriumstrukturverwaltung.baml
 C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\Kriteriumstrukturverwaltung.g.cs
 C:\NWAT_SS16\NWAT_SS16_WPF\bin\Debug\MySql.Data.dll
+C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\NutzwertVerwaltung.baml
+C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\Produktverwaltung.baml
+C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\Projektverwaltung.baml
+C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\Projekt_anlegen.baml
+C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\NutzwertVerwaltung.g.cs
+C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\Produktverwaltung.g.cs
+C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\Projektverwaltung.g.cs
+C:\NWAT_SS16\NWAT_SS16_WPF\obj\Debug\Projekt_anlegen.g.cs
