@@ -33,7 +33,7 @@ namespace NWAT_SS16
                 Kriterium temp_objekt = new Kriterium();
                 temp_objekt.setBezeichnung("Neues Kriterium");
                 db.insert(temp_objekt);
-                onUpdateView();
+                onUpdateData();
                 return;
             }
             throw new NotImplementedException();
@@ -57,7 +57,8 @@ namespace NWAT_SS16
                 {
                     Kriterium temp_objekt = new Kriterium();
                     temp_objekt.setKriteriumID(Int32.Parse(krit.details_ID.Text));
-                    krit.details_Kriterium.ItemsSource = temp_objekt.getUnterKriterium(db);
+                    //krit.details_Kriterium.ItemsSource = temp_objekt.getUnterKriterium(db);
+                    krit.listeUnterKriterium.ItemsSource = temp_objekt.getUnterKriterium(db);
                 }
                 return;
             }
@@ -87,6 +88,7 @@ namespace NWAT_SS16
                     Kriterium temp_objekt = new Kriterium();
                     temp_objekt.setKriteriumID(Int32.Parse(krit.details_ID.Text));
                     krit.listeUnterKriterium.ItemsSource = temp_objekt.getUnterKriterium(db);
+                    krit.listeOberKriterium.ItemsSource = temp_objekt.getOberKriterium(db);
                 }
                 onUpdateView();
                 return;
@@ -142,11 +144,18 @@ namespace NWAT_SS16
             else if (frm.GetType().Name == "Kriteriumverwaltung")
             {
                 Kriteriumverwaltung krit = (Kriteriumverwaltung)frm;
-                if (Int32.Parse(krit.details_ID.Text) != 0)
+                if (krit.details_ID.Text != "")
                 {
-                    krit.struktur.IsEnabled = true;
+                    if (Int32.Parse(krit.details_ID.Text) != 0)
+                    {
+                        krit.struktur.IsEnabled = true;
+                    }
+                    else
+                    {
+                        krit.struktur.IsEnabled = false;
+                    }
                 }
-                else 
+                else
                 {
                     krit.struktur.IsEnabled = false;
                 }

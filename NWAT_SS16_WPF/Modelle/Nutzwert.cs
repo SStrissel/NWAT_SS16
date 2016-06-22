@@ -17,7 +17,7 @@ namespace NWAT_SS16
 
         public override string ToString()
         {
-            return "(" + ProjektID + " / + " + ProduktID + " / + " + KriteriumID + " / + " + ") " + Kommentar;
+            return "( Projekt " + ProjektID + " / Produkt " + ProduktID + " / Kriterium " + KriteriumID + " / + " + ") " + Kommentar;
         }
 
 

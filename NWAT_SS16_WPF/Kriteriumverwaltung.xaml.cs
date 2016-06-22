@@ -51,7 +51,7 @@ namespace NWAT_SS16
 
         private void kriterium_loeschen_Click(object sender, RoutedEventArgs e)
         {
-            Kriterium objekt = (listeKriterium.SelectedItem as Kriterium);
+            Kriterium objekt = new Kriterium(details_ID.Text);
             cntrl.loeschen(objekt);
         }
 

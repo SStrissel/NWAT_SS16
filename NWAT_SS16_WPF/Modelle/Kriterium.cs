@@ -44,7 +44,7 @@ namespace NWAT_SS16
 
         public override string ToString()
         {
-            return "(" + KriteriumID + ") " + Bezeichnung;
+            return "( Kriterium " + KriteriumID + ") " + Bezeichnung;
         }
 
         public int getKriteriumID()
@@ -95,7 +95,7 @@ namespace NWAT_SS16
 
             foreach (Kriteriumstruktur temp_kritstruktur in db.get(temp_objekt))
             {
-                temp_krit = new Kriterium(temp_kritstruktur.getUnterKriteriumID());
+                temp_krit = new Kriterium(temp_kritstruktur.getOberKriteriumID());
                 foreach (Kriterium temp_krit2 in db.get(temp_krit))
                 {
                     return_krit = new Kriterium(temp_krit2);

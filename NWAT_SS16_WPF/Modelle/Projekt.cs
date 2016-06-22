@@ -25,7 +25,7 @@ namespace NWAT_SS16
         */
         public override string ToString()
         {
-            return "(" + ProjektID + ") " + Bezeichnung;
+            return "( Projekt " + ProjektID + ") " + Bezeichnung;
         }
 
         public int getProjektID()

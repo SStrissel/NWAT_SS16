@@ -19,7 +19,7 @@ namespace NWAT_SS16
 
         public override string ToString()
         {
-            return "(" + OberKriteriumID + "/" + UnterKriteriumID + ") ";
+            return "( OberKriterium " + OberKriteriumID + "/ UnterKriterium " + UnterKriteriumID + ") ";
         }
 
 
