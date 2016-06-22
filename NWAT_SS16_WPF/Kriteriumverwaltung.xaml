@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Kriteriumverwaltung" Height="352.5" Width="911.5" Icon="Resources/Laundry_12-512.png" Closing="KriteriumverwaltungClosing">
     <Grid>
-        <ListBox x:Name="listeKriterium" HorizontalAlignment="Left" Height="170" Margin="34,74,0,0" VerticalAlignment="Top" Width="349" SelectionChanged="item_selected"/>
+        <ListBox x:Name="listeKriterium" HorizontalAlignment="Left" Height="170" Margin="24,52,0,0" VerticalAlignment="Top" Width="349" SelectionChanged="item_selected"/>
         <Button x:Name="kriterium_anlegen" Content="neu anlegen" HorizontalAlignment="Left" Margin="37,289,0,0" VerticalAlignment="Top" Width="74" Click="anlegen_Click"/>
         <Button x:Name="kriterium_loeschen" Content="loeschen" HorizontalAlignment="Left" Margin="636,163,0,0" VerticalAlignment="Top" Width="74" Click="kriterium_loeschen_Click" IsEnabled="False"/>
         <Button x:Name="kriterium_aendern" Content="speichern" HorizontalAlignment="Left" Margin="726,163,0,0" VerticalAlignment="Top" Width="74" Click="kriteriumAendern_Click" IsEnabled="False"/>
