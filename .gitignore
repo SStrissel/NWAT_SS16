@@ -5,3 +5,13 @@ NWAT_SS16_WPF/obj/Debug/NWAT_SS16.csproj.FileListAbsolute.txt
 *.cache
 *.cache
 NWAT_SS_165.v11.suo
+*.exe
+NWAT_SS16_WPF/bin/Debug/NWAT_SS16.pdb
+*.exe
+NWAT_SS16_WPF/obj/Debug/NWAT_SS16_MarkupCompile.i.cache
+*.cache
+*.pdb
+*.resources
+*.pdb
+*.cache
+*.baml
