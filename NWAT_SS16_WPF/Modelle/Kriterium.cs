@@ -36,7 +36,7 @@ namespace NWAT_SS16
 
         public Kriterium(string ID)
         {
-            this.KriteriumID = Int32.Parse(ID);
+            this. KriteriumID = Int32.Parse(ID);
         }
 
         public Kriterium(): base() {}
@@ -69,8 +69,27 @@ namespace NWAT_SS16
 
         public List<Kriterium> getUnterKriterium(DatabaseAdapter db)
         {
-            Kriteriumstruktur temp_objekt = new Kriteriumstruktur(this.getKriteriumID());
+            Kriteriumstruktur temp_objekt = new Kriteriumstruktur(OberKriteriumID: this.getKriteriumID());
             List<Kriterium> return_list = new List<Kriterium>();            
+            Kriterium return_krit;
+            Kriterium temp_krit;
+
+            foreach (Kriteriumstruktur temp_kritstruktur in db.get(temp_objekt))
+            {
+                temp_krit = new Kriterium(temp_kritstruktur.getUnterKriteriumID());
+                foreach (Kriterium temp_krit2 in db.get(temp_krit))
+                {
+                    return_krit = new Kriterium(temp_krit2);
+                    return_list.Add(return_krit);
+                }
+            }
+            return return_list;
+        }
+
+        public List<Kriterium> getOberKriterium(DatabaseAdapter db)
+        {
+            Kriteriumstruktur temp_objekt = new Kriteriumstruktur(UnterKriteriumID : this.getKriteriumID());
+            List<Kriterium> return_list = new List<Kriterium>();
             Kriterium return_krit;
             Kriterium temp_krit;
 

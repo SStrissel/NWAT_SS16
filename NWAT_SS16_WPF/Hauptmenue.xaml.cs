@@ -26,9 +26,10 @@ namespace NWAT_SS16
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Projekt_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Diese Funktion ist noch nicht integriert", "Die Waschmaschine hat eine Socke gefressen...", MessageBoxButton.OK);
+            Projektverwaltung projv = new Projektverwaltung(db);
+            projv.ShowDialog();
         }
 
 
@@ -39,7 +40,9 @@ namespace NWAT_SS16
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Diese Funktion ist noch nicht integriert", "Die Waschmaschine hat eine Socke gefressen...", MessageBoxButton.OK);
+            NutzwertVerwaltung frm = new NutzwertVerwaltung(db);
+            frm.ShowDialog();
+           // MessageBox.Show("Diese Funktion ist noch nicht integriert", "Die Waschmaschine hat eine Socke gefressen...", MessageBoxButton.OK);
         }
 
         private void kriterienverwaltung_click(object sender, RoutedEventArgs e)
