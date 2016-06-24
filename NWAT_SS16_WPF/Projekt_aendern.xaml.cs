@@ -15,30 +15,23 @@ using System.Windows.Shapes;
 namespace NWAT_SS16
 {
     /// <summary>
-    /// Interaktionslogik für Projekt_anlegen.xaml
+    /// Interaktionslogik für Projekt_aendern.xaml
     /// </summary>
-    public partial class Projekt_anlegen : Window
+    public partial class Projekt_aendern : Window
     {
         private DatabaseAdapter db;
         private ControllerProjekt cp;
-        public Projekt_anlegen(DatabaseAdapter db)
+        public Projekt_aendern(DatabaseAdapter db)
         {
             InitializeComponent();
             this.db = db;
             cp = new ControllerProjekt(db, this);
-
+            Projektverwaltung pv = new Projektverwaltung(db);
+            //Projekt p = (pv.listProjekte.SelectedItem as Projekt);
+            //cp.anzeigen(p);
+            //MessageBox.Show(p.ToString());
             cp.anzeigen(new Projekt());
-      
- 
-        }
-        private void speichern_Click(object sender, RoutedEventArgs e)
-        {
-            //string a = TextBox_2.Text;
-            //p.setProjektID(textProjektID.Text);
-           // p.setBezeichnung(textBezeichnung.Text);
-        
-            cp.anlegen();
-            this.Close();
+            
         }
 
         private void abbrechen_Click(object sender, RoutedEventArgs e)
@@ -46,6 +39,10 @@ namespace NWAT_SS16
             this.Close();
         }
 
-       
+        private void aendern_Click(object sender, RoutedEventArgs e)
+        {
+            cp.aendern();
+            this.Close();
+        }
     }
 }

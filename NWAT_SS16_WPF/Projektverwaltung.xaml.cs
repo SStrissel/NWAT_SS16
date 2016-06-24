@@ -20,6 +20,7 @@ namespace NWAT_SS16
     public partial class Projektverwaltung : Window
     {
         private ControllerProjekt cp;
+      
        
         public Projektverwaltung(DatabaseAdapter db)
         {
@@ -38,8 +39,23 @@ namespace NWAT_SS16
 
         private void ListBox_auswahl(object sender, SelectionChangedEventArgs e)
         {
-            Projekt objekt = ((sender as ListBox).SelectedItem as Projekt);
-            cp.anzeigen(objekt);
+            Projekt p  = ((sender as ListBox).SelectedItem as Projekt);
+           // cp.temp(p);
+            cp.anzeigen(p);
+        }
+
+        private void loeschen_Click(object sender, RoutedEventArgs e)
+        {
+            Projekt p = (listProjekte.SelectedItem as Projekt);
+            //listProjekte.ItemsSource(listProjekte.SelectedItem);
+           
+
+            cp.loeschen(p);
+        }
+
+        private void aendern_Click(object sender, RoutedEventArgs e)
+        {
+            cp.aendern();
         }
 
     }

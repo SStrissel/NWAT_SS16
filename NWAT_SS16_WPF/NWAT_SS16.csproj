@@ -76,6 +76,9 @@
     <Compile Include="Projektverwaltung.xaml.cs">
       <DependentUpon>Projektverwaltung.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Projekt_aendern.xaml.cs">
+      <DependentUpon>Projekt_aendern.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Projekt_anlegen.xaml.cs">
       <DependentUpon>Projekt_anlegen.xaml</DependentUpon>
     </Compile>
@@ -136,6 +139,10 @@
     <Page Include="Projektverwaltung.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Projekt_aendern.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Projekt_anlegen.xaml">
       <Generator>MSBuild:Compile</Generator>
