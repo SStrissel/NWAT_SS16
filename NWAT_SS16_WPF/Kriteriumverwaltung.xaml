@@ -1,21 +1,21 @@
 ﻿<Window x:Class="NWAT_SS16.Kriteriumverwaltung"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Kriteriumverwaltung" Height="352.5" Width="911.5" Icon="Resources/Laundry_12-512.png" Closing="KriteriumverwaltungClosing">
+        Title="Kriteriumverwaltung" Height="271.5" Width="792.5" Icon="Resources/Laundry_12-512.png" Closing="KriteriumverwaltungClosing">
     <Grid>
-        <ListBox x:Name="listeKriterium" HorizontalAlignment="Left" Height="170" Margin="31,121,0,0" VerticalAlignment="Top" Width="349" SelectionChanged="item_selected"/>
-        <Button x:Name="kriterium_anlegen" Content="neu anlegen" HorizontalAlignment="Left" Margin="37,289,0,0" VerticalAlignment="Top" Width="74" Click="anlegen_Click"/>
-        <Button x:Name="kriterium_loeschen" Content="loeschen" HorizontalAlignment="Left" Margin="636,163,0,0" VerticalAlignment="Top" Width="74" Click="kriterium_loeschen_Click" IsEnabled="False"/>
-        <Button x:Name="kriterium_aendern" Content="speichern" HorizontalAlignment="Left" Margin="726,163,0,0" VerticalAlignment="Top" Width="74" Click="kriteriumAendern_Click" IsEnabled="False"/>
-        <Label Content="ID" HorizontalAlignment="Left" Margin="404,82,0,0" VerticalAlignment="Top"/>
-        <Label Content="Bezeichnung&#xD;&#xA;" HorizontalAlignment="Left" Margin="405,118,0,0" VerticalAlignment="Top" Height="28" RenderTransformOrigin="-0.397,0.571"/>
-        <TextBox x:Name="details_ID" HorizontalAlignment="Left" Height="23" Margin="515,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" IsEnabled="False"/>
-        <TextBox x:Name="details_Bezeichnung" HorizontalAlignment="Left" Height="23" Margin="515,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" SpellCheck.IsEnabled="True" IsEnabled="False" />
-        <Label Content="ProduktID" HorizontalAlignment="Left" Margin="404,45,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="details_ProduktID" HorizontalAlignment="Left" Height="23" Margin="515,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" IsEnabled="False"/>
-        <Label Content="ProjektID" HorizontalAlignment="Left" Margin="404,10,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="details_ProjektID" HorizontalAlignment="Left" Height="23" Margin="515,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" IsEnabled="False"/>
-        <Button x:Name="struktur" Content="Strukturverwaltung" HorizontalAlignment="Left" Margin="641,209,0,0" VerticalAlignment="Top" Width="161" Click="struktur_Click" IsEnabled="False"/>
+        <ListBox x:Name="listeKriterium" HorizontalAlignment="Left" Height="170" Margin="14,13,0,0" VerticalAlignment="Top" Width="349" SelectionChanged="item_selected"/>
+        <Button x:Name="kriterium_anlegen" Content="neu anlegen" HorizontalAlignment="Left" Margin="14,188,0,0" VerticalAlignment="Top" Width="74" Click="anlegen_Click"/>
+        <Button x:Name="kriterium_loeschen" Content="loeschen" HorizontalAlignment="Left" Margin="613,163,0,0" VerticalAlignment="Top" Width="74" Click="kriterium_loeschen_Click" IsEnabled="False"/>
+        <Button x:Name="kriterium_aendern" Content="speichern" HorizontalAlignment="Left" Margin="703,163,0,0" VerticalAlignment="Top" Width="74" Click="kriteriumAendern_Click" IsEnabled="False"/>
+        <Label Content="ID" HorizontalAlignment="Left" Margin="381,82,0,0" VerticalAlignment="Top"/>
+        <Label Content="Bezeichnung&#xD;&#xA;" HorizontalAlignment="Left" Margin="382,118,0,0" VerticalAlignment="Top" Height="28" RenderTransformOrigin="-0.397,0.571"/>
+        <TextBox x:Name="details_ID" HorizontalAlignment="Left" Height="23" Margin="492,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" IsEnabled="False"/>
+        <TextBox x:Name="details_Bezeichnung" HorizontalAlignment="Left" Height="23" Margin="492,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" SpellCheck.IsEnabled="True" IsEnabled="False" />
+        <Label Content="ProduktID" HorizontalAlignment="Left" Margin="381,45,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="details_ProduktID" HorizontalAlignment="Left" Height="23" Margin="492,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" IsEnabled="False"/>
+        <Label Content="ProjektID" HorizontalAlignment="Left" Margin="381,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="details_ProjektID" HorizontalAlignment="Left" Height="23" Margin="492,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" IsEnabled="False"/>
+        <Button x:Name="struktur" Content="Strukturverwaltung" HorizontalAlignment="Left" Margin="618,209,0,0" VerticalAlignment="Top" Width="161" Click="struktur_Click" IsEnabled="False"/>
 
     </Grid>
 </Window>

@@ -118,6 +118,57 @@ namespace NWAT_SS16
             }
         }
 
+        public List<Kriterium> getRootKriterium(DatabaseAdapter db)
+        {
+            List<Kriterium> temp_list = this.getOberKriterium(db);
+            List<Kriterium> return_list = new List<Kriterium>();
+            if (temp_list.Count == 0)
+            {
+                return_list.Add(this);
+            }
+            foreach (Kriterium temp_objekt in temp_list)
+            {
+                foreach (Kriterium temp_objekt2 in temp_objekt.getRootKriterium(db))
+                {
+                    return_list.Add(temp_objekt2);
+                }
+            }
+            return return_list;
+
+        }
+
+        public bool isUnterKriterium(Kriterium objekt, DatabaseAdapter db)
+        {
+            foreach (Kriterium temp_krit in this.getUnterKriterium(db))
+            {
+                if (temp_krit.getKriteriumID() == objekt.getKriteriumID())
+                {
+                    return true;
+                }
+                if (temp_krit.isUnterKriterium(objekt, db))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool isOberKriterium(Kriterium objekt, DatabaseAdapter db)
+        {
+            foreach (Kriterium temp_krit in this.getOberKriterium(db))
+            {
+                if (temp_krit.getKriteriumID() == objekt.getKriteriumID())
+                {
+                    return true;
+                }
+                if (temp_krit.isOberKriterium(objekt, db))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public void removeUnterKriterium(Kriterium objekt, DatabaseAdapter db)
         {
             if (objekt == null)

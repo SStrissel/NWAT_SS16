@@ -89,6 +89,7 @@ namespace NWAT_SS16
                 {
                     Kriterium temp_objekt = new Kriterium();
                     temp_objekt.setKriteriumID(Int32.Parse(krit.details_ID.Text));
+                    krit.listeWurzelKriterium.ItemsSource = temp_objekt.getRootKriterium(db);
                     krit.listeUnterKriterium.ItemsSource = temp_objekt.getUnterKriterium(db);
                     krit.listeOberKriterium.ItemsSource = temp_objekt.getOberKriterium(db);
                 }
@@ -119,8 +120,9 @@ namespace NWAT_SS16
 
                 if (krit.details_Kriterium.SelectedItem != null)
                 {
-                    Kriterium temp_objekt = (Kriterium)krit.details_Kriterium.SelectedItem;
-                    if (temp_objekt.getKriteriumID() != Int32.Parse(krit.details_ID.Text) && find(krit.listeUnterKriterium.ItemsSource as List<Kriterium>, temp_objekt.getKriteriumID()) == false)
+                    Kriterium choosen_objekt = (Kriterium)krit.details_Kriterium.SelectedItem;
+                    Kriterium actual_objekt = new Kriterium(krit.details_ID.Text);
+                    if (choosen_objekt.getKriteriumID() != actual_objekt.getKriteriumID() && find(krit.listeUnterKriterium.ItemsSource as List<Kriterium>, choosen_objekt.getKriteriumID()) == false && actual_objekt.isOberKriterium(choosen_objekt, db) == false)
                     {
                         krit.untkrit_hinzufuegen.IsEnabled = true;
                     }
