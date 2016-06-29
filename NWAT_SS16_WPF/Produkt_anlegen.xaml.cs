@@ -19,9 +19,21 @@ namespace NWAT_SS16
     /// </summary>
     public partial class Produkt_anlegen : Window
     {
-        public Produkt_anlegen()
+        DatabaseAdapter db;
+        public Produkt_anlegen(DatabaseAdapter db)
         {
+            this.db = db;
             InitializeComponent();
+        }
+
+        private void speichern_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void abbrechen_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

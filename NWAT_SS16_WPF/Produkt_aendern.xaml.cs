@@ -19,9 +19,21 @@ namespace NWAT_SS16
     /// </summary>
     public partial class Produkt_aendern : Window
     {
-        public Produkt_aendern()
+        DatabaseAdapter db;
+        public Produkt_aendern(DatabaseAdapter db)
         {
+            this.db = db;
             InitializeComponent();
+        }
+
+        private void abbrechen_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void aendern_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
