@@ -13,37 +13,57 @@ namespace NWAT_SS16
 
         private void gleichgewichten(Kriterium objekt)
         {
-
+            /* TBD Strissel*/
         }
 
         public void funktionsabdeckungsgrad_berechnen(Nutzwert NWAobjekt, Kriterium objekt)
         {
+            NWAobjekt.setBeitragAbsolutCheck(false);
+            NWAobjekt.getKriterium();
+            List<Kriterium> list = NWAobjekt.getKriterium().getUnterKriterium(db);
+            if (NWAobjekt.getKriterium().getUnterKriterium(db).Count == 0)
+                foreach (Kriterium temp_obj in list)
+                {
+                    funktionsabdeckungsgrad_berechnen(NWAobjekt, objekt);
+                }
+            //ZWEITE ZEILE NICHT LAUFFÄHIG!!! WARUM ZUR HÖLLE?!
+            /*else
+            {
+                double temp_beitrag = funktionsabdeckungsgrad_beitrag(NWAobjekt);
+                NWAobjekt.setBeitragAbsolut() += funktionsabdeckungsgrad_beitrag_absolut(NWAobjekt, temp_beitrag);
+                NWAobjekt.setBeitragAbsolutCheck(true);
+            }
+                          */
+
+               
         }
 
         public void funktionsabdeckungsgrad_aufsummieren(Nutzwert NWAobjekt, Kriterium objekt)
         {
-           /* bool change = false;
-            funktionsabdeckungsgrad_aufsummieren_check(Kriterium objekt);
+            bool change = false;
+            double temp_beitrag = 0;
+            funktionsabdeckungsgrad_aufsummieren_check(objekt);
             List<Kriterium> list = NWAobjekt.getKriterium().getUnterKriterium(db);
             if (change == false)
             {
                 foreach (Kriterium temp in list)
                 {
-                    float temp_beitrag += NWAobjekt.getKriterium().getUnterKriterium();
+                    temp_beitrag += NWAobjekt.getBeitragAbsolut();
                 }
             }
-            NWAobjekt.getKriterium().*/
+            NWAobjekt.setBeitragAbsolut(temp_beitrag);
 
 
         }
 
         public bool funktionsabdeckungsgrad_aufsummieren_check(Kriterium objekt)
         {
-          /*  List<Kriterium> list = objekt.getUnterKriterium(db);
-            for (int i = 0; i <= List<Kriterium>; i++)
+            List<Kriterium> list = objekt.getUnterKriterium(db);
+            foreach (Kriterium temp_obj in list)
             {
+                //STRUKTOGRAMM NICHT VERSTANDEN NOCHMAL PRÜFEN!!!!!
             }
-          */
+          
             return true;
         }
         
@@ -95,21 +115,19 @@ namespace NWAT_SS16
             return zaehler;
         }
 
-        private float funktionsabdeckungsgrad_beitrag_absolut(Nutzwert NWAobjekt, float beitrag_einzel)
+        private double funktionsabdeckungsgrad_beitrag_absolut(Nutzwert NWAobjekt, double beitrag_einzel)
         {
-           /* float absolut1;
+            double result = 0;
             
             List<Kriterium> list  = NWAobjekt.getKriterium().getOberKriterium(db);
-            while (list.Count != 0)
+            foreach (Kriterium temp_objekt in list)
             {
-               int nenner = funktionsabdeckungsgrad_beitrag_nenner(Nutzwert NWAobjekt);
-               float  result =  beitrag_einzel * list.count();
-               absolut1 = result / nenner;
-
+               int nenner = funktionsabdeckungsgrad_beitrag_nenner(NWAobjekt);
+               result =  beitrag_einzel * NWAobjekt.getGewichtung()/nenner;  
+                Nutzwert temp_nutzwert = new Nutzwert(KriteriumID: temp_objekt.getKriteriumID(), ProjektID: NWAobjekt.getProjektID(), ProduktID: NWAobjekt.getProduktID());
+               return funktionsabdeckungsgrad_beitrag_absolut(temp_nutzwert, result);
             }
-            return absolut1;
-            */
-            return 0;
+            return result;   
         }
 
         private void ranking_anzeigen()
