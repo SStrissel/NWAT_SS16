@@ -17,6 +17,8 @@ namespace NWAT_SS16
         double beitrag_absolut;
         bool beitrag_absolut_check;
 
+           public Nutzwert(): base() {}
+
         public Nutzwert (int KriteriumID, int ProjektID = 0, int ProduktID = 0, bool Erfuellung = false, int Gewichtung = 0, string Kommentar = "", double BeitragAbsolut = 0, bool BeitragAbsolutCheck = false)
         {
             setProjektID(ProjektID);
@@ -93,6 +95,10 @@ namespace NWAT_SS16
 
         public void setProjektID(string ProjektID)
         {
+            if (ProjektID == "")
+            {
+                throw new NotImplementedException();
+            }
             setProjektID(Int32.Parse(ProjektID));
         }
 
@@ -117,7 +123,6 @@ namespace NWAT_SS16
             }
             else if (Erfuellung.Equals("1"))
             {
-
                 setErfuellung(true);
             }
             else
@@ -138,12 +143,12 @@ namespace NWAT_SS16
 
         public void setGewichtung(int Gewichtung)
         {
-            Gewichtung = this.Gewichtung;
+            this.Gewichtung = Gewichtung;
         }
 
         public void setKommentar(string Kommentar)
         {
-            Kommentar = this.Kommentar;
+            this.Kommentar = Kommentar;
         }
 
         public void setBeitragAbsolut(double wert)

@@ -32,5 +32,11 @@ namespace NWAT_SS16
         {
             cntrl.aendern();
         }
+
+        private void loeschen_Click(object sender, RoutedEventArgs e)
+        {
+            Nutzwert objekt = new Nutzwert(KriteriumID: details_KriteriumID.Text, ProduktID: details_ProduktID.Text, ProjektID: details_ProjektID.Text);
+            cntrl.loeschen(objekt);
+        }
     }
 }

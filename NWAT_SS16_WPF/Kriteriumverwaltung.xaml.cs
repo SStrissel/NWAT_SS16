@@ -62,8 +62,16 @@ namespace NWAT_SS16
 
         private void nutzwert_Click(object sender, RoutedEventArgs e)
         {
-            Nutzwert objekt = new Nutzwert(ProjektID: details_ProjektID.Text, ProduktID:details_ProduktID.Text, KriteriumID: details_ID.Text);
+            Nutzwert objekt = new Nutzwert(ProjektID: ((Projekt)listeProjektID.SelectedItem).getProjektID().ToString(), ProduktID: ((Produkt)listeProduktID.SelectedItem).getProduktID().ToString(), KriteriumID: details_ID.Text);
             cntrl.show_kriteriumnutzwertverwaltung(objekt);
+        }
+
+        private void listeProjektID_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+        }
+
+        private void listeProduktID_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
         }
     }
 }

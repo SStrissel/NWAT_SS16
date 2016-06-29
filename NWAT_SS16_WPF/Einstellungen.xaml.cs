@@ -43,5 +43,32 @@ namespace NWAT_SS16
              db.init_tables();
              infoBox.Dispatcher.BeginInvoke(new Action(() => { infoBox.Text = "Tables initialisiert."; }));
          }
+
+         private void resetNWA_Click(object sender, RoutedEventArgs e)
+         {
+             db.reset_nwa();
+             infoBox.Dispatcher.BeginInvoke(new Action(() => { infoBox.Text = "NWA-Tabelle neu initalisiert."; }));
+         }
+
+         private void dummyKriterien_Click(object sender, RoutedEventArgs e)
+         {
+
+             infoBox.Text = "DummyKriterien werden erstellt...";
+             var task = new Task(() => asyncDummyKriterien(db));
+             task.Start();
+
+         }
+
+        private async void asyncDummyKriterien(DatabaseAdapter db)
+        {
+             for (int i = 0; i <= 80000; i++)
+             {
+                 Kriterium temp_objekt = new Kriterium();
+                 temp_objekt.setBezeichnung("DUMMY NO " + i);
+                     infoBox.Dispatcher.BeginInvoke(new Action(() => { infoBox.Text += "."; }));
+                 db.insert(temp_objekt);
+             }
+             infoBox.Dispatcher.BeginInvoke(new Action(() => { infoBox.Text += "...Kirtierien-Dummys eingefügt."; }));
+         }
     }
 }

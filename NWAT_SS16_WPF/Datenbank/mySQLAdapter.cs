@@ -256,7 +256,7 @@ namespace NWAT_SS16
              else if (objekt.GetType().Name == "Nutzwert")
              {
                  Nutzwert temp_objekt = (Nutzwert)objekt;
-                 ExecuteSQL("INSERT INTO Kriterium (KriteriumID, ProduktID, ProjektID, Erfuellung, Gewichtung, Kommentar, beitrag_absolut, beitrag_absolut_check) VALUES ( " + temp_objekt.getKriteriumID() + ", " + temp_objekt.getProjektID() + " , " + temp_objekt.getProduktID() + ", " + temp_objekt.getErfuellung() + ", " + temp_objekt.getGewichtung() + ", '" + temp_objekt.getKommentar() + "', " + temp_objekt.getBeitragAbsolut() + ", " + temp_objekt.getBeitragAbsolutCheck() + ");");
+                 ExecuteSQL("INSERT INTO NWA (KriteriumID, ProjektID, ProduktID, Erfuellung, Gewichtung, Kommentar, beitrag_absolut, beitrag_absolut_check) VALUES ( " + temp_objekt.getKriteriumID() + ", " + temp_objekt.getProjektID() + " , " + temp_objekt.getProduktID() + ", " + temp_objekt.getErfuellung() + ", " + temp_objekt.getGewichtung() + ", '" + temp_objekt.getKommentar() + "', " + temp_objekt.getBeitragAbsolut() + ", " + temp_objekt.getBeitragAbsolutCheck() + ");");
                  return_model = get(temp_objekt);
              }
              else if (objekt.GetType().Name == "Produkt")
@@ -325,8 +325,8 @@ namespace NWAT_SS16
         }
        override public void create_nwa()
             {
-                    ExecuteSQL("CREATE TABLE NWA (ProjektID int, KriteriumID int, ProduktID int, Erfuellung boolean, Gewichtung int, Kommentare varchar(255), beitrag_absolut double, beitrag_absolut_check boolean);");
-            ExecuteSQL("INSERT INTO NWA (ProjektID, KriteriumID, ProduktID, Erfuellung, Gewichtung, Kommentare, beitrag_absolut, beitrag_absolut_check) VALUES (0,0,0,1,0,'StandardNWA', 0, 1);");
+            ExecuteSQL("CREATE TABLE NWA (ProjektID int, KriteriumID int, ProduktID int, Erfuellung boolean, Gewichtung int, Kommentar varchar(255), beitrag_absolut double, beitrag_absolut_check boolean);");
+            ExecuteSQL("INSERT INTO NWA (ProjektID, KriteriumID, ProduktID, Erfuellung, Gewichtung, Kommentar, beitrag_absolut, beitrag_absolut_check) VALUES (0,0,0,1,0,'StandardNWA', 0, 1);");
         }
         override public void create_autoincrement()
             {
@@ -510,8 +510,16 @@ namespace NWAT_SS16
             else if (objekt.GetType().Name == "Nutzwert")
             {
                 Nutzwert temp_objekt = (Nutzwert)objekt;
-                ExecuteSQL("UPDATE NWA SET Gewichtung='" + temp_objekt.getGewichtung() + "' WHERE KriteriumID = " + temp_objekt.getKriteriumID() + " AND ProjektID = " + temp_objekt.getProjektID() + " AND ProduktID = " + temp_objekt.getProduktID() + ";");
-            }
+                if (get(temp_objekt).Count != 0)
+                {
+                    ExecuteSQL("UPDATE NWA SET Kommentar='" + temp_objekt.getKommentar() + "', Erfuellung=" + temp_objekt.getErfuellung() + ", Gewichtung=" + temp_objekt.getGewichtung() + " WHERE KriteriumID = " + temp_objekt.getKriteriumID() + " AND ProjektID = " + temp_objekt.getProjektID() + " AND ProduktID = " + temp_objekt.getProduktID() + ";");
+      
+                }
+                else
+                {
+                    insert(temp_objekt);
+               }
+                }
             else if (objekt.GetType().Name == "Produkt")
             {
                 Produkt temp_objekt = (Produkt)objekt;
@@ -640,6 +648,21 @@ namespace NWAT_SS16
                     Nutzwert temp_model = new Nutzwert(ProjektID: (int)row[0], KriteriumID: (int)row[1], ProduktID:(int)row[2], Erfuellung:(bool)row[3], Gewichtung: (int)row[4], Kommentar: (string)row[5], BeitragAbsolut: (double)row[6], BeitragAbsolutCheck: (bool)row[7] );
                     return_list.Add(temp_model);
                 }
+                if (return_list.Count == 0)
+                {
+
+                    /* Wenn per Get kein NWA-Model gefunden wurde, wird aus dem Standard-NWA ein Model erzeugt und in der DB gespeichert */
+                    List<Model> standard_objekt = this.get(new Nutzwert(0));
+                    if (standard_objekt.Count != 1)
+                    {
+                          throw new Exception("Es darf nur ein Standard-NWA-Objekt vorhanden sein.");
+                    }
+                    else
+                    {
+                        return_list.Add(insert(new Nutzwert(KriteriumID: temp_obj.getKriteriumID(), ProjektID: temp_obj.getProjektID(), ProduktID: temp_obj.getProduktID(), Erfuellung: ((Nutzwert)standard_objekt[0]).getErfuellung(), Gewichtung: ((Nutzwert)standard_objekt[0]).getGewichtung())));
+                    }
+                }
+                return return_list;
             }
             else if (objekt.GetType().Name == "Produkt")
             {

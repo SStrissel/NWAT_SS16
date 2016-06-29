@@ -12,11 +12,11 @@
         <TextBox x:Name="details_ID" HorizontalAlignment="Left" Height="23" Margin="492,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" IsEnabled="False"/>
         <TextBox x:Name="details_Bezeichnung" HorizontalAlignment="Left" Height="23" Margin="492,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" SpellCheck.IsEnabled="True" IsEnabled="False" />
         <Label Content="ProduktID" HorizontalAlignment="Left" Margin="381,45,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="details_ProduktID" HorizontalAlignment="Left" Height="23" Margin="492,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" IsEnabled="False"/>
         <Label Content="ProjektID" HorizontalAlignment="Left" Margin="381,10,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="details_ProjektID" HorizontalAlignment="Left" Height="23" Margin="492,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" IsEnabled="False"/>
         <Button x:Name="struktur" Content="Strukturverwaltung" HorizontalAlignment="Left" Margin="618,209,0,0" VerticalAlignment="Top" Width="161" Click="struktur_Click" IsEnabled="False"/>
         <Button x:Name="nutzwert" Content="Nutzwerterwaltung" HorizontalAlignment="Left" Margin="618,236,0,0" VerticalAlignment="Top" Width="161" IsEnabled="False" Click="nutzwert_Click"/>
+        <ComboBox x:Name="listeProjektID" HorizontalAlignment="Left" Margin="491,13,0,0" VerticalAlignment="Top" Width="283" SelectionChanged="listeProjektID_SelectionChanged"/>
+        <ComboBox x:Name="listeProduktID" HorizontalAlignment="Left" Margin="492,49,0,0" VerticalAlignment="Top" Width="283" SelectionChanged="listeProduktID_SelectionChanged"/>
 
     </Grid>
 </Window>
