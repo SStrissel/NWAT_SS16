@@ -192,7 +192,7 @@ namespace NWAT_SS16
             throw new NotImplementedException();
         }
 
-        public bool getErfüllung()
+        public bool getErfuellung()
         {
             throw new NotImplementedException();
         }

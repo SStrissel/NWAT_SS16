@@ -8,12 +8,12 @@ using System.Windows;
 namespace NWAT_SS16
 {
      public class ControllerNutzwert : Controller
-    {
-
-         public ControllerNutzwert(DatabaseAdapter db, Window frm) : base(db, frm){}
+    {         
+        public ControllerNutzwert(DatabaseAdapter db, Window frm) : base(db, frm){}
 
         private void gleichgewichten(Kriterium objekt)
         {
+
         }
 
         public void funktionsabdeckungsgrad_berechnen(Nutzwert NWAobjekt, Kriterium objekt)
@@ -29,19 +29,41 @@ namespace NWAT_SS16
             return false;
         }
         
-        private float funktionsabdeckungsgrad_beitrag(Nutzwert NWAobjekt, Kriterium objekt)
+        private float funktionsabdeckungsgrad_beitrag(Nutzwert NWAobjekt)
         {
-            return 0;
+            return funktionsabdeckungsgrad_beitrag_zaehler(NWAobjekt) / funktionsabdeckungsgrad_beitrag_nenner(NWAobjekt);              
         }
 
-        private int funktionsabdeckungsgrad_beitrag_nenner(Nutzwert NWAobjekt, Kriterium objekt)
+        private int funktionsabdeckungsgrad_beitrag_nenner(Nutzwert NWAobjekt)
         {
-            return 0;
+            int nenner = 0;
+
+            NWAobjekt.getOberKriterium(db);
+            NWAobjekt.getUnterKriterium(db);
+            List<Kriterium> list = NWAobjekt.getUnterKriterium(db);            
+            foreach (Kriterium temp_obj in list)
+            {
+                nenner += temp_obj.getGewichtung();
+            }
+            return nenner;
         }
 
-        private int funktionsabdeckungsgrad_beitrag_zaehler(Nutzwert NWAobjekt, Kriterium objekt)
+        private int funktionsabdeckungsgrad_beitrag_zaehler(Nutzwert NWAobjekt)
         {
-            return 0;
+            int zaehler = 0;            
+              
+            int GW = NWAobjekt.getGewichtung();
+            int EF = Convert.ToInt32(NWAobjekt.getErfuellung());
+
+            if (GW == 0 || EF == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                zaehler = GW * EF;
+            }
+            return zaehler;
         }
 
         private float funktionsabdeckungsgrad_beitrag_absolut(Kriterium objekt, float erfuellung_einzel)
