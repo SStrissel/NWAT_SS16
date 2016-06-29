@@ -73,5 +73,13 @@ namespace NWAT_SS16
         private void listeProduktID_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
         }
+
+        private void Tree_Click(object sender, RoutedEventArgs e)
+        {
+            Kriterium objekt = new Kriterium(details_ID.Text);
+            cntrl.show_kriteriumtree(objekt);
+        }
+
+
     }
 }

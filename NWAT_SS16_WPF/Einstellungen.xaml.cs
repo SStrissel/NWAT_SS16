@@ -70,5 +70,11 @@ namespace NWAT_SS16
              }
              infoBox.Dispatcher.BeginInvoke(new Action(() => { infoBox.Text += "...Kirtierien-Dummys eingefügt."; }));
          }
+
+        private void resetNWA_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            db.reset_kriteriumstruktur();
+            infoBox.Dispatcher.BeginInvoke(new Action(() => { infoBox.Text = "Kriteriumstruktur-Tabelle neu initalisiert."; }));
+        }
     }
 }

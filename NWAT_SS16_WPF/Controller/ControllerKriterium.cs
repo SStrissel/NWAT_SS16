@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
+using System.Windows.Controls;
+
 namespace NWAT_SS16
 {
 
@@ -61,6 +63,11 @@ namespace NWAT_SS16
                 onUpdateData();
                 return;
             }
+            else if (frm.GetType().Name == "KriteriumTree")
+            {
+                onUpdateData();
+                return;
+            }
             throw new NotImplementedException();
         }
 
@@ -103,6 +110,11 @@ namespace NWAT_SS16
                 return;
             }
             else if (frm.GetType().Name == "KriteriumNutzwertVerwaltung")
+            {
+                onUpdateView();
+                return;
+            }
+            else if (frm.GetType().Name == "KriteriumTree")
             {
                 onUpdateView();
                 return;
@@ -162,6 +174,7 @@ namespace NWAT_SS16
                 if (krit.details_ID.Text.Equals("") == false)
                 {
                     krit.nutzwert.IsEnabled = true;
+                    krit.Tree.IsEnabled = true;
                     if (Int32.Parse(krit.details_ID.Text) != 0)
                     {
                         krit.struktur.IsEnabled = true;
@@ -173,6 +186,7 @@ namespace NWAT_SS16
                 }
                 else
                 {
+                    krit.Tree.IsEnabled = false;
                     krit.struktur.IsEnabled = false;
                     krit.nutzwert.IsEnabled = false;
                 }
@@ -190,6 +204,10 @@ namespace NWAT_SS16
                 {
                     krit.loeschen.IsEnabled = false;
                 }
+                return;
+            }
+            else if (frm.GetType().Name == "KriteriumTree")
+            {
                 return;
             }
             throw new NotImplementedException();
@@ -278,10 +296,40 @@ namespace NWAT_SS16
                      throw new NotImplementedException();
                  }
 
+             }
+            else if (frm.GetType().Name == "KriteriumTree")
+            {
+                KriteriumTree krit = (KriteriumTree)frm;
+                Kriterium temp_objekt = (Kriterium)objekt;
+                Kriterium root_objekt = temp_objekt.getRootKriterium(db)[0];
+
+                krit.treeview.Items.Add(getTree(root_objekt));
+
+                onUpdateData();
+                return;
             }
             throw new NotImplementedException();
         }
 
+        private TreeViewItem getTree(Kriterium objekt)
+        {
+            List<Kriterium> unterkriterien = objekt.getUnterKriterium(db);
+            TreeViewItem tree = new TreeViewItem();
+            List<TreeViewItem> branch = new List<TreeViewItem>();
+            TreeViewItem temp_item = new TreeViewItem();
+            foreach (Kriterium temp_objekt in unterkriterien)
+            {
+                tree.Header = objekt.ToString();
+                branch.Add( getTree(temp_objekt));
+            }
+            if (unterkriterien.Count == 0)
+            {
+                tree.Header = objekt.ToString();
+            }
+            tree.ItemsSource = branch; 
+            return tree;
+        }
+         
         public override void loeschen(Model objekt)
         {
             if (objekt == null)
@@ -351,6 +399,13 @@ namespace NWAT_SS16
              Kriteriumstrukturverwaltung frm = new Kriteriumstrukturverwaltung(db, objekt);
              frm.ShowDialog();
          }
+
+         public void show_kriteriumtree(Kriterium objekt)
+         {
+             KriteriumTree frm = new KriteriumTree(db, objekt);
+             frm.ShowDialog();
+         }
+
 
         public override void aendern()
         {

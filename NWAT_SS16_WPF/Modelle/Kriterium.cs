@@ -13,14 +13,14 @@ namespace NWAT_SS16
 
         public Kriterium(Kriterium objekt)
         {
-            this.KriteriumID = objekt.getKriteriumID();
-            this.Bezeichnung = objekt.getBezeichnung();
+            setKriteriumID(objekt.getKriteriumID());
+            setBezeichnung(objekt.getBezeichnung());
         }
 
         public Kriterium(int ID, string Bezeichnung)
         {
-            this.KriteriumID = ID;
-            this.Bezeichnung = Bezeichnung;
+            setKriteriumID(ID);
+            setBezeichnung(Bezeichnung);
         }
 
         public Kriterium(string ID, string Bezeichnung)
@@ -31,12 +31,12 @@ namespace NWAT_SS16
 
         public Kriterium(int ID)
         {
-            this.KriteriumID = ID;
+            setKriteriumID(ID);
         }
 
         public Kriterium(string ID)
         {
-            this. KriteriumID = Int32.Parse(ID);
+            setKriteriumID(ID);
         }
 
         public Kriterium(): base() {}
@@ -44,7 +44,7 @@ namespace NWAT_SS16
 
         public override string ToString()
         {
-            return "( Kriterium " + KriteriumID + ") " + Bezeichnung;
+            return Bezeichnung + " ( Kriterium " + KriteriumID + ")";
         }
 
         public int getKriteriumID()
@@ -59,6 +59,10 @@ namespace NWAT_SS16
 
         public void setKriteriumID(string KriteriumID)
         {
+            if (KriteriumID == "")
+            {
+                throw new NotImplementedException();
+            }
             setKriteriumID(Int32.Parse(KriteriumID));
         }
 

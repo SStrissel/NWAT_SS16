@@ -75,6 +75,10 @@ namespace NWAT_SS16
 
         public void setKriteriumID(string KriteriumID)
         {
+            if (KriteriumID == "")
+            {
+                throw new NotImplementedException();
+            }
             setKriteriumID(Int32.Parse(KriteriumID));
         }
 
