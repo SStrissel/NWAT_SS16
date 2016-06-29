@@ -21,5 +21,25 @@ namespace NWAT_SS16
         abstract public void drop_tables();
         abstract public int getID(Model objekt);
 
+        abstract public void reset_projekt();
+        abstract public void reset_produkt();
+        abstract public void reset_kriterium();
+        abstract public void reset_nwa();
+        abstract public void reset_kriteriumstruktur();
+
+        abstract public void create_projekt();
+        abstract public void create_produkt();
+        abstract public void create_kriterium();
+        abstract public void create_nwa();
+        abstract public void create_autoincrement();
+        abstract public void create_kriteriumstruktur();
+
+        abstract public void drop_projekt();
+        abstract public void drop_produkt();
+        abstract public void drop_kriterium();
+        abstract public void drop_nwa();
+        abstract public void drop_autoincrement();
+        abstract public void drop_kriteriumstruktur();
+
     }
 }

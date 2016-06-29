@@ -62,10 +62,7 @@ namespace NWAT_SS16
 
         private void nutzwert_Click(object sender, RoutedEventArgs e)
         {
-            Nutzwert objekt = new Nutzwert();
-            objekt.setKriteriumID(details_ID.Text);
-            objekt.setProjektID(details_ProjektID.Text);
-            objekt.setProduktID(details_ProduktID.Text);
+            Nutzwert objekt = new Nutzwert(ProjektID: details_ProjektID.Text, ProduktID:details_ProduktID.Text, KriteriumID: details_ID.Text);
             cntrl.show_kriteriumnutzwertverwaltung(objekt);
         }
     }

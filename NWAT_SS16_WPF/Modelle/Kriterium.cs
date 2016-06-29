@@ -25,8 +25,8 @@ namespace NWAT_SS16
 
         public Kriterium(string ID, string Bezeichnung)
         {
-            this.KriteriumID = Int32.Parse(ID);
-            this.Bezeichnung = Bezeichnung;
+            setKriteriumID(ID);
+            setBezeichnung(Bezeichnung);
         }
 
         public Kriterium(int ID)

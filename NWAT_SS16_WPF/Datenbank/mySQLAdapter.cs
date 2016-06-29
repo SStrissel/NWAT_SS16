@@ -294,13 +294,77 @@ namespace NWAT_SS16
         */
         public override void init_tables()
         {
-            ExecuteSQL("CREATE TABLE Autoincrement (ProjektID int, KriteriumID int, ProduktID int);");
-            ExecuteSQL("INSERT INTO Autoincrement (ProjektID, KriteriumID, ProduktID) VALUES (0,0,0);");
-            ExecuteSQL("CREATE TABLE Projekt (ProjektID int, Bezeichnung varchar(255));");
-            ExecuteSQL("CREATE TABLE Produkt (ProduktID int, Bezeichnung varchar(255));");
+            create_projekt();
+            create_produkt();
+            create_kriterium();
+            create_nwa();
+            create_autoincrement();
+            create_kriteriumstruktur();         
+     
+       }
+
+        /* initialisert eine Tabelle */
+        override public void create_projekt()
+            {
+             ExecuteSQL("CREATE TABLE Projekt (ProjektID int, Bezeichnung varchar(255));");
+            ExecuteSQL("INSERT INTO Projekt (ProjektID, Bezeichnung) VALUES (0,'StandardProjekt');");
+              ExecuteSQL("UPDATE Autoincrement SET ProjektID=0;");
+        }
+       override public void create_produkt()
+            {
+             ExecuteSQL("CREATE TABLE Produkt (ProduktID int, Bezeichnung varchar(255));");
+                     ExecuteSQL("INSERT INTO Produkt (ProduktID, Bezeichnung) VALUES (0,'StandardProdukt');");
+        ExecuteSQL("UPDATE Autoincrement SET ProduktID=0;");
+
+        }
+        override public void create_kriterium()
+            {            
             ExecuteSQL("CREATE TABLE Kriterium (KriteriumID int, Bezeichnung varchar(255));");
-            ExecuteSQL("CREATE TABLE Kriteriumstruktur (OberKriteriumID int, UnterKriteriumID int);");
-            ExecuteSQL("CREATE TABLE NWA (ProjektID int, KriteriumID int, ProduktID int, Erfuellung boolean, Gewichtung int, Kommentare varchar(255), beitrag_absolut double, beitrag_absolut_check boolean);");
+            ExecuteSQL("INSERT INTO Kriterium (KriteriumID, Bezeichnung) VALUES (0,'StandardKriterium');");
+            ExecuteSQL("UPDATE Autoincrement SET KriteriumID=0;");
+        }
+       override public void create_nwa()
+            {
+                    ExecuteSQL("CREATE TABLE NWA (ProjektID int, KriteriumID int, ProduktID int, Erfuellung boolean, Gewichtung int, Kommentare varchar(255), beitrag_absolut double, beitrag_absolut_check boolean);");
+            ExecuteSQL("INSERT INTO NWA (ProjektID, KriteriumID, ProduktID, Erfuellung, Gewichtung, Kommentare, beitrag_absolut, beitrag_absolut_check) VALUES (0,0,0,1,0,'StandardNWA', 0, 1);");
+        }
+        override public void create_autoincrement()
+            {
+             ExecuteSQL("CREATE TABLE Autoincrement (ProjektID int, KriteriumID int, ProduktID int);");
+            ExecuteSQL("INSERT INTO Autoincrement (ProjektID, KriteriumID, ProduktID) VALUES (0,0,0);");
+        }
+
+        override public void create_kriteriumstruktur()
+        {
+          ExecuteSQL("CREATE TABLE Kriteriumstruktur (OberKriteriumID int, UnterKriteriumID int);");
+        }
+
+
+        /* löscht eine Tabelle */
+        
+        override public void drop_projekt()
+        {
+             ExecuteSQL("DROP TABLE Projekt;");
+        }
+        override public void drop_produkt()
+                   {
+            ExecuteSQL("DROP TABLE Produkt;");
+        }
+        override public void drop_kriterium()
+               {
+            ExecuteSQL("DROP TABLE Kriterium;");
+        }
+        override public void drop_nwa()
+                   {
+             ExecuteSQL("DROP TABLE NWA;");
+        }
+        override public void drop_autoincrement()
+                   {
+             ExecuteSQL("DROP TABLE Autoincrement;");
+        }
+        override public void drop_kriteriumstruktur()
+                   {
+            ExecuteSQL("DROP TABLE Kriteriumstruktur;");
         }
 
         /* Team 
@@ -308,12 +372,41 @@ namespace NWAT_SS16
         */
         public override void drop_tables()
         {
-            ExecuteSQL("DROP TABLE Projekt;");
-            ExecuteSQL("DROP TABLE Produkt;");
-            ExecuteSQL("DROP TABLE Kriterium;");
-            ExecuteSQL("DROP TABLE Kriteriumstruktur;");
-            ExecuteSQL("DROP TABLE NWA;");
-            ExecuteSQL("DROP TABLE Autoincrement;");
+          
+        drop_projekt();
+        drop_produkt();
+        drop_kriterium();
+        drop_nwa();
+        drop_autoincrement();
+        drop_kriteriumstruktur();      
+
+        }
+
+        /*lösche Inhalt einer Datenbank */
+        override public void reset_projekt()
+        {
+           drop_projekt();
+            create_projekt();
+        }
+        override public void reset_produkt()
+        {
+            drop_produkt();
+            create_produkt();
+        }
+        override public void reset_kriterium()
+        {
+            drop_kriterium();
+            create_kriterium();
+        }
+        override public void reset_nwa()
+        {
+            drop_nwa();
+            create_nwa();
+        }
+        override public void reset_kriteriumstruktur()
+        {
+            drop_kriteriumstruktur();
+            create_kriteriumstruktur();
         }
 
         /* Team 
@@ -544,15 +637,7 @@ namespace NWAT_SS16
                 DataTable temp_datatable = QuerySQL("SELECT * FROM NWA WHERE KriteriumID = " + temp_obj.getKriteriumID() + " AND ProjektID = " + temp_obj.getProjektID() + " AND ProduktID = " + temp_obj.getProduktID() + ";");
                 foreach (DataRow row in temp_datatable.Rows)
                 {
-                    Nutzwert temp_model = new Nutzwert();
-                    temp_model.setProjektID((int)row[0]);
-                    temp_model.setKriteriumID((int)row[1]);
-                    temp_model.setProduktID((int)row[2]);
-                    temp_model.setErfuellung((bool)row[3]);
-                    temp_model.setGewichtung((int)row[4]);
-                    temp_model.setKommentar((string)row[5]);
-                    temp_model.setBeitragAbsolut((double)row[6]);
-                    temp_model.setBeitragAbsolutCheck((bool)row[7]);
+                    Nutzwert temp_model = new Nutzwert(ProjektID: (int)row[0], KriteriumID: (int)row[1], ProduktID:(int)row[2], Erfuellung:(bool)row[3], Gewichtung: (int)row[4], Kommentar: (string)row[5], BeitragAbsolut: (double)row[6], BeitragAbsolutCheck: (bool)row[7] );
                     return_list.Add(temp_model);
                 }
             }

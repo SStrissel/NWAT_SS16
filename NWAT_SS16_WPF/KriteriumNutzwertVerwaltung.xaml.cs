@@ -27,5 +27,10 @@ namespace NWAT_SS16
             cntrl.onCreateView();
             cntrl.anzeigen(objekt);
         }
+
+        private void aendern_Click(object sender, RoutedEventArgs e)
+        {
+            cntrl.aendern();
+        }
     }
 }

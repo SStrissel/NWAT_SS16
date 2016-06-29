@@ -78,7 +78,7 @@ namespace NWAT_SS16
         public override void aendern()
         {
             throw new NotImplementedException();
-        }
+         }
 
         public override void anlegen()
         {

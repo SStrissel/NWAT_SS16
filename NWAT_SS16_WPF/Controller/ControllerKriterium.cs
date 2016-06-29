@@ -339,6 +339,14 @@ namespace NWAT_SS16
                 }
                 return;
             }
+            else if (frm.GetType().Name == "KriteriumNutzwertVerwaltung")
+            {
+                KriteriumNutzwertVerwaltung krit = (KriteriumNutzwertVerwaltung)frm;
+                Nutzwert temp_objekt = new Nutzwert(KriteriumID: krit.details_KriteriumID.Text, ProjektID: krit.details_ProjektID.Text, ProduktID: krit.details_ProduktID.Text, Erfuellung: krit.details_Erfuellung.IsChecked.ToString(), Gewichtung: krit.details_Gewichtung.Text);
+                db.update(temp_objekt);
+                onUpdateData();
+                return;
+            }
             throw new NotImplementedException();
         }
 

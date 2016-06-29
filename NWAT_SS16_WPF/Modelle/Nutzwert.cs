@@ -17,6 +17,26 @@ namespace NWAT_SS16
         double beitrag_absolut;
         bool beitrag_absolut_check;
 
+        public Nutzwert (int KriteriumID, int ProjektID = 0, int ProduktID = 0, bool Erfuellung = false, int Gewichtung = 0, string Kommentar = "", double BeitragAbsolut = 0, bool BeitragAbsolutCheck = false)
+        {
+            setProjektID(ProjektID);
+            setProduktID(ProduktID);
+            setKriteriumID(KriteriumID);
+            setGewichtung(Gewichtung);
+            setErfuellung(Erfuellung);
+            setKommentar(Kommentar);
+        }
+
+        public Nutzwert(string KriteriumID, string ProjektID = "0", string ProduktID = "0", string Erfuellung = "0", string Gewichtung = "0", string Kommentar = "", string BeitragAbsolut = "0", string BeitragAbsolutCheck = "0")
+        {
+            setProjektID(ProjektID);
+            setProduktID(ProduktID);
+            setKriteriumID(KriteriumID);
+            setGewichtung(Gewichtung);
+            setErfuellung(Erfuellung);
+            setKommentar(Kommentar);
+        }
+
         public override string ToString()
         {
             return "( Projekt " + ProjektID + " / Produkt " + ProduktID + " / Kriterium " + KriteriumID + " / + " + ") " + Kommentar;
@@ -81,9 +101,39 @@ namespace NWAT_SS16
             this.ProjektID = ProjektID;
         }
 
+        public void setErfuellung(string Erfuellung)
+        {
+            if (Erfuellung.ToLower().Equals("true"))
+            {
+                setErfuellung(true);
+            } else if (Erfuellung.ToLower().Equals("false")){
+
+             setErfuellung(false);
+            }
+            else if (Erfuellung.Equals("0"))
+            {
+
+                setErfuellung(false);
+            }
+            else if (Erfuellung.Equals("1"))
+            {
+
+                setErfuellung(true);
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public void setErfuellung(bool Erfuellung)
         {
             this.Erfuellung = Erfuellung;
+        }
+
+        public void setGewichtung(string Gewichtung)
+        {
+            setGewichtung(Int32.Parse(Gewichtung));
         }
 
         public void setGewichtung(int Gewichtung)

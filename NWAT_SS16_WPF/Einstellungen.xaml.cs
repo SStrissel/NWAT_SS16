@@ -26,16 +26,22 @@ namespace NWAT_SS16
             InitializeComponent();
         }
 
-        private void drop_Click(object sender, RoutedEventArgs e)
+         private void resetProdukt_Click(object sender, RoutedEventArgs e)
         {
-            db.drop_tables();
-            infoBox.Dispatcher.BeginInvoke(new Action(() => { infoBox.Text = "Tables gedroppt."; }));
+            db.reset_produkt();
+            infoBox.Dispatcher.BeginInvoke(new Action(() => { infoBox.Text = "Produkt-Tabelle neu initalisiert."; }));
         }
 
-        private void init_Click(object sender, RoutedEventArgs e)
-        {
-            db.init_tables();
-            infoBox.Dispatcher.BeginInvoke(new Action(() => { infoBox.Text = "Tables initialisiert."; }));
-        }
+         private void resetKritierium_Click(object sender, RoutedEventArgs e)
+         {
+             db.reset_kriterium();
+             infoBox.Dispatcher.BeginInvoke(new Action(() => { infoBox.Text = "Kriterium-Tabelle neu initalisiert."; }));
+         }
+
+         private void initTables_Click(object sender, RoutedEventArgs e)
+         {
+             db.init_tables();
+             infoBox.Dispatcher.BeginInvoke(new Action(() => { infoBox.Text = "Tables initialisiert."; }));
+         }
     }
 }
