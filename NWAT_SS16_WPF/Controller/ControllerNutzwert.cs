@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace NWAT_SS16
 {
-   /* public class ControllerNutzwert : Controller
+    public class ControllerNutzwert : Controller
     {         
         public ControllerNutzwert(DatabaseAdapter db, Window frm) : base(db, frm){}
 
@@ -22,7 +22,7 @@ namespace NWAT_SS16
 
         public void funktionsabdeckungsgrad_aufsummieren(Nutzwert NWAobjekt, Kriterium objekt)
         {
-            bool change = false;
+           /* bool change = false;
             funktionsabdeckungsgrad_aufsummieren_check(Kriterium objekt);
             List<Kriterium> list = NWAobjekt.getKriterium().getUnterKriterium(db);
             if (change == false)
@@ -32,18 +32,19 @@ namespace NWAT_SS16
                     float temp_beitrag += NWAobjekt.getKriterium().getUnterKriterium();
                 }
             }
-            NWAobjekt.getKriterium().
+            NWAobjekt.getKriterium().*/
 
 
         }
 
         public bool funktionsabdeckungsgrad_aufsummieren_check(Kriterium objekt)
         {
-            List<Kriterium> list = objekt.getUnterKriterium(db);
+          /*  List<Kriterium> list = objekt.getUnterKriterium(db);
             for (int i = 0; i <= List<Kriterium>; i++)
             {
             }
-          
+          */
+            return true;
         }
         
         private float funktionsabdeckungsgrad_beitrag(Nutzwert NWAobjekt)
@@ -96,7 +97,7 @@ namespace NWAT_SS16
 
         private float funktionsabdeckungsgrad_beitrag_absolut(Nutzwert NWAobjekt, float beitrag_einzel)
         {
-            float absolut1;
+           /* float absolut1;
             
             List<Kriterium> list  = NWAobjekt.getKriterium().getOberKriterium(db);
             while (list.Count != 0)
@@ -107,7 +108,8 @@ namespace NWAT_SS16
 
             }
             return absolut1;
-
+            */
+            return 0;
         }
 
         private void ranking_anzeigen()
