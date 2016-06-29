@@ -341,7 +341,12 @@ namespace NWAT_SS16
                 return;
             }
             throw new NotImplementedException();
-        }     
+        }
+
+        public void show_kriteriumnutzwertverwaltung(Nutzwert objekt)
+        {
+
+        }
 
 
     }

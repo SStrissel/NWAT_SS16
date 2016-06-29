@@ -181,5 +181,15 @@ namespace NWAT_SS16
                 db.delete(temp_objekt);
             }
         }
+
+        public int getGewichtung()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool getErfüllung()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

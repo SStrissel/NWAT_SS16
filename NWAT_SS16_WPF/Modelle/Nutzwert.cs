@@ -14,12 +14,13 @@ namespace NWAT_SS16
         bool Erfuellung;
         int Gewichtung;
         string Kommentar;
+        double beitrag_absolut;
+        bool beitrag_absolut_check;
 
         public override string ToString()
         {
             return "( Projekt " + ProjektID + " / Produkt " + ProduktID + " / Kriterium " + KriteriumID + " / + " + ") " + Kommentar;
         }
-
 
         public int getKriteriumID()
         {
@@ -78,6 +79,26 @@ namespace NWAT_SS16
         public void setKommentar(string Kommentar)
         {
             Kommentar = this.Kommentar;
+        }
+
+        public void setBeitragAbsolut(double wert)
+        {
+            this.beitrag_absolut = wert;
+        }
+
+        public double getBeitragAbsolut()
+        {
+            return this.beitrag_absolut;
+        }
+
+        public void setBeitragAbsolutCheck(bool wert)
+        {
+            this.beitrag_absolut_check = wert;
+        }
+
+        public bool getBeitragAbsolutCheck()
+        {
+            return this.beitrag_absolut_check;
         }
 
     }

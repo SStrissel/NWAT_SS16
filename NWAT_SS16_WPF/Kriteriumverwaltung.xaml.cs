@@ -59,5 +59,11 @@ namespace NWAT_SS16
         {
             cntrl.aendern();
         }
+
+        private void nutzwert_Click(object sender, RoutedEventArgs e)
+        {
+            Nutzwert objekt = new Nutzwert();
+            cntrl.show_kriteriumnutzwertverwaltung(objekt);
+        }
     }
 }

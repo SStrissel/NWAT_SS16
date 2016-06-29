@@ -63,6 +63,9 @@
     <Compile Include="Einstellungen.xaml.cs">
       <DependentUpon>Einstellungen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="KriteriumNutzwertVerwaltung.xaml.cs">
+      <DependentUpon>KriteriumNutzwertVerwaltung.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Kriteriumstrukturverwaltung.xaml.cs">
       <DependentUpon>Kriteriumstrukturverwaltung.xaml</DependentUpon>
     </Compile>
@@ -90,6 +93,10 @@
     </Compile>
     <Compile Include="structs.cs" />
     <Page Include="Hauptmenue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="KriteriumNutzwertVerwaltung.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
