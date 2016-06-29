@@ -159,17 +159,16 @@ namespace NWAT_SS16
             else if (frm.GetType().Name == "Kriteriumverwaltung")
             {
                 Kriteriumverwaltung krit = (Kriteriumverwaltung)frm;
-                if (krit.details_ID.Text != "")
+                if (krit.details_ID.Text.Equals("") == false)
                 {
+                    krit.nutzwert.IsEnabled = true;
                     if (Int32.Parse(krit.details_ID.Text) != 0)
                     {
                         krit.struktur.IsEnabled = true;
-                        krit.nutzwert.IsEnabled = true;
                     }
                     else
                     {
                         krit.struktur.IsEnabled = false;
-                        krit.nutzwert.IsEnabled = false;
                     }
                 }
                 else
