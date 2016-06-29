@@ -33,11 +33,12 @@ namespace NWAT_SS16
         }
 
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Produkt_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Diese Funktion ist noch nicht integriert", "Die Waschmaschine hat eine Socke gefressen...", MessageBoxButton.OK);
-        }
+            Produktverwaltung prod = new Produktverwaltung(db);
+            prod.ShowDialog();
 
+        }
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             NutzwertVerwaltung frm = new NutzwertVerwaltung(db);

@@ -20,20 +20,33 @@ namespace NWAT_SS16
     public partial class Produkt_aendern : Window
     {
         DatabaseAdapter db;
+
+
+
+
+
+        private ControllerProdukt cntrl;
+      
+        
         public Produkt_aendern(DatabaseAdapter db)
         {
-            this.db = db;
             InitializeComponent();
+            this.db = db;
+            cntrl = new ControllerProdukt(db, this);
+
+            textProduktIDaendern.Text = Produkt.getProduktIDtemp().ToString();
+            textBezeichnungaendern.Text = Produkt.getBezeichnungtemp();
         }
 
         private void abbrechen_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
 
         private void aendern_Click(object sender, RoutedEventArgs e)
         {
-
+            cntrl.aendern();
+            this.Close();
         }
     }
 }

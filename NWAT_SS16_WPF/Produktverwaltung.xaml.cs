@@ -24,7 +24,9 @@ namespace NWAT_SS16
         public Produktverwaltung(DatabaseAdapter db)
         {
             InitializeComponent();
+            this.db = db;
             cntrl = new ControllerProdukt(db,this);
+            cntrl.onCreateView();
             
         }
 
@@ -35,19 +37,25 @@ namespace NWAT_SS16
 
             private void produktloeschen_Click(object sender, RoutedEventArgs e)
         {
-            cntrl.loeschen(listeProdukt.SelectedItem as Produkt);
+            Produkt p = new Produkt(details_ProduktID.Text);
+            cntrl.loeschen(p);
         }
 
 
 
-            private void produktanzeigen_Click(object sender, RoutedEventArgs e)
-               {
-                   //cntrl.anzeigen();
-               }
+            
 
             private void produktaendern_Click(object sender, RoutedEventArgs e)
             {
+                Produkt.setProduktIDtemp(details_ProduktID.Text);
+                Projekt.setBezeichnungtemp(details_Bezeichnung.Text);
                 cntrl.aendern();
+            }
+
+            private void Listchanged(object sender, SelectionChangedEventArgs e)
+            {
+                Produkt p = ((sender as ListBox).SelectedItem as Produkt);
+                cntrl.anzeigen(p);
             }
 
                     

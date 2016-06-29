@@ -8,7 +8,7 @@
         <Label Content="Kriterium" HorizontalAlignment="Left" Margin="20,323,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="Nutzwertanalyse&#xD;&#xA;" HorizontalAlignment="Left" Margin="20,500,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Button Content="Verwaltung" HorizontalAlignment="Left" Margin="20,40,0,0" VerticalAlignment="Top" Width="75" Click="Projekt_Click"/>
-        <Button Content="Verwaltung" HorizontalAlignment="Left" Margin="19,226,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.325,0.676" Click="Button_Click_2"/>
+        <Button Content="Verwaltung" HorizontalAlignment="Left" Margin="19,226,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.325,0.676" Click="Produkt_Click"/>
         <Button x:Name="Kriterienverwaltung" Content="Verwaltung" HorizontalAlignment="Left" Margin="20,351,0,0" VerticalAlignment="Top" Width="75" Click="kriterienverwaltung_click"/>
         <Button Content="Verwaltung" HorizontalAlignment="Left" Margin="20,530,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_3"/>
         <TextBox HorizontalAlignment="Left" Height="131" Margin="20,67,0,0" TextWrapping="Wrap" Text="Die Projektverwaltung bildet den Einstieg, um die zuvor gezeigten Funktionen der Projektverwaltung  anzusteuern.  Es kann ein neues Projekt angelegt werden und  darauf  folgt  die  Eingabemaske  zum  Erstellen  eines  neuen  Projekts.  Wählt man anzeigen aus, wird eine weiterführende Menüstruktur ersichtlich, die es dem Nutzer ermöglicht vorhandene Projekte zu manipulieren. " VerticalAlignment="Top" Width="360" RenderTransformOrigin="-0.672,1.806" IsEnabled="False"/>

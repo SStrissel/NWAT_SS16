@@ -20,15 +20,20 @@ namespace NWAT_SS16
     public partial class Produkt_anlegen : Window
     {
         DatabaseAdapter db;
+        private ControllerProdukt cprod;
         public Produkt_anlegen(DatabaseAdapter db)
         {
-            this.db = db;
+            
             InitializeComponent();
+            this.db = db;
+            cprod = new ControllerProdukt(db,this);
+            cprod.anzeigen(new Produkt());
         }
 
         private void speichern_Click(object sender, RoutedEventArgs e)
         {
-
+            cprod.anlegen();
+            this.Close();
         }
 
         private void abbrechen_Click(object sender, RoutedEventArgs e)

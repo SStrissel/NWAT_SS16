@@ -135,7 +135,18 @@ namespace NWAT_SS16
             }
             else if (objekt.GetType().Name == "Produkt")
             {
-                throw new NotImplementedException();
+                MySqlCommand command = new MySqlCommand("SELECT ProduktID FROM Autoincrement;", conn);
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    value = (int)reader[0];
+                }
+                value = value + 1;
+                reader.Close();
+                if (value != 0)
+                {
+                    ExecuteSQL("UPDATE Autoincrement SET ProduktID = '" + value + "' WHERE ProduktID = '" + (value - 1) + "';");
+                }
             }
             else if (objekt.GetType().Name == "Projekt")
             {
@@ -181,8 +192,25 @@ namespace NWAT_SS16
                 reader.Close();
                 return value;
             }
+            else if (objekt.GetType().Name == "Produkt")
+            {
+
+                MySqlCommand command = new MySqlCommand("SELECT ProduktID FROM Autoincrement;", conn);
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    value = (int)reader[0];
+                }
+                value = value + 1;
+                reader.Close();
+                return value;
+            }
             closeConnection();
-            throw new Exception("Die neue ID kann nicht 0 sein");
+            if (value == 0)
+            {
+                throw new Exception("Die neue ID kann nicht 0 sein");
+            }
+            throw new NotImplementedException();
         }
 
         /* Team 
@@ -234,6 +262,9 @@ namespace NWAT_SS16
              else if (objekt.GetType().Name == "Produkt")
              {
                  Produkt p = (Produkt)objekt;
+                 p.setProduktID(newID(objekt)); // Autoincrement vergeben
+                 ExecuteSQL("INSERT INTO Produkt (ProduktID, Bezeichnung) VALUES ( " + p.getProduktID() + ", '" + p.getBezeichnung() + "');");
+                 return_model = get(p);
                  
              }
              else if (objekt.GetType().Name == "Projekt")
@@ -528,8 +559,16 @@ namespace NWAT_SS16
             else if (objekt.GetType().Name == "Produkt")
             {
                 Produkt temp_obj = (Produkt)objekt;
-                throw new NotImplementedException();
-                 }
+                DataTable temp_datatable = QuerySQL("SELECT * FROM Produkt;");
+                foreach (DataRow row in temp_datatable.Rows)
+                {
+                    Produkt temp_model = new Produkt();
+                    temp_model.setProduktID((int)row[0]);
+                    temp_model.setBezeichnung((string)row[1]);
+                    return_list.Add(temp_model);
+                }
+                return return_list;
+            }
             else if (objekt.GetType().Name == "Projekt")
             {
                 Projekt temp_obj = (Projekt)objekt;
