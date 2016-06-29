@@ -19,7 +19,7 @@ namespace NWAT_SS16
     /// </summary>
     public partial class Produkt_anlegen : Window
     {
-        DatabaseAdapter db;
+        private DatabaseAdapter db;
         private ControllerProdukt cprod;
         public Produkt_anlegen(DatabaseAdapter db)
         {

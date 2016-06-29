@@ -16,8 +16,8 @@ namespace NWAT_SS16
             if (frm.GetType().Name == "Produkt_aendern")
             {
                 Produkt_aendern pa = (Produkt_aendern)frm;
-                Projekt p = new Projekt();
-                p.setProjektID(Int32.Parse(pa.textProduktIDaendern.Text));
+                Produkt p = new Produkt();
+                p.setProduktID(Int32.Parse(pa.textProduktIDaendern.Text));
                 p.setBezeichnung(pa.textBezeichnungaendern.Text);
 
                 db.update(p);

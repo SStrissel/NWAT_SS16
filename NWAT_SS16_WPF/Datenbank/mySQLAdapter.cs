@@ -517,7 +517,7 @@ namespace NWAT_SS16
                 Produkt temp_objekt = (Produkt)objekt;
                 if (temp_objekt.getProduktID() != 0)
                 {
-                    ExecuteSQL("UPDATE Produkt SET (Bezeichnung) VALUES ( + " + temp_objekt.getBezeichnung() + " ) WHERE ProduktID = '" + temp_objekt.getProduktID() + "';");
+                    ExecuteSQL("UPDATE Produkt SET Bezeichnung='" + temp_objekt.getBezeichnung() + " ' WHERE ProduktID = '" + temp_objekt.getProduktID() + "';");
                 }
                 else
                 {
