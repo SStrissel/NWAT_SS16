@@ -51,24 +51,39 @@ namespace NWAT_SS16
             return Kommentar;
         }
 
+        public void setKriteriumID(string KriteriumID)
+        {
+            setKriteriumID(Int32.Parse(KriteriumID));
+        }
+
         public void setKriteriumID(int KriteriumID)
         {
-            KriteriumID = this.KriteriumID;
+            this.KriteriumID = KriteriumID;
+        }
+
+        public void setProduktID(string ProduktID)
+        {
+            setProduktID(Int32.Parse(ProduktID));
         }
 
         public void setProduktID(int ProduktID)
         {
-            ProduktID = this.ProduktID;
+            this.ProduktID = ProduktID;
+        }
+
+        public void setProjektID(string ProjektID)
+        {
+            setProjektID(Int32.Parse(ProjektID));
         }
 
         public void setProjektID(int ProjektID)
         {
-            ProjektID = this.ProjektID;
+            this.ProjektID = ProjektID;
         }
 
         public void setErfuellung(bool Erfuellung)
         {
-            Erfuellung = this.Erfuellung;
+            this.Erfuellung = Erfuellung;
         }
 
         public void setGewichtung(int Gewichtung)
@@ -99,6 +114,11 @@ namespace NWAT_SS16
         public bool getBeitragAbsolutCheck()
         {
             return this.beitrag_absolut_check;
+        }
+
+        public Kriterium getKriterium()
+        {
+            throw new NotImplementedException();
         }
 
     }

@@ -20,11 +20,12 @@ namespace NWAT_SS16
     public partial class KriteriumNutzwertVerwaltung : Window
     {
         private ControllerKriterium cntrl;
-        public KriteriumNutzwertVerwaltung(DatabaseAdapter db)
+        public KriteriumNutzwertVerwaltung(DatabaseAdapter db, Nutzwert objekt)
         {
             InitializeComponent();
             cntrl = new ControllerKriterium(db, this);
             cntrl.onCreateView();
+            cntrl.anzeigen(objekt);
         }
     }
 }

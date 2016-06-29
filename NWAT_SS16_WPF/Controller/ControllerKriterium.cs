@@ -42,26 +42,19 @@ namespace NWAT_SS16
 
         public override void onCreateView()
         {
-            onUpdateData();
-            return;
+
             if (frm.GetType().Name == "Kriteriumverwaltung")
             {
-                Kriteriumverwaltung krit = (Kriteriumverwaltung)frm;
-                List<Kriterium> kriterien = db.get(new Kriterium());
-                krit.listeKriterium.ItemsSource = kriterien;
+                onUpdateData();
                 return;
             } else if (frm.GetType().Name == "Kriteriumstrukturverwaltung")
             {
-                Kriteriumstrukturverwaltung krit = (Kriteriumstrukturverwaltung)frm;
-                List<Kriterium> kriterien = db.get(new Kriterium());
-                krit.details_Kriterium.ItemsSource = kriterien;
-                if (krit.details_ID.Text != "")
-                {
-                    Kriterium temp_objekt = new Kriterium();
-                    temp_objekt.setKriteriumID(Int32.Parse(krit.details_ID.Text));
-                    //krit.details_Kriterium.ItemsSource = temp_objekt.getUnterKriterium(db);
-                    krit.listeUnterKriterium.ItemsSource = temp_objekt.getUnterKriterium(db);
-                }
+                onUpdateData();
+                return;
+            }
+            else if (frm.GetType().Name == "KriteriumNutzwertVerwaltung")
+            {
+                onUpdateData();
                 return;
             }
             throw new NotImplementedException();
@@ -93,6 +86,11 @@ namespace NWAT_SS16
                     krit.listeUnterKriterium.ItemsSource = temp_objekt.getUnterKriterium(db);
                     krit.listeOberKriterium.ItemsSource = temp_objekt.getOberKriterium(db);
                 }
+                onUpdateView();
+                return;
+            }
+            else if (frm.GetType().Name == "KriteriumNutzwertVerwaltung")
+            {
                 onUpdateView();
                 return;
             }
@@ -153,16 +151,24 @@ namespace NWAT_SS16
                     if (Int32.Parse(krit.details_ID.Text) != 0)
                     {
                         krit.struktur.IsEnabled = true;
+                        krit.nutzwert.IsEnabled = true;
                     }
                     else
                     {
                         krit.struktur.IsEnabled = false;
+                        krit.nutzwert.IsEnabled = false;
                     }
                 }
                 else
                 {
                     krit.struktur.IsEnabled = false;
+                    krit.nutzwert.IsEnabled = false;
                 }
+                return;
+            }
+            else if (frm.GetType().Name == "KriteriumNutzwertVerwaltung")
+            {
+                KriteriumNutzwertVerwaltung krit = (KriteriumNutzwertVerwaltung)frm;
                 return;
             }
             throw new NotImplementedException();
@@ -170,15 +176,23 @@ namespace NWAT_SS16
 
        public override void onDestroyView()
         {
-           // checken, ob Änderungen gemacht wurden
+            if (frm.GetType().Name == "Kriteriumverwaltung")
+            {
+                return;
+            }
+            else if (frm.GetType().Name == "Kriteriumstrukturverwaltung")
+            {
+                return;
+            }
+            else if (frm.GetType().Name == "KriteriumNutzwertVerwaltung")
+            {
+                return;
+            }
+            throw new NotImplementedException();
         }
 
-       public override void anzeigen(Model objekt)
-       {
-           throw new NotImplementedException();
-       }
-
-        public void anzeigen(Model objekt, int ProduktID = 0, int ProjektID = 0)
+ 
+        public override void anzeigen(Model objekt)
         {
             if (objekt == null)
             {
@@ -186,31 +200,53 @@ namespace NWAT_SS16
             }
             if (frm.GetType().Name == "Kriteriumverwaltung")
             {
-                Kriterium temp_objekt = (Kriterium)objekt;
                 Kriteriumverwaltung krit = (Kriteriumverwaltung)frm;
+                if (objekt.GetType().Name == "Kriterium")
+                {
+                    Kriterium temp_objekt = (Kriterium)objekt;
+                    
 
-                krit.details_ID.Text = temp_objekt.getKriteriumID().ToString();
-                krit.details_Bezeichnung.Text = temp_objekt.getBezeichnung();
-                krit.details_ProduktID.Text = ProduktID.ToString();
-                krit.details_ProjektID.Text = ProjektID.ToString();
-                krit.kriterium_aendern.IsEnabled = true;
-                krit.kriterium_loeschen.IsEnabled = true;
-                krit.details_Bezeichnung.IsEnabled = true;
-                onUpdateData();
-                return;
+                    krit.details_ID.Text = temp_objekt.getKriteriumID().ToString();
+                    krit.details_Bezeichnung.Text = temp_objekt.getBezeichnung();
+                    krit.details_ProduktID.Text = "0"; // auto set
+                    krit.details_ProjektID.Text = "0"; // auto set
+                    krit.kriterium_aendern.IsEnabled = true;
+                    krit.kriterium_loeschen.IsEnabled = true;
+                    krit.details_Bezeichnung.IsEnabled = true;
+                    onUpdateData();
+                    return;
+                }
+                throw new NotImplementedException();
             } 
                 else if (frm.GetType().Name == "Kriteriumstrukturverwaltung")
             {
+                    Kriteriumstrukturverwaltung krit = (Kriteriumstrukturverwaltung)frm;
+                      if (objekt.GetType().Name == "Kriterium")
+                {
                 Kriterium temp_objekt = (Kriterium)objekt;
-                Kriteriumstrukturverwaltung krit = (Kriteriumstrukturverwaltung)frm;
+                
 
                 krit.details_ID.Text = temp_objekt.getKriteriumID().ToString();
                 krit.details_Bezeichnung.Text = temp_objekt.getBezeichnung();
-                krit.details_ProduktID.Text = ProduktID.ToString();
-                krit.details_ProjektID.Text = ProjektID.ToString();
+                krit.details_ProduktID.Text = "0"; // auto set
+                krit.details_ProjektID.Text = "0"; // auto set
                 krit.details_Kriterium.IsEnabled = true;
                 krit.listeUnterKriterium.IsEnabled = true;
                 krit.listeUnterKriterium.ItemsSource = temp_objekt.getUnterKriterium(db);
+                onUpdateData();
+                return;
+                }
+                      throw new NotImplementedException();
+            }
+            else if (frm.GetType().Name == "KriteriumNutzwertVerwaltung")
+            {
+                Nutzwert temp_objekt = (Nutzwert)objekt;
+                KriteriumNutzwertVerwaltung krit = (KriteriumNutzwertVerwaltung)frm;
+                krit.details_ProjektID.Text = temp_objekt.getProjektID().ToString();
+                krit.details_ProduktID.Text = temp_objekt.getProduktID().ToString();
+                krit.details_KriteriumID.Text = temp_objekt.getKriteriumID().ToString();
+                krit.details_Erfuellung.IsChecked = temp_objekt.getErfuellung();
+                krit.details_Gewichtung.Text = temp_objekt.getGewichtung().ToString();
                 onUpdateData();
                 return;
             }
@@ -268,6 +304,11 @@ namespace NWAT_SS16
                     krit.details_ProjektID.Text = "";
                     onUpdateData();
                 }
+                return;
+            }
+            else if (frm.GetType().Name == "KriteriumNutzwertVerwaltung")
+            {
+                onUpdateData();
                 return;
             }
             throw new NotImplementedException();
@@ -345,7 +386,8 @@ namespace NWAT_SS16
 
         public void show_kriteriumnutzwertverwaltung(Nutzwert objekt)
         {
-
+            KriteriumNutzwertVerwaltung frm = new KriteriumNutzwertVerwaltung(db, objekt);
+            frm.ShowDialog();
         }
 
 

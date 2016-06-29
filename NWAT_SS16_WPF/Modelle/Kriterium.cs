@@ -57,6 +57,11 @@ namespace NWAT_SS16
             return Bezeichnung;
         }
 
+        public void setKriteriumID(string KriteriumID)
+        {
+            setKriteriumID(Int32.Parse(KriteriumID));
+        }
+
         public void setKriteriumID(int KriteriumID)
         {
             this.KriteriumID = KriteriumID;
