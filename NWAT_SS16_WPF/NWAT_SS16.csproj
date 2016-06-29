@@ -73,6 +73,12 @@
     <Compile Include="Produktverwaltung.xaml.cs">
       <DependentUpon>Produktverwaltung.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Produkt_aendern.xaml.cs">
+      <DependentUpon>Produkt_aendern.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Produkt_anlegen.xaml.cs">
+      <DependentUpon>Produkt_anlegen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Projektverwaltung.xaml.cs">
       <DependentUpon>Projektverwaltung.xaml</DependentUpon>
     </Compile>
@@ -133,6 +139,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Produktverwaltung.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Produkt_aendern.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Produkt_anlegen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
