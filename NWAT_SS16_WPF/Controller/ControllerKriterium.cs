@@ -403,7 +403,7 @@ namespace NWAT_SS16
          public void show_kriteriumtree(Kriterium objekt)
          {
              KriteriumTree frm = new KriteriumTree(db, objekt);
-             frm.ShowDialog();
+             frm.Show();
          }
 
 

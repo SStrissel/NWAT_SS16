@@ -9,6 +9,7 @@
         <Button x:Name="initTables" Content="init Tables" HorizontalAlignment="Left" Margin="36,94,0,0" VerticalAlignment="Top" Width="85" Click="initTables_Click"/>
         <Button x:Name="resetNWA" Content="reset NWA" HorizontalAlignment="Left" Margin="133,96,0,0" VerticalAlignment="Top" Width="92" Click="resetNWA_Click"/>
         <Button x:Name="dummyKriterien" Content="dummyKriterien" HorizontalAlignment="Left" Margin="42,132,0,0" VerticalAlignment="Top" Width="92" Click="dummyKriterien_Click"/>
+        <Button x:Name="resetNWA_Copy" Content="reset Kriteriumstruktur" HorizontalAlignment="Left" Margin="154,132,0,0" VerticalAlignment="Top" Width="128" Click="resetNWA_Copy_Click"/>
 
     </Grid>
 </Window>

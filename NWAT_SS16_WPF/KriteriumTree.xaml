@@ -1,9 +1,9 @@
 ﻿<Window x:Class="NWAT_SS16.KriteriumTree"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="KriteriumTree" Height="300" Width="300">
+        Title="KriteriumTree" Height="509" Width="572">
     <Grid>
-        <TreeView x:Name="treeview" HorizontalAlignment="Left" Height="236" Margin="10,10,0,0" VerticalAlignment="Top" Width="272"/>
+        <TreeView x:Name="treeview" HorizontalAlignment="Left" Height="458" Margin="10,10,0,0" VerticalAlignment="Top" Width="544"/>
 
     </Grid>
 </Window>
