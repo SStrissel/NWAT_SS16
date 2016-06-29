@@ -33,9 +33,6 @@ namespace NWAT_SS16
         }
         private void speichern_Click(object sender, RoutedEventArgs e)
         {
-            //string a = TextBox_2.Text;
-            //p.setProjektID(textProjektID.Text);
-           // p.setBezeichnung(textBezeichnung.Text);
         
             cp.anlegen();
             this.Close();

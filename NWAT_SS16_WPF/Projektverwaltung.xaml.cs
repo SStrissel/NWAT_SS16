@@ -20,14 +20,13 @@ namespace NWAT_SS16
     public partial class Projektverwaltung : Window
     {
         private ControllerProjekt cp;
-      
+    
        
         public Projektverwaltung(DatabaseAdapter db)
         {
             InitializeComponent();
             cp = new ControllerProjekt(db, this);
             cp.onCreateView();
-
             
   
         }
@@ -40,21 +39,20 @@ namespace NWAT_SS16
         private void ListBox_auswahl(object sender, SelectionChangedEventArgs e)
         {
             Projekt p  = ((sender as ListBox).SelectedItem as Projekt);
-           // cp.temp(p);
             cp.anzeigen(p);
         }
 
         private void loeschen_Click(object sender, RoutedEventArgs e)
         {
-            Projekt p = (listProjekte.SelectedItem as Projekt);
-            //listProjekte.ItemsSource(listProjekte.SelectedItem);
-           
-
+            Projekt p = new Projekt(detailsProjektID.Text);
             cp.loeschen(p);
         }
 
         private void aendern_Click(object sender, RoutedEventArgs e)
         {
+            Projekt.setProjektIDtemp(detailsProjektID.Text);
+            Projekt.setBezeichnungtemp(detailsBezeichnung.Text);
+ 
             cp.aendern();
         }
 

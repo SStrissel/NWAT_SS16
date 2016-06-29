@@ -397,7 +397,7 @@ namespace NWAT_SS16
                 Projekt temp_objekt = (Projekt)objekt;
                 if (temp_objekt.getProjektID() != 0)
                 {
-                    ExecuteSQL("UPDATE Projekt SET Bezeichnung='" + temp_objekt.getBezeichnung() + "' WHERE KriteriumID = '" + temp_objekt.getProjektID() + "';");
+                    ExecuteSQL("UPDATE Projekt SET Bezeichnung='" + temp_objekt.getBezeichnung() + "' WHERE ProjektID = '" + temp_objekt.getProjektID() + "';");
                 }
                 else
                 {

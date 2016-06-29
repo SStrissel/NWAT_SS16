@@ -26,11 +26,10 @@ namespace NWAT_SS16
             InitializeComponent();
             this.db = db;
             cp = new ControllerProjekt(db, this);
-            Projektverwaltung pv = new Projektverwaltung(db);
-            //Projekt p = (pv.listProjekte.SelectedItem as Projekt);
-            //cp.anzeigen(p);
-            //MessageBox.Show(p.ToString());
-            cp.anzeigen(new Projekt());
+  
+            textProjektIDaendern.Text = Projekt.getProjektIDtemp().ToString();
+            textBezeichnungaendern.Text = Projekt.getBezeichnungtemp();
+        
             
         }
 

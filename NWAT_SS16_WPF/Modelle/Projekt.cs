@@ -10,19 +10,23 @@ namespace NWAT_SS16
     {
         int ProjektID;
         string Bezeichnung;
+        private static int ProjektIDtemp;
+        private static string Bezeichnungtemp;
 
-       /* public Projekt(Kriterium objekt)
-        {
-            this.ProjektID = objekt.getProjektID();
-            this.Bezeichnung = objekt.getBezeichnung();
-        }
 
-        public Projekt(int ID, string Bezeichnung)
+       /* public Projekt(int ID, string Bezeichnung)
         {
             this.ProjektID = ID;
             this.Bezeichnung = Bezeichnung;
+        }*/
+
+        public Projekt(string ID)
+        {
+            this.ProjektID = Int32.Parse(ID);
         }
-        */
+
+        public Projekt(): base() {}
+
         public override string ToString()
         {
             return "( Projekt " + ProjektID + ") " + Bezeichnung;
@@ -36,6 +40,16 @@ namespace NWAT_SS16
         public string getBezeichnung()
         {
             return Bezeichnung;
+        }
+
+        public static int getProjektIDtemp()
+        {
+            return ProjektIDtemp;
+        }
+
+        public static string getBezeichnungtemp()
+        {
+            return Bezeichnungtemp;
         }
 
         public void setProjektID(int ProjektID)
@@ -53,7 +67,14 @@ namespace NWAT_SS16
             this.Bezeichnung = Bezeichnung;
         }
 
-
+        public static void setProjektIDtemp(string projektID)
+        {
+            ProjektIDtemp = Int32.Parse(projektID);
+        }
+        public static void setBezeichnungtemp(string bezeichnung)
+        {
+            Bezeichnungtemp = bezeichnung;
+        }
 
         internal void setProjektID(Func<string> func)
         {
