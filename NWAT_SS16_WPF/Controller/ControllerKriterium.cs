@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
+using System.Drawing.Printing;
+
 using System.Windows.Controls;
 
 namespace NWAT_SS16
@@ -17,6 +19,8 @@ namespace NWAT_SS16
 
        public ControllerKriterium(DatabaseAdapter db, Window frm) : base(db, frm) { }
 
+       private DruckDokument dok = new DruckDokument();
+
        public void aendern(Kriterium objekt, int ProjektID = 0, int ProduktID = 0)
         {
             throw new NotImplementedException();
@@ -24,8 +28,19 @@ namespace NWAT_SS16
 
         public void drucken(bool erfuellung, bool gewichtung, bool nutzwert, bool prozent, int ProjektID, int[] ProduktID)
         {
-            throw new NotImplementedException();
+
+            dok.BuildDataTable();
+
+            System.Windows.Forms.PrintPreviewDialog dialog = new System.Windows.Forms.PrintPreviewDialog();
+            dialog.Document = dok;
+            
+            dialog.ShowDialog();
         }
+
+
+
+
+     
 
         public override void anlegen()
         {

@@ -63,6 +63,9 @@
     <Compile Include="Einstellungen.xaml.cs">
       <DependentUpon>Einstellungen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Hilfsklassen\DruckDokument.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="KriteriumNutzwertVerwaltung.xaml.cs">
       <DependentUpon>KriteriumNutzwertVerwaltung.xaml</DependentUpon>
     </Compile>
@@ -134,9 +137,6 @@
       <DependentUpon>Hauptmenue.xaml</DependentUpon>
     </Compile>
     <Compile Include="Hilfsklassen\DruckDialog.cs" />
-    <Compile Include="Hilfsklassen\DruckDokument.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Hilfsklassen\Rechtschreibpruefung.cs" />
     <Compile Include="Kriteriumverwaltung.xaml.cs">
       <DependentUpon>Kriteriumverwaltung.xaml</DependentUpon>

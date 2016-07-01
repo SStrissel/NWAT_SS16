@@ -18,6 +18,7 @@
         <ComboBox x:Name="listeProjektID" HorizontalAlignment="Left" Margin="491,13,0,0" VerticalAlignment="Top" Width="283" SelectionChanged="listeProjektID_SelectionChanged"/>
         <ComboBox x:Name="listeProduktID" HorizontalAlignment="Left" Margin="492,49,0,0" VerticalAlignment="Top" Width="283" SelectionChanged="listeProduktID_SelectionChanged"/>
         <Button x:Name="Tree" Content="Tree" HorizontalAlignment="Left" Margin="14,236,0,0" VerticalAlignment="Top" Width="75" Click="Tree_Click" IsEnabled="False"/>
+        <Button x:Name="drucken" Content="drucken" HorizontalAlignment="Left" Margin="274,236,0,0" VerticalAlignment="Top" Width="75" Click="drucken_Click"/>
 
     </Grid>
 </Window>
