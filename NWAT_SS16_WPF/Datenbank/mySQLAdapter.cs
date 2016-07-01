@@ -23,14 +23,32 @@ namespace NWAT_SS16
         /* Team 
         initialisiert die Verbindung zur Datenbank
          */
-        public mySQLAdapter(string strServer, string strDatabase, string strUserID, string strPassword) // Konstruktor
+
+        /*
+         * Hauptdatenbank
+         * Server: db4free.net
+         * Database: nwat
+         * strUser: nwatadmin
+         * strPassword: ******
+         * */
+
+        /*
+         * Import/Export
+         * Server: db4free.net
+         * Database: nwat_expimp
+         * strUser: nutzwertexpimp
+         * strPassword: ******
+         * */
+
+        public mySQLAdapter(string strServer, string strDatabase, string strUser, string strPassword) // Konstruktor
         {
             string strconn = "SERVER=" + strServer + ";" +
             "DATABASE=" + strDatabase + ";" +
-            "UID=" + strUserID + ";" +
+            "UID=" + strUser + ";" +
             "password=" + strPassword + ";";
             conn = new MySqlConnection(strconn);
         }
+
 
         /* Team 
          öffnet eine Verbindung
