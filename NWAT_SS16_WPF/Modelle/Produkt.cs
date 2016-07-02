@@ -22,7 +22,12 @@ namespace NWAT_SS16
 
         public Produkt(string ID)
         {
-            this.ProduktID = Int32.Parse(ID);
+           setProduktID(Int32.Parse(ID));
+        }
+
+        public Produkt(int ID)
+        {
+            setProduktID(ID);
         }
 
         public Produkt(): base() {}
@@ -59,7 +64,7 @@ namespace NWAT_SS16
 
         public void setProduktID(string ProduktID)
         {
-            this.ProduktID = Int32.Parse(ProduktID);
+             setProduktID(Int32.Parse(ProduktID));
         }
 
         public void setBezeichnung(string Bezeichnung)

@@ -19,7 +19,7 @@ namespace NWAT_SS16
 
            public Nutzwert(): base() {}
 
-        public Nutzwert (int KriteriumID, int ProjektID = 0, int ProduktID = 0, bool Erfuellung = false, int Gewichtung = 0, string Kommentar = "", double BeitragAbsolut = 0, bool BeitragAbsolutCheck = false)
+        public Nutzwert (int KriteriumID = 0, int ProjektID = 0, int ProduktID = 0, bool Erfuellung = false, int Gewichtung = 0, string Kommentar = "", double BeitragAbsolut = 0, bool BeitragAbsolutCheck = false)
         {
             setProjektID(ProjektID);
             setProduktID(ProduktID);
@@ -29,7 +29,7 @@ namespace NWAT_SS16
             setKommentar(Kommentar);
         }
 
-        public Nutzwert(string KriteriumID, string ProjektID = "0", string ProduktID = "0", string Erfuellung = "0", string Gewichtung = "0", string Kommentar = "", string BeitragAbsolut = "0", string BeitragAbsolutCheck = "0")
+        public Nutzwert(string KriteriumID = "0", string ProjektID = "0", string ProduktID = "0", string Erfuellung = "0", string Gewichtung = "0", string Kommentar = "", string BeitragAbsolut = "0", string BeitragAbsolutCheck = "0")
         {
             setProjektID(ProjektID);
             setProduktID(ProduktID);
@@ -175,9 +175,15 @@ namespace NWAT_SS16
             return this.beitrag_absolut_check;
         }
 
-        public Kriterium getKriterium()
+        public Kriterium getKriterium(DatabaseAdapter db)
         {
-            throw new NotImplementedException();
+            Kriterium temp_kriterium = new Kriterium(ID: getKriteriumID());
+            List<Kriterium> temp_list = db.get(temp_kriterium);
+            if (temp_list.Count > 1 || temp_list.Count < 1)
+            {
+
+            }
+            return temp_list[0];
         }
 
     }

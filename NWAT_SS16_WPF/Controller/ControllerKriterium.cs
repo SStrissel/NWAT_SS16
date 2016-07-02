@@ -29,7 +29,7 @@ namespace NWAT_SS16
         public void drucken(bool erfuellung, bool gewichtung, bool nutzwert, bool prozent, int ProjektID, int[] ProduktID)
         {
 
-            dok.BuildDataTable();
+            dok.BuildDataTable(erfuellung: erfuellung, gewichtung: gewichtung, nutzwert: nutzwert, prozent: prozent, ProjektID: ProjektID, ProduktID: ProduktID, db: db);
 
             System.Windows.Forms.PrintPreviewDialog dialog = new System.Windows.Forms.PrintPreviewDialog();
             dialog.Document = dok;

@@ -191,14 +191,24 @@ namespace NWAT_SS16
             }
         }
 
-        public int getGewichtung()
+        public int getGewichtung(DatabaseAdapter db, int ProjektID = 0, int ProduktID = 0)
         {
-            throw new NotImplementedException();
+            return getNutzwert(db: db, ProjektID: ProjektID, ProduktID: ProduktID).getGewichtung();
         }
 
-        public bool getErfuellung()
+        public bool getErfuellung(DatabaseAdapter db, int ProjektID=0, int ProduktID=0)
         {
-            throw new NotImplementedException();
+            return getNutzwert(db: db, ProjektID: ProjektID, ProduktID: ProduktID).getErfuellung();
+        }
+
+        public Nutzwert getNutzwert(DatabaseAdapter db, int ProjektID = 0, int ProduktID = 0)
+        {
+            List<Nutzwert> temp_list = db.get(new Nutzwert(KriteriumID: getKriteriumID(), ProjektID: ProjektID, ProduktID: ProduktID));
+            if (temp_list.Count > 1 || temp_list.Count < 1)
+            {
+                throw new NotImplementedException();
+            }
+            return temp_list[0];
         }
     }
 }

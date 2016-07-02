@@ -19,9 +19,9 @@ namespace NWAT_SS16
         public void funktionsabdeckungsgrad_berechnen(Nutzwert NWAobjekt, Kriterium objekt)
         {
             NWAobjekt.setBeitragAbsolutCheck(false);
-            NWAobjekt.getKriterium();
-            List<Kriterium> list = NWAobjekt.getKriterium().getUnterKriterium(db);
-            if (NWAobjekt.getKriterium().getUnterKriterium(db).Count == 0)
+            NWAobjekt.getKriterium(db);
+            List<Kriterium> list = NWAobjekt.getKriterium(db).getUnterKriterium(db);
+            if (NWAobjekt.getKriterium(db).getUnterKriterium(db).Count == 0)
                 foreach (Kriterium temp_obj in list)
                 {
                     funktionsabdeckungsgrad_berechnen(NWAobjekt, objekt);
@@ -43,7 +43,7 @@ namespace NWAT_SS16
             bool change = false;
             double temp_beitrag = 0;
             funktionsabdeckungsgrad_aufsummieren_check(objekt);
-            List<Kriterium> list = NWAobjekt.getKriterium().getUnterKriterium(db);
+            List<Kriterium> list = NWAobjekt.getKriterium(db).getUnterKriterium(db);
             if (change == false)
             {
                 foreach (Kriterium temp in list)
@@ -84,13 +84,13 @@ namespace NWAT_SS16
         private int funktionsabdeckungsgrad_beitrag_nenner(Nutzwert NWAobjekt)
         {
             int nenner = 0;
-            NWAobjekt.getKriterium().getOberKriterium(db);
-            NWAobjekt.getKriterium().getUnterKriterium(db);
-            List<Kriterium> list = NWAobjekt.getKriterium().getUnterKriterium(db);
+            NWAobjekt.getKriterium(db).getOberKriterium(db);
+            NWAobjekt.getKriterium(db).getUnterKriterium(db);
+            List<Kriterium> list = NWAobjekt.getKriterium(db).getUnterKriterium(db);
                 
                 foreach (Kriterium temp_obj in list)
                 {
-                    nenner += temp_obj.getGewichtung();
+                    nenner += temp_obj.getGewichtung(db);
                 }
                 
        
@@ -119,7 +119,7 @@ namespace NWAT_SS16
         {
             double result = 0;
             
-            List<Kriterium> list  = NWAobjekt.getKriterium().getOberKriterium(db);
+            List<Kriterium> list  = NWAobjekt.getKriterium(db).getOberKriterium(db);
             foreach (Kriterium temp_objekt in list)
             {
                int nenner = funktionsabdeckungsgrad_beitrag_nenner(NWAobjekt);
