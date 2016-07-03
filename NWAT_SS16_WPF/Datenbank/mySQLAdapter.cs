@@ -530,7 +530,7 @@ namespace NWAT_SS16
                 Nutzwert temp_objekt = (Nutzwert)objekt;
                 if (get(temp_objekt).Count != 0)
                 {
-                    ExecuteSQL("UPDATE NWA SET Kommentar='" + temp_objekt.getKommentar() + "', Erfuellung=" + temp_objekt.getErfuellung() + ", Gewichtung=" + temp_objekt.getGewichtung() + " WHERE KriteriumID = " + temp_objekt.getKriteriumID() + " AND ProjektID = " + temp_objekt.getProjektID() + " AND ProduktID = " + temp_objekt.getProduktID() + ";");
+                    ExecuteSQL("UPDATE NWA SET Kommentar='" + temp_objekt.getKommentar() + "', Erfuellung=" + temp_objekt.getErfuellung() + ", Gewichtung=" + temp_objekt.getGewichtung() + ", beitrag_absolut=" + temp_objekt.getBeitragAbsolut().ToString().Replace(",", ".") + ", beitrag_absolut_check=" + temp_objekt.getBeitragAbsolutCheck() + " WHERE KriteriumID = " + temp_objekt.getKriteriumID() + " AND ProjektID = " + temp_objekt.getProjektID() + " AND ProduktID = " + temp_objekt.getProduktID() + ";");
       
                 }
                 else

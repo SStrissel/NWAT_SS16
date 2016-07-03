@@ -27,6 +27,8 @@ namespace NWAT_SS16
             setGewichtung(Gewichtung);
             setErfuellung(Erfuellung);
             setKommentar(Kommentar);
+            setBeitragAbsolut(BeitragAbsolut);
+            setBeitragAbsolutCheck(BeitragAbsolutCheck);
         }
 
         public Nutzwert(string KriteriumID = "0", string ProjektID = "0", string ProduktID = "0", string Erfuellung = "0", string Gewichtung = "0", string Kommentar = "", string BeitragAbsolut = "0", string BeitragAbsolutCheck = "0")
@@ -162,6 +164,10 @@ namespace NWAT_SS16
 
         public double getBeitragAbsolut()
         {
+            if (beitrag_absolut == null)
+            {
+                return 0;
+            }
             return this.beitrag_absolut;
         }
 

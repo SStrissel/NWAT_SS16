@@ -84,6 +84,7 @@ column.Width, dt.Rows[0].Height), new StringFormat());
 
         public void BuildDataTable(bool erfuellung, bool gewichtung, bool nutzwert, bool prozent, int ProjektID, int[] ProduktID, DatabaseAdapter db)
         {
+            dt = new DataGridView();
             dt.ColumnCount = 1;
             dt.Columns[dt.ColumnCount - 1].Name = CONST_NUM;
             dt.Columns[dt.ColumnCount - 1].Width = 50;
@@ -136,11 +137,15 @@ column.Width, dt.Rows[0].Height), new StringFormat());
             Nutzwert temp_nwa = db.get(new Nutzwert(KriteriumID: 1, ProjektID: ProjektID, ProduktID: temp_produkt.getProduktID()))[0];
             Kriterium root_kriterium = temp_nwa.getKriterium(db).getRootKriterium(db)[0];
 
+            ControllerNutzwert cntrl_nutzwer = new ControllerNutzwert(db, null);
+            cntrl_nutzwer.funktionsabdeckungsgrad_berechnen(root_kriterium.getNutzwert(db));
+
             int row = dt.Rows.Add();
 
             dt.Rows[row].Cells[CONST_NUM].Value = "0";
             dt.Rows[row].Cells[CONST_BEZ].Value = root_kriterium.getBezeichnung();
             dt.Rows[row].Cells[CONST_KOM].Value = root_kriterium.getNutzwert(db).getKommentar();
+            dt.Rows[row].Cells[CONST_NUTZ].Value = root_kriterium.getNutzwert(db).getBeitragAbsolut();
 
             if (erfuellung)
             {
@@ -174,6 +179,7 @@ column.Width, dt.Rows[0].Height), new StringFormat());
                     dt.Rows[row].Cells[CONST_NUM].Value = count + "." + internal_count;
                     dt.Rows[row].Cells[CONST_BEZ].Value = temp_kriterium.getBezeichnung();
                     dt.Rows[row].Cells[CONST_KOM].Value = temp_kriterium.getNutzwert(db).getKommentar();
+                    dt.Rows[row].Cells[CONST_NUTZ].Value = temp_kriterium.getNutzwert(db).getBeitragAbsolut();
                     if (erfuellung)
                     {
                         if (temp_kriterium.getErfuellung(db) == true)

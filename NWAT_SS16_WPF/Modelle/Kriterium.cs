@@ -111,7 +111,13 @@ namespace NWAT_SS16
                     return_list.Add(return_krit);
                 }
             }
+
+            if (return_list.Count > 1)
+            {
+                throw new NotImplementedException();
+            } else {
             return return_list;
+            }
         }
 
         public void addUnterKriterium(Kriterium objekt, DatabaseAdapter db)

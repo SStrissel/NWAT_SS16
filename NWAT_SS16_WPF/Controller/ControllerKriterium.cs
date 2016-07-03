@@ -303,6 +303,7 @@ namespace NWAT_SS16
                      krit.details_Erfuellung.IsChecked = temp_objekt.getErfuellung();
                      krit.details_Gewichtung.Text = temp_objekt.getGewichtung().ToString();
                      krit.details_kommentar.Text = temp_objekt.getKommentar();
+                     krit.details_beitrag_absolut.Text = temp_objekt.getBeitragAbsolut().ToString();
                      onUpdateData();
                      return;
                  }
