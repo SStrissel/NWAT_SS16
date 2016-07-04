@@ -1,0 +1,28 @@
+﻿<Window x:Class="NWAT_SS16.ImpLog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ImpLog" Height="300" Width="300">
+    <Grid>
+        <Grid Margin="-305,-50,0,-55" RenderTransformOrigin="0.767,0.562">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBox x:Name="server" HorizontalAlignment="Left" Height="18" Margin="402,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Text="db4free.net" FontFamily="Arial"/>
+            <TextBox x:Name="datenbank" HorizontalAlignment="Left" Height="18" Margin="402,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Text="nwat_expimp" FontFamily="Arial"/>
+            <TextBox x:Name="benutzer" HorizontalAlignment="Left" Height="18" Margin="402,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Text="nutzwertexpimp" FontFamily="Arial" Grid.RowSpan="2"/>
+            <Label Content="Server&#xA;" HorizontalAlignment="Left" Margin="323,109,0,0" VerticalAlignment="Top" Height="24" Width="81"/>
+            <Label Content="Datenbank&#xA;" HorizontalAlignment="Left" Margin="323,136,0,0" VerticalAlignment="Top" Height="24" Width="80"/>
+            <Label Content="Benutzer&#xA;" HorizontalAlignment="Left" Margin="323,165,0,0" VerticalAlignment="Top" Height="24" Width="80" Grid.RowSpan="2"/>
+            <Label Content="Passwort&#xA;" HorizontalAlignment="Left" Margin="323,9,0,0" VerticalAlignment="Top" Height="24" Width="80" Grid.Row="1"/>
+            <Button Content="verbinden" HorizontalAlignment="Left" Margin="483,39,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click" Height="20" FontFamily="Arial" Grid.Row="1"/>
+            <TextBox x:Name="infoBox" HorizontalAlignment="Left" Height="60" Margin="321,67,0,0" TextWrapping="Wrap" Text="Geben Sie das Passwort zur Datenbank ein" VerticalAlignment="Top" Width="239" IsEnabled="False" Grid.Row="1"/>
+            <Label Content="Julian Huber, Mehmet Tektas, Team, Kurt Wusterhausen&#xA;" HorizontalAlignment="Left" Margin="-365,176,0,0" VerticalAlignment="Top" Height="3" Width="358" Grid.Row="1"/>
+            <Label Content="Login" HorizontalAlignment="Left" Margin="321,65,0,0" VerticalAlignment="Top" Height="39" Width="230" FontWeight="Bold" FontSize="16"/>
+            <PasswordBox x:Name="passwort" HorizontalAlignment="Left" Margin="402,13,0,0" VerticalAlignment="Top" Width="160" Height="18" KeyDown="Passwort_KeyDown" FontFamily="Arial" Grid.Row="1"/>
+            <Label x:Name="warnung" Content="Feststelletaste ist aktiviert" HorizontalAlignment="Left" Margin="322,36,0,0" VerticalAlignment="Top" Foreground="White" Background="Red" FontFamily="Arial" Grid.Row="1"/>
+
+        </Grid>
+
+    </Grid>
+</Window>

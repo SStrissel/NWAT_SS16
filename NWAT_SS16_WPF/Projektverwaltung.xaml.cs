@@ -56,5 +56,21 @@ namespace NWAT_SS16
             cp.aendern();
         }
 
+        private void export_Click(object sender, RoutedEventArgs e)
+        {
+            Projekt.setProjektIDtemp(detailsProjektID.Text);
+            Projekt.setBezeichnungtemp(detailsBezeichnung.Text);
+            ExpLog el = new ExpLog();
+            el.ShowDialog();
+           // Projekt p = new Projekt(detailsProjektID.Text);
+            //cp.loeschen(p);
+        }
+
+        private void import_Click(object sender, RoutedEventArgs e)
+        {
+            ImpLog il = new ImpLog();
+            il.ShowDialog();
+        }
+
     }
 }

@@ -12,6 +12,8 @@
         <Button Content="aendern" HorizontalAlignment="Left" Margin="642,328,0,0" VerticalAlignment="Top" Width="75" Click="aendern_Click"/>
         <Button Content="loeschen" HorizontalAlignment="Left" Margin="802,328,0,0" VerticalAlignment="Top" Width="75" Click="loeschen_Click"/>
         <Label Content="ProjektID" RenderTransformOrigin="-2.145,0.597" Margin="488,49,345,380"/>
+        <Button Content="Import" HorizontalAlignment="Left" Margin="440,328,0,0" VerticalAlignment="Top" Width="75" Click="import_Click"/>
+        <Button Content="Export" HorizontalAlignment="Left" Margin="300,328,0,0" VerticalAlignment="Top" Width="75" Click="export_Click"/>
 
     </Grid>
 </Window>

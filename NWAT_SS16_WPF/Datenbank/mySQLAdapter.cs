@@ -47,6 +47,7 @@ namespace NWAT_SS16
             "UID=" + strUser + ";" +
             "password=" + strPassword + ";";
             conn = new MySqlConnection(strconn);
+
         }
 
 
@@ -255,7 +256,25 @@ namespace NWAT_SS16
                  da.Dispose();
                  return dataTable;
         }
-
+        public override  string exp(string a, string b)
+        {
+           // string file = "C:\\backup.sql";
+            string file = "C:\\Users\\Mehmet.T\\Pictures\\backup.sql";
+           
+                using (MySqlCommand cmd = new MySqlCommand())
+                {
+                    using (MySqlBackup mb = new MySqlBackup(cmd))
+                    {
+                        cmd.Connection = conn;
+                        //conn.Open();
+                        mb.ExportToFile(file);
+                        //conn.Close();
+                    }
+            }
+           ExecuteSQL("INSERT INTO Projekt (ProjektID, Bezeichnung) VALUES ( " + a + ", '" + b + "');");
+           return "";
+               
+        }
         /* Team 
         fügt ein neues Model in die Datenbank ein
         */
