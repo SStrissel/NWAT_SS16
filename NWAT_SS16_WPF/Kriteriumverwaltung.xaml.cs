@@ -80,6 +80,12 @@ namespace NWAT_SS16
             cntrl.show_kriteriumtree(objekt);
         }
 
+        private void drucken_Click(object sender, RoutedEventArgs e)
+        {
+            cntrl.drucken(true,true,true,true,0, new int[] { 0 });
+        }
+
+
 
     }
 }

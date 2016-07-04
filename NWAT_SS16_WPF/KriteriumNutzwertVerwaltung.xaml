@@ -17,6 +17,7 @@
         <CheckBox x:Name="details_Erfuellung" Content="ja, ist erfuellt" HorizontalAlignment="Left" Margin="144,132,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="details_kommentar" HorizontalAlignment="Left" Height="127" Margin="317,58,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="214"/>
         <Label Content="Kommentar" HorizontalAlignment="Left" Margin="317,35,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.237,0.769" FontWeight="Bold" Height="23"/>
+        <TextBox x:Name="details_beitrag_absolut" HorizontalAlignment="Left" Height="23" Margin="317,204,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>

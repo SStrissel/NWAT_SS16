@@ -549,7 +549,7 @@ namespace NWAT_SS16
                 Nutzwert temp_objekt = (Nutzwert)objekt;
                 if (get(temp_objekt).Count != 0)
                 {
-                    ExecuteSQL("UPDATE NWA SET Kommentar='" + temp_objekt.getKommentar() + "', Erfuellung=" + temp_objekt.getErfuellung() + ", Gewichtung=" + temp_objekt.getGewichtung() + " WHERE KriteriumID = " + temp_objekt.getKriteriumID() + " AND ProjektID = " + temp_objekt.getProjektID() + " AND ProduktID = " + temp_objekt.getProduktID() + ";");
+                    ExecuteSQL("UPDATE NWA SET Kommentar='" + temp_objekt.getKommentar() + "', Erfuellung=" + temp_objekt.getErfuellung() + ", Gewichtung=" + temp_objekt.getGewichtung() + ", beitrag_absolut=" + temp_objekt.getBeitragAbsolut().ToString().Replace(",", ".") + ", beitrag_absolut_check=" + temp_objekt.getBeitragAbsolutCheck() + " WHERE KriteriumID = " + temp_objekt.getKriteriumID() + " AND ProjektID = " + temp_objekt.getProjektID() + " AND ProduktID = " + temp_objekt.getProduktID() + ";");
       
                 }
                 else
@@ -679,30 +679,44 @@ namespace NWAT_SS16
             else if (objekt.GetType().Name == "Nutzwert")
             {
                 Nutzwert temp_obj = (Nutzwert)objekt;
-                DataTable temp_datatable = QuerySQL("SELECT * FROM NWA WHERE KriteriumID = " + temp_obj.getKriteriumID() + " AND ProjektID = " + temp_obj.getProjektID() + " AND ProduktID = " + temp_obj.getProduktID() + ";");
-                foreach (DataRow row in temp_datatable.Rows)
+                if (temp_obj.getKriteriumID() >= 0)
                 {
-                    Nutzwert temp_model = new Nutzwert(ProjektID: (int)row[0], KriteriumID: (int)row[1], ProduktID:(int)row[2], Erfuellung:(bool)row[3], Gewichtung: (int)row[4], Kommentar: (string)row[5], BeitragAbsolut: (double)row[6], BeitragAbsolutCheck: (bool)row[7] );
-                    return_list.Add(temp_model);
+                    DataTable temp_datatable = QuerySQL("SELECT * FROM NWA WHERE KriteriumID = " + temp_obj.getKriteriumID() + " AND ProjektID = " + temp_obj.getProjektID() + " AND ProduktID = " + temp_obj.getProduktID() + ";");
+                    foreach (DataRow row in temp_datatable.Rows)
+                    {
+                        Nutzwert temp_model = new Nutzwert(ProjektID: (int)row[0], KriteriumID: (int)row[1], ProduktID: (int)row[2], Erfuellung: (bool)row[3], Gewichtung: (int)row[4], Kommentar: (string)row[5], BeitragAbsolut: (double)row[6], BeitragAbsolutCheck: (bool)row[7]);
+                        return_list.Add(temp_model);
+                    }
+
+                    /* Wenn per Get kein NWA-Model gefunden wurde, wird aus dem Standard-NWA ein Model erzeugt und in der DB gespeichert */
+                    if (return_list.Count == 0 && temp_obj.getProduktID() != 0 && temp_obj.getProjektID() != 0)
+                    {
+
+                        List<Model> standard_objekt = this.get(new Nutzwert(KriteriumID: temp_obj.getKriteriumID(), ProjektID: 0, ProduktID: 0));
+                        if (standard_objekt.Count != 1)
+                        {
+                            throw new Exception("Es darf nur ein Standard-NWA-Objekt vorhanden sein.");
+                        }
+                        else
+                        {
+                            return_list.Add(insert(new Nutzwert(KriteriumID: temp_obj.getKriteriumID(), ProjektID: temp_obj.getProjektID(), ProduktID: temp_obj.getProduktID(), Erfuellung: ((Nutzwert)standard_objekt[0]).getErfuellung(), Gewichtung: ((Nutzwert)standard_objekt[0]).getGewichtung())));
+                        }
+                        /* Wenn kein Standard-NWA-Model gefunden wurde, wird dieses erzeugt und in der DB gespeichert, dies sollte im Normalfall nicht passieren */
+                    }
+                    else if (return_list.Count == 0 && temp_obj.getProduktID() == 0 && temp_obj.getProjektID() == 0)
+                    {
+                        Nutzwert standard_objekt = (Nutzwert)get(new Nutzwert(0, 0, 0))[0];
+                        return_list.Add(insert(new Nutzwert(KriteriumID: temp_obj.getKriteriumID(), ProjektID: temp_obj.getProjektID(), ProduktID: temp_obj.getProduktID(), Erfuellung: standard_objekt.getErfuellung(), Gewichtung: standard_objekt.getGewichtung())));
+                    }
                 }
-
-                /* Wenn per Get kein NWA-Model gefunden wurde, wird aus dem Standard-NWA ein Model erzeugt und in der DB gespeichert */
-                if (return_list.Count == 0 && temp_obj.getProduktID() != 0 && temp_obj.getProjektID() != 0)
+                else
                 {
-
-                    List<Model> standard_objekt = this.get(new Nutzwert(KriteriumID: temp_obj.getKriteriumID(), ProjektID: 0, ProduktID: 0));
-                    if (standard_objekt.Count != 1)
+                    DataTable temp_datatable = QuerySQL("SELECT * FROM NWA WHERE ProjektID = " + temp_obj.getProjektID() + " AND ProduktID = " + temp_obj.getProduktID() + ";");
+                    foreach (DataRow row in temp_datatable.Rows)
                     {
-                          throw new Exception("Es darf nur ein Standard-NWA-Objekt vorhanden sein.");
+                        Nutzwert temp_model = new Nutzwert(ProjektID: (int)row[0], KriteriumID: (int)row[1], ProduktID: (int)row[2], Erfuellung: (bool)row[3], Gewichtung: (int)row[4], Kommentar: (string)row[5], BeitragAbsolut: (double)row[6], BeitragAbsolutCheck: (bool)row[7]);
+                        return_list.Add(temp_model);
                     }
-                     else
-                    {
-                        return_list.Add(insert(new Nutzwert(KriteriumID: temp_obj.getKriteriumID(), ProjektID: temp_obj.getProjektID(), ProduktID: temp_obj.getProduktID(), Erfuellung: ((Nutzwert)standard_objekt[0]).getErfuellung(), Gewichtung: ((Nutzwert)standard_objekt[0]).getGewichtung())));
-                    }
-                /* Wenn kein Standard-NWA-Model gefunden wurde, wird dieses erzeugt und in der DB gespeichert, dies sollte im Normalfall nicht passieren */
-                } else if (return_list.Count == 0 && temp_obj.getProduktID() == 0 && temp_obj.getProjektID() == 0){
-                    Nutzwert standard_objekt = (Nutzwert)get(new Nutzwert(0,0,0))[0];
-                    return_list.Add(insert(new Nutzwert(KriteriumID: temp_obj.getKriteriumID(), ProjektID: temp_obj.getProjektID(), ProduktID: temp_obj.getProduktID(), Erfuellung: standard_objekt.getErfuellung(), Gewichtung: standard_objekt.getGewichtung())));
                 }
                 return return_list;
             }
