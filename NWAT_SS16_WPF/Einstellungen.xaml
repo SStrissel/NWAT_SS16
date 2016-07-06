@@ -3,13 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Einstellungen" Height="300" Width="300">
     <Grid>
-        <Button x:Name="resetProdukt" Content="reset Produkt" HorizontalAlignment="Left" Margin="34,49,0,0" VerticalAlignment="Top" Width="85" Click="resetProdukt_Click"/>
-        <Button x:Name="resetKritierium" Content="reset Kriterium" HorizontalAlignment="Left" Margin="131,50,0,0" VerticalAlignment="Top" Width="92" Click="resetKritierium_Click"/>
-        <TextBox x:Name="infoBox" HorizontalAlignment="Left" Height="87" Margin="19,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="247" IsEnabled="False"/>
-        <Button x:Name="initTables" Content="init Tables" HorizontalAlignment="Left" Margin="36,94,0,0" VerticalAlignment="Top" Width="85" Click="initTables_Click"/>
-        <Button x:Name="resetNWA" Content="reset NWA" HorizontalAlignment="Left" Margin="133,96,0,0" VerticalAlignment="Top" Width="92" Click="resetNWA_Click"/>
-        <Button x:Name="dummyKriterien" Content="dummyKriterien" HorizontalAlignment="Left" Margin="42,132,0,0" VerticalAlignment="Top" Width="92" Click="dummyKriterien_Click"/>
-        <Button x:Name="resetNWA_Copy" Content="reset Kriteriumstruktur" HorizontalAlignment="Left" Margin="154,132,0,0" VerticalAlignment="Top" Width="128" Click="resetNWA_Copy_Click"/>
+        <Button x:Name="resetProdukt" Content="reset Produkt" HorizontalAlignment="Left" Margin="34,49,0,0" VerticalAlignment="Top" Width="85" Click="resetProdukt_Click" FontFamily="Arial"/>
+        <Button x:Name="resetKritierium" Content="reset Kriterium" HorizontalAlignment="Left" Margin="131,50,0,0" VerticalAlignment="Top" Width="92" Click="resetKritierium_Click" FontFamily="Arial"/>
+        <TextBox x:Name="infoBox" HorizontalAlignment="Left" Height="87" Margin="19,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="247" IsEnabled="False" FontFamily="Arial"/>
+        <Button x:Name="initTables" Content="init Tables" HorizontalAlignment="Left" Margin="36,94,0,0" VerticalAlignment="Top" Width="85" Click="initTables_Click" FontFamily="Arial"/>
+        <Button x:Name="resetNWA" Content="reset NWA" HorizontalAlignment="Left" Margin="133,96,0,0" VerticalAlignment="Top" Width="92" Click="resetNWA_Click" FontFamily="Arial"/>
+        <Button x:Name="dummyKriterien" Content="dummyKriterien" HorizontalAlignment="Left" Margin="42,132,0,0" VerticalAlignment="Top" Width="92" Click="dummyKriterien_Click" FontFamily="Arial"/>
+        <Button x:Name="resetNWA_Copy" Content="reset Kriteriumstruktur" HorizontalAlignment="Left" Margin="154,132,0,0" VerticalAlignment="Top" Width="128" Click="resetNWA_Copy_Click" FontFamily="Arial"/>
 
     </Grid>
 </Window>

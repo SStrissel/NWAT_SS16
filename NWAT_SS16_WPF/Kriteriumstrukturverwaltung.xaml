@@ -3,29 +3,29 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Kriteriumstrukturverwaltung" Height="529.5" Width="507" Icon="Resources/Laundry_12-512.png">
     <Grid>
-        <Label Content="ID" HorizontalAlignment="Left" Margin="9,79,0,0" VerticalAlignment="Top"/>
-        <Label Content="Bezeichnung&#xA;" HorizontalAlignment="Left" Margin="10,115,0,0" VerticalAlignment="Top" Height="28" RenderTransformOrigin="-0.397,0.571"/>
-        <TextBox x:Name="details_ID" HorizontalAlignment="Left" Height="23" Margin="120,82,-111,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" IsEnabled="False"/>
-        <TextBox x:Name="details_Bezeichnung" HorizontalAlignment="Left" Height="23" Margin="120,117,-111,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" IsEnabled="False" SpellCheck.IsEnabled="True"/>
-        <Label Content="ProduktID" HorizontalAlignment="Left" Margin="9,42,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="details_ProduktID" HorizontalAlignment="Left" Height="23" Margin="120,45,-111,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" IsEnabled="False"/>
-        <Label Content="ProjektID" HorizontalAlignment="Left" Margin="9,7,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="details_ProjektID" HorizontalAlignment="Left" Height="23" Margin="120,10,-111,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" IsEnabled="False"/>
-        <Label Content="UnterKriterien&#xA;" HorizontalAlignment="Left" Margin="8,188,0,0" VerticalAlignment="Top" Height="28" RenderTransformOrigin="-0.397,0.571"/>
-        <ComboBox x:Name="details_Kriterium" HorizontalAlignment="Left" Margin="121,284,0,0" VerticalAlignment="Top" Width="201" IsEnabled="False" SelectionChanged="Kriterium_selected"/>
-        <ListBox x:Name="listeUnterKriterium" HorizontalAlignment="Left" Height="87" Margin="120,189,0,0" VerticalAlignment="Top" Width="283" IsEnabled="False" SelectionChanged="listeUnterKriterium_selected"/>
-        <Button x:Name="untkrit_hinzufuegen" Content="hinzufuegen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="328,285,0,0" IsEnabled="False" Click="untkrit_hinzufuegen_Click"/>
-        <Button x:Name="untkrit_loeschen" Content="loeschen" HorizontalAlignment="Left" Margin="410,252,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.253,-0.45" IsEnabled="False" Click="untkrit_loeschen_Click"/>
-        <ListView x:Name="listeOberKriterium" HorizontalAlignment="Left" Height="100" Margin="127,347,0,0" VerticalAlignment="Top" Width="279" IsEnabled="False">
+        <Label Content="ID" HorizontalAlignment="Left" Margin="9,79,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
+        <Label Content="Bezeichnung&#xA;" HorizontalAlignment="Left" Margin="10,115,0,0" VerticalAlignment="Top" Height="28" RenderTransformOrigin="-0.397,0.571" FontFamily="Arial"/>
+        <TextBox x:Name="details_ID" HorizontalAlignment="Left" Height="23" Margin="120,82,-111,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" IsEnabled="False" FontFamily="Arial"/>
+        <TextBox x:Name="details_Bezeichnung" HorizontalAlignment="Left" Height="23" Margin="120,117,-111,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" IsEnabled="False" SpellCheck.IsEnabled="True" FontFamily="Arial"/>
+        <Label Content="ProduktID" HorizontalAlignment="Left" Margin="9,42,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
+        <TextBox x:Name="details_ProduktID" HorizontalAlignment="Left" Height="23" Margin="120,45,-111,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" IsEnabled="False" FontFamily="Arial"/>
+        <Label Content="ProjektID" HorizontalAlignment="Left" Margin="9,7,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
+        <TextBox x:Name="details_ProjektID" HorizontalAlignment="Left" Height="23" Margin="120,10,-111,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" IsEnabled="False" FontFamily="Arial"/>
+        <Label Content="UnterKriterien&#xA;" HorizontalAlignment="Left" Margin="8,188,0,0" VerticalAlignment="Top" Height="28" RenderTransformOrigin="-0.397,0.571" FontFamily="Arial"/>
+        <ComboBox x:Name="details_Kriterium" HorizontalAlignment="Left" Margin="121,284,0,0" VerticalAlignment="Top" Width="201" IsEnabled="False" SelectionChanged="Kriterium_selected" FontFamily="Arial"/>
+        <ListBox x:Name="listeUnterKriterium" HorizontalAlignment="Left" Height="87" Margin="120,189,0,0" VerticalAlignment="Top" Width="283" IsEnabled="False" SelectionChanged="listeUnterKriterium_selected" FontFamily="Arial"/>
+        <Button x:Name="untkrit_hinzufuegen" Content="hinzufuegen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="328,285,0,0" IsEnabled="False" Click="untkrit_hinzufuegen_Click" FontFamily="Arial"/>
+        <Button x:Name="untkrit_loeschen" Content="loeschen" HorizontalAlignment="Left" Margin="410,252,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.253,-0.45" IsEnabled="False" Click="untkrit_loeschen_Click" FontFamily="Arial"/>
+        <ListView x:Name="listeOberKriterium" HorizontalAlignment="Left" Height="100" Margin="127,347,0,0" VerticalAlignment="Top" Width="279" IsEnabled="False" FontFamily="Arial">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label Content="OberKriterien&#xA;" HorizontalAlignment="Left" Margin="16,344,0,0" VerticalAlignment="Top" Height="28" RenderTransformOrigin="-0.397,0.571"/>
-        <Label Content="WurzelKriterium&#xA;" HorizontalAlignment="Left" Margin="10,149,0,0" VerticalAlignment="Top" Height="28" RenderTransformOrigin="-0.397,0.571"/>
-        <ListBox x:Name="listeWurzelKriterium" HorizontalAlignment="Left" Height="23" Margin="120,152,0,0" VerticalAlignment="Top" Width="283" SelectionChanged="listeUnterKriterium_selected" IsEnabled="False"/>
+        <Label Content="OberKriterien&#xA;" HorizontalAlignment="Left" Margin="16,344,0,0" VerticalAlignment="Top" Height="28" RenderTransformOrigin="-0.397,0.571" FontFamily="Arial"/>
+        <Label Content="WurzelKriterium&#xA;" HorizontalAlignment="Left" Margin="10,149,0,0" VerticalAlignment="Top" Height="28" RenderTransformOrigin="-0.397,0.571" FontFamily="Arial"/>
+        <ListBox x:Name="listeWurzelKriterium" HorizontalAlignment="Left" Height="23" Margin="120,152,0,0" VerticalAlignment="Top" Width="283" SelectionChanged="listeUnterKriterium_selected" IsEnabled="False" FontFamily="Arial"/>
 
     </Grid>
 </Window>

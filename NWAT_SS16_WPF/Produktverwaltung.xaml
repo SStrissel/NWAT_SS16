@@ -3,14 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Produktverwaltung" Height="352.5" Width="911.5" Icon="Resources/Laundry_12-512.png">
     <Grid>
-        <ListBox x:Name="listeProdukt" HorizontalAlignment="Left" Height="170" Margin="34,74,0,0" VerticalAlignment="Top" Width="349" SelectionChanged="Listchanged"/>
-        <Button x:Name="produktanlegen" Content="neu anlegen" HorizontalAlignment="Left" Margin="37,289,0,0" VerticalAlignment="Top" Width="74" Click="produktanlegen_Click"/>
-        <Button x:Name="produktloeschen_" Content="loeschen" HorizontalAlignment="Left" Margin="727,177,0,0" VerticalAlignment="Top" Width="74" Click="produktloeschen_Click" />
+        <ListBox x:Name="listeProdukt" HorizontalAlignment="Left" Height="170" Margin="34,74,0,0" VerticalAlignment="Top" Width="349" SelectionChanged="Listchanged" FontFamily="Arial"/>
+        <Button x:Name="produktanlegen" Content="neu anlegen" HorizontalAlignment="Left" Margin="37,289,0,0" VerticalAlignment="Top" Width="74" Click="produktanlegen_Click" FontFamily="Arial"/>
+        <Button x:Name="produktloeschen_" Content="loeschen" HorizontalAlignment="Left" Margin="727,177,0,0" VerticalAlignment="Top" Width="74" Click="produktloeschen_Click" FontFamily="Arial" />
         <Label x:Name="Bezeichnung" Content="Bezeichnung&#xD;&#xA;" HorizontalAlignment="Left" Margin="393,124,0,0" VerticalAlignment="Top" Height="28" RenderTransformOrigin="-0.397,0.571"/>
-        <TextBox x:Name="details_Bezeichnung" HorizontalAlignment="Left" Height="23" Margin="518,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" SpellCheck.IsEnabled="True" IsEnabled="False"/>
+        <TextBox x:Name="details_Bezeichnung" HorizontalAlignment="Left" Height="23" Margin="518,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" SpellCheck.IsEnabled="True" IsEnabled="False" FontFamily="Arial"/>
         <Label x:Name="ProduktID" Content="ProduktID" HorizontalAlignment="Left" Margin="406,74,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="details_ProduktID" HorizontalAlignment="Left" Height="23" Margin="518,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" IsEnabled="False"/>
-        <Button x:Name="produktaendern" Content="aendern" HorizontalAlignment="Left" Margin="518,177,0,0" VerticalAlignment="Top" Width="74" Click="produktaendern_Click" />
+        <TextBox x:Name="details_ProduktID" HorizontalAlignment="Left" Height="23" Margin="518,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" IsEnabled="False" FontFamily="Arial"/>
+        <Button x:Name="produktaendern" Content="aendern" HorizontalAlignment="Left" Margin="518,177,0,0" VerticalAlignment="Top" Width="74" Click="produktaendern_Click" FontFamily="Arial" />
 
     </Grid>
 </Window>

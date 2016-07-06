@@ -14,12 +14,12 @@
                 <ColumnDefinition Width="67*"/>
                 <ColumnDefinition Width="705*"/>
             </Grid.ColumnDefinitions>
-            <Label Content="ProjektID" HorizontalAlignment="Left" Margin="57,100,0,0" VerticalAlignment="Top" Height="47" FontWeight="Bold" FontSize="20" Grid.ColumnSpan="2"/>
-            <Label Content="Bezeichnung" HorizontalAlignment="Left" Margin="57,192,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="textProjektIDaendern" HorizontalAlignment="Left" Height="31" Margin="241,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="366" FontSize="20" IsEnabled="False" Grid.Column="1"/>
-            <TextBox x:Name="textBezeichnungaendern" HorizontalAlignment="Left" Height="37" Margin="241,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="366" FontSize="20" SpellCheck.IsEnabled="True" Grid.Column="1"/>
-            <Button Content="abbrechen" HorizontalAlignment="Left" Margin="114,295,0,0" VerticalAlignment="Top" Width="142" FontSize="18" Height="51" Background="#FFDE1010" Click="abbrechen_Click" Grid.Column="1"/>
-            <Button Content="aendern" HorizontalAlignment="Left" Margin="401,294,0,0" VerticalAlignment="Top" Width="145" FontSize="18" Height="51" BorderBrush="#FF2BE20F" Click="aendern_Click" Foreground="Black" Background="#FF2EC516" Grid.Column="1"/>
+            <Label Content="ProjektID" HorizontalAlignment="Left" Margin="57,100,0,0" VerticalAlignment="Top" Height="47" FontWeight="Bold" FontSize="20" Grid.ColumnSpan="2" FontFamily="Arial"/>
+            <Label Content="Bezeichnung" HorizontalAlignment="Left" Margin="57,192,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Grid.ColumnSpan="2" FontFamily="Arial"/>
+            <TextBox x:Name="textProjektIDaendern" HorizontalAlignment="Left" Height="31" Margin="241,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="366" FontSize="20" IsEnabled="False" Grid.Column="1" FontFamily="Arial"/>
+            <TextBox x:Name="textBezeichnungaendern" HorizontalAlignment="Left" Height="37" Margin="241,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="366" FontSize="20" SpellCheck.IsEnabled="True" Grid.Column="1" FontFamily="Arial"/>
+            <Button Content="abbrechen" HorizontalAlignment="Left" Margin="114,295,0,0" VerticalAlignment="Top" Width="142" FontSize="18" Height="51" Background="#FFDE1010" Click="abbrechen_Click" Grid.Column="1" FontFamily="Arial"/>
+            <Button Content="aendern" HorizontalAlignment="Left" Margin="401,294,0,0" VerticalAlignment="Top" Width="145" FontSize="18" Height="51" BorderBrush="#FF2BE20F" Click="aendern_Click" Foreground="Black" Background="#FF2EC516" Grid.Column="1" FontFamily="Arial"/>
 
         </Grid>
 

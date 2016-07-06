@@ -3,22 +3,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Kriteriumverwaltung" Height="307.5" Width="819.5" Icon="Resources/Laundry_12-512.png" Closing="KriteriumverwaltungClosing">
     <Grid>
-        <ListBox x:Name="listeKriterium" HorizontalAlignment="Left" Height="170" Margin="14,13,0,0" VerticalAlignment="Top" Width="349" SelectionChanged="item_selected"/>
-        <Button x:Name="kriterium_anlegen" Content="neu anlegen" HorizontalAlignment="Left" Margin="14,188,0,0" VerticalAlignment="Top" Width="74" Click="anlegen_Click"/>
-        <Button x:Name="kriterium_loeschen" Content="loeschen" HorizontalAlignment="Left" Margin="613,163,0,0" VerticalAlignment="Top" Width="74" Click="kriterium_loeschen_Click" IsEnabled="False"/>
-        <Button x:Name="kriterium_aendern" Content="speichern" HorizontalAlignment="Left" Margin="703,163,0,0" VerticalAlignment="Top" Width="74" Click="kriteriumAendern_Click" IsEnabled="False"/>
-        <Label Content="ID" HorizontalAlignment="Left" Margin="381,82,0,0" VerticalAlignment="Top"/>
-        <Label Content="Bezeichnung&#xD;&#xA;" HorizontalAlignment="Left" Margin="382,118,0,0" VerticalAlignment="Top" Height="28" RenderTransformOrigin="-0.397,0.571"/>
-        <TextBox x:Name="details_ID" HorizontalAlignment="Left" Height="23" Margin="492,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" IsEnabled="False"/>
-        <TextBox x:Name="details_Bezeichnung" HorizontalAlignment="Left" Height="23" Margin="492,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" SpellCheck.IsEnabled="True" IsEnabled="False" />
-        <Label Content="ProduktID" HorizontalAlignment="Left" Margin="381,45,0,0" VerticalAlignment="Top"/>
-        <Label Content="ProjektID" HorizontalAlignment="Left" Margin="381,10,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="struktur" Content="Strukturverwaltung" HorizontalAlignment="Left" Margin="618,209,0,0" VerticalAlignment="Top" Width="161" Click="struktur_Click" IsEnabled="False"/>
-        <Button x:Name="nutzwert" Content="Nutzwerterwaltung" HorizontalAlignment="Left" Margin="618,236,0,0" VerticalAlignment="Top" Width="161" IsEnabled="False" Click="nutzwert_Click"/>
-        <ComboBox x:Name="listeProjektID" HorizontalAlignment="Left" Margin="491,13,0,0" VerticalAlignment="Top" Width="283" SelectionChanged="listeProjektID_SelectionChanged"/>
-        <ComboBox x:Name="listeProduktID" HorizontalAlignment="Left" Margin="492,49,0,0" VerticalAlignment="Top" Width="283" SelectionChanged="listeProduktID_SelectionChanged"/>
-        <Button x:Name="Tree" Content="Tree" HorizontalAlignment="Left" Margin="14,236,0,0" VerticalAlignment="Top" Width="75" Click="Tree_Click" IsEnabled="False"/>
-        <Button x:Name="drucken" Content="drucken" HorizontalAlignment="Left" Margin="274,236,0,0" VerticalAlignment="Top" Width="75" Click="drucken_Click"/>
+        <ListBox x:Name="listeKriterium" HorizontalAlignment="Left" Height="170" Margin="14,13,0,0" VerticalAlignment="Top" Width="349" SelectionChanged="item_selected" FontFamily="Arial"/>
+        <Button x:Name="kriterium_anlegen" Content="neu anlegen" HorizontalAlignment="Left" Margin="14,188,0,0" VerticalAlignment="Top" Width="74" Click="anlegen_Click" FontFamily="Arial"/>
+        <Button x:Name="kriterium_loeschen" Content="loeschen" HorizontalAlignment="Left" Margin="613,163,0,0" VerticalAlignment="Top" Width="74" Click="kriterium_loeschen_Click" IsEnabled="False" FontFamily="Arial"/>
+        <Button x:Name="kriterium_aendern" Content="speichern" HorizontalAlignment="Left" Margin="703,163,0,0" VerticalAlignment="Top" Width="74" Click="kriteriumAendern_Click" IsEnabled="False" FontFamily="Arial"/>
+        <Label Content="ID" HorizontalAlignment="Left" Margin="381,82,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
+        <Label Content="Bezeichnung&#xD;&#xA;" HorizontalAlignment="Left" Margin="382,118,0,0" VerticalAlignment="Top" Height="28" RenderTransformOrigin="-0.397,0.571" FontFamily="Arial"/>
+        <TextBox x:Name="details_ID" HorizontalAlignment="Left" Height="23" Margin="492,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" IsEnabled="False" FontFamily="Arial"/>
+        <TextBox x:Name="details_Bezeichnung" HorizontalAlignment="Left" Height="23" Margin="492,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="283" SpellCheck.IsEnabled="True" IsEnabled="False" FontFamily="Arial" />
+        <Label Content="ProduktID" HorizontalAlignment="Left" Margin="381,45,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
+        <Label Content="ProjektID" HorizontalAlignment="Left" Margin="381,10,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
+        <Button x:Name="struktur" Content="Strukturverwaltung" HorizontalAlignment="Left" Margin="618,209,0,0" VerticalAlignment="Top" Width="161" Click="struktur_Click" IsEnabled="False" FontFamily="Arial"/>
+        <Button x:Name="nutzwert" Content="Nutzwerterwaltung" HorizontalAlignment="Left" Margin="618,236,0,0" VerticalAlignment="Top" Width="161" IsEnabled="False" Click="nutzwert_Click" FontFamily="Arial"/>
+        <ComboBox x:Name="listeProjektID" HorizontalAlignment="Left" Margin="491,13,0,0" VerticalAlignment="Top" Width="283" SelectionChanged="listeProjektID_SelectionChanged" FontFamily="Arial"/>
+        <ComboBox x:Name="listeProduktID" HorizontalAlignment="Left" Margin="492,49,0,0" VerticalAlignment="Top" Width="283" SelectionChanged="listeProduktID_SelectionChanged" FontFamily="Arial"/>
+        <Button x:Name="Tree" Content="Tree" HorizontalAlignment="Left" Margin="14,236,0,0" VerticalAlignment="Top" Width="75" Click="Tree_Click" IsEnabled="False" FontFamily="Arial"/>
+        <Button x:Name="drucken" Content="drucken" HorizontalAlignment="Left" Margin="274,236,0,0" VerticalAlignment="Top" Width="75" Click="drucken_Click" FontFamily="Arial"/>
 
     </Grid>
 </Window>

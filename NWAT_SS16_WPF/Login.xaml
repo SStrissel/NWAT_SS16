@@ -6,17 +6,17 @@
         <TextBox x:Name="server" HorizontalAlignment="Left" Height="18" Margin="402,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Text="db4free.net" FontFamily="Arial"/>
         <TextBox x:Name="datenbank" HorizontalAlignment="Left" Height="18" Margin="402,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Text="nwat" FontFamily="Arial"/>
         <TextBox x:Name="benutzer" HorizontalAlignment="Left" Height="18" Margin="402,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Text="nutzwertadmin" FontFamily="Arial"/>
-        <Label Content="Server&#xD;&#xA;" HorizontalAlignment="Left" Margin="323,109,0,0" VerticalAlignment="Top" Height="24" Width="81"/>
-        <Label Content="Datenbank&#xA;" HorizontalAlignment="Left" Margin="323,136,0,0" VerticalAlignment="Top" Height="24" Width="80"/>
-        <Label Content="Benutzer&#xA;" HorizontalAlignment="Left" Margin="323,165,0,0" VerticalAlignment="Top" Height="24" Width="80"/>
-        <Label Content="Passwort&#xA;" HorizontalAlignment="Left" Margin="323,194,0,0" VerticalAlignment="Top" Height="24" Width="80"/>
+        <Label Content="Server&#xD;&#xA;" HorizontalAlignment="Left" Margin="323,109,0,0" VerticalAlignment="Top" Height="24" Width="81" FontFamily="Arial"/>
+        <Label Content="Datenbank&#xA;" HorizontalAlignment="Left" Margin="323,136,0,0" VerticalAlignment="Top" Height="24" Width="80" FontFamily="Arial"/>
+        <Label Content="Benutzer&#xA;" HorizontalAlignment="Left" Margin="323,165,0,0" VerticalAlignment="Top" Height="24" Width="80" FontFamily="Arial"/>
+        <Label Content="Passwort&#xA;" HorizontalAlignment="Left" Margin="323,194,0,0" VerticalAlignment="Top" Height="24" Width="80" FontFamily="Arial"/>
         <Button Content="verbinden" HorizontalAlignment="Left" Margin="483,224,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click" Height="20" FontFamily="Arial"/>
-        <TextBox x:Name="infoBox" HorizontalAlignment="Left" Height="60" Margin="321,252,0,0" TextWrapping="Wrap" Text="Geben Sie das Passwort zur Datenbank ein" VerticalAlignment="Top" Width="239" IsEnabled="False"/>
+        <TextBox x:Name="infoBox" HorizontalAlignment="Left" Height="60" Margin="321,252,0,0" TextWrapping="Wrap" Text="Geben Sie das Passwort zur Datenbank ein" VerticalAlignment="Top" Width="239" IsEnabled="False" FontFamily="Arial"/>
         <Image Margin="22,50,0,0" Source="Resources/washing-512.png" HorizontalAlignment="Left" Width="274" Height="259" VerticalAlignment="Top"/>
         <Label Content="Julian Huber, Mehmet Tektas, Team, Kurt Wusterhausen&#xD;&#xA;" HorizontalAlignment="Left" Margin="-365,361" VerticalAlignment="Top" Height="3" Width="358"/>
-        <Label Content="Nutzwertanalyse-Tool" HorizontalAlignment="Left" Margin="35,12,0,0" VerticalAlignment="Top" Height="57" Width="370" FontSize="20" FontWeight="Bold"/>
+        <Label Content="Nutzwertanalyse-Tool" HorizontalAlignment="Left" Margin="35,12,0,0" VerticalAlignment="Top" Height="57" Width="370" FontSize="20" FontWeight="Bold" FontFamily="Arial"/>
         <PasswordBox x:Name="passwort" HorizontalAlignment="Left" Margin="402,198,0,0" VerticalAlignment="Top" Width="160" Height="18" KeyDown="Passwort_KeyDown" FontFamily="Arial"/>
-        <Label Content="Julian Huber, Mehmet Tektas, Stephan Strissel, Kurt Wusterhausen" HorizontalAlignment="Left" Margin="251,355,0,0" VerticalAlignment="Top"/>
+        <Label Content="Julian Huber, Mehmet Tektas, Stephan Strissel, Kurt Wusterhausen" HorizontalAlignment="Left" Margin="251,355,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
         <Label x:Name="warnung" Content="Feststelletaste ist aktiviert" HorizontalAlignment="Left" Margin="322,221,0,0" VerticalAlignment="Top" Foreground="White" Background="Red" FontFamily="Arial"/>
 
     </Grid>
