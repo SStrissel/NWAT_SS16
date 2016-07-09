@@ -154,9 +154,18 @@ namespace NWAT_SS16
                    ExecuteSQL("INSERT INTO Projekt (ProjektID, Bezeichnung) VALUES ( " + temp_objekt.getProjektID() + ", '" + temp_objekt.getBezeichnung() + "');");
   
                 }
+            System.Windows.Forms.SaveFileDialog openFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+             
 
-                // string file = "C:\\backup.sql";
-                string file = "C:\\Users\\Mehmet.T\\Pictures\\backup.sql";
+        // OK button was pressed.
+             string file = "";
+             openFileDialog1.Filter = "SQL file|*.sql";
+             openFileDialog1.Title = "Save an sql File";
+             while (file == "")
+             {
+                openFileDialog1.ShowDialog();
+                file = openFileDialog1.FileName;
+             }
 
                 using (MySqlCommand cmd = new MySqlCommand())
                 {
