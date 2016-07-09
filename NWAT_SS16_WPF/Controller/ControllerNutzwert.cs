@@ -27,8 +27,7 @@ namespace NWAT_SS16
                 {
                     funktionsabdeckungsgrad_berechnen(temp_obj.getNutzwert(db));
                 }
-                //ZWEITE ZEILE NICHT LAUFFÄHIG!!! WARUM ZUR HÖLLE?!
-                // zweite Zeile jetzt lauffähig - Stephan
+                
             }
             else
             {

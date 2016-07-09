@@ -29,7 +29,9 @@ namespace NWAT_SS16
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Berechnen");
+            Nutzwert nutz = new Nutzwert();
+
+            cntrl.funktionsabdeckungsgrad_berechnen(nutz);            
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
