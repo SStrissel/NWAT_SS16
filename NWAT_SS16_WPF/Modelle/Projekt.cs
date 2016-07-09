@@ -22,7 +22,12 @@ namespace NWAT_SS16
 
         public Projekt(string ID)
         {
-            this.ProjektID = Int32.Parse(ID);
+            setProjektID(Int32.Parse(ID));
+        }
+
+        public Projekt(int ID)
+        {
+            setProjektID(ID);
         }
 
         public Projekt(): base() {}

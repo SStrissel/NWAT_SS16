@@ -51,7 +51,7 @@ namespace NWAT_SS16
                 temp_objekt.setBezeichnung("Neues Kriterium");
                 temp_objekt = db.insert(temp_objekt) as Kriterium;
 
-                Nutzwert temp_objekt2 = new Nutzwert(KriteriumID: temp_objekt.getKriteriumID(), ProjektID: ((Projekt)krit.listeProjektID.SelectedItem).getProjektID(), ProduktID: ((Produkt)krit.listeProjektID.SelectedItem).getProduktID());
+                Nutzwert temp_objekt2 = new Nutzwert(KriteriumID: temp_objekt.getKriteriumID(), ProjektID: ((Projekt)krit.listeProjektID.SelectedItem).getProjektID(), ProduktID: ((Produkt)krit.listeProduktID.SelectedItem).getProduktID());
                 db.insert(temp_objekt2);
                 anzeigen(temp_objekt);
                 return;

@@ -57,7 +57,7 @@ namespace NWAT_SS16
 
         private void openConnection() // Open database Connection
         {
- 
+
             try
             {
                 conn.Close();
@@ -120,7 +120,7 @@ namespace NWAT_SS16
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.ToString(), "FEHLER in ExecuteSQL",MessageBoxButton.OK);
+                MessageBox.Show(e.ToString(), "FEHLER in ExecuteSQL", MessageBoxButton.OK);
             }
             closeConnection();
         }
@@ -137,11 +137,11 @@ namespace NWAT_SS16
             {
                 MySqlCommand command = new MySqlCommand("SELECT KriteriumID FROM Autoincrement;", conn);
                 MySqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        value = (int)reader[0];
-                    }
-                    value = value + 1;
+                while (reader.Read())
+                {
+                    value = (int)reader[0];
+                }
+                value = value + 1;
                 reader.Close();
                 if (value != 0)
                 {
@@ -200,7 +200,7 @@ namespace NWAT_SS16
             int value = 0;
             if (objekt.GetType().Name == "Projekt")
             {
-               
+
                 MySqlCommand command = new MySqlCommand("SELECT ProjektID FROM Autoincrement;", conn);
                 MySqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
@@ -235,28 +235,124 @@ namespace NWAT_SS16
         /* Team 
          führt einen SQL-Befehl aus und gibt die Antwort als DataTable zurück (langsam)
         */
-        
+
         protected DataTable QuerySQL(string sSQL)
         {
             openConnection();
-            DataTable dataTable = new  DataTable();
-                 MySqlCommand cmd = new MySqlCommand(sSQL, conn);
-                 // create data adapter
-                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                 // this will query your database and return the result to your datatable
-                 try
-                 {
-                     da.Fill(dataTable);
-                 }
-                 catch (Exception e)
-                 {
-                     MessageBox.Show(e.ToString(), "FEHLER in ExecuteSQL", MessageBoxButton.OK);
-                 }
-                 closeConnection();
-                 da.Dispose();
-                 return dataTable;
+            DataTable dataTable = new DataTable();
+            MySqlCommand cmd = new MySqlCommand(sSQL, conn);
+            // create data adapter
+            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+            // this will query your database and return the result to your datatable
+            try
+            {
+                da.Fill(dataTable);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString(), "FEHLER in ExecuteSQL", MessageBoxButton.OK);
+            }
+            closeConnection();
+            da.Dispose();
+            return dataTable;
         }
 
+        /* Team
+         * forciert das Einfügen des Models in die Datenbank */
+
+        public override Model force_insert(Model objekt)
+        {
+            List<Model> return_model = null;
+            if (objekt.GetType().Name == "Projekt")
+            {
+                Projekt proj = (Projekt)objekt;
+                ExecuteSQL("INSERT INTO Projekt (ProjektID, Bezeichnung) VALUES ( " + proj.getProjektID() + ", " + proj.getBezeichnung() + ");");
+                return_model = get(proj);
+            }
+            else if (objekt.GetType().Name == "Kriterium")
+            {
+                Kriterium proj = (Kriterium)objekt;
+                ExecuteSQL("INSERT INTO Kriterium (KriteriumID, Bezeichnung) VALUES ( " + proj.getKriteriumID() + ", " + proj.getBezeichnung() + ");");
+                return_model = get(proj);
+            }
+            else if (objekt.GetType().Name == "Produkt")
+            {
+                Produkt proj = (Produkt)objekt;
+                ExecuteSQL("INSERT INTO Produkt (ProduktID, Bezeichnung) VALUES ( " + proj.getProduktID() + ", " + proj.getBezeichnung() + ");");
+                return_model = get(proj);
+            }
+            else if (objekt.GetType().Name == "Kriteriumstruktur")
+            {
+                Kriteriumstruktur proj = (Kriteriumstruktur)objekt;
+                ExecuteSQL("INSERT INTO Kriteriumstruktur (OberKriteriumID, UnterKriteriumID) VALUES ( " + proj.getOberKriteriumID() + ", " + proj.getUnterKriteriumID() + ");");
+                return_model = get(proj);
+            }
+            else if (objekt.GetType().Name == "Nutzwert")
+            {
+                Nutzwert temp_objekt = (Nutzwert)objekt;
+                ExecuteSQL("INSERT INTO NWA (KriteriumID, ProjektID, ProduktID, Erfuellung, Gewichtung, Kommentar, beitrag_absolut, beitrag_absolut_check) VALUES ( " + temp_objekt.getKriteriumID() + ", " + temp_objekt.getProjektID() + " , " + temp_objekt.getProduktID() + ", " + temp_objekt.getErfuellung() + ", " + temp_objekt.getGewichtung() + ", '" + temp_objekt.getKommentar() + "', " + temp_objekt.getBeitragAbsolut() + ", " + temp_objekt.getBeitragAbsolutCheck() + ");");
+                return_model = get(temp_objekt);
+            }
+            else 
+            {
+                throw new NotImplementedException();
+            }
+            if (return_model== null)
+            {
+                throw new NotImplementedException();
+            }
+            return return_model[0];
+        }
+
+
+        /* Team
+         * löscht Dubletten 
+         * */
+
+        public override void dubletten_loeschen()
+        {
+           List<Model> kritstrk_list = get(new Kriteriumstruktur(-1, -1));
+
+           foreach (Kriteriumstruktur kritstrk_temp in kritstrk_list)
+           {
+               List<Model> unique = get(kritstrk_temp);
+               if (unique.Count > 1)
+               {
+                       delete(unique[0]);
+                       force_insert(unique[0]);
+                       dubletten_loeschen();
+                       return;
+               }
+           }
+
+           List<Model> krit_list = get(new Kriterium(-1));
+
+           foreach (Kriterium krit_temp in krit_list)
+           {
+               List<Model> unique = get(krit_temp);
+               if (unique.Count > 1)
+               {
+                   delete(unique[0]);
+                   force_insert(unique[0]);
+                   dubletten_loeschen();
+                   return;
+               }
+           }
+
+           List<Model> proj_list = get(new Projekt(-1));
+
+           foreach (Projekt krit_temp in proj_list)
+           {
+               List<Model> unique = get(krit_temp);
+               if (unique.Count > 1)
+               {
+                   delete(unique[0]);
+                   force_insert(unique[0]);
+                   dubletten_loeschen();
+                   return;
+               }
+           }
+        }
 
         /* Team 
         fügt ein neues Model in die Datenbank ein
@@ -266,46 +362,46 @@ namespace NWAT_SS16
         {
             int myID = 0;
             List<Model> return_model = null;
-             if (objekt.GetType().Name == "Kriterium")
+            if (objekt.GetType().Name == "Kriterium")
             {
-                 Kriterium temp_objekt = (Kriterium)objekt;
-                 temp_objekt.setKriteriumID(newID(objekt)); // Autoincrement vergeben
-                 ExecuteSQL("INSERT INTO Kriterium (KriteriumID, Bezeichnung) VALUES ( " + temp_objekt.getKriteriumID() + ", '" + temp_objekt.getBezeichnung() + "');");
-                 return_model = get(temp_objekt);
+                Kriterium temp_objekt = (Kriterium)objekt;
+                temp_objekt.setKriteriumID(newID(objekt)); // Autoincrement vergeben
+                ExecuteSQL("INSERT INTO Kriterium (KriteriumID, Bezeichnung) VALUES ( " + temp_objekt.getKriteriumID() + ", '" + temp_objekt.getBezeichnung() + "');");
+                return_model = get(temp_objekt);
             }
-             else if (objekt.GetType().Name == "Nutzwert")
-             {
-                 Nutzwert temp_objekt = (Nutzwert)objekt;
-                 ExecuteSQL("INSERT INTO NWA (KriteriumID, ProjektID, ProduktID, Erfuellung, Gewichtung, Kommentar, beitrag_absolut, beitrag_absolut_check) VALUES ( " + temp_objekt.getKriteriumID() + ", " + temp_objekt.getProjektID() + " , " + temp_objekt.getProduktID() + ", " + temp_objekt.getErfuellung() + ", " + temp_objekt.getGewichtung() + ", '" + temp_objekt.getKommentar() + "', " + temp_objekt.getBeitragAbsolut() + ", " + temp_objekt.getBeitragAbsolutCheck() + ");");
-                 return_model = get(temp_objekt);
-             }
-             else if (objekt.GetType().Name == "Produkt")
-             {
-                 Produkt p = (Produkt)objekt;
-                 p.setProduktID(newID(objekt)); // Autoincrement vergeben
-                 ExecuteSQL("INSERT INTO Produkt (ProduktID, Bezeichnung) VALUES ( " + p.getProduktID() + ", '" + p.getBezeichnung() + "');");
-                 return_model = get(p);
-                 
-             }
-             else if (objekt.GetType().Name == "Projekt")
-             {
-                 Projekt proj = (Projekt)objekt;
-                 proj.setProjektID(newID(objekt)); // Autoincrement vergeben
-                 ExecuteSQL("INSERT INTO Projekt (ProjektID, Bezeichnung) VALUES ( " + proj.getProjektID() + ", '" + proj.getBezeichnung() + "');");
-                 return_model = get(proj);
-             }
-             else if (objekt.GetType().Name == "Kriteriumstruktur")
-             {
-                 Kriteriumstruktur temp_objekt = (Kriteriumstruktur)objekt;
-                 myID = temp_objekt.getOberKriteriumID(); // Hat kein Autoincrement
-                 ExecuteSQL("INSERT INTO Kriteriumstruktur (OberKriteriumID, UnterKriteriumID) VALUES ( " +  temp_objekt.getOberKriteriumID() + ", '" + temp_objekt.getUnterKriteriumID() + "');");
-                 return_model = get(temp_objekt);
-             }
-             if (return_model == null)
-             {
-                 throw new NotImplementedException();
-             }
-             return return_model[0];
+            else if (objekt.GetType().Name == "Nutzwert")
+            {
+                Nutzwert temp_objekt = (Nutzwert)objekt;
+                ExecuteSQL("INSERT INTO NWA (KriteriumID, ProjektID, ProduktID, Erfuellung, Gewichtung, Kommentar, beitrag_absolut, beitrag_absolut_check) VALUES ( " + temp_objekt.getKriteriumID() + ", " + temp_objekt.getProjektID() + " , " + temp_objekt.getProduktID() + ", " + temp_objekt.getErfuellung() + ", " + temp_objekt.getGewichtung() + ", '" + temp_objekt.getKommentar() + "', " + temp_objekt.getBeitragAbsolut() + ", " + temp_objekt.getBeitragAbsolutCheck() + ");");
+                return_model = get(temp_objekt);
+            }
+            else if (objekt.GetType().Name == "Produkt")
+            {
+                Produkt p = (Produkt)objekt;
+                p.setProduktID(newID(objekt)); // Autoincrement vergeben
+                ExecuteSQL("INSERT INTO Produkt (ProduktID, Bezeichnung) VALUES ( " + p.getProduktID() + ", '" + p.getBezeichnung() + "');");
+                return_model = get(p);
+
+            }
+            else if (objekt.GetType().Name == "Projekt")
+            {
+                Projekt proj = (Projekt)objekt;
+                proj.setProjektID(newID(objekt)); // Autoincrement vergeben
+                ExecuteSQL("INSERT INTO Projekt (ProjektID, Bezeichnung) VALUES ( " + proj.getProjektID() + ", '" + proj.getBezeichnung() + "');");
+                return_model = get(proj);
+            }
+            else if (objekt.GetType().Name == "Kriteriumstruktur")
+            {
+                Kriteriumstruktur temp_objekt = (Kriteriumstruktur)objekt;
+                myID = temp_objekt.getOberKriteriumID(); // Hat kein Autoincrement
+                ExecuteSQL("INSERT INTO Kriteriumstruktur (OberKriteriumID, UnterKriteriumID) VALUES ( " + temp_objekt.getOberKriteriumID() + ", '" + temp_objekt.getUnterKriteriumID() + "');");
+                return_model = get(temp_objekt);
+            }
+            if (return_model == null)
+            {
+                throw new NotImplementedException();
+            }
+            return return_model[0];
         }
 
 
@@ -314,76 +410,75 @@ namespace NWAT_SS16
         */
         public override void init_tables()
         {
+            create_autoincrement();
             create_projekt();
             create_produkt();
             create_kriterium();
             create_nwa();
-            create_autoincrement();
-            create_kriteriumstruktur();         
-     
-       }
+            create_kriteriumstruktur();
+        }
 
         /* initialisert eine Tabelle */
         override public void create_projekt()
-            {
-             ExecuteSQL("CREATE TABLE Projekt (ProjektID int, Bezeichnung varchar(255));");
+        {
+            ExecuteSQL("CREATE TABLE Projekt (ProjektID int, Bezeichnung varchar(255));");
             ExecuteSQL("INSERT INTO Projekt (ProjektID, Bezeichnung) VALUES (0,'StandardProjekt');");
-              ExecuteSQL("UPDATE Autoincrement SET ProjektID=0;");
+            ExecuteSQL("UPDATE Autoincrement SET ProjektID=0;");
         }
-       override public void create_produkt()
-            {
-             ExecuteSQL("CREATE TABLE Produkt (ProduktID int, Bezeichnung varchar(255));");
-                     ExecuteSQL("INSERT INTO Produkt (ProduktID, Bezeichnung) VALUES (0,'StandardProdukt');");
-        ExecuteSQL("UPDATE Autoincrement SET ProduktID=0;");
+        override public void create_produkt()
+        {
+            ExecuteSQL("CREATE TABLE Produkt (ProduktID int, Bezeichnung varchar(255));");
+            ExecuteSQL("INSERT INTO Produkt (ProduktID, Bezeichnung) VALUES (0,'StandardProdukt');");
+            ExecuteSQL("UPDATE Autoincrement SET ProduktID=0;");
 
         }
         override public void create_kriterium()
-            {            
+        {
             ExecuteSQL("CREATE TABLE Kriterium (KriteriumID int, Bezeichnung varchar(255));");
             ExecuteSQL("INSERT INTO Kriterium (KriteriumID, Bezeichnung) VALUES (0,'StandardKriterium');");
             ExecuteSQL("UPDATE Autoincrement SET KriteriumID=0;");
         }
-       override public void create_nwa()
-            {
+        override public void create_nwa()
+        {
             ExecuteSQL("CREATE TABLE NWA (ProjektID int, KriteriumID int, ProduktID int, Erfuellung boolean, Gewichtung int, Kommentar varchar(255), beitrag_absolut double, beitrag_absolut_check boolean);");
             ExecuteSQL("INSERT INTO NWA (ProjektID, KriteriumID, ProduktID, Erfuellung, Gewichtung, Kommentar, beitrag_absolut, beitrag_absolut_check) VALUES (0,0,0,1,0,'StandardNWA', 0, 1);");
         }
         override public void create_autoincrement()
-            {
-             ExecuteSQL("CREATE TABLE Autoincrement (ProjektID int, KriteriumID int, ProduktID int);");
+        {
+            ExecuteSQL("CREATE TABLE Autoincrement (ProjektID int, KriteriumID int, ProduktID int);");
             ExecuteSQL("INSERT INTO Autoincrement (ProjektID, KriteriumID, ProduktID) VALUES (0,0,0);");
         }
 
         override public void create_kriteriumstruktur()
         {
-          ExecuteSQL("CREATE TABLE Kriteriumstruktur (OberKriteriumID int, UnterKriteriumID int);");
+            ExecuteSQL("CREATE TABLE Kriteriumstruktur (OberKriteriumID int, UnterKriteriumID int);");
         }
 
 
         /* löscht eine Tabelle */
-        
+
         override public void drop_projekt()
         {
-             ExecuteSQL("DROP TABLE Projekt;");
+            ExecuteSQL("DROP TABLE Projekt;");
         }
         override public void drop_produkt()
-                   {
+        {
             ExecuteSQL("DROP TABLE Produkt;");
         }
         override public void drop_kriterium()
-               {
+        {
             ExecuteSQL("DROP TABLE Kriterium;");
         }
         override public void drop_nwa()
-                   {
-             ExecuteSQL("DROP TABLE NWA;");
+        {
+            ExecuteSQL("DROP TABLE NWA;");
         }
         override public void drop_autoincrement()
-                   {
-             ExecuteSQL("DROP TABLE Autoincrement;");
+        {
+            ExecuteSQL("DROP TABLE Autoincrement;");
         }
         override public void drop_kriteriumstruktur()
-                   {
+        {
             ExecuteSQL("DROP TABLE Kriteriumstruktur;");
         }
 
@@ -392,20 +487,20 @@ namespace NWAT_SS16
         */
         public override void drop_tables()
         {
-          
-        drop_projekt();
-        drop_produkt();
-        drop_kriterium();
-        drop_nwa();
-        drop_autoincrement();
-        drop_kriteriumstruktur();      
+
+            drop_projekt();
+            drop_produkt();
+            drop_kriterium();
+            drop_nwa();
+            drop_autoincrement();
+            drop_kriteriumstruktur();
 
         }
 
         /*lösche Inhalt einer Datenbank */
         override public void reset_projekt()
         {
-           drop_projekt();
+            drop_projekt();
             create_projekt();
         }
         override public void reset_produkt()
@@ -443,7 +538,7 @@ namespace NWAT_SS16
             if (objekt.GetType().Name == "Kriterium")
             {
                 Kriterium temp_objekt = (Kriterium)objekt;
-                if (temp_objekt.getKriteriumID() != 0)
+                if (temp_objekt.getKriteriumID() >= 0)
                 {
                     ExecuteSQL("DELETE FROM Kriterium WHERE KriteriumID = '" + temp_objekt.getKriteriumID() + "';");
                 }
@@ -479,7 +574,7 @@ namespace NWAT_SS16
             else if (objekt.GetType().Name == "Projekt")
             {
                 Projekt temp_objekt = (Projekt)objekt;
-                if (temp_objekt.getProjektID() != 0)
+                if (temp_objekt.getProjektID() >= 0)
                 {
                     ExecuteSQL("DELETE FROM Projekt WHERE ProjektID = '" + temp_objekt.getProjektID() + "';");
                 }
@@ -534,7 +629,7 @@ namespace NWAT_SS16
                 {
                     if (temp_objekt.getProduktID() == -1)
                     {
-                        ExecuteSQL("UPDATE NWA SET Gewichtung=" + temp_objekt.getGewichtung() + " WHERE KriteriumID = " + temp_objekt.getKriteriumID() + " AND ProjektID = " + temp_objekt.getProjektID() + ";"); 
+                        ExecuteSQL("UPDATE NWA SET Gewichtung=" + temp_objekt.getGewichtung() + " WHERE KriteriumID = " + temp_objekt.getKriteriumID() + " AND ProjektID = " + temp_objekt.getProjektID() + ";");
                     }
                     else
                     {
@@ -544,8 +639,8 @@ namespace NWAT_SS16
                 else
                 {
                     insert(temp_objekt);
-               }
                 }
+            }
             else if (objekt.GetType().Name == "Produkt")
             {
                 Produkt temp_objekt = (Produkt)objekt;
@@ -631,21 +726,32 @@ namespace NWAT_SS16
             return return_list;
         }
 
-         /* Team 
-            generische get-Methode
-         */
+        /* Team 
+           generische get-Methode
+        */
         public List<Model> get(Model objekt)
         {
             List<Model> return_list = new List<Model>();
             if (objekt.GetType().Name == "Kriterium")
             {
                 Kriterium temp_obj = (Kriterium)objekt;
-                if (temp_obj.getKriteriumID() == 0)
+                if (temp_obj.getKriteriumID() == -1)
                 {
                     DataTable temp_datatable = QuerySQL("SELECT * FROM Kriterium;");
                     foreach (DataRow row in temp_datatable.Rows)
                     {
-                       Kriterium temp_model = new Kriterium();
+                        Kriterium temp_model = new Kriterium();
+                        temp_model.setKriteriumID((int)row[0]);
+                        temp_model.setBezeichnung((string)row[1]);
+                        return_list.Add(temp_model);
+                    }
+                } 
+                else if (temp_obj.getKriteriumID() == 0) // falsch noch korrigieren!
+                {
+                    DataTable temp_datatable = QuerySQL("SELECT * FROM Kriterium;");
+                    foreach (DataRow row in temp_datatable.Rows)
+                    {
+                        Kriterium temp_model = new Kriterium();
                         temp_model.setKriteriumID((int)row[0]);
                         temp_model.setBezeichnung((string)row[1]);
                         return_list.Add(temp_model);
@@ -657,7 +763,7 @@ namespace NWAT_SS16
                     DataTable temp_datatable = QuerySQL("SELECT * FROM Kriterium WHERE KriteriumID = " + temp_obj.getKriteriumID() + ";");
                     foreach (DataRow row in temp_datatable.Rows)
                     {
-                       Kriterium temp_model = new Kriterium();
+                        Kriterium temp_model = new Kriterium();
                         temp_model.setKriteriumID((int)row[0]);
                         temp_model.setBezeichnung((string)row[1]);
                         return_list.Add(temp_model);
@@ -668,16 +774,17 @@ namespace NWAT_SS16
             else if (objekt.GetType().Name == "Nutzwert")
             {
                 Nutzwert temp_obj = (Nutzwert)objekt;
-                if (temp_obj.getProduktID() == -1)
+                if (temp_obj.getProduktID() == -1 && temp_obj.getProjektID() != -1 && temp_obj.getKriteriumID() != -1)
                 {
                     DataTable temp_datatable = QuerySQL("SELECT * FROM NWA WHERE KriteriumID = " + temp_obj.getKriteriumID() + " AND ProjektID = " + temp_obj.getProjektID() + ";");
                     foreach (DataRow row in temp_datatable.Rows)
                     {
                         Nutzwert temp_model = new Nutzwert(ProjektID: (int)row[0], KriteriumID: (int)row[1], ProduktID: (int)row[2], Erfuellung: (bool)row[3], Gewichtung: (int)row[4], Kommentar: (string)row[5], BeitragAbsolut: (double)row[6], BeitragAbsolutCheck: (bool)row[7]);
                         return_list.Add(temp_model);
-                    }     
+                    }
 
-                }else if (temp_obj.getKriteriumID() >= 0)
+                }
+                else if (temp_obj.getKriteriumID() >= 0)
                 {
                     DataTable temp_datatable = QuerySQL("SELECT * FROM NWA WHERE KriteriumID = " + temp_obj.getKriteriumID() + " AND ProjektID = " + temp_obj.getProjektID() + " AND ProduktID = " + temp_obj.getProduktID() + ";");
                     foreach (DataRow row in temp_datatable.Rows)
@@ -699,7 +806,7 @@ namespace NWAT_SS16
                         {
                             // checken ob ein NWA-Objekt mit Gewichtung für das Projekt exestiert
                             List<Model> projekt_objekt = this.get(new Nutzwert(KriteriumID: temp_obj.getKriteriumID(), ProjektID: temp_obj.getProjektID(), ProduktID: -1));
-                            if (projekt_objekt.Count  == 0)
+                            if (projekt_objekt.Count == 0)
                             {
                                 // Gewichtung ebenfalls aus Standard-NWA-Objekt holen
                                 return_list.Add(insert(new Nutzwert(KriteriumID: temp_obj.getKriteriumID(), ProjektID: temp_obj.getProjektID(), ProduktID: temp_obj.getProduktID(), Erfuellung: ((Nutzwert)standard_objekt[0]).getErfuellung(), Gewichtung: ((Nutzwert)standard_objekt[0]).getGewichtung())));
@@ -718,7 +825,7 @@ namespace NWAT_SS16
                         return_list.Add(insert(new Nutzwert(KriteriumID: temp_obj.getKriteriumID(), ProjektID: temp_obj.getProjektID(), ProduktID: temp_obj.getProduktID(), Erfuellung: standard_objekt.getErfuellung(), Gewichtung: standard_objekt.getGewichtung())));
                     }
                 }
-                else
+                else if (temp_obj.getProjektID() != -1 && temp_obj.getProduktID() != -1)
                 {
                     DataTable temp_datatable = QuerySQL("SELECT * FROM NWA WHERE ProjektID = " + temp_obj.getProjektID() + " AND ProduktID = " + temp_obj.getProduktID() + ";");
                     foreach (DataRow row in temp_datatable.Rows)
@@ -726,6 +833,19 @@ namespace NWAT_SS16
                         Nutzwert temp_model = new Nutzwert(ProjektID: (int)row[0], KriteriumID: (int)row[1], ProduktID: (int)row[2], Erfuellung: (bool)row[3], Gewichtung: (int)row[4], Kommentar: (string)row[5], BeitragAbsolut: (double)row[6], BeitragAbsolutCheck: (bool)row[7]);
                         return_list.Add(temp_model);
                     }
+                }
+                else if (temp_obj.getProjektID() != -1 && temp_obj.getProduktID() == -1)
+                {
+                    DataTable temp_datatable = QuerySQL("SELECT * FROM NWA WHERE ProjektID = " + temp_obj.getProjektID() + ";");
+                    foreach (DataRow row in temp_datatable.Rows)
+                    {
+                        Nutzwert temp_model = new Nutzwert(ProjektID: (int)row[0], KriteriumID: (int)row[1], ProduktID: (int)row[2], Erfuellung: (bool)row[3], Gewichtung: (int)row[4], Kommentar: (string)row[5], BeitragAbsolut: (double)row[6], BeitragAbsolutCheck: (bool)row[7]);
+                        return_list.Add(temp_model);
+                    }
+                }
+                else
+                {
+                    throw new NotImplementedException();
                 }
                 return return_list;
             }
@@ -745,13 +865,27 @@ namespace NWAT_SS16
             else if (objekt.GetType().Name == "Projekt")
             {
                 Projekt temp_obj = (Projekt)objekt;
-                DataTable temp_datatable = QuerySQL("SELECT * FROM Projekt;");
-                foreach (DataRow row in temp_datatable.Rows)
+                if (temp_obj.getProjektID() > 0)
                 {
-                    Projekt temp_model = new Projekt();
-                    temp_model.setProjektID((int)row[0]);
-                    temp_model.setBezeichnung((string)row[1]);
-                    return_list.Add(temp_model);
+                    DataTable temp_datatable = QuerySQL("SELECT * FROM Projekt WHERE ProjektID = " + temp_obj.getProjektID() + ";");
+                    foreach (DataRow row in temp_datatable.Rows)
+                    {
+                        Projekt temp_model = new Projekt();
+                        temp_model.setProjektID((int)row[0]);
+                        temp_model.setBezeichnung((string)row[1]);
+                        return_list.Add(temp_model);
+                    }
+                }
+                else
+                {
+                    DataTable temp_datatable = QuerySQL("SELECT * FROM Projekt;");
+                    foreach (DataRow row in temp_datatable.Rows)
+                    {
+                        Projekt temp_model = new Projekt();
+                        temp_model.setProjektID((int)row[0]);
+                        temp_model.setBezeichnung((string)row[1]);
+                        return_list.Add(temp_model);
+                    }
                 }
                 return return_list;
             }
@@ -759,7 +893,18 @@ namespace NWAT_SS16
             {
                 Kriteriumstruktur temp_obj = (Kriteriumstruktur)objekt;
                 DataTable temp_datatable;
-                if (temp_obj.getOberKriteriumID() != 0 && temp_obj.getUnterKriteriumID() == 0)
+                if (temp_obj.getUnterKriteriumID() == -1 && temp_obj.getOberKriteriumID() == -1)
+                {
+                    temp_datatable = QuerySQL("SELECT * FROM Kriteriumstruktur;");
+                    foreach (DataRow row in temp_datatable.Rows)
+                    {
+                        Kriteriumstruktur temp_model = new Kriteriumstruktur();
+                        temp_model.setOberKriteriumID((int)row[0]);
+                        temp_model.setUnterKriteriumID((int)row[1]);
+                        return_list.Add(temp_model);
+                    }
+                }
+                else if (temp_obj.getOberKriteriumID() != 0 && temp_obj.getUnterKriteriumID() == 0)
                 {
                     temp_datatable = QuerySQL("SELECT * FROM Kriteriumstruktur WHERE OberKriteriumID = " + temp_obj.getOberKriteriumID() + ";");
                     foreach (DataRow row in temp_datatable.Rows)
@@ -794,29 +939,9 @@ namespace NWAT_SS16
                 }
                 return return_list;
             }
-             throw new NotImplementedException();
+            throw new NotImplementedException();
         }
-
-        //import
-        public override Model imp(Model objekt)
-        {
-            List<Model> return_model = null;
-           
-            if (objekt.GetType().Name == "Projekt")
-            {
-                Projekt proj = (Projekt)objekt;
-               // proj.setProjektID(newID(objekt)); // Autoincrement vergeben
-                ExecuteSQL("INSERT INTO Projekt (ProjektID, Bezeichnung) VALUES ( " + proj.getProjektID() + ", '" + proj.getBezeichnung() + "');");
-               return_model = get(proj);
-            }
-            if (return_model == null)
-            {
-                throw new NotImplementedException();
-            }
-            return return_model[0];
-        }
-
-
+        
         /* Team 
          testet, ob eine Verbindung zur Datenbank besteht
         */
@@ -824,12 +949,98 @@ namespace NWAT_SS16
         {
             try
             {
-                    conn.Open();
-                    return true;
+                conn.Open();
+                return true;
             }
             catch
             {
                 return false; // any error is considered as db connection error for now
+            }
+        }
+        public override void exp(Model objekt, DatabaseAdapter db, bool savetofile)
+        {
+
+            if (objekt == null)
+            {
+
+            }
+            if (objekt.GetType().Name == "Projekt")
+            {
+
+                Projekt temp_objekt = (Projekt)objekt;
+                if (get(temp_objekt).Count == 0)
+                {
+                    ExecuteSQL("INSERT INTO Projekt (ProjektID, Bezeichnung) VALUES ( " + temp_objekt.getProjektID() + ", '" + temp_objekt.getBezeichnung() + "');");
+                }
+                Nutzwert tempnutz_obj = new Nutzwert(ProjektID: temp_objekt.getProjektID(), KriteriumID: -1, ProduktID: -1);
+                List<Nutzwert> tempnutz_list = db.get(tempnutz_obj);
+                foreach (Nutzwert nutz_obj in tempnutz_list)
+                {
+                    if (get(nutz_obj).Count == 0)
+                    {
+                        ExecuteSQL("INSERT INTO NWA (KriteriumID, ProjektID, ProduktID, Erfuellung, Gewichtung, Kommentar, beitrag_absolut, beitrag_absolut_check) VALUES ( " + nutz_obj.getKriteriumID() + ", " + nutz_obj.getProjektID() + " , " + nutz_obj.getProduktID() + ", " + nutz_obj.getErfuellung() + ", " + nutz_obj.getGewichtung() + ", '" + nutz_obj.getKommentar() + "', " + nutz_obj.getBeitragAbsolut() + ", " + nutz_obj.getBeitragAbsolutCheck() + ");");
+                    }
+                    Produkt tempprod_obj = new Produkt(nutz_obj.getProduktID());
+                    List<Produkt> tempprod_list = db.get(tempprod_obj);
+                    foreach (Produkt prod_obj in tempprod_list)
+                    {
+                        if (get(prod_obj).Count == 0)
+                        {
+                            ExecuteSQL("INSERT INTO Produkt (ProduktID, Bezeichnung) VALUES ( " + prod_obj.getProduktID() + ", '" + prod_obj.getBezeichnung() + "');");
+                        }
+                        }
+
+                    Kriterium tempkrit_obj = new Kriterium(nutz_obj.getKriteriumID());
+                    List<Kriterium> tempkrit_list = db.get(tempkrit_obj);
+                    foreach (Kriterium krit_obj in tempkrit_list)
+                    {
+                        if (get(krit_obj).Count == 0)
+                        {
+                            ExecuteSQL("INSERT INTO Kriterium (KriteriumID, Bezeichnung) VALUES ( " + krit_obj.getKriteriumID() + ", '" + krit_obj.getBezeichnung() + "');");
+                        }
+                        Kriteriumstruktur tempkritstrk_obj = new Kriteriumstruktur(krit_obj.getKriteriumID());
+                        List<Kriteriumstruktur> tempkritstrk_list = db.get(tempkritstrk_obj);
+                        /*foreach (Kriteriumstruktur kritstrk_obj in tempkritstrk_list)
+                        {
+                            if (get(kritstrk_obj).Count == 0)
+                            {
+                                ExecuteSQL("INSERT INTO Kriteriumstruktur (OberKriteriumID, UnterKriteriumID) VALUES ( " + kritstrk_obj.getOberKriteriumID() + ", '" + kritstrk_obj.getUnterKriteriumID() + "');");
+                            }
+                            }*/
+                    }
+                }
+
+
+                if (savetofile)
+                {
+                    System.Windows.Forms.SaveFileDialog openFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+
+                    // OK button was pressed.
+                    string file = "";
+                    openFileDialog1.Filter = "SQL file|*.sql";
+                    openFileDialog1.Title = "Save an sql File";
+                    while (file == "")
+                    {
+                        openFileDialog1.ShowDialog();
+                        file = openFileDialog1.FileName;
+                    }
+
+                    using (MySqlCommand cmd = new MySqlCommand())
+                    {
+                        using (MySqlBackup mb = new MySqlBackup(cmd))
+                        {
+                            cmd.Connection = conn;
+                            conn.Open();
+                            mb.ExportToFile(file);
+                            conn.Close();
+                        }
+                    }
+                }
+
+            }
+            else
+            {
+                throw new NotImplementedException();
             }
         }
     }

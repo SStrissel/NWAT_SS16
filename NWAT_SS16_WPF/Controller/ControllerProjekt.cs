@@ -12,8 +12,8 @@ namespace NWAT_SS16
      public class ControllerProjekt : Controller
     {
 
-        public ControllerProjekt(DatabaseAdapter db, DatabaseAdabter2 db2 ,Window frm) : base(db,db2,frm){}
-      
+        public ControllerProjekt(DatabaseAdapter db, Window frm) : base(db,frm){}
+
         public override void aendern()
         {
             if (frm.GetType().Name == "Projekt_aendern")
@@ -134,7 +134,8 @@ namespace NWAT_SS16
             else if (frm.GetType().Name == "Import")
             {
                 Import i = (Import)frm;
-                List<Projekt> projekte = db2.get(new Projekt());
+                DatabaseAdapter expdb = new mySQLAdapter("db4free.net", "nwat_expimp", "nutzwertexpimp", "ad.nutz#"); // Konstruktor
+                List<Projekt> projekte = expdb.get(new Projekt());
                 if (projekte.Count() > 0)
                 {
                     i.listProjekte.ItemsSource = projekte;
@@ -197,7 +198,9 @@ namespace NWAT_SS16
             else if (frm.GetType().Name == "Import")
             {
                 Import i = (Import)frm;
-                List<Projekt> projekte = db2.get(new Projekt());
+                DatabaseAdapter expdb = new mySQLAdapter("db4free.net", "nwat_expimp", "nutzwertexpimp", "ad.nutz#"); // Konstruktor
+
+                List<Projekt> projekte = expdb.get(new Projekt());
                 //if (projekte.Count() > 0)
                 //{
                     i.listProjekte.ItemsSource = projekte;
@@ -219,7 +222,7 @@ namespace NWAT_SS16
             if (frm.GetType().Name == "Projektverwaltung")
             {
                 Projektverwaltung pv = (Projektverwaltung)frm;
-                Export ex = new Export(db, db2);
+                Export ex = new Export(db);
                 ex.ShowDialog();
                 onUpdateData();
                 pv.detailsBezeichnung.Text = "";
@@ -227,11 +230,12 @@ namespace NWAT_SS16
             }
             else if (frm.GetType().Name == "Export")
             {
+                DatabaseAdapter expdb = new mySQLAdapter("db4free.net", "nwat_expimp", "nutzwertexpimp", "ad.nutz#"); // Konstruktor
                 Export ex = (Export)frm;
                 Projekt p = new Projekt();
                 p.setProjektID(Int32.Parse(ex.textProjektIDexp.Text));
                 p.setBezeichnung(ex.textBezeichnungexp.Text);
-                db2.exp(p);
+                expdb.exp(p, db, true);
             }
         }
 
@@ -239,15 +243,18 @@ namespace NWAT_SS16
         {
             if (frm.GetType().Name == "Projektverwaltung")
             {
-                Import i = new Import(db, db2);
+                Import i = new Import(db);
                 i.ShowDialog();
                 onUpdateData();
             }
             else if (frm.GetType().Name == "Import")
             {
+                DatabaseAdapter expdb = new mySQLAdapter("db4free.net", "nwat_expimp", "nutzwertexpimp", "ad.nutz#"); // Konstruktor
+
                 Import i = (Import)frm;
-                db.imp(objekt);
-                db2.imp(objekt);
+                Projekt proj = (Projekt)objekt;
+                db.exp(proj, expdb, false);
+                expdb.delete(proj);
             }
             
         }

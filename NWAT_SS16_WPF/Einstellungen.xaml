@@ -10,6 +10,7 @@
         <Button x:Name="resetNWA" Content="reset NWA" HorizontalAlignment="Left" Margin="133,96,0,0" VerticalAlignment="Top" Width="92" Click="resetNWA_Click" FontFamily="Arial"/>
         <Button x:Name="dummyKriterien" Content="dummyKriterien" HorizontalAlignment="Left" Margin="42,132,0,0" VerticalAlignment="Top" Width="92" Click="dummyKriterien_Click" FontFamily="Arial"/>
         <Button x:Name="resetNWA_Copy" Content="reset Kriteriumstruktur" HorizontalAlignment="Left" Margin="154,132,0,0" VerticalAlignment="Top" Width="128" Click="resetNWA_Copy_Click" FontFamily="Arial"/>
+        <Button Content="Dubletten" HorizontalAlignment="Left" Margin="146,9,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
 
     </Grid>
 </Window>

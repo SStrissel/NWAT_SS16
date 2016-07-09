@@ -20,15 +20,13 @@ namespace NWAT_SS16
     public partial class Export : Window
     {
         private DatabaseAdapter db;
-        private DatabaseAdabter2 db2;
         private ControllerProjekt cp;
 
-        public Export(DatabaseAdapter db, DatabaseAdabter2 db2)
+        public Export(DatabaseAdapter db)
         {
             InitializeComponent();
             this.db = db;
-            this.db2 = db2;
-            cp = new ControllerProjekt(db, db2, this);
+            cp = new ControllerProjekt(db, this);
             textProjektIDexp.Text = Projekt.getProjektIDtemp().ToString();
             textBezeichnungexp.Text = Projekt.getBezeichnungtemp();
         }

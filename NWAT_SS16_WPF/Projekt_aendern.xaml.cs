@@ -20,13 +20,12 @@ namespace NWAT_SS16
     public partial class Projekt_aendern : Window
     {
         private DatabaseAdapter db;
-        private DatabaseAdabter2 db2;
         private ControllerProjekt cp;
         public Projekt_aendern(DatabaseAdapter db)
         {
             InitializeComponent();
             this.db = db;
-            cp = new ControllerProjekt(db,db2, this);
+            cp = new ControllerProjekt(db,this);
   
             textProjektIDaendern.Text = Projekt.getProjektIDtemp().ToString();
             textBezeichnungaendern.Text = Projekt.getBezeichnungtemp();

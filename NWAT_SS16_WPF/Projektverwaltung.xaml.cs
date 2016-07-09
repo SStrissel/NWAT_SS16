@@ -23,10 +23,10 @@ namespace NWAT_SS16
         private ControllerProjekt cp;
     
        
-        public Projektverwaltung(DatabaseAdapter db, DatabaseAdabter2 db2)
+        public Projektverwaltung(DatabaseAdapter db)
         {
             InitializeComponent();
-            cp = new ControllerProjekt(db, db2, this);
+            cp = new ControllerProjekt(db, this);
             cp.onCreateView();
             
   

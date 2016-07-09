@@ -20,16 +20,14 @@ namespace NWAT_SS16
     public partial class Import : Window
     {
         private DatabaseAdapter db;
-        private DatabaseAdabter2 db2;
         private ControllerProjekt cp;
         Model temp;
 
-        public Import(DatabaseAdapter db, DatabaseAdabter2 db2)
+        public Import(DatabaseAdapter db)
         {
             InitializeComponent();
             this.db = db;
-            this.db2 = db2;
-            cp = new ControllerProjekt(db, db2, this);
+            cp = new ControllerProjekt(db, this);
             cp.onCreateView();
         }
 

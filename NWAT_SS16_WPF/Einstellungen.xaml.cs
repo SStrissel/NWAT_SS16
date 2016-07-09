@@ -29,24 +29,32 @@ namespace NWAT_SS16
          private void resetProdukt_Click(object sender, RoutedEventArgs e)
         {
             db.reset_produkt();
+            DatabaseAdapter expdb = new mySQLAdapter("db4free.net", "nwat_expimp", "nutzwertexpimp", "ad.nutz#"); // Konstruktor
+            expdb.reset_produkt();
             infoBox.Dispatcher.BeginInvoke(new Action(() => { infoBox.Text = "Produkt-Tabelle neu initalisiert."; }));
         }
 
          private void resetKritierium_Click(object sender, RoutedEventArgs e)
          {
              db.reset_kriterium();
+             DatabaseAdapter expdb = new mySQLAdapter("db4free.net", "nwat_expimp", "nutzwertexpimp", "ad.nutz#"); // Konstruktor
+             expdb.reset_kriterium();
              infoBox.Dispatcher.BeginInvoke(new Action(() => { infoBox.Text = "Kriterium-Tabelle neu initalisiert."; }));
          }
 
          private void initTables_Click(object sender, RoutedEventArgs e)
          {
              db.init_tables();
+             DatabaseAdapter expdb = new mySQLAdapter("db4free.net", "nwat_expimp", "nutzwertexpimp", "ad.nutz#"); // Konstruktor
+             expdb.init_tables();
              infoBox.Dispatcher.BeginInvoke(new Action(() => { infoBox.Text = "Tables initialisiert."; }));
          }
 
          private void resetNWA_Click(object sender, RoutedEventArgs e)
          {
              db.reset_nwa();
+             DatabaseAdapter expdb = new mySQLAdapter("db4free.net", "nwat_expimp", "nutzwertexpimp", "ad.nutz#"); // Konstruktor
+             expdb.reset_nwa();
              infoBox.Dispatcher.BeginInvoke(new Action(() => { infoBox.Text = "NWA-Tabelle neu initalisiert."; }));
          }
 
@@ -74,7 +82,14 @@ namespace NWAT_SS16
         private void resetNWA_Copy_Click(object sender, RoutedEventArgs e)
         {
             db.reset_kriteriumstruktur();
+            DatabaseAdapter expdb = new mySQLAdapter("db4free.net", "nwat_expimp", "nutzwertexpimp", "ad.nutz#"); // Konstruktor
+            expdb.reset_kriteriumstruktur();
             infoBox.Dispatcher.BeginInvoke(new Action(() => { infoBox.Text = "Kriteriumstruktur-Tabelle neu initalisiert."; }));
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            db.dubletten_loeschen();
         }
     }
 }

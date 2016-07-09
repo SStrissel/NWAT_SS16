@@ -20,13 +20,12 @@ namespace NWAT_SS16
     public partial class Projekt_anlegen : Window
     {
         private DatabaseAdapter db;
-        private DatabaseAdabter2 db2;
         private ControllerProjekt cp;
         public Projekt_anlegen(DatabaseAdapter db)
         {
             InitializeComponent();
             this.db = db;
-            cp = new ControllerProjekt(db,db2, this);
+            cp = new ControllerProjekt(db, this);
 
             cp.anzeigen(new Projekt());
       
