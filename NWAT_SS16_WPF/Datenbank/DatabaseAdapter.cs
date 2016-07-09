@@ -21,7 +21,6 @@ namespace NWAT_SS16
         abstract public void drop_tables();
         abstract public int getID(Model objekt);
         abstract public Model imp(Model objekt);
-        //abstract public string exp(string a, string b);
 
 
         abstract public void reset_projekt();
