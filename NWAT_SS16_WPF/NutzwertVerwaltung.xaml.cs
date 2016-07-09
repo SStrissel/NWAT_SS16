@@ -30,6 +30,9 @@ namespace NWAT_SS16
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Nutzwert nutz = new Nutzwert();
+            nutz.setKriteriumID(1);
+            nutz.setProduktID(1);
+            nutz.setProjektID(1);
 
             cntrl.funktionsabdeckungsgrad_berechnen(nutz);            
         }
