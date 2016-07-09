@@ -13,22 +13,23 @@ namespace NWAT_SS16
 
         public override void aendern()
         {
+
             if (frm.GetType().Name == "Produkt_aendern")
             {
-                Produkt_aendern pa = (Produkt_aendern)frm;
-                Produkt p = new Produkt();
-                p.setProduktID(Int32.Parse(pa.textProduktIDaendern.Text));
-                p.setBezeichnung(pa.textBezeichnungaendern.Text);
+                Produkt_aendern prodaendern = (Produkt_aendern)frm;
+                Produkt prod = new Produkt();
+                prod.setProduktID(Int32.Parse(prodaendern.textProduktIDaendern.Text));
+                prod.setBezeichnung(prodaendern.textBezeichnungaendern.Text);
 
-                db.update(p);
+                db.update(prod);
                 onUpdateView();
                 return;
             }
             else if (frm.GetType().Name == "Produktverwaltung")
             {
-                Produkt_aendern pa = new Produkt_aendern(db);
-                Produkt p = new Produkt();
-                pa.ShowDialog();
+                Produkt_aendern prodaendern = new Produkt_aendern(db);
+                Produkt prod = new Produkt();
+                prodaendern.ShowDialog();
                 onUpdateData();
                 return;
             }
@@ -41,18 +42,21 @@ namespace NWAT_SS16
 
             if (frm.GetType().Name == "Produkt_anlegen")
             {
-                Produkt_anlegen pa = (Produkt_anlegen)frm;
-                Produkt p = new Produkt();
-                p.setBezeichnung(pa.textBezeichnung.Text);
+                Produkt_anlegen prodanlegen = (Produkt_anlegen)frm;
 
-                db.insert(p);
+                Produkt prod = new Produkt();
+
+                prod.setBezeichnung(prodanlegen.textBezeichnung.Text);
+
+                db.insert(prod);
+
                 onUpdateView();
                 return;
             }
             else if (frm.GetType().Name == "Produktverwaltung")
             {
-                Produkt_anlegen pa = new Produkt_anlegen(db);
-                pa.ShowDialog();
+                Produkt_anlegen prodanlegen = new Produkt_anlegen(db);
+                prodanlegen.ShowDialog();
                 onUpdateData();
                 return;
             }
@@ -66,23 +70,25 @@ namespace NWAT_SS16
             {
                 return;
             }
-            Produkt p = (Produkt)objekt;
+            Produkt prod = (Produkt)objekt;
 
             if (frm.GetType().Name == "Produktverwaltung")
             {
 
-                Produktverwaltung pv = (Produktverwaltung)frm;
+                Produktverwaltung prodverwaltung = (Produktverwaltung)frm;
 
-                pv.details_ProduktID.Text = p.getProduktID().ToString();
-                pv.details_Bezeichnung.Text = p.getBezeichnung();
+                prodverwaltung.details_ProduktID.Text = prod.getProduktID().ToString();
 
-                //onUpdateData();
+                prodverwaltung.details_Bezeichnung.Text = prod.getBezeichnung();
+
+                
                 return;
             }
             else if (frm.GetType().Name == "Produkt_anlegen")
             {
-                Produkt_anlegen pa = (Produkt_anlegen)frm;
-                pa.textProduktID.Text = db.getID(p).ToString();
+                Produkt_anlegen prodanlegen = (Produkt_anlegen)frm;
+
+                prodanlegen.textProduktID.Text = db.getID(prod).ToString();
                 return;
             }
         }
@@ -99,10 +105,13 @@ namespace NWAT_SS16
             if (frm.GetType().Name == "Produktverwaltung")
             {
 
-                Produktverwaltung pv = (Produktverwaltung)frm;
+                Produktverwaltung prodverwaltung = (Produktverwaltung)frm;
+
                 db.delete(objekt);
-                pv.details_Bezeichnung.Text = "";
-                pv.details_ProduktID.Text = "";
+
+                prodverwaltung.details_Bezeichnung.Text = "";
+                prodverwaltung.details_ProduktID.Text = "";
+
                 onUpdateData();
                 return;
             }
@@ -117,10 +126,12 @@ namespace NWAT_SS16
             if (frm.GetType().Name == "Produktverwaltung")
             {
                 Produktverwaltung prod = (Produktverwaltung)frm;
+
                 List<Produkt> produkt = db.get(new Produkt());
                   if (produkt.Count() > 0)
                  {
                 prod.listeProdukt.ItemsSource = produkt;
+
                 onUpdateView();
                  }
                 return;
@@ -149,11 +160,11 @@ namespace NWAT_SS16
             {
                 Produktverwaltung prod = (Produktverwaltung)frm;
                 List<Produkt> produkt = db.get(new Produkt());
-                //  if (produkte.Count() > 0)
-                //  {
+                
                 prod.listeProdukt.ItemsSource = produkt;
+
                 onUpdateView();
-                // }
+                
                 return;
             }
             else if (frm.GetType().Name == "Produkt_anlegen")

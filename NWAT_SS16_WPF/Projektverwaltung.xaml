@@ -4,16 +4,16 @@
         Title="Projektverwaltung" Height="492.537" Width="934.328" Icon="Resources/Laundry_12-512.png">
     <Grid>
         <ListBox x:Name="listProjekte" HorizontalAlignment="Left" Height="234" Margin="29,31,0,0" VerticalAlignment="Top" Width="407" SelectionChanged="ListBox_auswahl"/>
-        <TextBox x:Name="detailsProjektID" HorizontalAlignment="Left" Height="23" Margin="642,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" SpellCheck.IsEnabled="True" IsEnabled="False"/>
-        <TextBox x:Name="detailsBezeichnung" HorizontalAlignment="Left" Height="23" Margin="642,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <TextBox x:Name="detailsProjektID" HorizontalAlignment="Left" Height="23" Margin="642,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" SpellCheck.IsEnabled="True" IsEnabled="False" FontFamily="Arial"/>
+        <TextBox x:Name="detailsBezeichnung" HorizontalAlignment="Left" Height="23" Margin="642,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" FontFamily="Arial"/>
         <Label HorizontalAlignment="Left" Margin="602,49,0,0" VerticalAlignment="Top"/>
         <Label Content="Bezeichnung" HorizontalAlignment="Left" Margin="488,101,0,0" VerticalAlignment="Top"/>
         <Button Content="neu anlegen" HorizontalAlignment="Left" Margin="102,328,0,0" VerticalAlignment="Top" Width="75" Click="anlegen_Click"/>
-        <Button Content="aendern" HorizontalAlignment="Left" Margin="642,328,0,0" VerticalAlignment="Top" Width="75" Click="aendern_Click"/>
-        <Button Content="loeschen" HorizontalAlignment="Left" Margin="802,328,0,0" VerticalAlignment="Top" Width="75" Click="loeschen_Click"/>
+        <Button Content="aendern" HorizontalAlignment="Left" Margin="642,328,0,0" VerticalAlignment="Top" Width="75" Click="aendern_Click" FontFamily="Arial"/>
+        <Button Content="loeschen" HorizontalAlignment="Left" Margin="802,328,0,0" VerticalAlignment="Top" Width="75" Click="loeschen_Click" FontFamily="Arial"/>
         <Label Content="ProjektID" RenderTransformOrigin="-2.145,0.597" Margin="488,49,345,380"/>
-        <Button Content="Import" HorizontalAlignment="Left" Margin="440,328,0,0" VerticalAlignment="Top" Width="75" Click="import_Click"/>
-        <Button Content="Export" HorizontalAlignment="Left" Margin="300,328,0,0" VerticalAlignment="Top" Width="75" Click="export_Click"/>
+        <Button Content="Import" HorizontalAlignment="Left" Margin="440,328,0,0" VerticalAlignment="Top" Width="75" Click="import_Click" FontFamily="Arial"/>
+        <Button Content="Export" HorizontalAlignment="Left" Margin="300,328,0,0" VerticalAlignment="Top" Width="75" Click="export_Click" FontFamily="Arial"/>
 
     </Grid>
 </Window>

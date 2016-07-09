@@ -26,5 +26,20 @@ namespace NWAT_SS16
             cntrl = new ControllerNutzwert(db, this);
             cntrl.onCreateView();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Berechnen");
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Ranking");
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Gleichgewichten");
+        }
     }
 }

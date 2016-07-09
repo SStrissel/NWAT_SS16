@@ -257,6 +257,28 @@ namespace NWAT_SS16
                  return dataTable;
         }
 
+<<<<<<< HEAD
+=======
+        public override  string exp(string a, string b)
+        {
+           // string file = "C:\\backup.sql";
+            string file = "C:\\Users\\Mehmet.T\\Pictures\\backup.sql";
+           
+                using (MySqlCommand cmd = new MySqlCommand())
+                {
+                    using (MySqlBackup mb = new MySqlBackup(cmd))
+                    {
+                        cmd.Connection = conn;
+                        //conn.Open();
+                        mb.ExportToFile(file);
+                        //conn.Close();
+                    }
+            }
+           ExecuteSQL("INSERT INTO Projekt (ProjektID, Bezeichnung) VALUES ( " + a + ", '" + b + "');");
+           return "";
+               
+        }
+>>>>>>> origin/master
         /* Team 
         fügt ein neues Model in die Datenbank ein
         */
@@ -531,8 +553,14 @@ namespace NWAT_SS16
                 Nutzwert temp_objekt = (Nutzwert)objekt;
                 if (get(temp_objekt).Count != 0)
                 {
-                    ExecuteSQL("UPDATE NWA SET Kommentar='" + temp_objekt.getKommentar() + "', Erfuellung=" + temp_objekt.getErfuellung() + ", Gewichtung=" + temp_objekt.getGewichtung() + ", beitrag_absolut=" + temp_objekt.getBeitragAbsolut().ToString().Replace(",", ".") + ", beitrag_absolut_check=" + temp_objekt.getBeitragAbsolutCheck() + " WHERE KriteriumID = " + temp_objekt.getKriteriumID() + " AND ProjektID = " + temp_objekt.getProjektID() + " AND ProduktID = " + temp_objekt.getProduktID() + ";");
-      
+                    if (temp_objekt.getProduktID() == -1)
+                    {
+                        ExecuteSQL("UPDATE NWA SET Gewichtung=" + temp_objekt.getGewichtung() + " WHERE KriteriumID = " + temp_objekt.getKriteriumID() + " AND ProjektID = " + temp_objekt.getProjektID() + ";"); 
+                    }
+                    else
+                    {
+                        ExecuteSQL("UPDATE NWA SET Kommentar='" + temp_objekt.getKommentar() + "', Erfuellung=" + temp_objekt.getErfuellung() + ", Gewichtung=" + temp_objekt.getGewichtung() + ", beitrag_absolut=" + temp_objekt.getBeitragAbsolut().ToString().Replace(",", ".") + ", beitrag_absolut_check=" + temp_objekt.getBeitragAbsolutCheck() + " WHERE KriteriumID = " + temp_objekt.getKriteriumID() + " AND ProjektID = " + temp_objekt.getProjektID() + " AND ProduktID = " + temp_objekt.getProduktID() + ";");
+                    }
                 }
                 else
                 {
@@ -661,7 +689,16 @@ namespace NWAT_SS16
             else if (objekt.GetType().Name == "Nutzwert")
             {
                 Nutzwert temp_obj = (Nutzwert)objekt;
-                if (temp_obj.getKriteriumID() >= 0)
+                if (temp_obj.getProduktID() == -1)
+                {
+                    DataTable temp_datatable = QuerySQL("SELECT * FROM NWA WHERE KriteriumID = " + temp_obj.getKriteriumID() + " AND ProjektID = " + temp_obj.getProjektID() + ";");
+                    foreach (DataRow row in temp_datatable.Rows)
+                    {
+                        Nutzwert temp_model = new Nutzwert(ProjektID: (int)row[0], KriteriumID: (int)row[1], ProduktID: (int)row[2], Erfuellung: (bool)row[3], Gewichtung: (int)row[4], Kommentar: (string)row[5], BeitragAbsolut: (double)row[6], BeitragAbsolutCheck: (bool)row[7]);
+                        return_list.Add(temp_model);
+                    }     
+
+                }else if (temp_obj.getKriteriumID() >= 0)
                 {
                     DataTable temp_datatable = QuerySQL("SELECT * FROM NWA WHERE KriteriumID = " + temp_obj.getKriteriumID() + " AND ProjektID = " + temp_obj.getProjektID() + " AND ProduktID = " + temp_obj.getProduktID() + ";");
                     foreach (DataRow row in temp_datatable.Rows)
@@ -681,7 +718,18 @@ namespace NWAT_SS16
                         }
                         else
                         {
-                            return_list.Add(insert(new Nutzwert(KriteriumID: temp_obj.getKriteriumID(), ProjektID: temp_obj.getProjektID(), ProduktID: temp_obj.getProduktID(), Erfuellung: ((Nutzwert)standard_objekt[0]).getErfuellung(), Gewichtung: ((Nutzwert)standard_objekt[0]).getGewichtung())));
+                            // checken ob ein NWA-Objekt mit Gewichtung für das Projekt exestiert
+                            List<Model> projekt_objekt = this.get(new Nutzwert(KriteriumID: temp_obj.getKriteriumID(), ProjektID: temp_obj.getProjektID(), ProduktID: -1));
+                            if (projekt_objekt.Count  == 0)
+                            {
+                                // Gewichtung ebenfalls aus Standard-NWA-Objekt holen
+                                return_list.Add(insert(new Nutzwert(KriteriumID: temp_obj.getKriteriumID(), ProjektID: temp_obj.getProjektID(), ProduktID: temp_obj.getProduktID(), Erfuellung: ((Nutzwert)standard_objekt[0]).getErfuellung(), Gewichtung: ((Nutzwert)standard_objekt[0]).getGewichtung())));
+                            }
+                            else
+                            {
+                                // Gewichtung aus dem NWA-Projekt-Objekt holen
+                                return_list.Add(insert(new Nutzwert(KriteriumID: temp_obj.getKriteriumID(), ProjektID: temp_obj.getProjektID(), ProduktID: temp_obj.getProduktID(), Erfuellung: ((Nutzwert)standard_objekt[0]).getErfuellung(), Gewichtung: ((Nutzwert)projekt_objekt[0]).getGewichtung())));
+                            }
                         }
                         /* Wenn kein Standard-NWA-Model gefunden wurde, wird dieses erzeugt und in der DB gespeichert, dies sollte im Normalfall nicht passieren */
                     }

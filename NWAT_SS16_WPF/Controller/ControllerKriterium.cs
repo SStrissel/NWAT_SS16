@@ -51,7 +51,7 @@ namespace NWAT_SS16
                 temp_objekt.setBezeichnung("Neues Kriterium");
                 temp_objekt = db.insert(temp_objekt) as Kriterium;
 
-                Nutzwert temp_objekt2 = new Nutzwert(KriteriumID: temp_objekt.getKriteriumID(), ProjektID: 0, ProduktID: 0);
+                Nutzwert temp_objekt2 = new Nutzwert(KriteriumID: temp_objekt.getKriteriumID(), ProjektID: ((Projekt)krit.listeProjektID.SelectedItem).getProjektID(), ProduktID: ((Produkt)krit.listeProjektID.SelectedItem).getProduktID());
                 db.insert(temp_objekt2);
                 anzeigen(temp_objekt);
                 return;
@@ -447,8 +447,15 @@ namespace NWAT_SS16
                 if (MessageBox.Show("Sind Sie sich sicher, dass sie das ausgewählte KriteriumNutzwert ändern wollen?", "Ändern", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
                     KriteriumNutzwertVerwaltung krit = (KriteriumNutzwertVerwaltung)frm;
+                    // first change details for NWA specific for Produkt AND Projekt (e.g. Erfüllung)
                     Nutzwert temp_objekt = new Nutzwert(KriteriumID: krit.details_KriteriumID.Text, ProjektID: krit.details_ProjektID.Text, ProduktID: krit.details_ProduktID.Text, Erfuellung: krit.details_Erfuellung.IsChecked.ToString(), Gewichtung: krit.details_Gewichtung.Text, Kommentar: krit.details_kommentar.Text);
-                    db.update(temp_objekt);
+                    db.update(temp_objekt); 
+
+                    // second change details for NWA specific for Projekt (e.g. Gewichtung)
+                    temp_objekt = new Nutzwert(KriteriumID: krit.details_KriteriumID.Text, ProjektID: krit.details_ProjektID.Text, ProduktID: "-1", Erfuellung: krit.details_Erfuellung.IsChecked.ToString(), Gewichtung: krit.details_Gewichtung.Text, Kommentar: krit.details_kommentar.Text);
+                    db.update(temp_objekt); 
+
+                    // finished
                     krit.Close();
                 }
                 return;
