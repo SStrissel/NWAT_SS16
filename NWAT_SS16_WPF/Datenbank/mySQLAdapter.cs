@@ -256,25 +256,7 @@ namespace NWAT_SS16
                  da.Dispose();
                  return dataTable;
         }
-        public override  string exp(string a, string b)
-        {
-           // string file = "C:\\backup.sql";
-            string file = "C:\\Users\\Mehmet.T\\Pictures\\backup.sql";
-           
-                using (MySqlCommand cmd = new MySqlCommand())
-                {
-                    using (MySqlBackup mb = new MySqlBackup(cmd))
-                    {
-                        cmd.Connection = conn;
-                        //conn.Open();
-                        mb.ExportToFile(file);
-                        //conn.Close();
-                    }
-            }
-           ExecuteSQL("INSERT INTO Projekt (ProjektID, Bezeichnung) VALUES ( " + a + ", '" + b + "');");
-           return "";
-               
-        }
+
         /* Team 
         fügt ein neues Model in die Datenbank ein
         */
@@ -787,6 +769,26 @@ namespace NWAT_SS16
             }
              throw new NotImplementedException();
         }
+
+        //import
+        public override Model imp(Model objekt)
+        {
+            List<Model> return_model = null;
+           
+            if (objekt.GetType().Name == "Projekt")
+            {
+                Projekt proj = (Projekt)objekt;
+               // proj.setProjektID(newID(objekt)); // Autoincrement vergeben
+                ExecuteSQL("INSERT INTO Projekt (ProjektID, Bezeichnung) VALUES ( " + proj.getProjektID() + ", '" + proj.getBezeichnung() + "');");
+               return_model = get(proj);
+            }
+            if (return_model == null)
+            {
+                throw new NotImplementedException();
+            }
+            return return_model[0];
+        }
+
 
         /* Team 
          testet, ob eine Verbindung zur Datenbank besteht

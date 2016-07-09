@@ -19,13 +19,14 @@ namespace NWAT_SS16
     /// </summary>
     public partial class Projektverwaltung : Window
     {
+        //private DatabaseAdabter2 db2;
         private ControllerProjekt cp;
     
        
-        public Projektverwaltung(DatabaseAdapter db)
+        public Projektverwaltung(DatabaseAdapter db, DatabaseAdabter2 db2)
         {
             InitializeComponent();
-            cp = new ControllerProjekt(db, this);
+            cp = new ControllerProjekt(db, db2, this);
             cp.onCreateView();
             
   
@@ -44,32 +45,49 @@ namespace NWAT_SS16
 
         private void loeschen_Click(object sender, RoutedEventArgs e)
         {
-            Projekt p = new Projekt(detailsProjektID.Text);
-            cp.loeschen(p);
+            if (detailsProjektID.Text == "")
+            {
+                MessageBox.Show("Sie haben kein Projekt ausgewählt");
+            }
+            else
+            {
+                Projekt p = new Projekt(detailsProjektID.Text);
+                cp.loeschen(p);
+            }
+           
         }
 
         private void aendern_Click(object sender, RoutedEventArgs e)
         {
-            Projekt.setProjektIDtemp(detailsProjektID.Text);
-            Projekt.setBezeichnungtemp(detailsBezeichnung.Text);
- 
-            cp.aendern();
+            if (detailsProjektID.Text == "")
+            {
+                MessageBox.Show("Sie haben kein Projekt ausgewählt");
+            }
+            else
+            {
+                Projekt.setProjektIDtemp(detailsProjektID.Text);
+                Projekt.setBezeichnungtemp(detailsBezeichnung.Text);
+                cp.aendern();
+            }
         }
 
         private void export_Click(object sender, RoutedEventArgs e)
         {
-            Projekt.setProjektIDtemp(detailsProjektID.Text);
-            Projekt.setBezeichnungtemp(detailsBezeichnung.Text);
-            ExpLog el = new ExpLog();
-            el.ShowDialog();
-           // Projekt p = new Projekt(detailsProjektID.Text);
-            //cp.loeschen(p);
+            if (detailsProjektID.Text == "")
+            {
+                MessageBox.Show("Sie haben kein Projekt ausgewählt");
+            }
+            else
+            {
+                Projekt.setProjektIDtemp(detailsProjektID.Text);
+                Projekt.setBezeichnungtemp(detailsBezeichnung.Text);
+                cp.export();
+            }
         }
 
         private void import_Click(object sender, RoutedEventArgs e)
         {
-            ImpLog il = new ImpLog();
-            il.ShowDialog();
+            cp.import(new Projekt());
         }
 
     }

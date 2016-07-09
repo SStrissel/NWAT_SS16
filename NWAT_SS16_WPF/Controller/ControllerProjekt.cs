@@ -12,7 +12,7 @@ namespace NWAT_SS16
      public class ControllerProjekt : Controller
     {
 
-        public ControllerProjekt(DatabaseAdapter db, Window frm) : base(db, frm){}
+        public ControllerProjekt(DatabaseAdapter db, DatabaseAdabter2 db2 ,Window frm) : base(db,db2,frm){}
       
         public override void aendern()
         {
@@ -22,7 +22,6 @@ namespace NWAT_SS16
                 Projekt p = new Projekt();
                 p.setProjektID(Int32.Parse(pa.textProjektIDaendern.Text));
                 p.setBezeichnung(pa.textBezeichnungaendern.Text);
-
                 db.update(p);
                 onUpdateView();
                 return;
@@ -106,6 +105,15 @@ namespace NWAT_SS16
                 onUpdateData();
                 return;
             }
+            else if (frm.GetType().Name == "Export")
+            {
+                Export ex = (Export)frm;
+                Projekt p = new Projekt();
+                p.setProjektID(Int32.Parse(ex.textProjektIDexp.Text));
+                p.setBezeichnung(ex.textBezeichnungexp.Text);
+                db.delete(p);
+                return;
+            }
             throw new NotImplementedException();
         }
 
@@ -123,12 +131,28 @@ namespace NWAT_SS16
                 }
                 return;
             }
+            else if (frm.GetType().Name == "Import")
+            {
+                Import i = (Import)frm;
+                List<Projekt> projekte = db2.get(new Projekt());
+                if (projekte.Count() > 0)
+                {
+                    i.listProjekte.ItemsSource = projekte;
+                    onUpdateView();
+                }
+                return;
+            }
             else if (frm.GetType().Name == "Projekt_anlegen")
             {
 
                 return;
             }
             else if (frm.GetType().Name == "Projekt_aendern")
+            {
+
+                return;
+            }
+            else if (frm.GetType().Name == "Export")
             {
 
                 return;
@@ -165,6 +189,22 @@ namespace NWAT_SS16
 
                 return;
             }
+            else if (frm.GetType().Name == "Export")
+            {
+
+                return;
+            }
+            else if (frm.GetType().Name == "Import")
+            {
+                Import i = (Import)frm;
+                List<Projekt> projekte = db2.get(new Projekt());
+                //if (projekte.Count() > 0)
+                //{
+                    i.listProjekte.ItemsSource = projekte;
+                    onUpdateView();
+               // }
+                return;
+            }
             return;
         }
 
@@ -173,16 +213,46 @@ namespace NWAT_SS16
             throw new NotImplementedException();
         }
 
-        public void import()
-        {
-            
-        }
-        
-
         public void export()
         {
+
+            if (frm.GetType().Name == "Projektverwaltung")
+            {
+                Projektverwaltung pv = (Projektverwaltung)frm;
+                Export ex = new Export(db, db2);
+                ex.ShowDialog();
+                onUpdateData();
+                pv.detailsBezeichnung.Text = "";
+                pv.detailsProjektID.Text = "";
+            }
+            else if (frm.GetType().Name == "Export")
+            {
+                Export ex = (Export)frm;
+                Projekt p = new Projekt();
+                p.setProjektID(Int32.Parse(ex.textProjektIDexp.Text));
+                p.setBezeichnung(ex.textBezeichnungexp.Text);
+                db2.exp(p);
+            }
         }
 
+        public void import(Model objekt)
+        {
+            if (frm.GetType().Name == "Projektverwaltung")
+            {
+                Import i = new Import(db, db2);
+                i.ShowDialog();
+                onUpdateData();
+            }
+            else if (frm.GetType().Name == "Import")
+            {
+                Import i = (Import)frm;
+                db.imp(objekt);
+                db2.imp(objekt);
+            }
+            
+        }
+
+       
      
     }
 }

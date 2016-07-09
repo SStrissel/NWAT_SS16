@@ -42,13 +42,14 @@ namespace NWAT_SS16
         {
             infoBox.Text = "Verbindung zur Datenbank wird hergestellt...";
             mySQLAdapter db = new mySQLAdapter(server.Text, datenbank.Text, benutzer.Text, passwort.Password);
-            var task = new Task(() => asyncTryToConnect(db));
+            mySQLAdapter2 db2 = new mySQLAdapter2();
+            var task = new Task(() => asyncTryToConnect(db,db2));
             task.Start();
        } 
 
-        bool view_hauptmenue(DatabaseAdapter db)
+        bool view_hauptmenue(DatabaseAdapter db, DatabaseAdabter2 db2)
         {
-            Hauptmenue frm = new Hauptmenue(db);
+            Hauptmenue frm = new Hauptmenue(db, db2);
             frm.ShowDialog();
             return true;
         }
@@ -59,7 +60,7 @@ namespace NWAT_SS16
             return true;
         }
 
-        public async void asyncTryToConnect(DatabaseAdapter db)
+        public async void asyncTryToConnect(DatabaseAdapter db, DatabaseAdabter2 db2)
         {
 
             
@@ -79,7 +80,7 @@ namespace NWAT_SS16
             {
                 TimeSpan difference = DateTime.Now - jetzt;
                 infoBox.Dispatcher.BeginInvoke(new Action(() => { infoBox.Text += "...erfolgreich (" + difference.TotalSeconds + " s)"; }));
-                Application.Current.Dispatcher.BeginInvoke(new Action(() => { view_hauptmenue(db); }));
+                Application.Current.Dispatcher.BeginInvoke(new Action(() => { view_hauptmenue(db,db2); }));
              }
             else
             {

@@ -15,22 +15,29 @@ using System.Windows.Shapes;
 namespace NWAT_SS16
 {
     /// <summary>
-    /// Interaktionslogik für Export.xaml
+    /// Interaktionslogik für Import.xaml
     /// </summary>
-    public partial class Export : Window
+    public partial class Import : Window
     {
         private DatabaseAdapter db;
         private DatabaseAdabter2 db2;
         private ControllerProjekt cp;
+        Model temp;
 
-        public Export(DatabaseAdapter db, DatabaseAdabter2 db2)
+        public Import(DatabaseAdapter db, DatabaseAdabter2 db2)
         {
             InitializeComponent();
             this.db = db;
             this.db2 = db2;
             cp = new ControllerProjekt(db, db2, this);
-            textProjektIDexp.Text = Projekt.getProjektIDtemp().ToString();
-            textBezeichnungexp.Text = Projekt.getBezeichnungtemp();
+            cp.onCreateView();
+        }
+
+        private void ListBox_iauswahl(object sender, SelectionChangedEventArgs e)
+        {
+            Projekt p = ((sender as ListBox).SelectedItem as Projekt);
+            temp = p;
+            //cp.anzeigen(p);
         }
 
         private void abbrechen_Click(object sender, RoutedEventArgs e)
@@ -38,14 +45,18 @@ namespace NWAT_SS16
             this.Close();
         }
 
-        private void exportieren_Click(object sender, RoutedEventArgs e)
+        private void importieren_Click(object sender, RoutedEventArgs e)
         {
-            cp.export();
-
-            Projekt p = new Projekt(textProjektIDexp.Text);
-            cp.loeschen(p);
-
-            this.Close();
+            if (temp == null)
+            {
+                MessageBox.Show("Sie haben kein Projekt ausgewählt");
+            }
+            else
+            {
+                cp.import(temp);
+                this.Close();
+            }
+          
         }
     }
 }

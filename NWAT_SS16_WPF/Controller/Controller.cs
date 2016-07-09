@@ -10,11 +10,20 @@ namespace NWAT_SS16
     abstract  public class Controller
     {
         protected DatabaseAdapter db;
+        protected DatabaseAdabter2 db2;
         protected Window frm;
-
         public Controller(DatabaseAdapter db, Window frm)
         {
             this.db = db;
+
+            this.frm = frm;
+            onCreateView();
+        }
+
+        public Controller(DatabaseAdapter db, DatabaseAdabter2 db2, Window frm)
+        {
+            this.db = db;
+            this.db2 = db2;
             this.frm = frm;
             onCreateView();
         }

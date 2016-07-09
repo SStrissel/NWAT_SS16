@@ -63,17 +63,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Datenbank\DatabaseAdabter2.cs" />
+    <Compile Include="Datenbank\mySQLAdapter2.cs" />
     <Compile Include="Einstellungen.xaml.cs">
       <DependentUpon>Einstellungen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Export.xaml.cs">
       <DependentUpon>Export.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ExpLog.xaml.cs">
-      <DependentUpon>ExpLog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ImpLog.xaml.cs">
-      <DependentUpon>ImpLog.xaml</DependentUpon>
+    <Compile Include="Import.xaml.cs">
+      <DependentUpon>Import.xaml</DependentUpon>
     </Compile>
     <Compile Include="KriteriumNutzwertVerwaltung.xaml.cs">
       <DependentUpon>KriteriumNutzwertVerwaltung.xaml</DependentUpon>
@@ -115,11 +114,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ExpLog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ImpLog.xaml">
+    <Page Include="Import.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

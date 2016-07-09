@@ -20,15 +20,19 @@ namespace NWAT_SS16
     public partial class Hauptmenue : Window
     {
         private DatabaseAdapter db;
-        public Hauptmenue(DatabaseAdapter db)
+        private DatabaseAdabter2 db2;
+       
+      
+        public Hauptmenue(DatabaseAdapter db, DatabaseAdabter2 db2)
         {
             this.db = db;
+            this.db2 = db2;
             InitializeComponent();
         }
 
         private void Projekt_Click(object sender, RoutedEventArgs e)
         {
-            Projektverwaltung projv = new Projektverwaltung(db);
+            Projektverwaltung projv = new Projektverwaltung(db,db2);
             projv.ShowDialog();
         }
 
