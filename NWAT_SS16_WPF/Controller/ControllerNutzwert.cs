@@ -40,7 +40,7 @@ namespace NWAT_SS16
             }
         }
 
-        public void funktionsabdeckungsgrad_aufsummieren(Nutzwert NWAobjekt)
+        private void funktionsabdeckungsgrad_aufsummieren(Nutzwert NWAobjekt)
         {
             bool change = funktionsabdeckungsgrad_aufsummieren_check(NWAobjekt);
             double temp_beitrag = 0;
@@ -65,7 +65,7 @@ namespace NWAT_SS16
             }
         }
 
-        public bool funktionsabdeckungsgrad_aufsummieren_check(Nutzwert NWAobjekt)
+        private bool funktionsabdeckungsgrad_aufsummieren_check(Nutzwert NWAobjekt)
         {
             List<Kriterium> list = NWAobjekt.getKriterium(db).getUnterKriterium(db);
             foreach (Kriterium temp_obj in list)
