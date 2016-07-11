@@ -40,6 +40,7 @@ namespace NWAT_SS16
          * strPassword: ******
          * */
 
+        
         public mySQLAdapter(string strServer, string strDatabase, string strUser, string strPassword) // Konstruktor
         {
             string strconn = "SERVER=" + strServer + ";" +
@@ -1046,6 +1047,10 @@ namespace NWAT_SS16
             {
                 throw new NotImplementedException();
             }
+        }
+        public override void gleichgewichtenDB()
+        {            
+            ExecuteSQL("UPDATE NWA SET Gewichtung = 1");
         }
     }
 }

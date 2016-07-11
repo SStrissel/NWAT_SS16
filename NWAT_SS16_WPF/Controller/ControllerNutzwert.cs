@@ -11,24 +11,9 @@ namespace NWAT_SS16
     {         
         public ControllerNutzwert(DatabaseAdapter db, Window frm) : base(db, frm){}
 
-        public void gleichgewichten(Nutzwert NWAobjekt)
+        public void gleichgewichten()
         {
-            List<Kriterium> olist = NWAobjekt.getKriterium(db).getOberKriterium(db);
-            if (olist.Count > 0)
-            {
-                foreach (Kriterium item in olist)
-                {
-                    NWAobjekt.setGewichtung(1);
-                }
-            }
-            List<Kriterium> ulist = NWAobjekt.getKriterium(db).getUnterKriterium(db);
-            if (ulist.Count > 0)
-            {
-                foreach (Kriterium item in ulist)
-                {
-                    NWAobjekt.setGewichtung(1);
-                }
-            }
+            db.gleichgewichtenDB();
         }
 
         public void funktionsabdeckungsgrad_berechnen(Nutzwert NWAobjekt)
