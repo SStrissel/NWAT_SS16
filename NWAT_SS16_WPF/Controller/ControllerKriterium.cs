@@ -92,13 +92,13 @@ namespace NWAT_SS16
             {
                 Kriteriumverwaltung krit = (Kriteriumverwaltung)frm;
 
-                List<Kriterium> kriterien = db.get(new Kriterium()); // alle Kriterien
+                List<Kriterium> kriterien = db.get(new Kriterium(-1)); // alle Kriterien
                 krit.listeKriterium.ItemsSource = kriterien;
 
-                List<Projekt> projekte = db.get(new Projekt()); // alle Projekte
+                List<Projekt> projekte = db.get(new Projekt(-1)); // alle Projekte
                 krit.listeProjektID.ItemsSource = projekte;
 
-                List<Produkt> produkte = db.get(new Produkt()); // alle Produkte
+                List<Produkt> produkte = db.get(new Produkt(-1)); // alle Produkte
                 krit.listeProduktID.ItemsSource = produkte;
 
                 krit.listeProjektID.SelectedIndex = 0;

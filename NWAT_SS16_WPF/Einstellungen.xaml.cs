@@ -89,7 +89,7 @@ namespace NWAT_SS16
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            db.dubletten_loeschen();
+            db.create_nwa();
         }
     }
 }

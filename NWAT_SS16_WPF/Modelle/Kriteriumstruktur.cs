@@ -8,10 +8,10 @@ namespace NWAT_SS16
 {
     public class Kriteriumstruktur : Model
     {
-        int OberKriteriumID;
-        int UnterKriteriumID;
+        int OberKriteriumID = -1;
+        int UnterKriteriumID = -1;
 
-        public Kriteriumstruktur(int OberKriteriumID = 0, int UnterKriteriumID = 0)
+        public Kriteriumstruktur(int OberKriteriumID = -1, int UnterKriteriumID = -1)
         {
             this.OberKriteriumID = OberKriteriumID;
             this.UnterKriteriumID = UnterKriteriumID;

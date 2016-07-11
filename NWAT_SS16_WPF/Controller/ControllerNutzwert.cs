@@ -32,7 +32,15 @@ namespace NWAT_SS16
             else
             {
                 double temp_beitrag = funktionsabdeckungsgrad_beitrag(NWAobjekt);
-                NWAobjekt.setBeitragAbsolut(funktionsabdeckungsgrad_beitrag_absolut(NWAobjekt.getKriterium(db).getOberKriterium(db)[0].getNutzwert(db), temp_beitrag));
+                if (temp_beitrag != 0)
+                {
+                    double beitrag_absolut = funktionsabdeckungsgrad_beitrag_absolut(NWAobjekt.getKriterium(db).getOberKriterium(db)[0].getNutzwert(db), temp_beitrag);
+                    NWAobjekt.setBeitragAbsolut(beitrag_absolut);
+                }
+                else
+                {
+                    NWAobjekt.setBeitragAbsolut(0);
+                }
                 NWAobjekt.setBeitragAbsolutCheck(true);
                 db.update(NWAobjekt);
                 funktionsabdeckungsgrad_aufsummieren(NWAobjekt);

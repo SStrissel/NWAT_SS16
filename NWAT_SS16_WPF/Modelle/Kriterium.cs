@@ -8,7 +8,7 @@ namespace NWAT_SS16
 {
     public class Kriterium : Model
     {
-        private int KriteriumID;
+        private int KriteriumID = -1;
         private string Bezeichnung;
 
         public Kriterium(Kriterium objekt)
@@ -78,7 +78,7 @@ namespace NWAT_SS16
 
         public List<Kriterium> getUnterKriterium(DatabaseAdapter db)
         {
-            Kriteriumstruktur temp_objekt = new Kriteriumstruktur(OberKriteriumID: this.getKriteriumID());
+            Kriteriumstruktur temp_objekt = new Kriteriumstruktur(OberKriteriumID: this.getKriteriumID(), UnterKriteriumID: -1);
             List<Kriterium> return_list = new List<Kriterium>();            
             Kriterium return_krit;
             Kriterium temp_krit;
@@ -97,7 +97,7 @@ namespace NWAT_SS16
 
         public List<Kriterium> getOberKriterium(DatabaseAdapter db)
         {
-            Kriteriumstruktur temp_objekt = new Kriteriumstruktur(UnterKriteriumID : this.getKriteriumID());
+            Kriteriumstruktur temp_objekt = new Kriteriumstruktur(UnterKriteriumID : this.getKriteriumID(), OberKriteriumID: -1);
             List<Kriterium> return_list = new List<Kriterium>();
             Kriterium return_krit;
             Kriterium temp_krit;
