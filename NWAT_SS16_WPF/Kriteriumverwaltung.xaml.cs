@@ -82,7 +82,7 @@ namespace NWAT_SS16
 
         private void drucken_Click(object sender, RoutedEventArgs e)
         {
-            cntrl.drucken(true,true,true,true,0, new int[] { 0 });
+            cntrl.drucken(true, true, true, true, ((Projekt)listeProjektID.SelectedItem).getProjektID(), new int[] { ((Produkt)listeProduktID.SelectedItem).getProduktID() });
         }
 
 

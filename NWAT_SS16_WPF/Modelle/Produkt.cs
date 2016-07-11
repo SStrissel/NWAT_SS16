@@ -57,9 +57,9 @@ namespace NWAT_SS16
             return Bezeichnungtemp;
         }
 
-        public void setProduktID(int ProjektID)
+        public void setProduktID(int ProduktID)
         {
-            this.ProduktID = ProjektID;
+            this.ProduktID = ProduktID;
         }
 
         public void setProduktID(string ProduktID)

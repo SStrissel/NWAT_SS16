@@ -291,7 +291,7 @@ namespace NWAT_SS16
             else if (objekt.GetType().Name == "Nutzwert")
             {
                 Nutzwert temp_objekt = (Nutzwert)objekt;
-                ExecuteSQL("INSERT INTO NWA (KriteriumID, ProjektID, ProduktID, Erfuellung, Gewichtung, Kommentar, beitrag_absolut, beitrag_absolut_check) VALUES ( " + temp_objekt.getKriteriumID() + ", " + temp_objekt.getProjektID() + " , " + temp_objekt.getProduktID() + ", " + temp_objekt.getErfuellung() + ", " + temp_objekt.getGewichtung() + ", '" + temp_objekt.getKommentar() + "', " + temp_objekt.getBeitragAbsolut() + ", " + temp_objekt.getBeitragAbsolutCheck() + ");");
+                ExecuteSQL("INSERT INTO NWA (KriteriumID, ProjektID, ProduktID, Erfuellung, Gewichtung, Kommentar, beitrag_absolut, beitrag_absolut_check) VALUES ( " + temp_objekt.getKriteriumID() + ", " + temp_objekt.getProjektID() + " , " + temp_objekt.getProduktID() + ", " + temp_objekt.getErfuellung() + ", " + temp_objekt.getGewichtung() + ", '" + temp_objekt.getKommentar() + "', " + temp_objekt.getBeitragAbsolut().ToString().Replace(",",".") + ", " + temp_objekt.getBeitragAbsolutCheck() + ");");
                 return_model = get(temp_objekt);
             }
             else 
@@ -581,14 +581,11 @@ namespace NWAT_SS16
                 Nutzwert temp_objekt = (Nutzwert)objekt;
                 if (get(temp_objekt).Count != 0)
                 {
-                    if (temp_objekt.getProduktID() == -1)
+                    if (temp_objekt.getProduktID() >= 0)
                     {
-                        ExecuteSQL("UPDATE NWA SET Gewichtung=" + temp_objekt.getGewichtung() + " WHERE KriteriumID = " + temp_objekt.getKriteriumID() + " AND ProjektID = " + temp_objekt.getProjektID() + ";");
-                    }
-                    else
-                    {
-                        ExecuteSQL("UPDATE NWA SET Kommentar='" + temp_objekt.getKommentar() + "', Erfuellung=" + temp_objekt.getErfuellung() + ", Gewichtung=" + temp_objekt.getGewichtung() + ", beitrag_absolut=" + temp_objekt.getBeitragAbsolut() + ", beitrag_absolut_check=" + temp_objekt.getBeitragAbsolutCheck() + " WHERE KriteriumID = " + temp_objekt.getKriteriumID() + " AND ProjektID = " + temp_objekt.getProjektID() + " AND ProduktID = " + temp_objekt.getProduktID() + ";");
-                    }
+                        ExecuteSQL("UPDATE NWA SET Kommentar='" + temp_objekt.getKommentar() + "', Erfuellung=" + temp_objekt.getErfuellung() + ", beitrag_absolut=" + temp_objekt.getBeitragAbsolut().ToString().Replace(",",".") + ", beitrag_absolut_check=" + temp_objekt.getBeitragAbsolutCheck() + " WHERE KriteriumID = " + temp_objekt.getKriteriumID() + " AND ProjektID = " + temp_objekt.getProjektID() + " AND ProduktID = " + temp_objekt.getProduktID() + ";");
+                   }
+                    ExecuteSQL("UPDATE NWA SET Gewichtung=" + temp_objekt.getGewichtung() + " WHERE KriteriumID = " + temp_objekt.getKriteriumID() + " AND ProjektID = " + temp_objekt.getProjektID() + ";");
                 }
                 else
                 {
@@ -748,7 +745,7 @@ namespace NWAT_SS16
                     }
 
                 }
-                else if (temp_obj.getKriteriumID() >= 0 && temp_obj.getProjektID() != -1 && temp_obj.getProduktID() != -1)
+                else if (temp_obj.getKriteriumID() >= 0 && temp_obj.getProjektID() >= 0 && temp_obj.getProduktID() >= 0)
                 {
                     DataTable temp_datatable = QuerySQL("SELECT * FROM NWA WHERE KriteriumID = " + temp_obj.getKriteriumID() + " AND ProjektID = " + temp_obj.getProjektID() + " AND ProduktID = " + temp_obj.getProduktID() + ";");
                     foreach (DataRow row in temp_datatable.Rows)
@@ -820,13 +817,27 @@ namespace NWAT_SS16
             else if (objekt.GetType().Name == "Produkt")
             {
                 Produkt temp_obj = (Produkt)objekt;
-                DataTable temp_datatable = QuerySQL("SELECT * FROM Produkt;");
-                foreach (DataRow row in temp_datatable.Rows)
+                if (temp_obj.getProduktID() >= 0)
                 {
-                    Produkt temp_model = new Produkt();
-                    temp_model.setProduktID((int)row[0]);
-                    temp_model.setBezeichnung((string)row[1]);
-                    return_list.Add(temp_model);
+                    DataTable temp_datatable = QuerySQL("SELECT * FROM Produkt WHERE ProduktID = " + temp_obj.getProduktID() + ";");
+                    foreach (DataRow row in temp_datatable.Rows)
+                    {
+                        Produkt temp_model = new Produkt();
+                        temp_model.setProduktID((int)row[0]);
+                        temp_model.setBezeichnung((string)row[1]);
+                        return_list.Add(temp_model);
+                    }
+                }
+                else
+                {
+                    DataTable temp_datatable = QuerySQL("SELECT * FROM Produkt;");
+                    foreach (DataRow row in temp_datatable.Rows)
+                    {
+                        Produkt temp_model = new Produkt();
+                        temp_model.setProduktID((int)row[0]);
+                        temp_model.setBezeichnung((string)row[1]);
+                        return_list.Add(temp_model);
+                    }
                 }
                 return return_list;
             }
@@ -1013,7 +1024,7 @@ namespace NWAT_SS16
         }
         public override void gleichgewichtenDB()
         {            
-            ExecuteSQL("UPDATE NWA SET Gewichtung = 1");
+            ExecuteSQL("UPDATE NWA SET Gewichtung = 1 WHERE ProjektID = 0 AND ProduktID = 0");
         }
     }
 }

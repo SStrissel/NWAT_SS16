@@ -138,14 +138,14 @@ column.Width, dt.Rows[0].Height), new StringFormat());
             Kriterium root_kriterium = temp_nwa.getKriterium(db).getRootKriterium(db)[0];
 
             ControllerNutzwert cntrl_nutzwer = new ControllerNutzwert(db, null);
-            cntrl_nutzwer.funktionsabdeckungsgrad_berechnen(root_kriterium.getNutzwert(db));
+            cntrl_nutzwer.funktionsabdeckungsgrad_berechnen(root_kriterium.getNutzwert(db, ProjektID, temp_produkt.getProduktID()));
 
             int row = dt.Rows.Add();
 
             dt.Rows[row].Cells[CONST_NUM].Value = "0";
             dt.Rows[row].Cells[CONST_BEZ].Value = root_kriterium.getBezeichnung();
-            dt.Rows[row].Cells[CONST_KOM].Value = root_kriterium.getNutzwert(db).getKommentar();
-            dt.Rows[row].Cells[CONST_NUTZ].Value = root_kriterium.getNutzwert(db).getBeitragAbsolut();
+            dt.Rows[row].Cells[CONST_KOM].Value = root_kriterium.getNutzwert(db, ProjektID, temp_produkt.getProduktID()).getKommentar();
+            dt.Rows[row].Cells[temp_produkt.getBezeichnung().Substring(0, CONST_PROD_LENGTH)].Value = root_kriterium.getNutzwert(db, ProjektID, temp_produkt.getProduktID()).getBeitragAbsolut();
 
             if (erfuellung)
             {
@@ -160,7 +160,7 @@ column.Width, dt.Rows[0].Height), new StringFormat());
             }
                  if (gewichtung)
             {
-                dt.Rows[row].Cells[CONST_GEW].Value = root_kriterium.getGewichtung(db);
+                dt.Rows[row].Cells[CONST_GEW].Value = root_kriterium.getGewichtung(db, ProjektID, temp_produkt.getProduktID());
             }
 
 
@@ -178,8 +178,17 @@ column.Width, dt.Rows[0].Height), new StringFormat());
                     int row = dt.Rows.Add();
                     dt.Rows[row].Cells[CONST_NUM].Value = count + "." + internal_count;
                     dt.Rows[row].Cells[CONST_BEZ].Value = temp_kriterium.getBezeichnung();
-                    dt.Rows[row].Cells[CONST_KOM].Value = temp_kriterium.getNutzwert(db).getKommentar();
-                    dt.Rows[row].Cells[CONST_NUTZ].Value = temp_kriterium.getNutzwert(db).getBeitragAbsolut();
+
+                    Produkt temp_produkt = new Produkt(ProduktID[0]);
+                    foreach (int produkt in ProduktID)
+                    {
+                        temp_produkt = db.get(new Produkt(produkt))[0];
+                        dt.ColumnCount += 1;
+                        dt.Rows[row].Cells[CONST_KOM].Value = temp_kriterium.getNutzwert(db).getKommentar();
+                        dt.Rows[row].Cells[temp_produkt.getBezeichnung().Substring(0, CONST_PROD_LENGTH)].Value = temp_kriterium.getNutzwert(db, ProjektID, temp_produkt.getProduktID()).getBeitragAbsolut();
+                    }
+
+                    
                     if (erfuellung)
                     {
                         if (temp_kriterium.getErfuellung(db) == true)

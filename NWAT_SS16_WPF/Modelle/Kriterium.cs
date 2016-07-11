@@ -80,7 +80,6 @@ namespace NWAT_SS16
         {
             Kriteriumstruktur temp_objekt = new Kriteriumstruktur(OberKriteriumID: this.getKriteriumID(), UnterKriteriumID: -1);
             List<Kriterium> return_list = new List<Kriterium>();            
-            Kriterium return_krit;
             Kriterium temp_krit;
 
             foreach (Kriteriumstruktur temp_kritstruktur in db.get(temp_objekt))
@@ -88,8 +87,7 @@ namespace NWAT_SS16
                 temp_krit = new Kriterium(temp_kritstruktur.getUnterKriteriumID());
                 foreach (Kriterium temp_krit2 in db.get(temp_krit))
                 {
-                    return_krit = new Kriterium(temp_krit2);
-                    return_list.Add(return_krit);
+                    return_list.Add(temp_krit2);
                 }
             }
             return return_list;
@@ -99,7 +97,6 @@ namespace NWAT_SS16
         {
             Kriteriumstruktur temp_objekt = new Kriteriumstruktur(UnterKriteriumID : this.getKriteriumID(), OberKriteriumID: -1);
             List<Kriterium> return_list = new List<Kriterium>();
-            Kriterium return_krit;
             Kriterium temp_krit;
 
             foreach (Kriteriumstruktur temp_kritstruktur in db.get(temp_objekt))
@@ -107,8 +104,7 @@ namespace NWAT_SS16
                 temp_krit = new Kriterium(temp_kritstruktur.getOberKriteriumID());
                 foreach (Kriterium temp_krit2 in db.get(temp_krit))
                 {
-                    return_krit = new Kriterium(temp_krit2);
-                    return_list.Add(return_krit);
+                    return_list.Add(temp_krit2);
                 }
             }
 
