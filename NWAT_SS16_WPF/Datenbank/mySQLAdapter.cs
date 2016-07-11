@@ -577,6 +577,10 @@ namespace NWAT_SS16
                 if (temp_objekt.getProjektID() >= 0)
                 {
                     ExecuteSQL("DELETE FROM Projekt WHERE ProjektID = '" + temp_objekt.getProjektID() + "';");
+                    //löscht die NWA in der das Projekt vorkommt
+                    ExecuteSQL("DELETE FROM NWA WHERE ProjektID = '" + temp_objekt.getProjektID() + "';");
+
+       
                 }
                 else
                 {
