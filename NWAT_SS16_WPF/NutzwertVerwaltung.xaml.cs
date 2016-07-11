@@ -44,7 +44,8 @@ namespace NWAT_SS16
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Gleichgewichten");
+            Nutzwert nutz = new Nutzwert();
+            cntrl.gleichgewichten(nutz);
         }
     }
 }
