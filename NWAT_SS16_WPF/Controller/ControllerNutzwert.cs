@@ -78,9 +78,12 @@ namespace NWAT_SS16
             List<Kriterium> list = NWAobjekt.getKriterium(db).getUnterKriterium(db);
             foreach (Kriterium temp_obj in list)
             {
-                if (temp_obj.getNutzwert(db, NWAobjekt.getProjektID(), NWAobjekt.getProduktID()).getBeitragAbsolutCheck() == false)
+                if (new Nutzwert(ProjektID: 0, ProduktID: 0, KriteriumID: NWAobjekt.getKriteriumID()).getErfuellung() != false)
                 {
-                    return true;
+                    if (temp_obj.getNutzwert(db, NWAobjekt.getProjektID(), NWAobjekt.getProduktID()).getBeitragAbsolutCheck() == false)
+                    {
+                        return true;
+                    }
                 }
             }          
             return false;
@@ -112,7 +115,8 @@ namespace NWAT_SS16
 
                 foreach (Kriterium temp_obj in list)
                 {
-                    if (new Nutzwert(ProjektID: 0, ProduktID: 0, KriteriumID: temp_obj.getKriteriumID()).getErfuellung())
+                    List<Nutzwert> temp_nutz = db.get(new Nutzwert(ProjektID: 0, ProduktID: 0, KriteriumID: temp_obj.getKriteriumID()));
+                    if (temp_nutz[0].getErfuellung() == true)
                     {
                         nenner += temp_obj.getGewichtung(db: db, ProjektID: NWAobjekt.getProjektID(), ProduktID: NWAobjekt.getProduktID());
                     }
@@ -139,6 +143,16 @@ namespace NWAT_SS16
             {
                 return NWAobjekt.getGewichtung();
             }
+        }
+
+        public double prozent(Nutzwert NWAobjekt)
+        {
+            int nenner = funktionsabdeckungsgrad_beitrag_nenner(NWAobjekt);
+            if (nenner == 0)
+            {
+                return 0;
+            }
+            return (double)NWAobjekt.getGewichtung() / (double)nenner * 100;
         }
 
         private double funktionsabdeckungsgrad_beitrag_absolut(Nutzwert NWAobjekt, double beitrag_einzel)
