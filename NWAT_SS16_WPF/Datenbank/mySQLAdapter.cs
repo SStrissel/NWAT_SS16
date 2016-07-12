@@ -529,7 +529,6 @@ namespace NWAT_SS16
                 Projekt temp_objekt = (Projekt)objekt;
                 if (temp_objekt.getProjektID() > 0)
                 {
-<<<<<<< HEAD
                     DataTable temp_datatable = QuerySQL("SELECT * FROM NWA WHERE ProjektID Like '" + temp_objekt.getProjektID() +"%';");
                  
                     if (temp_datatable.Rows.Count != 0)
@@ -550,11 +549,6 @@ namespace NWAT_SS16
                         ExecuteSQL("DELETE FROM NWA WHERE ProjektID = '" + temp_objekt.getProjektID() + "';");
                     }
        
-=======
-                    ExecuteSQL("DELETE FROM Projekt WHERE ProjektID = '" + temp_objekt.getProjektID() + "';");
-                    //löscht die NWA in der das Projekt vorkommt
-                    ExecuteSQL("DELETE FROM NWA WHERE ProjektID = '" + temp_objekt.getProjektID() + "';");       
->>>>>>> origin/master
                 }
                 else
                 {

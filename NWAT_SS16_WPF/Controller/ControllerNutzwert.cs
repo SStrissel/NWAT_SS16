@@ -112,7 +112,10 @@ namespace NWAT_SS16
 
                 foreach (Kriterium temp_obj in list)
                 {
-                    nenner += temp_obj.getGewichtung(db: db, ProjektID: NWAobjekt.getProjektID(), ProduktID: NWAobjekt.getProduktID());
+                    if (new Nutzwert(ProjektID: 0, ProduktID: 0, KriteriumID: temp_obj.getKriteriumID()).getErfuellung())
+                    {
+                        nenner += temp_obj.getGewichtung(db: db, ProjektID: NWAobjekt.getProjektID(), ProduktID: NWAobjekt.getProduktID());
+                    }
                 }
             }
             else
