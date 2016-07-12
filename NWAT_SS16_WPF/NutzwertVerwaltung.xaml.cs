@@ -28,6 +28,7 @@ namespace NWAT_SS16
             InitializeComponent();
             cntrl = new ControllerNutzwert(db, this);
             cntrl.onCreateView();
+            cntrl.onUpdateData();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

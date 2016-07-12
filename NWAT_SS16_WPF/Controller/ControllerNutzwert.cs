@@ -172,14 +172,18 @@ namespace NWAT_SS16
             }
             return result;   
         }
+
+        private void ranking_anzeigen()
+        {
+            ControllerKriterium krit = new ControllerKriterium(db, frm);
+                        
+        }
         
         /// <summary>
         /// Die folgenden Funktionen sind aus dem Standard Controller und werden in dieser Klasse nicht weiter 
         /// verwendet. Daher werden diese hier nur mit einer "NotImplementedException" implementiert
         /// </summary>
-        private void ranking_anzeigen()
-        {
-        }
+
 
         public override void aendern()
         {
@@ -213,13 +217,22 @@ namespace NWAT_SS16
 
         public override void onUpdateData()
         {
-            throw new NotImplementedException();
+             NutzwertVerwaltung nutz = (NutzwertVerwaltung)frm;
+
+               
+
+                List<Projekt> projekte = db.get(new Projekt(-1)); // alle Projekte
+                nutz.details_Proj.ItemsSource = projekte;
+
+                List<Produkt> produkte = db.get(new Produkt(-1)); // alle Produkte
+                nutz.details_Prod1.ItemsSource = produkte;
+                nutz.details_Prod2.ItemsSource = produkte;
         }
 
 
         public override void onDestroyView()
         {
             throw new NotImplementedException();
-        }
+        }  
     }
 }
