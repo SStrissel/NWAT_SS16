@@ -527,6 +527,10 @@ namespace NWAT_SS16
             else if (objekt.GetType().Name == "Projekt")
             {
                 Projekt temp_objekt = (Projekt)objekt;
+                if (temp_objekt.getProjektID() == 0)
+                {
+
+                }
                 if (temp_objekt.getProjektID() > 0)
                 {
                     DataTable temp_datatable = QuerySQL("SELECT * FROM NWA WHERE ProjektID Like '" + temp_objekt.getProjektID() +"%';");
@@ -550,10 +554,7 @@ namespace NWAT_SS16
                     }
        
                 }
-                else
-                {
-                    throw new Exception("ID darf bei Delete nicht 0 sein");
-                }
+            
             }
             else if (objekt.GetType().Name == "Kriteriumstruktur")
             {
