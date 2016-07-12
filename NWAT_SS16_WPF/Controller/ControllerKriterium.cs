@@ -25,7 +25,7 @@ namespace NWAT_SS16
          //Druck-Funktion, die den StandardPrintDialog aufruft
         public void drucken(bool erfuellung, bool gewichtung, bool nutzwert, bool prozent, int ProjektID, int[] ProduktID)
         {
-            dok.BuildDataTable(erfuellung: true, anforderungen: true, gewichtung: gewichtung, nutzwert: nutzwert, prozent: prozent, ProjektID: ProjektID, ProduktID: ProduktID, db: db);
+            dok.BuildDataTable(erfuellung: false, anforderungen: true, gewichtung: gewichtung, nutzwert: nutzwert, prozent: prozent, ProjektID: ProjektID, ProduktID: ProduktID, db: db);
 
             System.Windows.Forms.PrintPreviewDialog dialog = new System.Windows.Forms.PrintPreviewDialog();
             dialog.Document = dok;

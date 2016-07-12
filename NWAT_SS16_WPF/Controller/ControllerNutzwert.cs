@@ -37,7 +37,7 @@ namespace NWAT_SS16
                 double temp_beitrag = funktionsabdeckungsgrad_beitrag(NWAobjekt);
                 if (temp_beitrag != 0)
                 {
-                    double beitrag_absolut = funktionsabdeckungsgrad_beitrag_absolut(NWAobjekt.getKriterium(db).getOberKriterium(db)[0].getNutzwert(db), temp_beitrag);
+                    double beitrag_absolut = funktionsabdeckungsgrad_beitrag_absolut(NWAobjekt.getKriterium(db).getOberKriterium(db)[0].getNutzwert(db, NWAobjekt.getProjektID(), NWAobjekt.getProduktID()), temp_beitrag);
                     NWAobjekt.setBeitragAbsolut(beitrag_absolut);
                 }
                 else
@@ -119,11 +119,7 @@ namespace NWAT_SS16
 
                 foreach (Kriterium temp_obj in list)
                 {
-                    List<Nutzwert> temp_nutz = db.get(new Nutzwert(ProjektID: 0, ProduktID: 0, KriteriumID: temp_obj.getKriteriumID()));
-                    if (temp_nutz[0].getErfuellung() == true)
-                    {
                         nenner += temp_obj.getGewichtung(db: db, ProjektID: NWAobjekt.getProjektID(), ProduktID: NWAobjekt.getProduktID());
-                    }
                 }
             }
             else
