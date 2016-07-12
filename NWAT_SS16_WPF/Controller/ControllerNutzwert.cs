@@ -7,28 +7,30 @@ using System.Windows;
 
 namespace NWAT_SS16
 {
+    //Teambasierte Ausarbeitung
     public class ControllerNutzwert : Controller
-    {         
+    {        
+        //Kontruktor der Klasse ControllerNutzwert
         public ControllerNutzwert(DatabaseAdapter db, Window frm) : base(db, frm){}
 
+        //Funktion gleichgewichten ruft die im DatabaseAdapter befindliche Funktion gleichgewichtenDB auf
         public void gleichgewichten()
         {
             db.gleichgewichtenDB();
         }
 
+        //Hauptfunktion der Nutzwertanalyse, die in die anderen Funktionen verzweigt
         public void funktionsabdeckungsgrad_berechnen(Nutzwert NWAobjekt)
         {
             NWAobjekt.setBeitragAbsolutCheck(false);
-            db.update(NWAobjekt);
-            //NWAobjekt.getKriterium(db); 
+            db.update(NWAobjekt);            
             List<Kriterium> list = NWAobjekt.getKriterium(db).getUnterKriterium(db);
             if (list.Count > 0)
             {
                 foreach (Kriterium temp_obj in list)
                 {
                     funktionsabdeckungsgrad_berechnen(temp_obj.getNutzwert(db: db, ProjektID: NWAobjekt.getProjektID(), ProduktID: NWAobjekt.getProduktID()));
-                }
-                
+                }                
             }
             else
             {
@@ -48,6 +50,7 @@ namespace NWAT_SS16
             }
         }
 
+        //Summiert die Ergebnisse aller Kriterien (Unterkriterium und Oberkriterium) 
         private void funktionsabdeckungsgrad_aufsummieren(Nutzwert NWAobjekt)
         {
             bool change = funktionsabdeckungsgrad_aufsummieren_check(NWAobjekt);
@@ -105,6 +108,7 @@ namespace NWAT_SS16
             }
         }
 
+        //Funktion zur Berechnung des Nenners innerhalb der Nutzweranalysefunktion
         private int funktionsabdeckungsgrad_beitrag_nenner(Nutzwert NWAobjekt)
         {
             int nenner = 0;
@@ -132,7 +136,7 @@ namespace NWAT_SS16
             }
             return nenner;
         }
-
+        //Funktion zur Berechnung des Zaehlers innerhalb der Nutzweranalysefunktion
         private int funktionsabdeckungsgrad_beitrag_zaehler(Nutzwert NWAobjekt)
         {
             if (NWAobjekt.getErfuellung() == false)
@@ -145,6 +149,7 @@ namespace NWAT_SS16
             }
         }
 
+<<<<<<< HEAD
         public double prozent(Nutzwert NWAobjekt)
         {
             int nenner = funktionsabdeckungsgrad_beitrag_nenner(NWAobjekt);
@@ -155,6 +160,9 @@ namespace NWAT_SS16
             return (double)NWAobjekt.getGewichtung() / (double)nenner * 100;
         }
 
+=======
+        //Funktion der Nutzwertanalyse, ruft die Zaehler und Nenner Funktion und verarbeitet die Ergebnisse in der Funktion
+>>>>>>> origin/master
         private double funktionsabdeckungsgrad_beitrag_absolut(Nutzwert NWAobjekt, double beitrag_einzel)
         {
             int nenner = funktionsabdeckungsgrad_beitrag_nenner(NWAobjekt);
@@ -167,7 +175,11 @@ namespace NWAT_SS16
             }
             return result;   
         }
-
+        
+        /// <summary>
+        /// Die folgenden Funktionen sind aus dem Standard Controller und werden in dieser Klasse nicht weiter 
+        /// verwendet. Daher werden diese hier nur mit einer "NotImplementedException" implementiert
+        /// </summary>
         private void ranking_anzeigen()
         {
         }

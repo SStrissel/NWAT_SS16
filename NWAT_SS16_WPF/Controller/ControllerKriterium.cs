@@ -11,12 +11,8 @@ using System.Windows.Controls;
 
 namespace NWAT_SS16
 {
-
-
      public class ControllerKriterium : Controller
     {
-
-
        public ControllerKriterium(DatabaseAdapter db, Window frm) : base(db, frm) { }
 
        private DruckDokument dok = new DruckDokument();
@@ -26,9 +22,9 @@ namespace NWAT_SS16
             throw new NotImplementedException();
         }
 
+         //Druck-Funktion, die den StandardPrintDialog aufruft
         public void drucken(bool erfuellung, bool gewichtung, bool nutzwert, bool prozent, int ProjektID, int[] ProduktID)
         {
-
             dok.BuildDataTable(erfuellung: erfuellung, gewichtung: gewichtung, nutzwert: nutzwert, prozent: prozent, ProjektID: ProjektID, ProduktID: ProduktID, db: db);
 
             System.Windows.Forms.PrintPreviewDialog dialog = new System.Windows.Forms.PrintPreviewDialog();
@@ -37,11 +33,7 @@ namespace NWAT_SS16
             dialog.ShowDialog();
         }
 
-
-
-
-     
-
+        //Legt ein neues Kriterium mit der Standardbezeichnung "Neues Kriterium" an
         public override void anlegen()
         {
             if (frm.GetType().Name == "Kriteriumverwaltung")
@@ -58,8 +50,8 @@ namespace NWAT_SS16
             }
             throw new NotImplementedException();
         }
-
-
+        
+         //Beim Erzeugen der einzelnen Views wird immer die onUpdateData- Funktion aufgerufen
         public override void onCreateView()
         {
 
@@ -85,7 +77,7 @@ namespace NWAT_SS16
             }
             throw new NotImplementedException();
         }
-
+         //Die onUpdateData-Funktion ermöglicht eine Aktualiseriung der angezeigten Information 
         public override void onUpdateData()
         {
             if (frm.GetType().Name == "Kriteriumverwaltung")
@@ -244,8 +236,7 @@ namespace NWAT_SS16
             }
             throw new NotImplementedException();
         }
-
- 
+        //mit der anziegen Funktion werden die Daten der Kriterien in die dafürvorgesehenen Felder eingetragen
         public override void anzeigen(Model objekt)
         {
             if (objekt == null)
@@ -345,7 +336,7 @@ namespace NWAT_SS16
             tree.ItemsSource = branch; 
             return tree;
         }
-         
+        //Sofern ein Kriterium ausgewählt wurde, wird es mit der Funktion gelöscht, wobei nochmals eine Textbox erscheint und um eine Bestätigung bittet 
         public override void loeschen(Model objekt)
         {
             if (objekt == null)
@@ -409,20 +400,20 @@ namespace NWAT_SS16
             }
             throw new NotImplementedException();
         }
-
+         //Aufruf  der Kriteriumsstrukturverwaltung
          public void show_kriteriumstrukturverwaltung(Kriterium objekt)
          {
              Kriteriumstrukturverwaltung frm = new Kriteriumstrukturverwaltung(db, objekt);
              frm.ShowDialog();
          }
-
+         //Aufruf des Kriterienbaums
          public void show_kriteriumtree(Kriterium objekt)
          {
              KriteriumTree frm = new KriteriumTree(db, objekt);
              frm.Show();
          }
 
-
+         //Mit der aendern Funktion ist es möglich die Bezeichnung eines zuvor eingefügten Kriteriums zu verändern
         public override void aendern()
         {
             if (frm.GetType().Name == "Kriteriumverwaltung")
@@ -442,6 +433,7 @@ namespace NWAT_SS16
                 }
                 return;
             }
+                //in der KriterumNutzwerVerwaltung können die dazugehörigen Daten eines Kriteriums(Erfuellung/Gewichtung/etc.) verändert werden
             else if (frm.GetType().Name == "KriteriumNutzwertVerwaltung")
             {
                 if (MessageBox.Show("Sind Sie sich sicher, dass sie das ausgewählte KriteriumNutzwert ändern wollen?", "Ändern", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
@@ -462,7 +454,7 @@ namespace NWAT_SS16
             }
             throw new NotImplementedException();
         }
-
+         //es koennen Unterkriterien zu den unterschiedlichen Oberkriterien hinzugefügt werden
         public void UnterKriterium_hinzufuegen(Kriterium objekt)
         {
             if (frm.GetType().Name == "Kriteriumstrukturverwaltung")
@@ -483,7 +475,7 @@ namespace NWAT_SS16
             }
             throw new NotImplementedException();
         }
-
+        //Kriterien die versentlich als Unterkriterien gesetzt wurden koennen hiermit wieder entfernt werden
         public void UnterKriterium_loeschen(Kriterium objekt)
         {
             if (frm.GetType().Name == "Kriteriumstrukturverwaltung")
@@ -504,7 +496,7 @@ namespace NWAT_SS16
             }
             throw new NotImplementedException();
         }
-
+         //Anzeigen der KriteriumNutzwertVerwaltung 
         public void show_kriteriumnutzwertverwaltung(Nutzwert objekt)
         {
             if (frm.GetType().Name=="Kriteriumverwaltung")
@@ -527,8 +519,5 @@ namespace NWAT_SS16
             }
               throw new NotImplementedException();
         }
-
-
     }
-
 }
