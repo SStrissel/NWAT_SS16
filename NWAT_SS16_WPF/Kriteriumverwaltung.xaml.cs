@@ -90,8 +90,5 @@ namespace NWAT_SS16
         {
             cntrl.drucken(true, true, true, true, ((Projekt)listeProjektID.SelectedItem).getProjektID(), new int[] { ((Produkt)listeProduktID.SelectedItem).getProduktID() });
         }
-
-
-
     }
 }
