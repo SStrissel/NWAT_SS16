@@ -15,8 +15,8 @@
         <Label Content="ProjektID" HorizontalAlignment="Left" Margin="381,10,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
         <Button x:Name="struktur" Content="Strukturverwaltung" HorizontalAlignment="Left" Margin="618,209,0,0" VerticalAlignment="Top" Width="161" Click="struktur_Click" IsEnabled="False" FontFamily="Arial"/>
         <Button x:Name="nutzwert" Content="Nutzwerterwaltung" HorizontalAlignment="Left" Margin="618,236,0,0" VerticalAlignment="Top" Width="161" IsEnabled="False" Click="nutzwert_Click" FontFamily="Arial"/>
-        <ComboBox x:Name="listeProjektID" HorizontalAlignment="Left" Margin="491,13,0,0" VerticalAlignment="Top" Width="283" SelectionChanged="listeProjektID_SelectionChanged" FontFamily="Arial"/>
-        <ComboBox x:Name="listeProduktID" HorizontalAlignment="Left" Margin="492,49,0,0" VerticalAlignment="Top" Width="283" SelectionChanged="listeProduktID_SelectionChanged" FontFamily="Arial"/>
+        <ComboBox x:Name="listeProjektID" HorizontalAlignment="Left" Margin="491,13,0,0" VerticalAlignment="Top" Width="283" FontFamily="Arial"/>
+        <ComboBox x:Name="listeProduktID" HorizontalAlignment="Left" Margin="492,49,0,0" VerticalAlignment="Top" Width="283" FontFamily="Arial"/>
         <Button x:Name="Tree" Content="Tree" HorizontalAlignment="Left" Margin="14,236,0,0" VerticalAlignment="Top" Width="75" Click="Tree_Click" IsEnabled="False" FontFamily="Arial"/>
         <Button x:Name="drucken" Content="drucken" HorizontalAlignment="Left" Margin="274,236,0,0" VerticalAlignment="Top" Width="75" Click="drucken_Click" FontFamily="Arial"/>
 

@@ -149,7 +149,6 @@ namespace NWAT_SS16
             }
         }
 
-<<<<<<< HEAD
         public double prozent(Nutzwert NWAobjekt)
         {
             int nenner = funktionsabdeckungsgrad_beitrag_nenner(NWAobjekt);
@@ -160,9 +159,7 @@ namespace NWAT_SS16
             return (double)NWAobjekt.getGewichtung() / (double)nenner * 100;
         }
 
-=======
         //Funktion der Nutzwertanalyse, ruft die Zaehler und Nenner Funktion und verarbeitet die Ergebnisse in der Funktion
->>>>>>> origin/master
         private double funktionsabdeckungsgrad_beitrag_absolut(Nutzwert NWAobjekt, double beitrag_einzel)
         {
             int nenner = funktionsabdeckungsgrad_beitrag_nenner(NWAobjekt);
