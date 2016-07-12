@@ -75,15 +75,13 @@ column.Width, dt.Rows[0].Height), new StringFormat());
 
         static string CONST_NUM = "Num.";
         static string CONST_BEZ = "Kriterium";
-        static string CONST_ERF = "E";
-        static string CONST_GLERF = "*";
+        static string CONST_ANF = "*"; // Anforderungen des Anwenders
         static string CONST_GEW = "Gew.";
-        static string CONST_NUTZ = "Nutz.";
         static string CONST_PROZ = "Proz";
         static int CONST_PROD_LENGTH = 10;
         static string CONST_KOM = "Kommentar";
 
-        public void BuildDataTable(bool erfuellung, bool gewichtung, bool nutzwert, bool prozent, int ProjektID, int[] ProduktID, DatabaseAdapter db)
+        public void BuildDataTable(bool erfuellung, bool anforderungen, bool gewichtung, bool nutzwert, bool prozent, int ProjektID, int[] ProduktID, DatabaseAdapter db)
         {
             dt = new DataGridView();
             dt.ColumnCount = 1;
@@ -101,10 +99,10 @@ column.Width, dt.Rows[0].Height), new StringFormat());
                 dt.Columns[dt.ColumnCount - 1].Width = 50;
             }
 
-            if (erfuellung)
+            if (anforderungen)
             {
                 dt.ColumnCount += 1;
-                dt.Columns[dt.ColumnCount - 1].Name = CONST_GLERF;
+                dt.Columns[dt.ColumnCount - 1].Name = CONST_ANF;
                 dt.Columns[dt.ColumnCount - 1].Width = 50;
             }
 
@@ -125,7 +123,7 @@ column.Width, dt.Rows[0].Height), new StringFormat());
             Nutzwert temp_nwa = db.get(new Nutzwert(KriteriumID: 1, ProjektID: ProjektID, ProduktID: temp_produkt.getProduktID()))[0];
             Kriterium root_kriterium = temp_nwa.getKriterium(db).getRootKriterium(db)[0];
 
-            if (root_kriterium.getErfuellung(db: db, ProjektID: ProjektID, ProduktID: temp_produkt.getProduktID()) == true || erfuellung == false)
+            if (root_kriterium.getErfuellung(db: db, ProjektID: ProjektID, ProduktID: temp_produkt.getProduktID()) == true || anforderungen == false)
             {
 
                 if (prozent)
@@ -147,11 +145,18 @@ column.Width, dt.Rows[0].Height), new StringFormat());
             dt.Rows[row].Cells[CONST_NUM].Value = "0";
             dt.Rows[row].Cells[CONST_BEZ].Value = root_kriterium.getBezeichnung();
             dt.Rows[row].Cells[CONST_KOM].Value = root_kriterium.getNutzwert(db, ProjektID, temp_produkt.getProduktID()).getKommentar();
-            if (erfuellung)
+            if (anforderungen)
             {
-                dt.Rows[row].Cells[CONST_GLERF].Value = root_kriterium.getNutzwert(db, 0, 0).getErfuellung();
+                if (root_kriterium.getNutzwert(db, 0, 0).getGewichtung() == 0)
+                {
+                    dt.Rows[row].Cells[CONST_ANF].Value = "-";
+                }
+                else
+                {
+                    dt.Rows[row].Cells[CONST_ANF].Value = "X";
+                }
             }
-             if (root_kriterium.getErfuellung(db: db, ProjektID: ProjektID, ProduktID: temp_produkt.getProduktID()) == true || erfuellung == false)
+             if (anforderungen == true)
             {
                 dt.Rows[row].Cells[temp_produkt.getBezeichnung().Substring(0, CONST_PROD_LENGTH)].Value = root_kriterium.getNutzwert(db, ProjektID, temp_produkt.getProduktID()).getErfuellung();
             }
@@ -162,7 +167,7 @@ column.Width, dt.Rows[0].Height), new StringFormat());
 
             if (erfuellung)
             {
-                if (root_kriterium.getErfuellung(db: db, ProjektID: ProjektID, ProduktID: temp_produkt.getProduktID()) == true)
+                if (root_kriterium.getGewichtung(db: db, ProjektID: ProjektID, ProduktID: temp_produkt.getProduktID()) > 0)
                 {
                     dt.Rows[row].Cells[temp_produkt.getBezeichnung().Substring(0, CONST_PROD_LENGTH)].Value = "X";
                 }
@@ -176,16 +181,7 @@ column.Width, dt.Rows[0].Height), new StringFormat());
                 dt.Rows[row].Cells[temp_produkt.getBezeichnung().Substring(0, CONST_PROD_LENGTH)].Value = root_kriterium.getNutzwert(db, ProjektID, temp_produkt.getProduktID()).getBeitragAbsolut();
             }
 
-            if (root_kriterium.getErfuellung(db:db, ProjektID: 0 , ProduktID: 0) == true)
-            {
-                dt.Rows[row].Cells[CONST_GLERF].Value = "X";
-            }
-            else
-            {
-                dt.Rows[row].Cells[CONST_GLERF].Value = "-";
-            }
-
-            if (root_kriterium.getErfuellung(db: db, ProjektID: ProjektID, ProduktID: temp_produkt.getProduktID()) == true || erfuellung == false)
+            if (root_kriterium.getGewichtung(db: db, ProjektID: ProjektID, ProduktID: temp_produkt.getProduktID()) > 0 || anforderungen == false)
             {
 
                 if (gewichtung)
@@ -201,12 +197,12 @@ column.Width, dt.Rows[0].Height), new StringFormat());
 
 
 
-                 addtorow(root_kriterium, erfuellung, gewichtung, nutzwert, prozent, ProjektID, ProduktID, db,  cntrl_nutzwer, "0");
+                 addtorow(root_kriterium, erfuellung, anforderungen, gewichtung, nutzwert, prozent, ProjektID, ProduktID, db,  cntrl_nutzwer, "0");
 
           
         }
 
-        private void addtorow(Kriterium temp_objekt, bool erfuellung, bool gewichtung, bool nutzwert, bool prozent, int ProjektID, int[] ProduktID, DatabaseAdapter db, ControllerNutzwert  cntrl_nutzwer, string count)
+        private void addtorow(Kriterium temp_objekt, bool erfuellung, bool anforderungen, bool gewichtung, bool nutzwert, bool prozent, int ProjektID, int[] ProduktID, DatabaseAdapter db, ControllerNutzwert  cntrl_nutzwer, string count)
         {
             int internal_count = 1;
             foreach (Kriterium temp_kriterium in temp_objekt.getUnterKriterium(db))
@@ -214,14 +210,17 @@ column.Width, dt.Rows[0].Height), new StringFormat());
                     int row = dt.Rows.Add();
                     dt.Rows[row].Cells[CONST_NUM].Value = count + "." + internal_count;
                     dt.Rows[row].Cells[CONST_BEZ].Value = temp_kriterium.getBezeichnung();
+                    if (anforderungen)
+                    {
+                        dt.Rows[row].Cells[CONST_KOM].Value = temp_kriterium.getNutzwert(db: db, ProjektID: 0, ProduktID: 0).getKommentar();
+                    }
 
                     Produkt temp_produkt = new Produkt(ProduktID[0]);
                     foreach (int produkt in ProduktID)
                     {
                         temp_produkt = db.get(new Produkt(produkt))[0];
                         dt.ColumnCount += 1;
-                        dt.Rows[row].Cells[CONST_KOM].Value = temp_kriterium.getNutzwert(db).getKommentar();
-                        if (temp_kriterium.getErfuellung(db, ProjektID: 0, ProduktID: 0) == true || erfuellung == true)
+                        if (temp_kriterium.getGewichtung(db, ProjektID: 0, ProduktID: 0) > 0 || anforderungen == true)
                         {
                             if (erfuellung == true)
                             {
@@ -242,28 +241,32 @@ column.Width, dt.Rows[0].Height), new StringFormat());
                     }
 
                     
-                    if (erfuellung)
+                    if (anforderungen)
                     {
-                        if (temp_kriterium.getErfuellung(db, ProjektID: 0, ProduktID: 0) == true)
+                        if (temp_kriterium.getGewichtung(db, ProjektID: 0, ProduktID: 0) > 0)
                         {
-                            dt.Rows[row].Cells[CONST_GLERF].Value = "X";
+                            dt.Rows[row].Cells[CONST_ANF].Value = "X";
                         }
                         else
                         {
-                            dt.Rows[row].Cells[CONST_GLERF].Value = "-";
+                            dt.Rows[row].Cells[CONST_ANF].Value = "-";
                         }
                     }
-                    if (gewichtung)
+
+                    if (temp_kriterium.getGewichtung(db, ProjektID: 0, ProduktID: 0) > 0 || anforderungen == false)
                     {
-                        dt.Rows[row].Cells[CONST_GEW].Value = temp_kriterium.getGewichtung(db);
+                        if (gewichtung)
+                        {
+                            dt.Rows[row].Cells[CONST_GEW].Value = temp_kriterium.getGewichtung(db);
+                        }
+
+                        if (prozent)
+                        {
+                            dt.Rows[row].Cells[CONST_PROZ].Value = cntrl_nutzwer.prozent(temp_kriterium.getNutzwert(db: db, ProjektID: ProjektID, ProduktID: temp_produkt.getProduktID()));
+                        }
                     }
 
-                    if (prozent)
-                    {
-                        dt.Rows[row].Cells[CONST_PROZ].Value = cntrl_nutzwer.prozent(temp_kriterium.getNutzwert(db: db, ProjektID: ProjektID, ProduktID: temp_produkt.getProduktID()));
-                    }
-
-                    addtorow(temp_kriterium, erfuellung, gewichtung, nutzwert, prozent, ProjektID, ProduktID, db, cntrl_nutzwer, count + "." + internal_count);
+                    addtorow(temp_kriterium, erfuellung, anforderungen, gewichtung, nutzwert, prozent, ProjektID, ProduktID, db, cntrl_nutzwer, count + "." + internal_count);
                     internal_count++;
                 }
         }
