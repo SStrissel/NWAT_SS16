@@ -3,8 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="NutzwertVerwaltung" Height="296.3" Width="449.1">
     <Grid HorizontalAlignment="Left" Height="266.4" VerticalAlignment="Top" Width="442.4">
-        <Button Content="Ranking" HorizontalAlignment="Left" Margin="160,76,0,0" VerticalAlignment="Top" Width="128" Height="61" FontFamily="Arial" Click="Button_Click_1"/>
-        <Button Content="Gleichgewichten" HorizontalAlignment="Left" Margin="294,76,0,0" VerticalAlignment="Top" Width="129" Height="61" FontFamily="Arial" Click="Button_Click_2"/>
-        <Button x:Name="Berechnen" Content="Berechnen" HorizontalAlignment="Left" Margin="24,76,0,0" VerticalAlignment="Top" Width="128" Height="61" Click="Button_Click" FontFamily="Arial"/>
+        <Button Content="Ranking" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top" Width="175" Height="61" FontFamily="Arial" Click="Button_Click_1"/>
+        <Button Content="Gleichgewichten" HorizontalAlignment="Left" Margin="254,76,0,0" VerticalAlignment="Top" Width="175" Height="61" FontFamily="Arial" Click="Button_Click_2"/>
     </Grid>
 </Window>

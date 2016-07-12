@@ -19,7 +19,7 @@ namespace NWAT_SS16
 
            public Nutzwert(): base() {}
 
-        public Nutzwert (int KriteriumID = 0, int ProjektID = 0, int ProduktID = 0, bool Erfuellung = false, int Gewichtung = 0, string Kommentar = "", double BeitragAbsolut = 0, bool BeitragAbsolutCheck = false)
+        public Nutzwert (int KriteriumID = -1, int ProjektID = -1, int ProduktID = -1, bool Erfuellung = false, int Gewichtung = 0, string Kommentar = "", double BeitragAbsolut = 0, bool BeitragAbsolutCheck = false)
         {
             setProjektID(ProjektID);
             setProduktID(ProduktID);
@@ -31,7 +31,7 @@ namespace NWAT_SS16
             setBeitragAbsolutCheck(BeitragAbsolutCheck);
         }
 
-        public Nutzwert(string KriteriumID = "0", string ProjektID = "0", string ProduktID = "0", string Erfuellung = "0", string Gewichtung = "0", string Kommentar = "", string BeitragAbsolut = "0", string BeitragAbsolutCheck = "0")
+        public Nutzwert(string KriteriumID = "-1", string ProjektID = "-1", string ProduktID = "-1", string Erfuellung = "0", string Gewichtung = "0", string Kommentar = "", string BeitragAbsolut = "0", string BeitragAbsolutCheck = "0")
         {
             setProjektID(ProjektID);
             setProduktID(ProduktID);

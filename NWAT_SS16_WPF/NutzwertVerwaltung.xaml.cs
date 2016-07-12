@@ -43,9 +43,8 @@ namespace NWAT_SS16
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            Nutzwert nutz = new Nutzwert();
-            cntrl.gleichgewichten(nutz);
+        {            
+            cntrl.gleichgewichten();
         }
     }
 }

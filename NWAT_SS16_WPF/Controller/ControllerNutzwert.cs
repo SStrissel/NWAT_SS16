@@ -11,43 +11,37 @@ namespace NWAT_SS16
     {         
         public ControllerNutzwert(DatabaseAdapter db, Window frm) : base(db, frm){}
 
-        public void gleichgewichten(Nutzwert NWAobjekt)
+        public void gleichgewichten()
         {
-            List<Kriterium> olist = NWAobjekt.getKriterium(db).getOberKriterium(db);
-            if (olist.Count > 0)
-            {
-                foreach (Kriterium item in olist)
-                {
-                    NWAobjekt.setGewichtung(1);
-                }
-            }
-            List<Kriterium> ulist = NWAobjekt.getKriterium(db).getUnterKriterium(db);
-            if (ulist.Count > 0)
-            {
-                foreach (Kriterium item in ulist)
-                {
-                    NWAobjekt.setGewichtung(1);
-                }
-            }
+            db.gleichgewichtenDB();
         }
 
         public void funktionsabdeckungsgrad_berechnen(Nutzwert NWAobjekt)
         {
             NWAobjekt.setBeitragAbsolutCheck(false);
+            db.update(NWAobjekt);
             //NWAobjekt.getKriterium(db); 
             List<Kriterium> list = NWAobjekt.getKriterium(db).getUnterKriterium(db);
             if (list.Count > 0)
             {
                 foreach (Kriterium temp_obj in list)
                 {
-                    funktionsabdeckungsgrad_berechnen(temp_obj.getNutzwert(db));
+                    funktionsabdeckungsgrad_berechnen(temp_obj.getNutzwert(db: db, ProjektID: NWAobjekt.getProjektID(), ProduktID: NWAobjekt.getProduktID()));
                 }
                 
             }
             else
             {
                 double temp_beitrag = funktionsabdeckungsgrad_beitrag(NWAobjekt);
-                NWAobjekt.setBeitragAbsolut(funktionsabdeckungsgrad_beitrag_absolut(NWAobjekt.getKriterium(db).getOberKriterium(db)[0].getNutzwert(db), temp_beitrag));
+                if (temp_beitrag != 0)
+                {
+                    double beitrag_absolut = funktionsabdeckungsgrad_beitrag_absolut(NWAobjekt.getKriterium(db).getOberKriterium(db)[0].getNutzwert(db), temp_beitrag);
+                    NWAobjekt.setBeitragAbsolut(beitrag_absolut);
+                }
+                else
+                {
+                    NWAobjekt.setBeitragAbsolut(0);
+                }
                 NWAobjekt.setBeitragAbsolutCheck(true);
                 db.update(NWAobjekt);
                 funktionsabdeckungsgrad_aufsummieren(NWAobjekt);
@@ -65,7 +59,7 @@ namespace NWAT_SS16
                 {
                     foreach (Kriterium temp in list)
                     {
-                        temp_beitrag += temp.getNutzwert(db).getBeitragAbsolut();
+                        temp_beitrag += temp.getNutzwert(db: db, ProjektID: NWAobjekt.getProjektID(), ProduktID: NWAobjekt.getProduktID()).getBeitragAbsolut();
                     }
                 NWAobjekt.setBeitragAbsolut(temp_beitrag);
                 NWAobjekt.setBeitragAbsolutCheck(true);
@@ -75,7 +69,7 @@ namespace NWAT_SS16
             List<Kriterium> temp_oberkriterien = NWAobjekt.getKriterium(db).getOberKriterium(db);
             if (temp_oberkriterien.Count > 0)
             {
-                funktionsabdeckungsgrad_aufsummieren(temp_oberkriterien[0].getNutzwert(db));
+                funktionsabdeckungsgrad_aufsummieren(temp_oberkriterien[0].getNutzwert(db, NWAobjekt.getProjektID(), NWAobjekt.getProduktID()));
             }
         }
 
@@ -84,7 +78,7 @@ namespace NWAT_SS16
             List<Kriterium> list = NWAobjekt.getKriterium(db).getUnterKriterium(db);
             foreach (Kriterium temp_obj in list)
             {
-                if (temp_obj.getNutzwert(db).getBeitragAbsolutCheck() == false)
+                if (temp_obj.getNutzwert(db, NWAobjekt.getProjektID(), NWAobjekt.getProduktID()).getBeitragAbsolutCheck() == false)
                 {
                     return true;
                 }
@@ -118,7 +112,7 @@ namespace NWAT_SS16
 
                 foreach (Kriterium temp_obj in list)
                 {
-                    nenner += temp_obj.getGewichtung(db);
+                    nenner += temp_obj.getGewichtung(db: db, ProjektID: NWAobjekt.getProjektID(), ProduktID: NWAobjekt.getProduktID());
                 }
             }
             else
@@ -152,7 +146,7 @@ namespace NWAT_SS16
             List<Kriterium> list  = NWAobjekt.getKriterium(db).getOberKriterium(db);
             foreach (Kriterium temp_objekt in list)
             {
-               result = funktionsabdeckungsgrad_beitrag_absolut(temp_objekt.getNutzwert(db), result);
+                result = funktionsabdeckungsgrad_beitrag_absolut(temp_objekt.getNutzwert(db: db, ProjektID: NWAobjekt.getProjektID(), ProduktID: NWAobjekt.getProduktID()), result);
             }
             return result;   
         }
