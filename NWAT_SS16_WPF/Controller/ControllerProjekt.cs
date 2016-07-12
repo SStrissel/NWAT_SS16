@@ -97,12 +97,32 @@ namespace NWAT_SS16
             }
             if (frm.GetType().Name == "Projektverwaltung")
             {
-
                 Projektverwaltung pv = (Projektverwaltung)frm;
-                db.delete(objekt);
-                pv.detailsBezeichnung.Text = "";
-                pv.detailsProjektID.Text = "";
-                onUpdateData();
+                Nutzwert temp_nutz = new Nutzwert(ProjektID: pv.detailsProjektID.Text, ProduktID: "-1", KriteriumID: "-1");
+                List<Nutzwert> temp = db.get(temp_nutz);
+
+
+                if (temp.Count != 0)
+                {
+                    if (MessageBox.Show("Es ist eine dazugehörige  NWA vorhanden möchten Sie trozdem Löschen ?", "Löschen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                    {
+
+
+                        db.delete(objekt);
+                        pv.detailsBezeichnung.Text = "";
+                        pv.detailsProjektID.Text = "";
+                        onUpdateData();
+                        return;
+                    }
+                }
+                else
+                {
+                    db.delete(objekt);
+                    pv.detailsBezeichnung.Text = "";
+                    pv.detailsProjektID.Text = "";
+                    onUpdateData();
+                    return;
+                }
                 return;
             }
             else if (frm.GetType().Name == "Export")

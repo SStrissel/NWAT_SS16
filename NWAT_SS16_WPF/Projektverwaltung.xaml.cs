@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,12 +52,10 @@ namespace NWAT_SS16
             }
             else
             {
-                Projekt p = new Projekt(detailsProjektID.Text);
-                cp.loeschen(p);
+                    Projekt p = new Projekt(detailsProjektID.Text);
+                    cp.loeschen(p);
             }
-           
         }
-
         private void aendern_Click(object sender, RoutedEventArgs e)
         {
             if (detailsProjektID.Text == "")
