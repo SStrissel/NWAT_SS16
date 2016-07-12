@@ -8,6 +8,7 @@ using System.Data;
 
 using System.Windows;
 
+
 namespace NWAT_SS16
 {
     public class mySQLAdapter : DatabaseAdapter
@@ -576,10 +577,25 @@ namespace NWAT_SS16
                 Projekt temp_objekt = (Projekt)objekt;
                 if (temp_objekt.getProjektID() >= 0)
                 {
-                    ExecuteSQL("DELETE FROM Projekt WHERE ProjektID = '" + temp_objekt.getProjektID() + "';");
-                    //löscht die NWA in der das Projekt vorkommt
-                    ExecuteSQL("DELETE FROM NWA WHERE ProjektID = '" + temp_objekt.getProjektID() + "';");
+                    DataTable temp_datatable = QuerySQL("SELECT * FROM NWA WHERE ProjektID Like '" + temp_objekt.getProjektID() +"%';");
+                 
+                    if (temp_datatable.Rows.Count != 0)
+                    {
+                        if (MessageBox.Show("Es ist eine dazugehörige  NWA vorhanden möchten Sie trozdem Löschen ?", "Löschen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                        {
+                            ExecuteSQL("DELETE FROM Projekt WHERE ProjektID = '" + temp_objekt.getProjektID() + "';");
 
+                            //löscht die NWA in der das Projekt vorkommt
+                            ExecuteSQL("DELETE FROM NWA WHERE ProjektID = '" + temp_objekt.getProjektID() + "';");
+                        }
+                    }
+                    else
+                    {
+                        ExecuteSQL("DELETE FROM Projekt WHERE ProjektID = '" + temp_objekt.getProjektID() + "';");
+
+                        //löscht die NWA in der das Projekt vorkommt
+                        ExecuteSQL("DELETE FROM NWA WHERE ProjektID = '" + temp_objekt.getProjektID() + "';");
+                    }
        
                 }
                 else
