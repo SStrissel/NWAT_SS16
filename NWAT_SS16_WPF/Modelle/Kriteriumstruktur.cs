@@ -8,6 +8,10 @@ namespace NWAT_SS16
 {
     public class Kriteriumstruktur : Model
     {
+        /// <summary>
+        /// Definition der setter und getter Funktionen
+        /// Hauptverantwortlicher: Tektas
+        /// </summary>
         int OberKriteriumID = -1;
         int UnterKriteriumID = -1;
 

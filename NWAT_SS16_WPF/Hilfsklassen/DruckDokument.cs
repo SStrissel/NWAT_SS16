@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace NWAT_SS16
 {
+    //Hauptverantwortlicher: Strissel
     class DruckDokument : PrintDocument
     {
         DataGridView dt = new DataGridView();
@@ -119,7 +120,6 @@ column.Width, dt.Rows[0].Height), new StringFormat());
             dt.Columns[dt.ColumnCount - 1].Name = CONST_KOM;
             dt.Columns[dt.ColumnCount - 1].Width = 300;
 
-
             Nutzwert temp_nwa = db.get(new Nutzwert(KriteriumID: 1, ProjektID: ProjektID, ProduktID: temp_produkt.getProduktID()))[0];
             Kriterium root_kriterium = temp_nwa.getKriterium(db).getRootKriterium(db)[0];
 
@@ -183,7 +183,6 @@ column.Width, dt.Rows[0].Height), new StringFormat());
 
             if (root_kriterium.getGewichtung(db: db, ProjektID: ProjektID, ProduktID: temp_produkt.getProduktID()) > 0 || anforderungen == false)
             {
-
                 if (gewichtung)
                 {
                     dt.Rows[row].Cells[CONST_GEW].Value = root_kriterium.getGewichtung(db, ProjektID, temp_produkt.getProduktID());
@@ -194,12 +193,7 @@ column.Width, dt.Rows[0].Height), new StringFormat());
                     dt.Rows[row].Cells[CONST_PROZ].Value = cntrl_nutzwer.prozent(root_kriterium.getNutzwert(db: db, ProjektID: ProjektID, ProduktID: temp_produkt.getProduktID()));
                 }
             }
-
-
-
-                 addtorow(root_kriterium, erfuellung, anforderungen, gewichtung, nutzwert, prozent, ProjektID, ProduktID, db,  cntrl_nutzwer, "0");
-      
-          
+                 addtorow(root_kriterium, erfuellung, anforderungen, gewichtung, nutzwert, prozent, ProjektID, ProduktID, db,  cntrl_nutzwer, "0");              
         }
 
         private void addtorow(Kriterium temp_objekt, bool erfuellung, bool anforderungen, bool gewichtung, bool nutzwert, bool prozent, int ProjektID, int[] ProduktID, DatabaseAdapter db, ControllerNutzwert  cntrl_nutzwer, string count)

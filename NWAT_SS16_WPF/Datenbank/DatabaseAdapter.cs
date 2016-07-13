@@ -8,6 +8,7 @@ namespace NWAT_SS16
 {
     abstract public class DatabaseAdapter
     {
+        //Hauptverantwortlicher: Strissel, Tektas
         abstract public bool checkConnection();
         abstract public Model insert(Model objekt); // schreibe einen neuen Eintrag in die Datenbank (Autoincrement), schreibe das Model hinein, gebe eine Liste des Models zurück
         abstract public void delete(Model objekt); // hole z.B. Namen/ID aus Model und suche danach in der Datenbank, lösche das Model, gib bei Erfolg true zurück

@@ -13,6 +13,12 @@ namespace NWAT_SS16
 {
     public class mySQLAdapter : DatabaseAdapter
     {
+        //Datenbankverbindung und Tabellenerzeugung auf der Datenbank: Strissel
+        //Funktionen zu den Kriterien: Strissel
+        //Funktionen zu den Projekten: Tektas
+        //Funktion für Export und Import: Tektas
+        //Funktionen zu den Produkten: Huber
+        //Funktionen zum Nutzwert: Wusterhausen
         public MySqlConnection conn;
         public MySqlTransaction transaction;
         public MySqlDataReader reader;
@@ -21,7 +27,7 @@ namespace NWAT_SS16
         {
         }
 
-        /* Team 
+        /* 
         initialisiert die Verbindung zur Datenbank
          */
 
@@ -53,7 +59,7 @@ namespace NWAT_SS16
         }
 
 
-        /* Team 
+        /*  
          öffnet eine Verbindung
         */
 
@@ -73,7 +79,7 @@ namespace NWAT_SS16
 
         }
 
-        /* Team 
+        /*  
          schließt eine Verbindung
         */
 
@@ -108,7 +114,7 @@ namespace NWAT_SS16
             conn.Close();
         }
 
-        /* Team 
+        /*  
          führt einen Befehl auf der Datenbank ohne Rückmeldung aus
         */
 
@@ -127,7 +133,7 @@ namespace NWAT_SS16
             closeConnection();
         }
 
-        /* Team 
+        /*  
          vergibt eine neue ID (Autoincrement)
         */
 
@@ -234,7 +240,7 @@ namespace NWAT_SS16
             throw new NotImplementedException();
         }
 
-        /* Team 
+        /*  
          führt einen SQL-Befehl aus und gibt die Antwort als DataTable zurück (langsam)
         */
 
@@ -259,7 +265,7 @@ namespace NWAT_SS16
             return dataTable;
         }
 
-        /* Team
+        /* 
          * forciert das Einfügen des Models in die Datenbank */
 
         public override Model force_insert(Model objekt)
@@ -307,7 +313,7 @@ namespace NWAT_SS16
         }
 
 
-        /* Team 
+        /*  
         fügt ein neues Model in die Datenbank ein
         */
 
@@ -358,7 +364,7 @@ namespace NWAT_SS16
         }
 
 
-        /* Team 
+        /*  
          initialisiert alle Tabellen
         */
         public override void init_tables()
@@ -435,7 +441,7 @@ namespace NWAT_SS16
             ExecuteSQL("DROP TABLE Kriteriumstruktur;");
         }
 
-        /* Team 
+        /*  
          löscht alle Tabellen
         */
         public override void drop_tables()
@@ -477,7 +483,7 @@ namespace NWAT_SS16
             create_kriteriumstruktur();
         }
 
-        /* Team 
+        /*  
          löscht das Model in der Datenbank
          * Key-Überprüfung fehlt!
         */
@@ -560,7 +566,7 @@ namespace NWAT_SS16
             }
         }
 
-        /* Team 
+        /*  
          updated das Model in der Datenbank
         */
         public override void update(Model objekt)
@@ -623,7 +629,7 @@ namespace NWAT_SS16
             }
         }
 
-        /* Team 
+        /*  
             greift auf die generische get-Methode zu und wandelt sie in eine objektspezifische um
          */
         public override List<Kriterium> get(Kriterium objekt)
@@ -682,7 +688,7 @@ namespace NWAT_SS16
             return return_list;
         }
 
-        /* Team 
+        /*  
            generische get-Methode
         */
         public List<Model> get(Model objekt)
@@ -926,7 +932,7 @@ namespace NWAT_SS16
             throw new NotImplementedException();
         }
         
-        /* Team 
+        /*  
          testet, ob eine Verbindung zur Datenbank besteht
         */
         public override bool checkConnection()

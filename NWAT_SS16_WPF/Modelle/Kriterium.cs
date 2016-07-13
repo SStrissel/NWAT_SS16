@@ -8,6 +8,10 @@ namespace NWAT_SS16
 {
     public class Kriterium : Model
     {
+        /// <summary>
+        /// Definition der setter und getter Funktionen
+        /// Hauptverantwortlicher: Tektas
+        /// </summary>
         private int KriteriumID = -1;
         private string Bezeichnung;
 

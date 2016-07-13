@@ -11,9 +11,10 @@ namespace NWAT_SS16
 {
      public class ControllerProjekt : Controller
     {
+        //Hauptverantworticher: Tektas
+        public ControllerProjekt(DatabaseAdapter db, Window frm) : base(db,frm){} //Konstruktor
 
-        public ControllerProjekt(DatabaseAdapter db, Window frm) : base(db,frm){}
-
+         //Funktion zum Ändern der Projektbezeichnung
         public override void aendern()
         {
             if (frm.GetType().Name == "Projekt_aendern")
@@ -37,10 +38,10 @@ namespace NWAT_SS16
             throw new NotImplementedException();
         }
 
+         //Anlegen eines neuen Projektes
+         //ProjektID wird automatisch vergeben
         public override void anlegen()
         {
-
-
             if (frm.GetType().Name == "Projekt_anlegen")
                 {
                     Projekt_anlegen pa = (Projekt_anlegen)frm;
@@ -60,7 +61,7 @@ namespace NWAT_SS16
             }
             throw new NotImplementedException();
         }
-       
+        //Anzeigen der Projektbezeichnung und ID in den dafür vorgesehenen Textboxen
         public override void anzeigen(Model objekt)
         {
        
@@ -89,6 +90,7 @@ namespace NWAT_SS16
             }
         }
 
+         //Löschen eines vorhandenen Projektes --> Überprüfung einer dazugehörigen NWA im DialogFenster         
         public override void loeschen(Model objekt)
         {
             if (objekt == null)
@@ -101,13 +103,10 @@ namespace NWAT_SS16
                 Nutzwert temp_nutz = new Nutzwert(ProjektID: pv.detailsProjektID.Text, ProduktID: "-1", KriteriumID: "-1");
                 List<Nutzwert> temp = db.get(temp_nutz);
 
-
                 if (temp.Count != 0)
                 {
                     if (MessageBox.Show("Es ist eine dazugehörige  NWA vorhanden möchten Sie trozdem Löschen ?", "Löschen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                     {
-
-
                         db.delete(objekt);
                         pv.detailsBezeichnung.Text = "";
                         pv.detailsProjektID.Text = "";
@@ -137,9 +136,9 @@ namespace NWAT_SS16
             throw new NotImplementedException();
         }
 
+         //Anzeigen von vorhandenen Projekten in der ListBox für die Projektverwaltung und den Import
         public override void onCreateView()
         {
-
             if (frm.GetType().Name == "Projektverwaltung")
             {
                 Projektverwaltung pa = (Projektverwaltung)frm;
@@ -165,20 +164,16 @@ namespace NWAT_SS16
             }
             else if (frm.GetType().Name == "Projekt_anlegen")
             {
-
                 return;
             }
             else if (frm.GetType().Name == "Projekt_aendern")
             {
-
                 return;
             }
             else if (frm.GetType().Name == "Export")
             {
-
                 return;
             }
-
             throw new NotImplementedException();
         }
 
@@ -187,6 +182,7 @@ namespace NWAT_SS16
             return;
         }
 
+         //Aktulasierung der ListBoxen nach Ausführung einer FUnktion (anlegen, aendern, ect.)
         public override void onUpdateData()
         {
             if (frm.GetType().Name == "Projektverwaltung")
@@ -202,12 +198,10 @@ namespace NWAT_SS16
             }
             else if (frm.GetType().Name == "Projekt_anlegen")
             {
-
                 return;
             }
             else if (frm.GetType().Name == "Projekt_aendern")
             {
-
                 return;
             }
             else if (frm.GetType().Name == "Export")
@@ -236,9 +230,10 @@ namespace NWAT_SS16
             throw new NotImplementedException();
         }
 
+         //Export-Funktion zum archivieren von Projekten mit der dazugehörigen NWA
+         //Archivierung geschieht sowohl auf eine zweite Datenbank als auch zur Übrprüfung in eine separate Datei
         public void export()
         {
-
             if (frm.GetType().Name == "Projektverwaltung")
             {
                 Projektverwaltung pv = (Projektverwaltung)frm;
@@ -259,6 +254,7 @@ namespace NWAT_SS16
             }
         }
 
+         //Import-Funktion für die archivierten Projekte auf der zweiten Datenbank mit der dazughörigen NWA
         public void import(Model objekt)
         {
             if (frm.GetType().Name == "Projektverwaltung")
@@ -275,11 +271,7 @@ namespace NWAT_SS16
                 Projekt proj = (Projekt)objekt;
                 db.exp(proj, expdb, false);
                 expdb.delete(proj);
-            }
-            
-        }
-
-       
-     
+            }            
+        }     
     }
 }

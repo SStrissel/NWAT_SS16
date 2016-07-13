@@ -128,12 +128,10 @@ namespace NWAT_SS16
             }
             else if (frm.GetType().Name == "Produkt_anlegen")
             {
-
                 return;
             }
             else if (frm.GetType().Name == "Produkt_aendern")
             {
-
                 return;
             }
             return;
@@ -143,7 +141,7 @@ namespace NWAT_SS16
         {
             return;
         }
-
+         //Aktualisierung der ListBox nach Ausführung einer der andern Funktionen (anlegen, aendern, etc.)
         public override void onUpdateData()
         {
             if (frm.GetType().Name == "Produktverwaltung")
@@ -159,17 +157,14 @@ namespace NWAT_SS16
             }
             else if (frm.GetType().Name == "Produkt_anlegen")
             {
-
                 return;
             }
             else if (frm.GetType().Name == "Produkt_aendern")
             {
-
                 return;
             }
             return;
         }
-
 
         public override void onDestroyView()
         {

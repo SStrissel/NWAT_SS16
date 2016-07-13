@@ -16,6 +16,11 @@ namespace NWAT_SS16
 {
     /// <summary>
     /// Interaktionslogik für Hauptmenue.xaml
+    /// Die Views der Hauptankerpunkt sowie dazugehörigen Views wurden je nach Zugehörigkeit erstellt
+    /// ProjektViews(zzgl. Import/Export): Tektas
+    /// ProduktViews: Huber
+    /// KriteriumViews(zzgl. Login/Hauptmenue/Nutzwertverwaltung): Strissel
+    /// NutzwertViews. Wusterhausen
     /// </summary>
     public partial class Hauptmenue : Window
     {

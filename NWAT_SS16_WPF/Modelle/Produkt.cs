@@ -8,6 +8,10 @@ namespace NWAT_SS16
 {
      public class Produkt : Model
      {
+         /// <summary>
+         /// Definition der setter und getter Funktionen
+         /// Hauptverantwortlicher: Tektas
+         /// </summary>
         int ProduktID;
         string Bezeichnung;
         private static int ProduktIDtemp;

@@ -8,6 +8,10 @@ namespace NWAT_SS16
 {
      public class Nutzwert : Model
     {
+        /// <summary>
+        /// Definition der setter und getter Funktionen
+        /// Hauptverantwortlicher: Tektas
+        /// </summary>
         int KriteriumID;
         int ProduktID;
         int ProjektID;
