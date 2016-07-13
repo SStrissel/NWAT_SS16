@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace NWAT_SS16
 {
-    //Teambasierte Ausarbeitung
+    //Hauptverantwortlicher: Wusterhausen
     public class ControllerNutzwert : Controller
     {        
         //Kontruktor der Klasse ControllerNutzwert

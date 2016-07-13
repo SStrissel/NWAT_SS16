@@ -9,11 +9,11 @@ namespace NWAT_SS16
 {
      public class ControllerProdukt : Controller
     {
+        //Hauptverantworticher: Huber
         public ControllerProdukt(DatabaseAdapter db, Window frm) : base(db, frm){}
-
+         //Funktion zur Änderung der Produktbezeichnung
         public override void aendern()
         {
-
             if (frm.GetType().Name == "Produkt_aendern")
             {
                 Produkt_aendern prodaendern = (Produkt_aendern)frm;
@@ -35,11 +35,10 @@ namespace NWAT_SS16
             }
             throw new NotImplementedException();
         }
-
+         //Funktion zum Anlegen eines neuen Produktes
+         //Autoinkrementierung der ProduktID
         public override void anlegen()
         {
-
-
             if (frm.GetType().Name == "Produkt_anlegen")
             {
                 Produkt_anlegen prodanlegen = (Produkt_anlegen)frm;
@@ -62,10 +61,9 @@ namespace NWAT_SS16
             }
             throw new NotImplementedException();
         }
-
+         //Funktion zum Anzeigen der ProduktID und Bezeichnung innerhalb der Textboxen der View
         public override void anzeigen(Model objekt)
         {
-
             if (objekt == null)
             {
                 return;
@@ -74,14 +72,12 @@ namespace NWAT_SS16
 
             if (frm.GetType().Name == "Produktverwaltung")
             {
-
                 Produktverwaltung prodverwaltung = (Produktverwaltung)frm;
 
                 prodverwaltung.details_ProduktID.Text = prod.getProduktID().ToString();
 
                 prodverwaltung.details_Bezeichnung.Text = prod.getBezeichnung();
-
-                
+                               
                 return;
             }
             else if (frm.GetType().Name == "Produkt_anlegen")
@@ -93,9 +89,7 @@ namespace NWAT_SS16
             }
         }
 
-
-
-
+         //Funktion zum Löschen der Produkte aus der Datenbank
         public override void loeschen(Model objekt)
         {
             if (objekt == null)
@@ -104,7 +98,6 @@ namespace NWAT_SS16
             }
             if (frm.GetType().Name == "Produktverwaltung")
             {
-
                 Produktverwaltung prodverwaltung = (Produktverwaltung)frm;
 
                 db.delete(objekt);
@@ -117,10 +110,7 @@ namespace NWAT_SS16
             }
             throw new NotImplementedException();
         }
-
-
-
-
+         //Beim Erzeugen der View werden die vorhandenen Produkte aus der Datenbank in die ListBox übertragen
         public override void onCreateView()
         {
             if (frm.GetType().Name == "Produktverwaltung")

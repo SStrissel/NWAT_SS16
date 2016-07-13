@@ -11,6 +11,7 @@ using System.Windows.Controls;
 
 namespace NWAT_SS16
 {
+    //Hauptverantwortlicher: Strissel
      public class ControllerKriterium : Controller
     {
        public ControllerKriterium(DatabaseAdapter db, Window frm) : base(db, frm) { }
