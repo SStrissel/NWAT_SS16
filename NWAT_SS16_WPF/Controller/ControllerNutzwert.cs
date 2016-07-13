@@ -12,6 +12,7 @@ namespace NWAT_SS16
     {        
         //Kontruktor der Klasse ControllerNutzwert
         public ControllerNutzwert(DatabaseAdapter db, Window frm) : base(db, frm){}
+        private DruckDokument dok = new DruckDokument();
 
         //Funktion gleichgewichten ruft die im DatabaseAdapter befindliche Funktion gleichgewichtenDB auf
         public void gleichgewichten()
@@ -168,12 +169,6 @@ namespace NWAT_SS16
             }
             return result;   
         }
-
-        private void ranking_anzeigen()
-        {
-            ControllerKriterium krit = new ControllerKriterium(db, frm);
-                        
-        }
         
         /// <summary>
         /// Die folgenden Funktionen sind aus dem Standard Controller und werden in dieser Klasse nicht weiter 
@@ -203,7 +198,13 @@ namespace NWAT_SS16
 
         public override void onCreateView()
         {
-            
+          /*  if (frm.GetType().Name == "NutzwertVerwaltung")
+            {
+                NutzwertVerwaltung nutz = (NutzwertVerwaltung)frm;
+                this.onUpdateData();
+                return;
+            }
+            */
         }
 
         public override void onUpdateView()
@@ -229,6 +230,16 @@ namespace NWAT_SS16
         public override void onDestroyView()
         {
             throw new NotImplementedException();
-        }  
+        }
+
+        public void drucken(bool erfuellung, bool gewichtung, bool nutzwert, bool prozent, int ProjektID, int[] ProduktID)
+        {
+            dok.BuildDataTable(erfuellung: false, anforderungen: true, gewichtung: gewichtung, nutzwert: nutzwert, prozent: prozent, ProjektID: ProjektID, ProduktID: ProduktID, db: db);
+
+            System.Windows.Forms.PrintPreviewDialog dialog = new System.Windows.Forms.PrintPreviewDialog();
+            dialog.Document = dok;
+
+            dialog.ShowDialog();
+        }
     }
 }

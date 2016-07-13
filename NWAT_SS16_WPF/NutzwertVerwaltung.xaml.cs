@@ -27,13 +27,19 @@ namespace NWAT_SS16
         {
             InitializeComponent();
             cntrl = new ControllerNutzwert(db, this);
-            cntrl.onCreateView();
+            //cntrl.onCreateView();
             cntrl.onUpdateData();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Ranking");            
+            int prod1 = ((Produkt)details_Prod1.SelectedItem).getProduktID();
+            int prod2 = ((Produkt)details_Prod2.SelectedItem).getProduktID();
+            int[] a =  { prod1, prod2};
+            
+            
+            cntrl.drucken(true, true, true, true, ((Projekt)details_Proj.SelectedItem).getProjektID(), a);
+           
         }
         //Ruft die Funktion gleichgewichten der Klasse ControllerNutzwert auf
         private void Button_Click_2(object sender, RoutedEventArgs e)
