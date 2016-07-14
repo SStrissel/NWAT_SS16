@@ -29,7 +29,7 @@ namespace NWAT_SS16
          private void resetProdukt_Click(object sender, RoutedEventArgs e)
         {
             db.reset_produkt();
-            DatabaseAdapter expdb = new mySQLAdapter("db4free.net", "nwat_expimp", "nutzwertexpimp", "ad.nutz#"); // Konstruktor
+            DatabaseAdapter expdb = new mySQLAdapter("localhost", "nwat_expimp", "nutzwertexpimp", "ad.nutz#"); // Konstruktor
             expdb.reset_produkt();
             infoBox.Dispatcher.BeginInvoke(new Action(() => { infoBox.Text = "Produkt-Tabelle neu initalisiert."; }));
         }
@@ -37,7 +37,7 @@ namespace NWAT_SS16
          private void resetKritierium_Click(object sender, RoutedEventArgs e)
          {
              db.reset_kriterium();
-             DatabaseAdapter expdb = new mySQLAdapter("db4free.net", "nwat_expimp", "nutzwertexpimp", "ad.nutz#"); // Konstruktor
+             DatabaseAdapter expdb = new mySQLAdapter("localhost", "nwat_expimp", "nutzwertexpimp", "ad.nutz#"); // Konstruktor
              expdb.reset_kriterium();
              infoBox.Dispatcher.BeginInvoke(new Action(() => { infoBox.Text = "Kriterium-Tabelle neu initalisiert."; }));
          }
@@ -45,7 +45,7 @@ namespace NWAT_SS16
          private void initTables_Click(object sender, RoutedEventArgs e)
          {
              db.init_tables();
-             DatabaseAdapter expdb = new mySQLAdapter("db4free.net", "nwat_expimp", "nutzwertexpimp", "ad.nutz#"); // Konstruktor
+             DatabaseAdapter expdb = new mySQLAdapter("localhost", "nwat_expimp", "nutzwertexpimp", "ad.nutz#"); // Konstruktor
              expdb.init_tables();
              infoBox.Dispatcher.BeginInvoke(new Action(() => { infoBox.Text = "Tables initialisiert."; }));
          }
@@ -53,7 +53,7 @@ namespace NWAT_SS16
          private void resetNWA_Click(object sender, RoutedEventArgs e)
          {
              db.reset_nwa();
-             DatabaseAdapter expdb = new mySQLAdapter("db4free.net", "nwat_expimp", "nutzwertexpimp", "ad.nutz#"); // Konstruktor
+             DatabaseAdapter expdb = new mySQLAdapter("localhost", "nwat_expimp", "nutzwertexpimp", "ad.nutz#"); // Konstruktor
              expdb.reset_nwa();
              infoBox.Dispatcher.BeginInvoke(new Action(() => { infoBox.Text = "NWA-Tabelle neu initalisiert."; }));
          }
@@ -82,7 +82,7 @@ namespace NWAT_SS16
         private void resetNWA_Copy_Click(object sender, RoutedEventArgs e)
         {
             db.reset_kriteriumstruktur();
-            DatabaseAdapter expdb = new mySQLAdapter("db4free.net", "nwat_expimp", "nutzwertexpimp", "ad.nutz#"); // Konstruktor
+            DatabaseAdapter expdb = new mySQLAdapter("localhost", "nwat_expimp", "nutzwertexpimp", "ad.nutz#"); // Konstruktor
             expdb.reset_kriteriumstruktur();
             infoBox.Dispatcher.BeginInvoke(new Action(() => { infoBox.Text = "Kriteriumstruktur-Tabelle neu initalisiert."; }));
         }
@@ -90,6 +90,22 @@ namespace NWAT_SS16
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             db.create_nwa();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            db.init_tables();
+            DatabaseAdapter expdb = new mySQLAdapter("localhost", "nwat_expimp", "nutzwertexpimp", "ad.nutz#"); // Konstruktor
+            expdb.init_tables();
+            infoBox.Dispatcher.BeginInvoke(new Action(() => { infoBox.Text = "Tabellen neu initalisiert."; }));
+        }
+
+        private void resetProjekt_Click(object sender, RoutedEventArgs e)
+        {
+            db.reset_projekt();
+            DatabaseAdapter expdb = new mySQLAdapter("localhost", "nwat_expimp", "nutzwertexpimp", "ad.nutz#"); // Konstruktor
+            expdb.reset_projekt();
+            infoBox.Dispatcher.BeginInvoke(new Action(() => { infoBox.Text = "Kriteriumstruktur-Tabelle neu initalisiert."; }));
         }
     }
 }

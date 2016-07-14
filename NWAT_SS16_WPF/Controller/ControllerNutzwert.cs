@@ -39,7 +39,7 @@ namespace NWAT_SS16
                 if (temp_beitrag != 0)
                 {
                     double beitrag_absolut = funktionsabdeckungsgrad_beitrag_absolut(NWAobjekt.getKriterium(db).getOberKriterium(db)[0].getNutzwert(db, NWAobjekt.getProjektID(), NWAobjekt.getProduktID()), temp_beitrag);
-                    NWAobjekt.setBeitragAbsolut(beitrag_absolut);
+                    NWAobjekt.setBeitragAbsolut(beitrag_absolut*NWAobjekt.getAbstufung());
                 }
                 else
                 {
@@ -63,7 +63,7 @@ namespace NWAT_SS16
                 {
                     foreach (Kriterium temp in list)
                     {
-                        temp_beitrag += temp.getNutzwert(db: db, ProjektID: NWAobjekt.getProjektID(), ProduktID: NWAobjekt.getProduktID()).getBeitragAbsolut();
+                        temp_beitrag += temp.getNutzwert(db: db, ProjektID: NWAobjekt.getProjektID(), ProduktID: NWAobjekt.getProduktID()).getBeitragAbsolut() * NWAobjekt.getAbstufung();
                     }
                 NWAobjekt.setBeitragAbsolut(temp_beitrag);
                 NWAobjekt.setBeitragAbsolutCheck(true);
@@ -153,7 +153,7 @@ namespace NWAT_SS16
             {
                 return 0;
             }
-            return (double)NWAobjekt.getGewichtung() / (double)nenner * 100;
+            return Math.Round((double)NWAobjekt.getGewichtung() / (double)nenner * 100,3);
         }
 
         //Funktion der Nutzwertanalyse, ruft die Zaehler und Nenner Funktion und verarbeitet die Ergebnisse in der Funktion
@@ -167,7 +167,7 @@ namespace NWAT_SS16
             {
                 result = funktionsabdeckungsgrad_beitrag_absolut(temp_objekt.getNutzwert(db: db, ProjektID: NWAobjekt.getProjektID(), ProduktID: NWAobjekt.getProduktID()), result);
             }
-            return result;   
+            return Math.Round(result,3);   
         }
         
         /// <summary>
@@ -232,9 +232,9 @@ namespace NWAT_SS16
             throw new NotImplementedException();
         }
 
-        public void drucken(bool erfuellung, bool gewichtung, bool nutzwert, bool prozent, int ProjektID, int[] ProduktID)
+        public void drucken(bool erfuellung, bool anforderungen, bool gewichtung, bool nutzwert, bool prozent, int ProjektID, int[] ProduktID, bool produkte)
         {
-            dok.BuildDataTable(erfuellung: false, anforderungen: true, gewichtung: gewichtung, nutzwert: nutzwert, prozent: prozent, ProjektID: ProjektID, ProduktID: ProduktID, db: db);
+            dok.BuildDataTable(erfuellung: erfuellung, anforderungen: anforderungen, gewichtung: gewichtung, nutzwert: nutzwert, prozent: prozent, ProjektID: ProjektID, ProduktID: ProduktID, db: db, produkte: produkte);
 
             System.Windows.Forms.PrintPreviewDialog dialog = new System.Windows.Forms.PrintPreviewDialog();
             dialog.Document = dok;

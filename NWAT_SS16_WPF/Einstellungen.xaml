@@ -11,6 +11,8 @@
         <Button x:Name="dummyKriterien" Content="dummyKriterien" HorizontalAlignment="Left" Margin="42,132,0,0" VerticalAlignment="Top" Width="92" Click="dummyKriterien_Click" FontFamily="Arial"/>
         <Button x:Name="resetNWA_Copy" Content="reset Kriteriumstruktur" HorizontalAlignment="Left" Margin="154,132,0,0" VerticalAlignment="Top" Width="128" Click="resetNWA_Copy_Click" FontFamily="Arial"/>
         <Button Content="spezialbutton" HorizontalAlignment="Left" Margin="146,9,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button Content="create_tables&#xD;&#xA;" HorizontalAlignment="Left" Margin="25,4,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+        <Button x:Name="resetProjekt" Content="reset Projekt" HorizontalAlignment="Left" Margin="196,73,0,0" VerticalAlignment="Top" Width="92" Click="resetProjekt_Click" FontFamily="Arial"/>
 
     </Grid>
 </Window>

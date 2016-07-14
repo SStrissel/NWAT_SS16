@@ -82,7 +82,7 @@ column.Width, dt.Rows[0].Height), new StringFormat());
         static int CONST_PROD_LENGTH = 10;
         static string CONST_KOM = "Kommentar";
 
-        public void BuildDataTable(bool erfuellung, bool anforderungen, bool gewichtung, bool nutzwert, bool prozent, int ProjektID, int[] ProduktID, DatabaseAdapter db)
+        public void BuildDataTable(bool erfuellung, bool anforderungen, bool gewichtung, bool nutzwert, bool prozent, int ProjektID, int[] ProduktID, DatabaseAdapter db, bool produkte)
         {
             dt = new DataGridView();
             dt.ColumnCount = 1;
@@ -109,11 +109,19 @@ column.Width, dt.Rows[0].Height), new StringFormat());
 
             Produkt temp_produkt = new Produkt(ProduktID[0]);
             ControllerNutzwert cntrl_nutzwer = new ControllerNutzwert(db, null);
-            foreach (int produkt in ProduktID)
+            if (produkte)
             {
-                temp_produkt = db.get(new Produkt(produkt))[0];
-                dt.ColumnCount += 1;
-                dt.Columns[dt.ColumnCount - 1].Name = temp_produkt.getBezeichnung().Substring(0, CONST_PROD_LENGTH);
+                foreach (int produkt in ProduktID)
+                {
+                    temp_produkt = db.get(new Produkt(produkt))[0];
+                    dt.ColumnCount += 1;
+                    string column_name = temp_produkt.getBezeichnung();
+                    if (temp_produkt.getBezeichnung().Length > CONST_PROD_LENGTH)
+                    {
+                        column_name = column_name.Substring(0, CONST_PROD_LENGTH);
+                    }
+                    dt.Columns[dt.ColumnCount - 1].Name = column_name;
+                }
             }
 
             dt.ColumnCount += 1;
@@ -135,11 +143,6 @@ column.Width, dt.Rows[0].Height), new StringFormat());
             }
 
   
-            if (erfuellung == false)
-            {
-                cntrl_nutzwer.funktionsabdeckungsgrad_berechnen(root_kriterium.getNutzwert(db, ProjektID, temp_produkt.getProduktID()));
-            }
-
             int row = dt.Rows.Add();
 
             dt.Rows[row].Cells[CONST_NUM].Value = "0";
@@ -156,29 +159,48 @@ column.Width, dt.Rows[0].Height), new StringFormat());
                     dt.Rows[row].Cells[CONST_ANF].Value = "X";
                 }
             }
-             if (anforderungen == true)
-            {
-                dt.Rows[row].Cells[temp_produkt.getBezeichnung().Substring(0, CONST_PROD_LENGTH)].Value = root_kriterium.getNutzwert(db, ProjektID, temp_produkt.getProduktID()).getErfuellung();
-            }
-            else
-            {
-                dt.Rows[row].Cells[temp_produkt.getBezeichnung().Substring(0, CONST_PROD_LENGTH)].Value = root_kriterium.getNutzwert(db, ProjektID, temp_produkt.getProduktID()).getBeitragAbsolut();
-            }
 
-            if (erfuellung)
+            if (produkte)
             {
-                if (root_kriterium.getGewichtung(db: db, ProjektID: ProjektID, ProduktID: temp_produkt.getProduktID()) > 0)
+                foreach (int produkt in ProduktID)
                 {
-                    dt.Rows[row].Cells[temp_produkt.getBezeichnung().Substring(0, CONST_PROD_LENGTH)].Value = "X";
+                    temp_produkt = db.get(new Produkt(produkt))[0];
+                    string column_name = temp_produkt.getBezeichnung();
+                    if (temp_produkt.getBezeichnung().Length > CONST_PROD_LENGTH)
+                    {
+                        column_name = column_name.Substring(0, CONST_PROD_LENGTH);
+                    }
+
+                    if (erfuellung == false)
+                    {
+                        cntrl_nutzwer.funktionsabdeckungsgrad_berechnen(root_kriterium.getNutzwert(db, ProjektID, temp_produkt.getProduktID()));
+                    }
+
+                    if (anforderungen == true)
+                    {
+                        dt.Rows[row].Cells[column_name].Value = root_kriterium.getNutzwert(db, ProjektID, temp_produkt.getProduktID()).getErfuellung();
+                    }
+                    else
+                    {
+                        dt.Rows[row].Cells[column_name].Value = root_kriterium.getNutzwert(db, ProjektID, temp_produkt.getProduktID()).getBeitragAbsolut();
+                    }
+
+                    if (erfuellung)
+                    {
+                        if (root_kriterium.getGewichtung(db: db, ProjektID: ProjektID, ProduktID: temp_produkt.getProduktID()) > 0)
+                        {
+                            dt.Rows[row].Cells[column_name].Value = "X";
+                        }
+                        else
+                        {
+                            dt.Rows[row].Cells[column_name].Value = "-";
+                        }
+                    }
+                    else
+                    {
+                        dt.Rows[row].Cells[column_name].Value = root_kriterium.getNutzwert(db, ProjektID, temp_produkt.getProduktID()).getBeitragAbsolut();
+                    }
                 }
-                else
-                {
-                    dt.Rows[row].Cells[temp_produkt.getBezeichnung().Substring(0, CONST_PROD_LENGTH)].Value = "-";
-                }
-            }
-            else
-            {
-                dt.Rows[row].Cells[temp_produkt.getBezeichnung().Substring(0, CONST_PROD_LENGTH)].Value = root_kriterium.getNutzwert(db, ProjektID, temp_produkt.getProduktID()).getBeitragAbsolut();
             }
 
             if (root_kriterium.getGewichtung(db: db, ProjektID: ProjektID, ProduktID: temp_produkt.getProduktID()) > 0 || anforderungen == false)
@@ -193,10 +215,10 @@ column.Width, dt.Rows[0].Height), new StringFormat());
                     dt.Rows[row].Cells[CONST_PROZ].Value = cntrl_nutzwer.prozent(root_kriterium.getNutzwert(db: db, ProjektID: ProjektID, ProduktID: temp_produkt.getProduktID()));
                 }
             }
-                 addtorow(root_kriterium, erfuellung, anforderungen, gewichtung, nutzwert, prozent, ProjektID, ProduktID, db,  cntrl_nutzwer, "0");              
+                 addtorow(root_kriterium, erfuellung, anforderungen, gewichtung, nutzwert, prozent, ProjektID, ProduktID, db,  cntrl_nutzwer, "0", produkte);              
         }
 
-        private void addtorow(Kriterium temp_objekt, bool erfuellung, bool anforderungen, bool gewichtung, bool nutzwert, bool prozent, int ProjektID, int[] ProduktID, DatabaseAdapter db, ControllerNutzwert  cntrl_nutzwer, string count)
+        private void addtorow(Kriterium temp_objekt, bool erfuellung, bool anforderungen, bool gewichtung, bool nutzwert, bool prozent, int ProjektID, int[] ProduktID, DatabaseAdapter db, ControllerNutzwert  cntrl_nutzwer, string count, bool produkte)
         {
             int internal_count = 1;
             foreach (Kriterium temp_kriterium in temp_objekt.getUnterKriterium(db))
@@ -207,28 +229,37 @@ column.Width, dt.Rows[0].Height), new StringFormat());
                     dt.Rows[row].Cells[CONST_KOM].Value = temp_kriterium.getNutzwert(db: db, ProjektID: 0, ProduktID: 0).getKommentar();
 
                     Produkt temp_produkt = new Produkt(ProduktID[0]);
-                    foreach (int produkt in ProduktID)
+                    if (produkte)
                     {
-                        temp_produkt = db.get(new Produkt(produkt))[0];
-                        dt.ColumnCount += 1;
-                        if (temp_kriterium.getGewichtung(db, ProjektID: 0, ProduktID: 0) > 0 || anforderungen == true)
+                        foreach (int produkt in ProduktID)
                         {
-                            if (erfuellung == true)
+                            temp_produkt = db.get(new Produkt(produkt))[0];
+                            string column_name = temp_produkt.getBezeichnung();
+                            if (temp_produkt.getBezeichnung().Length > CONST_PROD_LENGTH)
                             {
-                                if (temp_kriterium.getErfuellung(db: db, ProjektID: ProjektID, ProduktID: produkt) == true)
+                                column_name = column_name.Substring(0, CONST_PROD_LENGTH);
+                            }
+                            dt.ColumnCount += 1;
+                            if (temp_kriterium.getGewichtung(db, ProjektID: 0, ProduktID: 0) > 0 || anforderungen == true)
+                            {
+                                if (erfuellung == true)
                                 {
-                                    dt.Rows[row].Cells[temp_produkt.getBezeichnung().Substring(0, CONST_PROD_LENGTH)].Value = "X";
+                                    if (temp_kriterium.getErfuellung(db: db, ProjektID: ProjektID, ProduktID: produkt) == true)
+                                    {
+                                        dt.Rows[row].Cells[column_name].Value = "X";
+                                    }
+                                    else
+                                    {
+                                        dt.Rows[row].Cells[column_name].Value = "-";
+                                    }
                                 }
                                 else
                                 {
-                                    dt.Rows[row].Cells[temp_produkt.getBezeichnung().Substring(0, CONST_PROD_LENGTH)].Value = "-";
+
+                                    dt.Rows[row].Cells[column_name].Value = temp_kriterium.getNutzwert(db, ProjektID, temp_produkt.getProduktID()).getBeitragAbsolut();
                                 }
                             }
-                            else
-                            {
-                                dt.Rows[row].Cells[temp_produkt.getBezeichnung().Substring(0, CONST_PROD_LENGTH)].Value = temp_kriterium.getNutzwert(db, ProjektID, temp_produkt.getProduktID()).getBeitragAbsolut();
-                            }
-                            }
+                        }
                     }
 
                     
@@ -257,7 +288,7 @@ column.Width, dt.Rows[0].Height), new StringFormat());
                         }
                     }
 
-                    addtorow(temp_kriterium, erfuellung, anforderungen, gewichtung, nutzwert, prozent, ProjektID, ProduktID, db, cntrl_nutzwer, count + "." + internal_count);
+                    addtorow(temp_kriterium, erfuellung, anforderungen, gewichtung, nutzwert, prozent, ProjektID, ProduktID, db, cntrl_nutzwer, count + "." + internal_count, produkte);
                     internal_count++;
                 }
         }

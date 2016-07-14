@@ -88,7 +88,7 @@ namespace NWAT_SS16
         //Aufruf der drucken-Funktion in der Klasse ControllerKriterium
         private void drucken_Click(object sender, RoutedEventArgs e)
         {
-            cntrl.drucken(true, true, true, true, ((Projekt)listeProjektID.SelectedItem).getProjektID(), new int[] { ((Produkt)listeProduktID.SelectedItem).getProduktID() });
+            cntrl.drucken(true, true, true, true, ((Projekt)listeProjektID.SelectedItem).getProjektID(), new int[] { ((Produkt)listeProduktID.SelectedItem).getProduktID() }, true);
         }
     }
 }

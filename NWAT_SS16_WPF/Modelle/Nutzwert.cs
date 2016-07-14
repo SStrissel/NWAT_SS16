@@ -20,10 +20,11 @@ namespace NWAT_SS16
         string Kommentar;
         double beitrag_absolut;
         bool beitrag_absolut_check;
+        double abstufung;
 
            public Nutzwert(): base() {}
 
-        public Nutzwert (int KriteriumID = -1, int ProjektID = -1, int ProduktID = -1, bool Erfuellung = false, int Gewichtung = 0, string Kommentar = "", double BeitragAbsolut = 0, bool BeitragAbsolutCheck = false)
+        public Nutzwert (int KriteriumID = -1, int ProjektID = -1, int ProduktID = -1, bool Erfuellung = false, int Gewichtung = 0, string Kommentar = "", double BeitragAbsolut = 0, bool BeitragAbsolutCheck = false, double Abstufung = 0)
         {
             setProjektID(ProjektID);
             setProduktID(ProduktID);
@@ -33,9 +34,10 @@ namespace NWAT_SS16
             setKommentar(Kommentar);
             setBeitragAbsolut(BeitragAbsolut);
             setBeitragAbsolutCheck(BeitragAbsolutCheck);
+            setAbstufung(Abstufung);
         }
 
-        public Nutzwert(string KriteriumID = "-1", string ProjektID = "-1", string ProduktID = "-1", string Erfuellung = "0", string Gewichtung = "0", string Kommentar = "", string BeitragAbsolut = "0", string BeitragAbsolutCheck = "0")
+        public Nutzwert(string KriteriumID = "-1", string ProjektID = "-1", string ProduktID = "-1", string Erfuellung = "0", string Gewichtung = "0", string Kommentar = "", string BeitragAbsolut = "0", string BeitragAbsolutCheck = "0", string Abstufung = "0")
         {
             setProjektID(ProjektID);
             setProduktID(ProduktID);
@@ -43,7 +45,23 @@ namespace NWAT_SS16
             setGewichtung(Gewichtung);
             setErfuellung(Erfuellung);
             setKommentar(Kommentar);
+            setAbstufung(Abstufung);
         }
+
+         public void setAbstufung(double wert)
+         {
+             this.abstufung = wert;
+         }
+
+         public void setAbstufung(string wert)
+         {
+             setAbstufung(Double.Parse(wert));
+         }
+
+         public double getAbstufung()
+         {
+             return this.abstufung;
+         }
 
         public override string ToString()
         {
@@ -168,7 +186,7 @@ namespace NWAT_SS16
 
         public double getBeitragAbsolut()
         {
-            if (beitrag_absolut == null)
+            if (beitrag_absolut == 0)
             {
                 return 0;
             }

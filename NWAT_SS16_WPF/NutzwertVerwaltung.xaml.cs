@@ -36,15 +36,55 @@ namespace NWAT_SS16
             int prod1 = ((Produkt)details_Prod1.SelectedItem).getProduktID();
             int prod2 = ((Produkt)details_Prod2.SelectedItem).getProduktID();
             int[] a =  { prod1, prod2};
+            int proj =  ((Projekt)details_Proj.SelectedItem).getProjektID();
             
-            
-            cntrl.drucken(true, true, true, true, ((Projekt)details_Proj.SelectedItem).getProjektID(), a);
+            cntrl.drucken(false, false, true, true, true, proj, a, true);
            
         }
         //Ruft die Funktion gleichgewichten der Klasse ControllerNutzwert auf
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {            
             cntrl.gleichgewichten();
+        }
+
+        private void kundenanf_Click(object sender, RoutedEventArgs e)
+        {
+            int prod1 = ((Produkt)details_Prod1.SelectedItem).getProduktID();
+            int prod2 = ((Produkt)details_Prod2.SelectedItem).getProduktID();
+            int[] a = { prod1, prod2 };
+            int proj = ((Projekt)details_Proj.SelectedItem).getProjektID();            
+
+            cntrl.drucken(false, true, false, false, false, proj, a, false); 
+        }
+
+        private void prod1_Click(object sender, RoutedEventArgs e)
+        {
+            int prod1 = ((Produkt)details_Prod1.SelectedItem).getProduktID();
+            int prod2 = ((Produkt)details_Prod2.SelectedItem).getProduktID();
+            int[] a = { prod1};
+            int proj = ((Projekt)details_Proj.SelectedItem).getProjektID();
+
+            cntrl.drucken(true, false, false, false, false, proj, a, true); 
+        }
+
+        private void prod2_Click(object sender, RoutedEventArgs e)
+        {
+            int prod1 = ((Produkt)details_Prod1.SelectedItem).getProduktID();
+            int prod2 = ((Produkt)details_Prod2.SelectedItem).getProduktID();
+            int[] a = { prod2 };
+            int proj = ((Projekt)details_Proj.SelectedItem).getProjektID();
+
+            cntrl.drucken(true, false, false, false, false, proj, a, true); 
+        }
+
+        private void prod_table_Click(object sender, RoutedEventArgs e)
+        {
+            int prod1 = ((Produkt)details_Prod1.SelectedItem).getProduktID();
+            int prod2 = ((Produkt)details_Prod2.SelectedItem).getProduktID();
+            int[] a = { prod1, prod2 };
+            int proj = ((Projekt)details_Proj.SelectedItem).getProjektID();
+
+            cntrl.drucken(true, true, false, false, false, proj, a, true); 
         }
     }
 }

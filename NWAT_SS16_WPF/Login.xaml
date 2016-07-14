@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Nutzwertanalyse-Tool" Height="424.462" Width="629.639" Icon="Resources/Laundry_12-512.png" KeyDown="Window_KeyDown">
     <Grid Margin="0,0">
-        <TextBox x:Name="server" HorizontalAlignment="Left" Height="18" Margin="402,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Text="db4free.net" FontFamily="Arial"/>
+        <TextBox x:Name="server" HorizontalAlignment="Left" Height="18" Margin="402,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Text="localhost" FontFamily="Arial"/>
         <TextBox x:Name="datenbank" HorizontalAlignment="Left" Height="18" Margin="402,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Text="nwat" FontFamily="Arial"/>
         <TextBox x:Name="benutzer" HorizontalAlignment="Left" Height="18" Margin="402,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Text="nutzwertadmin" FontFamily="Arial"/>
         <Label Content="Server&#xD;&#xA;" HorizontalAlignment="Left" Margin="323,109,0,0" VerticalAlignment="Top" Height="24" Width="81" FontFamily="Arial"/>

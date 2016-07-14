@@ -38,5 +38,10 @@ namespace NWAT_SS16
             Nutzwert objekt = new Nutzwert(KriteriumID: details_KriteriumID.Text, ProduktID: details_ProduktID.Text, ProjektID: details_ProjektID.Text);
             cntrl.loeschen(objekt);
         }
+
+        private void details_Abstufung_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

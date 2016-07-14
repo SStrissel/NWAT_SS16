@@ -153,7 +153,10 @@ namespace NWAT_SS16
             else if (frm.GetType().Name == "Import")
             {
                 Import i = (Import)frm;
-                DatabaseAdapter expdb = new mySQLAdapter("db4free.net", "nwat_expimp", "nutzwertexpimp", "ad.nutz#"); // Konstruktor
+                //DatabaseAdapter expdb = new mySQLAdapter("db4free.net", "nwat_expimp", "nutzwertexpimp", "ad.nutz#"); // Konstruktor
+
+                DatabaseAdapter expdb = new mySQLAdapter("localhost", "nwat_expimp", "nutzwertexpimp", "ad.nutz#"); // Konstruktor
+
                 List<Projekt> projekte = expdb.get(new Projekt());
                 if (projekte.Count() > 0)
                 {

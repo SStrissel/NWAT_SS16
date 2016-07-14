@@ -24,9 +24,9 @@ namespace NWAT_SS16
         }
 
          //Druck-Funktion, die den StandardPrintDialog aufruft
-        public void drucken(bool erfuellung, bool gewichtung, bool nutzwert, bool prozent, int ProjektID, int[] ProduktID)
+        public void drucken(bool erfuellung, bool gewichtung, bool nutzwert, bool prozent, int ProjektID, int[] ProduktID, bool produkte)
         {
-            dok.BuildDataTable(erfuellung: false, anforderungen: true, gewichtung: gewichtung, nutzwert: nutzwert, prozent: prozent, ProjektID: ProjektID, ProduktID: ProduktID, db: db);
+            dok.BuildDataTable(erfuellung: false, anforderungen: true, gewichtung: gewichtung, nutzwert: nutzwert, prozent: prozent, ProjektID: ProjektID, ProduktID: ProduktID, db: db, produkte: produkte);
 
             System.Windows.Forms.PrintPreviewDialog dialog = new System.Windows.Forms.PrintPreviewDialog();
             dialog.Document = dok;
@@ -44,8 +44,8 @@ namespace NWAT_SS16
                 temp_objekt.setBezeichnung("Neues Kriterium");
                 temp_objekt = db.insert(temp_objekt) as Kriterium;
 
-                Nutzwert temp_objekt2 = new Nutzwert(KriteriumID: temp_objekt.getKriteriumID(), ProjektID: ((Projekt)krit.listeProjektID.SelectedItem).getProjektID(), ProduktID: ((Produkt)krit.listeProduktID.SelectedItem).getProduktID());
-                db.insert(temp_objekt2);
+                //Nutzwert temp_objekt2 = new Nutzwert(KriteriumID: temp_objekt.getKriteriumID(), ProjektID: ((Projekt)krit.listeProjektID.SelectedItem).getProjektID(), ProduktID: ((Produkt)krit.listeProduktID.SelectedItem).getProduktID());
+                //db.insert(temp_objekt2);
                 anzeigen(temp_objekt);
                 return;
             }
@@ -85,6 +85,10 @@ namespace NWAT_SS16
             {
                 Kriteriumverwaltung krit = (Kriteriumverwaltung)frm;
 
+                int temp_int_proj = krit.listeProjektID.SelectedIndex;
+                int temp_int_prod = krit.listeProduktID.SelectedIndex;
+
+
                 List<Kriterium> kriterien = db.get(new Kriterium(-1)); // alle Kriterien
                 krit.listeKriterium.ItemsSource = kriterien;
 
@@ -94,8 +98,8 @@ namespace NWAT_SS16
                 List<Produkt> produkte = db.get(new Produkt(-1)); // alle Produkte
                 krit.listeProduktID.ItemsSource = produkte;
 
-                krit.listeProjektID.SelectedIndex = 0;
-                krit.listeProduktID.SelectedIndex = 0;
+               krit.listeProjektID.SelectedIndex = temp_int_proj;
+               krit.listeProduktID.SelectedIndex = temp_int_prod;
 
                 onUpdateView();
                 return;
@@ -296,6 +300,7 @@ namespace NWAT_SS16
                      krit.details_Gewichtung.Text = temp_objekt.getGewichtung().ToString();
                      krit.details_kommentar.Text = temp_objekt.getKommentar();
                      krit.details_beitrag_absolut.Text = temp_objekt.getBeitragAbsolut().ToString();
+                     krit.details_Abstufung.Text = temp_objekt.getAbstufung().ToString();
                      onUpdateData();
                      return;
                  }
@@ -441,11 +446,11 @@ namespace NWAT_SS16
                 {
                     KriteriumNutzwertVerwaltung krit = (KriteriumNutzwertVerwaltung)frm;
                     // first change details for NWA specific for Produkt AND Projekt (e.g. Erfüllung)
-                    Nutzwert temp_objekt = new Nutzwert(KriteriumID: krit.details_KriteriumID.Text, ProjektID: krit.details_ProjektID.Text, ProduktID: krit.details_ProduktID.Text, Erfuellung: krit.details_Erfuellung.IsChecked.ToString(), Gewichtung: krit.details_Gewichtung.Text, Kommentar: krit.details_kommentar.Text);
+                    Nutzwert temp_objekt = new Nutzwert(KriteriumID: krit.details_KriteriumID.Text, ProjektID: krit.details_ProjektID.Text, ProduktID: krit.details_ProduktID.Text, Erfuellung: krit.details_Erfuellung.IsChecked.ToString(), Gewichtung: krit.details_Gewichtung.Text, Kommentar: krit.details_kommentar.Text, Abstufung: krit.details_Abstufung.Text);
                     db.update(temp_objekt); 
 
                     // second change details for NWA specific for Projekt (e.g. Gewichtung)
-                    temp_objekt = new Nutzwert(KriteriumID: krit.details_KriteriumID.Text, ProjektID: krit.details_ProjektID.Text, ProduktID: "-1", Erfuellung: krit.details_Erfuellung.IsChecked.ToString(), Gewichtung: krit.details_Gewichtung.Text, Kommentar: krit.details_kommentar.Text);
+                    temp_objekt = new Nutzwert(KriteriumID: krit.details_KriteriumID.Text, ProjektID: krit.details_ProjektID.Text, ProduktID: "-1", Erfuellung: krit.details_Erfuellung.IsChecked.ToString(), Gewichtung: krit.details_Gewichtung.Text, Kommentar: krit.details_kommentar.Text, Abstufung: krit.details_Abstufung.Text);
                     db.update(temp_objekt); 
 
                     // finished

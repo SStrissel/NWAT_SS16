@@ -117,7 +117,7 @@ namespace NWAT_SS16
             {
                 Produktverwaltung prod = (Produktverwaltung)frm;
 
-                List<Produkt> produkt = db.get(new Produkt());
+                List<Produkt> produkt = db.get(new Produkt(-1));
                   if (produkt.Count() > 0)
                  {
                 prod.listeProdukt.ItemsSource = produkt;
@@ -147,7 +147,7 @@ namespace NWAT_SS16
             if (frm.GetType().Name == "Produktverwaltung")
             {
                 Produktverwaltung prod = (Produktverwaltung)frm;
-                List<Produkt> produkt = db.get(new Produkt());
+                List<Produkt> produkt = db.get(new Produkt(-1));
                 
                 prod.listeProdukt.ItemsSource = produkt;
 
