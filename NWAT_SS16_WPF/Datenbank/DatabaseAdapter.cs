@@ -24,6 +24,8 @@ namespace NWAT_SS16
         abstract public void gleichgewichtenDB(int projekt, int produkt);
 
         abstract public void exp(Model objekt, DatabaseAdapter db, bool savetofile);
+        abstract public void import_file();
+        abstract public void backup();
         abstract public Model force_insert(Model objekt);
 
 

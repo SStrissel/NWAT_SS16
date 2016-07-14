@@ -56,5 +56,12 @@ namespace NWAT_SS16
             }
           
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            cp.import_file();
+            cp.onCreateView();
+
+        }
     }
 }

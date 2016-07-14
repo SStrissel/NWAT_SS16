@@ -446,7 +446,6 @@ namespace NWAT_SS16
         */
         public override void drop_tables()
         {
-
             drop_projekt();
             drop_produkt();
             drop_kriterium();
@@ -947,6 +946,64 @@ namespace NWAT_SS16
                 return false; // any error is considered as db connection error for now
             }
         }
+
+        public override void import_file()
+        {
+            if (MessageBox.Show("Sind Sie sich sicher, dass sie eine Datei importieren wollen? Die vorhandene Datenbank wird hierdurch gelöscht.", "Löschen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+            {
+                return;
+            }
+            System.Windows.Forms.OpenFileDialog openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+
+            // OK button was pressed.
+            string file = "";
+            openFileDialog1.Filter = "SQL file|*.sql";
+            openFileDialog1.Title = "Open an sql File";
+            while (file == "")
+            {
+                openFileDialog1.ShowDialog();
+                file = openFileDialog1.FileName;
+            }
+
+            using (MySqlCommand cmd = new MySqlCommand())
+            {
+                using (MySqlBackup mb = new MySqlBackup(cmd))
+                {
+                    cmd.Connection = conn;
+                    drop_tables();
+                    init_tables();
+                    conn.Open();
+                    mb.ImportFromFile(file);
+                    conn.Close();
+                }
+            }
+        }
+
+        public override void backup()
+        {
+            System.Windows.Forms.SaveFileDialog openFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+
+            // OK button was pressed.
+            string file = "";
+            openFileDialog1.Filter = "SQL file|*.sql";
+            openFileDialog1.Title = "Save an sql File";
+            while (file == "")
+            {
+                openFileDialog1.ShowDialog();
+                file = openFileDialog1.FileName;
+            }
+
+            using (MySqlCommand cmd = new MySqlCommand())
+            {
+                using (MySqlBackup mb = new MySqlBackup(cmd))
+                {
+
+                    cmd.Connection = conn;
+                    mb.ExportToFile(file);
+                }
+            }
+        }
+
         public override void exp(Model objekt, DatabaseAdapter db, bool savetofile)
         {
 

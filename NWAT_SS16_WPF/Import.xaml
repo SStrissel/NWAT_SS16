@@ -10,6 +10,7 @@
         <ListBox x:Name="listProjekte" HorizontalAlignment="Left" Height="180" Margin="0,25,0,0" VerticalAlignment="Top" Width="295" SelectionChanged="ListBox_iauswahl" Grid.Column="1"/>
         <Button Content="abbrechen" Margin="10,243,220,46" Click="abbrechen_Click" Grid.Column="1"/>
         <Button Content="importieren" Margin="165,243,60,46" Click="importieren_Click" Grid.Column="1"/>
+        <Button Content="importiere Datei" Grid.Column="1" HorizontalAlignment="Left" Margin="65,293,0,0" VerticalAlignment="Top" Width="147" Click="Button_Click"/>
 
     </Grid>
 </Window>

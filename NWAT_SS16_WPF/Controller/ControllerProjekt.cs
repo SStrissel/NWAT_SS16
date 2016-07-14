@@ -275,6 +275,21 @@ namespace NWAT_SS16
                 db.exp(proj, expdb, false);
                 expdb.delete(proj);
             }            
-        }     
+        }
+
+        //Import-Funktion für die archivierten Projekte auf der zweiten Datenbank mit der dazughörigen NWA aus einer Datei
+        public void import_file()
+        {
+            if (frm.GetType().Name == "Import")
+            {
+                DatabaseAdapter expdb = new mySQLAdapter("db4free.net", "nwat_expimp", "nutzwertexpimp", "ad.nutz#"); // Konstruktor
+
+                expdb.import_file();
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+        } 
     }
 }

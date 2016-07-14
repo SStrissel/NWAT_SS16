@@ -107,5 +107,15 @@ namespace NWAT_SS16
             expdb.reset_projekt();
             infoBox.Dispatcher.BeginInvoke(new Action(() => { infoBox.Text = "Kriteriumstruktur-Tabelle neu initalisiert."; }));
         }
+
+        private void backup_Click(object sender, RoutedEventArgs e)
+        {
+            db.backup();
+        }
+
+        private void import_file_Click(object sender, RoutedEventArgs e)
+        {
+            db.import_file();
+        }
     }
 }
