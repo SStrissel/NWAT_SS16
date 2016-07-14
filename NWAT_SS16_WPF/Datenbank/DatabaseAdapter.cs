@@ -21,7 +21,7 @@ namespace NWAT_SS16
         abstract public void init_tables();
         abstract public void drop_tables();
         abstract public int getID(Model objekt);
-        abstract public void gleichgewichtenDB();
+        abstract public void gleichgewichtenDB(int projekt, int produkt);
 
         abstract public void exp(Model objekt, DatabaseAdapter db, bool savetofile);
         abstract public Model force_insert(Model objekt);

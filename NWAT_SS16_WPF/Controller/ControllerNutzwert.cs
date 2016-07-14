@@ -15,9 +15,9 @@ namespace NWAT_SS16
         private DruckDokument dok = new DruckDokument();
 
         //Funktion gleichgewichten ruft die im DatabaseAdapter befindliche Funktion gleichgewichtenDB auf
-        public void gleichgewichten()
+        public void gleichgewichten(int projekt, int produkt)
         {
-            db.gleichgewichtenDB();
+            db.gleichgewichtenDB(projekt, produkt);
         }
 
         //Hauptfunktion der Nutzwertanalyse, die in die anderen Funktionen verzweigt

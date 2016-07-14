@@ -1033,9 +1033,9 @@ namespace NWAT_SS16
                 throw new NotImplementedException();
             }
         }
-        public override void gleichgewichtenDB()
+        public override void gleichgewichtenDB(int projekt, int produkt)
         {            
-            ExecuteSQL("UPDATE NWA SET Gewichtung = 1");
+            ExecuteSQL("UPDATE NWA SET Gewichtung = 1 WHERE ProjektID="+projekt+" AND Produkt="+produkt+"");
         }
     }
 }

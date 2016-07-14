@@ -7,13 +7,22 @@
         <Button Content="Gleichgewichten" HorizontalAlignment="Left" Margin="254,76,0,0" VerticalAlignment="Top" Width="175" Height="61" FontFamily="Arial" Click="Button_Click_2"/>
         <Label x:Name="ProjektID" Content="ProjektID:" HorizontalAlignment="Left" Height="26" Margin="10,158,0,0" VerticalAlignment="Top" Width="82" FontFamily="Arial"/>
         <Label x:Name="ProduktID" Content="ProduktID 1:" HorizontalAlignment="Left" Height="26" Margin="10,189,0,0" VerticalAlignment="Top" Width="82" FontFamily="Arial"/>
-        <ComboBox x:Name="details_Prod1" HorizontalAlignment="Left" Margin="97,189,0,0" VerticalAlignment="Top" Width="88"/>
+        <ComboBox x:Name="details_Prod1" HorizontalAlignment="Left" Margin="97,189,0,0" VerticalAlignment="Top" Width="143"/>
         <Label x:Name="ProduktID_Copy" Content="ProduktID 2:" HorizontalAlignment="Left" Height="26" Margin="10,216,0,0" VerticalAlignment="Top" Width="82" FontFamily="Arial"/>
-        <ComboBox x:Name="details_Prod2" HorizontalAlignment="Left" Margin="97,216,0,0" VerticalAlignment="Top" Width="88"/>
-        <ComboBox x:Name="details_Proj" HorizontalAlignment="Left" Margin="97,162,0,0" VerticalAlignment="Top" Width="88"/>
-        <Button x:Name="kundenanf" Content="Kundenanforderungen" HorizontalAlignment="Left" Margin="258,155,0,0" VerticalAlignment="Top" Width="146" Click="kundenanf_Click"/>
-        <Button x:Name="prod1" Content="Produkt 1 einzel" HorizontalAlignment="Left" Margin="260,185,0,0" VerticalAlignment="Top" Width="146" Click="prod1_Click"/>
-        <Button x:Name="prod2" Content="Produkt 2 einzel" HorizontalAlignment="Left" Margin="256,210,0,0" VerticalAlignment="Top" Width="146" Click="prod2_Click"/>
-        <Button x:Name="prod_table" Content="Produkt 1&amp;2 Tabelle" HorizontalAlignment="Left" Margin="260,234,0,0" VerticalAlignment="Top" Width="146" Click="prod_table_Click"/>
+        <ComboBox x:Name="details_Prod2" HorizontalAlignment="Left" Margin="97,216,0,0" VerticalAlignment="Top" Width="143" RenderTransformOrigin="0.5,0.5">
+            <ComboBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.153"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </ComboBox.RenderTransform>
+        </ComboBox>
+        <ComboBox x:Name="details_Proj" HorizontalAlignment="Left" Margin="97,162,0,0" VerticalAlignment="Top" Width="144"/>
+        <Button x:Name="kundenanf" Content="Kundenanforderungen" HorizontalAlignment="Left" Margin="278,160,0,0" VerticalAlignment="Top" Width="146" Click="kundenanf_Click"/>
+        <Button x:Name="prod1" Content="Produkt 1 einzel" HorizontalAlignment="Left" Margin="278,185,0,0" VerticalAlignment="Top" Width="146" Click="prod1_Click"/>
+        <Button x:Name="prod2" Content="Produkt 2 einzel" HorizontalAlignment="Left" Margin="277,210,0,0" VerticalAlignment="Top" Width="146" Click="prod2_Click"/>
+        <Button x:Name="prod_table" Content="Produkt 1&amp;2 Tabelle" HorizontalAlignment="Left" Margin="277,235,0,0" VerticalAlignment="Top" Width="146" Click="prod_table_Click"/>
     </Grid>
 </Window>

@@ -43,8 +43,12 @@ namespace NWAT_SS16
         }
         //Ruft die Funktion gleichgewichten der Klasse ControllerNutzwert auf
         private void Button_Click_2(object sender, RoutedEventArgs e)
-        {            
-            cntrl.gleichgewichten();
+        {
+            int prod1 = ((Produkt)details_Prod1.SelectedItem).getProduktID();
+            int prod2 = ((Produkt)details_Prod2.SelectedItem).getProduktID();
+            int proj = ((Projekt)details_Proj.SelectedItem).getProjektID();  
+            cntrl.gleichgewichten(proj, prod1);
+            cntrl.gleichgewichten(proj, prod2);
         }
 
         private void kundenanf_Click(object sender, RoutedEventArgs e)
